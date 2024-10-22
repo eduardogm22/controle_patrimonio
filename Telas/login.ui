@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1874</width>
+    <height>1038</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Controle de Patrimônio - Ideau</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="filesLOGIN_rc.qrc">
+    <normaloff>:/newPrefix/imagens/logo__ideau.png</normaloff>:/newPrefix/imagens/logo__ideau.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="frame_verdeescuro">
+      <property name="maximumSize">
+       <size>
+        <width>3445</width>
+        <height>3445</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color : rgb(0, 191, 99)</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="imagem_ideau">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>210</y>
+         <width>561</width>
+         <height>541</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="filesLOGIN_rc.qrc">:/newPrefix/imagens/logo__ideau.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ButtonEnter_2">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>750</y>
+         <width>271</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>171</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="tabletTracking">
+        <bool>false</bool>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12
+pt;&quot;&gt;Enter&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:35px;		
+	border: 4px solid rgb(255, 255, 255);
+	font-size:35px;
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Entrar</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QFrame" name="frame_verde_ecuro">
+       <property name="geometry">
+        <rect>
+         <x>810</x>
+         <y>0</y>
+         <width>150</width>
+         <height>1081</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>1000000</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #057A3A</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="frame_branco">
+      <property name="maximumSize">
+       <size>
+        <width>45900</width>
+        <height>459000</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color : rgb(255, 248, 248)</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLineEdit" name="lineEdit_senha">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>550</y>
+         <width>441</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+background-color:#E1DCDB;
+border-radius: 0px;
+padding:15px;
+border-bottom: 2px solid rgb(108, 108, 108);
+
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Senha</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_email">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>640</y>
+         <width>391</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+background-color:#E1DCDB;
+border-radius: 0px;
+padding:15px;
+border-bottom: 2px solid rgb(108, 108, 108);
+
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+       </property>
+       <property name="placeholderText">
+        <string>E-mail</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="icon_carta_do_email">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>640</y>
+         <width>71</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{background-color:#E1DCDB;
+
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>51</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="filesLOGIN_rc.qrc">:/newPrefix/imagens/email.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_user">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>370</y>
+         <width>441</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+background-color:#E1DCDB;
+border-radius: 0px;
+padding:15px;
+border-bottom: 2px solid rgb(108, 108, 108);
+
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>User</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="ControlePatrimonio">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>170</y>
+         <width>531</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>30</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+color:rgb(139, 136, 136)
+}</string>
+       </property>
+       <property name="text">
+        <string>Controle de Patrimônio</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="CrieUmaConta">
+       <property name="geometry">
+        <rect>
+         <x>330</x>
+         <y>310</y>
+         <width>261</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+color:rgb(115, 115, 115)
+}</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Crie uma Conta&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_nome_2">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>460</y>
+         <width>441</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+background-color:#E1DCDB;
+border-radius: 0px;
+padding:15px;
+border-bottom: 2px solid rgb(108, 108, 108);
+
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Nome</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>750</y>
+         <width>451</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:#E1DCDB;
+border-radius: 0px;
+padding:15px;</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="Nome_4">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>460</y>
+         <width>71</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{background-color:#E1DCDB;
+
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_icon_nome_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>51</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="filesLOGIN_rc.qrc">:/newPrefix/imagens/ico.perfil.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="icon_cadeado_da_senha_2">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>550</y>
+         <width>71</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{background-color:#E1DCDB;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>41</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="filesLOGIN_rc.qrc">:/newPrefix/imagens/senha_icon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="Button_do_cadastro">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>850</y>
+         <width>261</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>171</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>MS Shell Dlg 2</family>
+         <pointsize>18</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="tabletTracking">
+        <bool>false</bool>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Enter&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:35px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+	font: 18pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
+ 
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Inscreva-se</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>720</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(75, 75, 75);</string>
+       </property>
+       <property name="text">
+        <string>Cargo:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>830</y>
+         <width>251</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+color:rgb(254, 253, 247);
+}</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;não tem uma conta? inscreva-se&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="Nome_3">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>370</y>
+         <width>71</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{background-color:#E1DCDB;
+
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_icon_nome_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>51</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="filesLOGIN_rc.qrc">:/newPrefix/imagens/ico.perfil.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="filesLOGIN_rc.qrc"/>
+  <include location="files_rc.qrc"/>
+  <include location="../../Users/DELL/Desktop/Login.QT/filesLOGIN_rc.qrc"/>
+ </resources>
+ <connections/>
+</ui>
