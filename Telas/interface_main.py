@@ -9,24 +9,20 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from imagem import resource_rc
 
 
-class Ui_SideBar(object):
-    def setupUi(self, SideBar):
-        SideBar.setObjectName("SideBar")
-        SideBar.resize(1240, 866)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/newPrefix/imagens/logo__ideau.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        SideBar.setWindowIcon(icon)
-        SideBar.setStyleSheet("background-color: rgb(255, 248, 248);")
-        self.centralwidget = QtWidgets.QWidget(SideBar)
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(1325, 842)
+        MainWindow.setStyleSheet("background-color: rgb(255, 248, 248);")
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.frame_barraLateral_ICONS = QtWidgets.QFrame(self.centralwidget)
-        self.frame_barraLateral_ICONS.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.frame_barraLateral_ICONS.setMaximumSize(QtCore.QSize(90, 16777215))
         self.frame_barraLateral_ICONS.setStyleSheet("background-color: rgb(0, 191, 99);")
         self.frame_barraLateral_ICONS.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_barraLateral_ICONS.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -39,8 +35,6 @@ class Ui_SideBar(object):
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_10.setObjectName("frame_10")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame_10)
-        self.verticalLayout_7.setContentsMargins(0, 1, 0, 0)
-        self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.pushButton_5 = QtWidgets.QPushButton(self.frame_10)
         self.pushButton_5.setStyleSheet("QPushButton {\n"
@@ -48,6 +42,8 @@ class Ui_SideBar(object):
 "    border: none\n"
 "}")
         self.pushButton_5.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/imagens/logo__ideau.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_5.setIcon(icon)
         self.pushButton_5.setObjectName("pushButton_5")
         self.verticalLayout_7.addWidget(self.pushButton_5)
@@ -85,6 +81,7 @@ class Ui_SideBar(object):
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/newPrefix/imagens/usuarios.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon1)
+        self.pushButton_4.setCheckable(True)
         self.pushButton_4.setObjectName("pushButton_4")
         self.verticalLayout_2.addWidget(self.pushButton_4, 0, QtCore.Qt.AlignVCenter)
         self.frame_12 = QtWidgets.QFrame(self.frame_barraLateral_ICONS)
@@ -121,6 +118,7 @@ class Ui_SideBar(object):
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap(":/newPrefix/imagens/mala.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_2.setIcon(icon2)
+        self.pushButton_2.setCheckable(True)
         self.pushButton_2.setObjectName("pushButton_2")
         self.verticalLayout_2.addWidget(self.pushButton_2)
         self.frame_13 = QtWidgets.QFrame(self.frame_barraLateral_ICONS)
@@ -155,8 +153,9 @@ class Ui_SideBar(object):
 "}")
         self.pushButton_3.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/newPrefix/imagens/meuperfil.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(":/newPrefix/imagens/sem o fundo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_3.setIcon(icon3)
+        self.pushButton_3.setCheckable(True)
         self.pushButton_3.setObjectName("pushButton_3")
         self.verticalLayout_2.addWidget(self.pushButton_3)
         self.frame_9 = QtWidgets.QFrame(self.frame_barraLateral_ICONS)
@@ -260,8 +259,6 @@ class Ui_SideBar(object):
         self.pushButton_9 = QtWidgets.QPushButton(self.frame_21)
         font = QtGui.QFont()
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(75)
         self.pushButton_9.setFont(font)
         self.pushButton_9.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_9.setStyleSheet("QPushButton {\n"
@@ -287,6 +284,7 @@ class Ui_SideBar(object):
 " \n"
 "}")
         self.pushButton_9.setIcon(icon1)
+        self.pushButton_9.setCheckable(True)
         self.pushButton_9.setObjectName("pushButton_9")
         self.verticalLayout_16.addWidget(self.pushButton_9)
         self.frame_29 = QtWidgets.QFrame(self.frame_21)
@@ -309,8 +307,6 @@ class Ui_SideBar(object):
         self.pushButton_8 = QtWidgets.QPushButton(self.frame_21)
         font = QtGui.QFont()
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(75)
         self.pushButton_8.setFont(font)
         self.pushButton_8.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_8.setStyleSheet("QPushButton {\n"
@@ -338,6 +334,7 @@ class Ui_SideBar(object):
 "}\n"
 "")
         self.pushButton_8.setIcon(icon2)
+        self.pushButton_8.setCheckable(True)
         self.pushButton_8.setObjectName("pushButton_8")
         self.verticalLayout_16.addWidget(self.pushButton_8)
         self.frame_30 = QtWidgets.QFrame(self.frame_21)
@@ -359,8 +356,6 @@ class Ui_SideBar(object):
         self.pushButton_7 = QtWidgets.QPushButton(self.frame_21)
         font = QtGui.QFont()
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(75)
         self.pushButton_7.setFont(font)
         self.pushButton_7.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_7.setStyleSheet("QPushButton {\n"
@@ -386,6 +381,7 @@ class Ui_SideBar(object):
 " \n"
 "}")
         self.pushButton_7.setIcon(icon3)
+        self.pushButton_7.setCheckable(True)
         self.pushButton_7.setObjectName("pushButton_7")
         self.verticalLayout_16.addWidget(self.pushButton_7)
         self.verticalLayout_17.addWidget(self.frame_21, 0, QtCore.Qt.AlignLeft)
@@ -410,8 +406,6 @@ class Ui_SideBar(object):
         self.pushButton_6 = QtWidgets.QPushButton(self.frame_15)
         font = QtGui.QFont()
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(75)
         self.pushButton_6.setFont(font)
         self.pushButton_6.setStyleSheet("QPushButton {\n"
 "    color:rgb(0, 85, 0);\n"
@@ -553,7 +547,9 @@ class Ui_SideBar(object):
 " padding-left:7px;\n"
 "}")
         self.pushButton_12.setText("")
-        self.pushButton_12.setIcon(icon3)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/newPrefix/imagens/meuperfil.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_12.setIcon(icon6)
         self.pushButton_12.setObjectName("pushButton_12")
         self.horizontalLayout_5.addWidget(self.pushButton_12, 0, QtCore.Qt.AlignRight)
         self.horizontalLayout_4.addWidget(self.frame_27)
@@ -564,6 +560,8 @@ class Ui_SideBar(object):
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.verticalLayout_19 = QtWidgets.QVBoxLayout(self.frame_4)
+        self.verticalLayout_19.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_19.setSpacing(0)
         self.verticalLayout_19.setObjectName("verticalLayout_19")
         self.stackedWidget = QtWidgets.QStackedWidget(self.frame_4)
         self.stackedWidget.setObjectName("stackedWidget")
@@ -576,51 +574,47 @@ class Ui_SideBar(object):
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
         self.label_2 = QtWidgets.QLabel(self.page_2)
-        self.label_2.setGeometry(QtCore.QRect(200, 200, 411, 211))
+        self.label_2.setGeometry(QtCore.QRect(290, 220, 271, 221))
         self.label_2.setObjectName("label_2")
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QtWidgets.QWidget()
         self.page_3.setObjectName("page_3")
         self.label_3 = QtWidgets.QLabel(self.page_3)
-        self.label_3.setGeometry(QtCore.QRect(270, 300, 291, 161))
+        self.label_3.setGeometry(QtCore.QRect(230, 240, 401, 241))
         self.label_3.setObjectName("label_3")
         self.stackedWidget.addWidget(self.page_3)
         self.verticalLayout_19.addWidget(self.stackedWidget)
         self.verticalLayout.addWidget(self.frame_4)
         self.horizontalLayout.addWidget(self.frame_main)
-        SideBar.setCentralWidget(self.centralwidget)
+        MainWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(SideBar)
-        self.stackedWidget.setCurrentIndex(1)
+        self.retranslateUi(MainWindow)
+        self.stackedWidget.setCurrentIndex(2)
         self.pushButton_11.toggled['bool'].connect(self.frame_barraLateral_ICONS.setHidden)
         self.pushButton_11.toggled['bool'].connect(self.frame_barraLateral.setVisible)
         self.pushButton_4.toggled['bool'].connect(self.pushButton_9.setChecked)
         self.pushButton_2.toggled['bool'].connect(self.pushButton_8.setChecked)
-        self.pushButton_3.toggled['bool'].connect(self.pushButton_7.setChecked)
-        self.pushButton.toggled['bool'].connect(SideBar.close)
-        self.pushButton_6.toggled['bool'].connect(SideBar.close)
-        self.pushButton_7.toggled['bool'].connect(self.pushButton_3.setChecked)
-        self.pushButton_8.toggled['bool'].connect(self.pushButton_2.setChecked)
-        self.pushButton_9.toggled['bool'].connect(self.pushButton_4.setChecked)
-        QtCore.QMetaObject.connectSlotsByName(SideBar)
+        self.pushButton_6.pressed.connect(MainWindow.close)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, SideBar):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        SideBar.setWindowTitle(_translate("SideBar", "Controle de Patrimônio"))
-        self.pushButton_9.setText(_translate("SideBar", "Usuários"))
-        self.pushButton_8.setText(_translate("SideBar", "Patrimônio"))
-        self.pushButton_7.setText(_translate("SideBar", "Meu perfil"))
-        self.pushButton_6.setText(_translate("SideBar", "Sair"))
-        self.label.setText(_translate("SideBar", "USUARIOS"))
-        self.label_2.setText(_translate("SideBar", "PATRIMONO"))
-        self.label_3.setText(_translate("SideBar", "MEU PERFIL"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.pushButton_9.setText(_translate("MainWindow", "Usuários"))
+        self.pushButton_8.setText(_translate("MainWindow", "Patrimônio"))
+        self.pushButton_7.setText(_translate("MainWindow", "Meu perfil"))
+        self.pushButton_6.setText(_translate("MainWindow", "Sair"))
+        self.label.setText(_translate("MainWindow", "USUARIOS"))
+        self.label_2.setText(_translate("MainWindow", "patrimonio"))
+        self.label_3.setText(_translate("MainWindow", "MEu perfil"))
+import filesLOGIN_rc_rc
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    SideBar = QtWidgets.QMainWindow()
-    ui = Ui_SideBar()
-    ui.setupUi(SideBar)
-    SideBar.show()
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())
