@@ -93,7 +93,7 @@ QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</s
        <string/>
       </property>
       <property name="placeholderText">
-       <string>User</string>
+       <string>Usuário</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_senha_2">
@@ -126,6 +126,9 @@ QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</s
       </property>
       <property name="placeholderText">
        <string>Senha</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>false</bool>
       </property>
      </widget>
      <widget class="QFrame" name="Nome_5">
@@ -161,7 +164,7 @@ border-radius: 0px
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="filesLOGIN_rc.qrc">:/newPrefix/imagens/ico.perfil.png</pixmap>
+        <pixmap resource="recurses.qrc">:/imagens/imagem sem o fundo/ico.perfil.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -201,7 +204,7 @@ border-radius: 0px
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="filesLOGIN_rc.qrc">:/newPrefix/imagens/senha_icon.png</pixmap>
+        <pixmap resource="recurses.qrc">:/imagens/imagem sem o fundo/senha_icon.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -275,6 +278,51 @@ QPushButton:pressed{
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QLabel" name="label_nao_tem_umaconta">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>340</y>
+        <width>221</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>7</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <underline>true</underline>
+        <strikeout>false</strikeout>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    qproperty-iconSize: 40px 48px; 
+	border: none;
+color:rgb(65, 65, 65);
+border-radius: 10px
+}
+
+
+QLabel:hover{
+border-radius:10px;
+background-color:rgb(235, 235, 235); 
+color:rgb(0, 85, 127);
+}
+
+QLabel:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+      </property>
+      <property name="text">
+       <string>Não tem uma conta? Cadastre-se</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
@@ -298,12 +346,67 @@ QPushButton:pressed{
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>570</x>
+       <y>70</y>
+       <width>41</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    qproperty-iconSize: 40px 48px; 
+	border: none;
+	background-color: rgb(0, 85, 0);
+color:rgb(232, 232, 232);
+border-radius: 10px
+}
+
+
+QPushButton:hover{
+border-radius:10px;
+background-color:#057A3A; 
+color:white
+}
+
+QPushButton:pressed{
+border-radius: 10px;
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
  <resources>
   <include location="filesLOGIN_rc.qrc"/>
-  <include location="../../../../Program Files (x86)/Qt Designer/filesLOGIN_rc.qrc"/>
+  <include location="recurses.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>646</x>
+     <y>100</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>630</x>
+     <y>-57</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
