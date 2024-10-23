@@ -6,7 +6,7 @@ from func import user_menu, user_info, bag_view
 from connect import config, config_acess
 from PyQt5.QtCore import QResource , QTimer, Qt
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
-import mysql.connector # type: ignore // caso de erro, rode no terminal: pip install mysql-connector-python
+import mysql.connector # type: ignore
 import os
 import webbrowser
 
@@ -194,9 +194,14 @@ class interface(QMainWindow):
 
         # botões e icones header
         self.btn_account = self.findChild(QPushButton, "accountBtn")
+
+
+        self.btn_account.setToolTip("Conta") # <- vai ser usado para auxiliar o usuário com balões de informação, no momento apenas no botão conta para teste.
+
+
+
         self.btn_account.setIcon(user_svg)
         self.btn_account.installEventFilter(self)
-
 
         self.btn_home = self.findChild(QWidget, "btnHome")
         self.home_btn = self.findChild(QPushButton, "homeBtn")

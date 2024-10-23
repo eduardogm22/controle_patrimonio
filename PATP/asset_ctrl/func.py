@@ -1,10 +1,10 @@
 # funcionalidades de cada tela que for chamada
 
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect
-from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
+from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale
-from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator
+from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
 from connect import config_acess, config
 import mysql.connector # type: ignore
 
@@ -205,7 +205,6 @@ class bag_view(QWidget):
         self.body_frame = self.findChild(QFrame, "body_frame")
         self.cad_frame.layout().addWidget(self.cad_itens)
         self.btn_teste = self.findChild(QPushButton, "test")
-        #self.btn_teste.clicked.connect(self.add_item)
         self.body_frame.hide()
         self.cad_frame.show()        
  
@@ -237,21 +236,119 @@ class bag_item_cad(QWidget):
         validator.setLocale(locale)
         self.number_input.setValidator(validator)
         self.btn_ok = self.findChild(QPushButton, "ok_btn")
-        self.btn_ok.clicked.connect(self.teste)
         self.number_input.keyPressEvent = self.keyPressEvent
         self.btn_confirm = self.findChild(QPushButton, "cadItens")
         self.btn_confirm.clicked.connect(self.confirm)
-        self.listagem = []
-
-    def teste(self):
-        self.value = self.number_input.text()
-        self.listagem.append(self.value)
         
+        self.btn_del = self.findChild(QPushButton, "del")
+        self.btn_del.clicked.connect(self.deletar_item)
+
+        self.listagem = {}
+        self.id_counter = 0
+        self.lista_produtos = self.findChild(QTableView, "list_itens_add")
+        
+        self.btn_ok.clicked.connect(self.temp_list)
+        
+        self.selected_row = None
+
+        self.lista_produtos.clicked.connect(self.handle_row_click)
+        self.selected_rows = []
+        self.lista_produtos.setGridStyle(Qt.NoPen)
+        self.lista_produtos.setAlternatingRowColors(True)
+        self.lista_produtos.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+        self.lista_produtos.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.lista_produtos.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.atualizar_tabela()
+
+    def temp_list(self):
+        nome = self.name_item.text()
+        valor = self.number_input.text()
+        quantidade = self.quantidade.value()
+        if not nome or not valor or quantidade == 0:
+            print('Sem valores')
+        else:
+            self.id_counter += 1
+            self.listagem[self.id_counter] = [nome, valor, quantidade]
+            self.atualizar_tabela()
+            self.clear_c()
+        
+    def clear_c(self):
+        self.name_item.clear()
+        self.number_input.clear()
+        self.quantidade.clear()
+        self.quantidade.setValue(0)
+
+    def atualizar_tabela(self):
+        mdl = QStandardItemModel()
+        hdr = ["Nome", "Valor", "Quantidade"]
+        mdl.setHorizontalHeaderLabels(hdr)
+        for item_id, item_data in self.listagem.items():
+            row_items = []
+            for value in item_data:
+                item = QStandardItem(str(value))
+                row_items.append(item)
+            mdl.appendRow(row_items)
+        self.lista_produtos.setModel(mdl)
+        self.lista_produtos.verticalHeader().setVisible(False)
+        self.lista_produtos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        
+        self.lista_produtos.horizontalHeader().setStretchLastSection(True)
+        print(self.listagem)
+        
+    # função responsável pela interação de seleção de linha
+    # print com o for apenas para teste
+    def handle_row_click(self, index):
+        row = index.row()
+        self.selected_row = row
+        print(f"Dados da linha {row}:")
+        for column in range(self.lista_produtos.model().columnCount()):
+            data = self.lista_produtos.model().index(row, column).data()
+            print(f"{self.lista_produtos.model().horizontalHeaderItem(column).text()}: {data}")
+        self.selected_rows.clear()
+        self.selected_rows.append(self.lista_produtos.model().index(row, column).data())
+        
+    def deletar_item(self):
+        if self.selected_row is None:
+            print("Nenhuma linha selecionada para deletar.")
+            return
+        item_id = list(self.listagem.keys())[self.selected_row]
+        del self.listagem[item_id]
+        self.atualizar_tabela()
+        self.selected_row = None
+        if self.listagem:
+            self.id_counter = max(self.listagem.keys())
+        else:
+            self.id_counter = 0
+
     def keyPressEvent(self, event: QKeyEvent):
         if event.key() == Qt.Key_Comma:
             return
         QLineEdit.keyPressEvent(self.number_input, event)
         
     def confirm(self):
-        pass
-    
+        print("Confirmando os itens:", self.listagem)
+        con_confirm = mysql.connector.connect(**config)
+        cursor = con_confirm.cursor()
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS teste_produtos (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                nome VARCHAR(255),
+                valor VARCHAR(255),
+                quantidade VARCHAR(255)
+            )
+        ''')
+        # Apenas para teste de funcionalidade
+        # Faltando regra de negócio
+        for item_id, item_data in self.listagem.items():
+            nome, valor, quantidade = item_data
+            cursor.execute('''
+                INSERT INTO teste_produtos (nome, valor, quantidade) 
+                VALUES (%s, %s, %s)
+            ''', (nome, valor, quantidade))
+            
+        con_confirm.commit()
+        con_confirm.close()
+        self.listagem.clear()
+        self.atualizar_tabela()
+        print("Itens confirmados e adicionados ao banco de dados:", self.listagem)

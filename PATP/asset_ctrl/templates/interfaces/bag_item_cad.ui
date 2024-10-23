@@ -401,9 +401,12 @@ border:1px solid black;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="spinBox">
+                   <widget class="QSpinBox" name="qnt">
                     <property name="styleSheet">
                      <string notr="true">background-color:white;</string>
+                    </property>
+                    <property name="maximum">
+                     <number>9999</number>
                     </property>
                    </widget>
                   </item>
@@ -494,7 +497,7 @@ border:1px solid black;</string>
              <widget class="QTableView" name="list_itens_add"/>
             </item>
             <item alignment="Qt::AlignRight">
-             <widget class="QPushButton" name="test">
+             <widget class="QPushButton" name="del">
               <property name="minimumSize">
                <size>
                 <width>33</width>
@@ -512,7 +515,7 @@ border:1px solid black;</string>
 border:1px solid black;</string>
               </property>
               <property name="text">
-               <string>+</string>
+               <string>X</string>
               </property>
              </widget>
             </item>
