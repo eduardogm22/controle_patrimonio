@@ -608,8 +608,9 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "USUARIOS"))
         self.label_2.setText(_translate("MainWindow", "patrimonio"))
         self.label_3.setText(_translate("MainWindow", "MEu perfil"))
-
-
+        
+        
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
