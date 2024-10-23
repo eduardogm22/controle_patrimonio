@@ -1,4 +1,4 @@
-
+#Procedure criada (como modelo) para cadastrar varios produtos diferentes com base na quantidade
 DELIMITER $$
 CREATE PROCEDURE cadastra_varios (in id integer, in nome varchar(30), in quantidade integer)
 BEGIN
@@ -10,14 +10,7 @@ BEGIN
 END $$
 DELIMITER ;
 
-create database teste;
-
-create table teste (
-	id integer not null,
-    nome varchar(30)
-);
-
-call cadastra_varios(1, 'Eduardo', 3);
+call cadastra_varios(1, 'cadeira', 5);
 
 select * from teste;
 
