@@ -130,7 +130,7 @@ class interface(QMainWindow):
         self.table_view = self.findChild(QTableView, "tableView")
         conn = mysql.connector.connect(**config) # argumentos do dicionário config...
         cursor = conn.cursor()
-        cursor.execute("SELECT id,nome,email FROM pessoas")
+        cursor.execute("SELECT id_usuario, nome, email FROM usuario")
         results = cursor.fetchall()
         
          # Criar o modelo para o QTableView
@@ -161,7 +161,7 @@ class interface(QMainWindow):
         self.table_view2 = self.findChild(QTableView, "tableView_2")
         conn2 = mysql.connector.connect(**config) # argumentos do dicionário config...
         cursor = conn2.cursor()
-        cursor.execute("SELECT nome,id FROM pessoas")
+        cursor.execute("SELECT id_usuario, nome FROM usuario")
             # teste 1
         results1 = cursor.fetchall()
         for row in results1:
@@ -482,7 +482,7 @@ class id_user:
         self.user = user
         verify = mysql.connector.connect(**config)
         cursor = verify.cursor()
-        cursor.execute(f"SELECT id FROM cargo WHERE nome = '{self.user}'")
+        cursor.execute(f"SELECT id_cargo FROM cargo WHERE nome = '{self.user}'")
         result = cursor.fetchone()
         if result:
             self.id = result[0]  # Extrai o valor do id da tupla
