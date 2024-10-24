@@ -334,18 +334,19 @@ class bag_item_cad(QWidget):
             CREATE TABLE IF NOT EXISTS teste_produtos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nome VARCHAR(255),
-                valor VARCHAR(255),
-                quantidade VARCHAR(255)
+                valor VARCHAR(255)
             )
         ''')
         # Apenas para teste de funcionalidade
         # Faltando regra de negócio
         for item_id, item_data in self.listagem.items():
             nome, valor, quantidade = item_data
-            cursor.execute('''
-                INSERT INTO teste_produtos (nome, valor, quantidade) 
-                VALUES (%s, %s, %s)
-            ''', (nome, valor, quantidade))
+            cursor.callproc('cadastra_varios', [nome, valor, quantidade])
+            
+            '''cursor.execute(''' 
+                #INSERT INTO teste_produtos (nome, valor) 
+               #VALUES (%s, %s)
+            ''', (nome, valor))'''
             
         con_confirm.commit()
         con_confirm.close()

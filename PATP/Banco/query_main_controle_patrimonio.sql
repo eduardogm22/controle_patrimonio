@@ -1,16 +1,20 @@
+
+use cadastro;
 #Procedure criada (como modelo) para cadastrar varios produtos diferentes com base na quantidade
 DELIMITER $$
-CREATE PROCEDURE cadastra_varios (in id integer, in nome varchar(30), in quantidade integer)
+CREATE PROCEDURE cadastra_varios (in nome varchar(100), in valor float, in quantidade integer)
 BEGIN
 	declare contador integer default 1;
     while contador <= quantidade do
-		insert into teste values (id, nome);
+		insert into teste_produtos (nome, valor) values (nome, valor);
 		set contador = contador + 1;
 	end while;
 END $$
 DELIMITER ;
 
-call cadastra_varios(1, 'cadeira', 5);
+#call cadastra_varios('cadeira', 50, 5);
+
+select * from teste_produtos;
 
 #criando tables para chave estrangeira
 create table categorias (
@@ -48,6 +52,6 @@ add constraint fk_prd_fornecedores foreign key (id_fornecedor) references fornec
 
 #criando tabela para fazer a auditoria(logs) da tabela produtos
 
-create table produtos_audit(
-	
-);
+#create table produtos_audit();
+
+select * from teste_produtos;
