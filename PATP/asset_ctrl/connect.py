@@ -3,19 +3,32 @@ import mysql.connector # type: ignore
 
 
 config = {
-        'user': 'root',
-        'password': '',
         'host': 'localhost',
-        'database': 'cadastro',   
+        'database': 'cadastro', 
+        'user': 'root',
+        'password': ''
         }
 
-config_acess = {
+'''config = {
         'user': 'root',
         'password': '',
         'host': 'localhost',
-        'database': 'cadastro',   
+        'database': 'cadastro',  
+        }#como estava antes'''
+        
+config_acess = {
+        'host': 'localhost',
+        'database': 'cadastro',
+        'user': 'root',
+        'password': ''
         }
  
+'''config_acess = {
+        'user': 'root',
+        'password': '',
+        'host': 'localhost',
+        'database': 'cadastro'
+        }#como estava antes'''
 
 
 
