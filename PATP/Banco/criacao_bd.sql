@@ -1,30 +1,30 @@
-CREATE DATABASE IF NOT EXISTS cadastro;
-USE cadastro;
+create database if not exists cadastro;
+use cadastro;
 
 create table produtos (
-	idproduto INTEGER not null AUTO_INCREMENT PRIMARY KEY,
-	nome VARCHAR(100) NOT NULL,
-	valor_unitario FLOAT NOT NULL,
-	numero_patrimonio VARCHAR(30) UNIQUE,
-	num_serie varchar (30),
-	idnota INTEGER,
-	idcategoria INTEGER NOT NULL,
-    idsetor_responsavel INTEGER NOT NULL,
-	idsituacao INTEGER NOT NULL,
-	idfornecedor INTEGER NOT NULL
+	idproduto integer not null auto_increment primary key,
+	nome varchar(100) not null,
+	valor_unitario decimal(10,2) not null,
+	numero_patrimonio varchar(30) unique,
+	num_serie varchar(30) unique,
+	idnota integer,
+	idcategoria integer not null,
+    idsetor_responsavel integer not null,
+	idsituacao integer not null,
+	idfornecedor integer not null
 ); 
 
-CREATE TABLE categorias(
+create table categorias(
 	idcategoria integer primary key auto_increment,
     nome varchar(30) not null unique
 );
 
-CREATE TABLE info_notas( 
- id_nota INTEGER not null PRIMARY KEY AUTO_INCREMENT,  
+create table info_notas( 
+ id_nota integer not null primary key auto_increment,  
  chave_acesso integer not null unique,  
  numero integer not null unique,  
  serie integer not null unique,  
- data_aquisicao DATE NOT NULL
+ data_aquisicao date not null
 ); 
 
 create table setores_responsaveis (
@@ -51,7 +51,152 @@ create table cidades (
     constraint fk_est_cidades foreign key (idestado) references estados (idestado)
 );
 
+create table enderecos_fornecedores (
+	idendereco_fornecedor integer not null primary key,
+    logradouro varchar(30),  
+	numero varchar(10),  
+	cep varchar(9),  
+	idcidade integer 
+    
+);
 
+create table fornecedores (
+	idfornecedor integer not null auto_increment primary key,
+    nome varchar(50) not null,
+    idendereco_fornecedor integer not null,
+    
+    constraint id_fcd_enderecos_fornecedores foreign key (idendereco_fornecedor) references enderecos_fornecedores(idendereco_fornecedor)
+);
+
+create table enderecos_pessoas (
+	idendereco_pessoa integer not null primary key,
+    logradouro varchar(30),  
+	numero_residencia varchar(10),  
+	cep varchar(9),  
+	idcidade integer 
+);
+
+create table pessoas ( 
+	idpessoa integer not null auto_increment primary key,  
+	nome varchar(30) not null,  
+	email varchar(40),  
+	data_nascimento date,  
+	idendereco_pessoa integer,
+    
+    constraint fk_pes_endereco_pessoas foreign key (idendereco_pessoa) references enderecos_pessoas (idendereco_pessoa)
+); 
+
+
+
+create table cargos ( 
+	idcargo int primary key auto_increment,  
+	nome varchar(30) not null,  
+	acesso_geral char(1) not null,  
+	pode_registrar char(1) not null,  
+	controle_adm char(1) not null,  
+	controle_usuario char(1) not null,  
+	pode_modificar char(1) not null,  
+	pode_visualizar char(1) not null  
+);
+
+create table usuarios (
+	idpessoa integer not null primary key,
+	usuario varchar(30) not null unique,  
+	senha varchar(20) not null,
+	idcargo integer not null,
+    
+    constraint fk_usr_pessoas foreign key (idpessoa) references pessoas (idpessoa),
+    constraint fk_usr_cargos foreign key (idcargo) references cargos (idcargo)
+); 
+
+-- stored procedures
+
+-- procedure que recebe a quantidade e cadastra 1 produto para cada distinto vezes o valor da quantidade
+
+/*delimiter $$
+create procedure cadastra_quantidade (in nome varchar(100), in valor float, in quantidade integer)
+begin
+	declare contador integer default 1;
+    while 
+		contador <= quantidade do
+			insert into
+				teste_produtos (idproduto, nome, valor_unitario)
+                values 
+				(default, nome, valor);
+			set contador = contador + 1;
+	end while;
+end $$
+delimiter ;
+
+	idproduto integer not null auto_increment primary key,
+	nome varchar(100) not null,
+	valor_unitario float not null,
+	numero_patrimonio varchar(30) unique,
+	num_serie varchar (30),
+	idnota integer,
+	idcategoria integer not null,
+    idsetor_responsavel integer not null,
+	idsituacao integer not null,
+	idfornecedor integer not null
+
+#testando procedure
+call cadastra_varios('cadeira', 50, 5);
+#verificando se tudo ocorreu direito
+select * from teste_produtos;
+*/
+
+create database if not exists cadastro;
+use cadastro;
+
+create table produtos (
+	idproduto integer not null auto_increment primary key,
+	nome varchar(100) not null,
+	valor_unitario decimal(10,2) not null,
+	numero_patrimonio varchar(30) unique,
+	num_serie varchar(30) unique,
+	idnota integer,
+	idcategoria integer not null,
+    idsetor_responsavel integer not null,
+	idsituacao integer not null,
+	idfornecedor integer not null
+); 
+
+create table categorias(
+	idcategoria integer primary key auto_increment,
+    nome varchar(30) not null unique
+);
+
+create table info_notas( 
+ id_nota integer not null primary key auto_increment,  
+ chave_acesso integer not null unique,  
+ numero integer not null unique,  
+ serie integer not null unique,  
+ data_aquisicao date not null
+); 
+
+create table setores_responsaveis (
+	idsetor_responsavel integer not null primary key auto_increment,
+    nome varchar(30) not null
+);
+
+create table situacoes (
+	idsituacao integer not null auto_increment primary key,
+    nome varchar(30) not null
+);
+
+create table estados (
+	idestado integer not null auto_increment primary key,
+    nome varchar(20) not null unique,
+    sigla char(2) not null unique
+);
+
+create table cidades (
+	idcidade integer not null auto_increment primary key,
+    nome varchar(50) not null,
+    idestado integer not null,
+    
+    constraint fk_est_cidades foreign key (idestado) references estados (idestado)
+);
 
 create table fornecedores (
 	idfornecedor integer not null auto_increment primary key,
@@ -61,35 +206,70 @@ create table fornecedores (
     constraint id_fcd_cidades foreign key (idcidade) references cidades(idcidade)
 );
 
-CREATE TABLE pessoas ( 
+create table pessoas ( 
 	idpessoa integer not null auto_increment primary key,  
 	nome varchar(30) not null,  
 	email varchar(40),  
 	data_nascimento date,  
 	logradouro varchar(30),  
 	numero_residencia varchar(10),  
-	cep VARCHAR(9),  
+	cep varchar(9),  
 	idcidade integer  
 ); 
 
-CREATE TABLE cargos ( 
-	idcargo INT PRIMARY KEY AUTO_INCREMENT,  
-	nome VARCHAR(30) NOT NULL,  
-	acesso_geral CHAR(1) NOT NULL,  
-	pode_registrar CHAR(1) NOT NULL,  
-	controle_adm CHAR(1) NOT NULL,  
-	controle_usuario CHAR(1) NOT NULL,  
-	pode_modificar CHAR(1) NOT NULL,  
-	pode_visualizar CHAR(1) NOT NULL  
+create table cargos ( 
+	idcargo int primary key auto_increment,  
+	nome varchar(30) not null,  
+	acesso_geral char(1) not null,  
+	pode_registrar char(1) not null,  
+	controle_adm char(1) not null,  
+	controle_usuario char(1) not null,  
+	pode_modificar char(1) not null,  
+	pode_visualizar char(1) not null  
 );
 
-CREATE TABLE usuarios ( 
+create table usuarios ( 
 	idusuario integer not null auto_increment primary key,  
-	usuario VARCHAR(30) not null unique,  
-	senha VARCHAR(20) NOT NULL,
-    idpessoa INTeger not null,  
-	idcargo INTEGER NOT NULL,
+	usuario varchar(30) not null unique,  
+	senha varchar(20) not null,
+    idpessoa integer not null,  
+	idcargo integer not null,
     
     constraint fk_usr_pessoas foreign key (idpessoa) references pessoas (idpessoa),
     constraint fk_usr_cargos foreign key (idcargo) references cargos (idcargo)
 ); 
+
+-- stored procedures
+
+-- procedure que recebe a quantidade e cadastra 1 produto para cada distinto vezes o valor da quantidade
+
+delimiter $$
+create procedure cadastra_quantidade (in nome varchar(100), in valor float, in quantidade integer)
+begin
+	declare contador integer default 1;
+    while 
+		contador <= quantidade do
+			insert into
+				teste_produtos (idproduto, nome, valor_unitario)
+                values 
+				(default, nome, valor);
+			set contador = contador + 1;
+	end while;
+end $$
+delimiter ;
+
+	idproduto integer not null auto_increment primary key,
+	nome varchar(100) not null,
+	valor_unitario float not null,
+	numero_patrimonio varchar(30) unique,
+	num_serie varchar (30),
+	idnota integer,
+	idcategoria integer not null,
+    idsetor_responsavel integer not null,
+	idsituacao integer not null,
+	idfornecedor integer not null
+
+#testando procedure
+call cadastra_varios('cadeira', 50, 5);
+#verificando se tudo ocorreu direito
+select * from teste_produtos;
