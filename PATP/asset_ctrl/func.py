@@ -217,6 +217,13 @@ class bag_view(QWidget):
         self.tblMostraPatrimonio.verticalHeader().setVisible(False)
         self.tblMostraPatrimonio.resizeColumnsToContents()
         self.tblMostraPatrimonio.setColumnWidth(1, 250)
+        header = self.tblMostraPatrimonio.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.Stretch)
+        header.setStretchLastSection(True)
+        self.tblMostraPatrimonio.setAlternatingRowColors(True)
+        self.tblMostraPatrimonio.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+        self.tblMostraPatrimonio.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tblMostraPatrimonio.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
         
         
@@ -350,11 +357,12 @@ class bag_item_cad(QWidget):
         print("Confirmando os itens:", self.listagem)
         con_confirm = mysql.connector.connect(**config)
         cursor = con_confirm.cursor()
-        
+        for item_id, item_data in self.listagem.items():
+            print(f'Produto id:{item_id}, Produto da lista: {item_data}')
         # Apenas para teste de funcionalidade
         # Faltando regra de negócio
-        for item_id, item_data in self.listagem.items():
-            nome, valor, quantidade = item_data
+        #for item_id, item_data in self.listagem.items():
+        #    nome, valor, quantidade = item_data
             #cursor.callproc('cadastra_quantidade', [nome, valor, quantidade])
             #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel,
             #                                        idsituacao, idfornecedor, quantidade])
