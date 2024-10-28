@@ -204,6 +204,11 @@ class bag_view(QWidget):
         modelo = conecta_view_tela('select * from principal_patrimonio_view')
         self.tblMostraPatrimonio.setModel(modelo)
         
+        self.tblMostraPatrimonio.verticalHeader().setVisible(False)
+        self.tblMostraPatrimonio.resizeColumnsToContents()
+        self.tblMostraPatrimonio.setColumnWidth(1, 250)
+
+        
         
     def lista_itens(self):
         pass

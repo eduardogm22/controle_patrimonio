@@ -143,12 +143,14 @@ FROM
 	usuarios as usr
 inner join 
 	pessoas as pss on usr.idpessoa = pss.idpessoa;
-    
+
 create view principal_patrimonio_view as
 select
 	ptr.idpatrimonio as "ID",
     ptr.nome as "Patrimônio",
     cat.nome as "Categoria",
+    ptr.valor_unitario as "Valor Unitário",
+    ptr.num_patrimonio as "Núm. Patrimônio",
     nta.data_aquisicao as "Data de Aquisição",
     srp.nome as "Setor Resp.",
     sit.nome as "Situação"
