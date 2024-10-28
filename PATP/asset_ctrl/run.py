@@ -553,8 +553,8 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     if len(sys.argv) > 1:
         user = sys.argv[1]
+        window = interface()
+        window.show()
+        sys.exit(app.exec_())
     else:
         user = "Desconhecido"
-    window = interface()
-    window.show()
-    sys.exit(app.exec_())

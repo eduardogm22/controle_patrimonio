@@ -7,7 +7,6 @@ from PyQt5.QtCore import QResource , QTimer, QLocale
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
 from connect import conecta_view_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
-
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
 
@@ -59,7 +58,11 @@ class user_menu(QWidget):
         self.info_frame = self.findChild(QFrame, "infoFrame")
         self.btn_info.installEventFilter(self)
         
-
+        self.table_user = self.findChild(QTableView, "userList")
+        self.table_logs = self.findChild(QTableView, "logsReg")
+        self.search_line = self.findChild(QLineEdit, "search_input")
+        
+        self.frame_user = self.findChild(QFrame, "info_user")
 
         self.btn_search.clicked.connect(self.search)
         self.btn_cad.clicked.connect(self.register)
@@ -95,10 +98,13 @@ class user_menu(QWidget):
         self.shadow_user6.setBlurRadius(9)
         self.shadow_user6.setColor(QtGui.QColor(0, 0, 0, 128))
 
-        self.search_frame.setGraphicsEffect(self.shadow_user1)
-        self.cad_frame.setGraphicsEffect(self.shadow_user2)
-        self.info_frame.setGraphicsEffect(self.shadow_user4)
+        self.head_frame = self.findChild(QFrame, "header_user_frame")
 
+        self.search_frame.setGraphicsEffect(self.shadow_user1)
+        self.info_frame.setGraphicsEffect(self.shadow_user5)
+        self.cad_frame.setGraphicsEffect(self.shadow_user2)
+        self.frame_user.setGraphicsEffect(self.shadow_user3)
+        self.head_frame.setGraphicsEffect(self.shadow_user6)
 
 
             
@@ -109,8 +115,19 @@ class user_menu(QWidget):
         self.c_frame.layout().addWidget(self.user_create)
         self.btn_clear = self.findChild(QPushButton, "btnClear")
         self.btn_clear.clicked.connect(self.clear)
+        self.frame_bot = self.findChild(QFrame, "frame_bottom")
+        self.frame_body = self.findChild(QFrame, "frame_body")
+        self.frame_rodape = self.findChild(QFrame, "frame_rodape")
         self.cargo_box = self.findChild(QComboBox, "cargoBox")
         self.cargo_box.setStyleSheet("QComboBox#cargoBox{border: 1px solid #000000;} QComboBox#cargoBox::drop-down{border: 1px solid #000000; border-radius:9px;}")
+        
+        self.user_edit_line = self.findChild(QLineEdit, "userEdit")
+        self.name_edit_line = self.findChild(QLineEdit, "nameEdit")
+        self.pass_edit_line = self.findChild(QLineEdit, "passEdit")
+        self.email_edit_line = self.findChild(QLineEdit, "emailEdit")
+
+        self.frame_btns = self.findChild(QFrame, "frame_btns")
+        self.frame_back = self.findChild(QFrame, "frame_back")
 
 
         self.btn_details = self.findChild(QPushButton, "btn_details")
@@ -121,8 +138,52 @@ class user_menu(QWidget):
         self.shadow_details.setOffset(0, 0)
         self.shadow_details.setBlurRadius(9)
         self.shadow_details.setColor(QtGui.QColor(0, 0, 0, 128))
-        self.btn_details.setGraphicsEffect(self.shadow_details)
+    
+        self.shadow_f1 = QGraphicsDropShadowEffect() 
+        self.shadow_f1.setOffset(0, 0)
+        self.shadow_f1.setBlurRadius(9)
+        self.shadow_f1.setColor(QtGui.QColor(0, 0, 0, 128))
 
+        self.shadow_f2 = QGraphicsDropShadowEffect() 
+        self.shadow_f2.setOffset(0, 0)
+        self.shadow_f2.setBlurRadius(9)
+        self.shadow_f2.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f3 = QGraphicsDropShadowEffect() 
+        self.shadow_f3.setOffset(0, 0)
+        self.shadow_f3.setBlurRadius(9)
+        self.shadow_f3.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f4 = QGraphicsDropShadowEffect() 
+        self.shadow_f4.setOffset(0, 0)
+        self.shadow_f4.setBlurRadius(9)
+        self.shadow_f4.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f5 = QGraphicsDropShadowEffect() 
+        self.shadow_f5.setOffset(0, 0)
+        self.shadow_f5.setBlurRadius(9)
+        self.shadow_f5.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f6 = QGraphicsDropShadowEffect() 
+        self.shadow_f6.setOffset(0, 0)
+        self.shadow_f6.setBlurRadius(9)
+        self.shadow_f6.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f7 = QGraphicsDropShadowEffect() 
+        self.shadow_f7.setOffset(0, 0)
+        self.shadow_f7.setBlurRadius(9)
+        self.shadow_f7.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.user_edit_line.setGraphicsEffect(self.shadow_f1)
+        self.name_edit_line.setGraphicsEffect(self.shadow_f2)
+        self.pass_edit_line.setGraphicsEffect(self.shadow_f3)
+        self.email_edit_line.setGraphicsEffect(self.shadow_f4)
+        self.cargo_box.setGraphicsEffect(self.shadow_f5)
+        self.frame_btns.setGraphicsEffect(self.shadow_f6)
+        self.frame_back.setGraphicsEffect(self.shadow_f7)
+        
+        self.frame_bot.setGraphicsEffect(self.shadow_details)
+        self.cargo_box.setStyleSheet("QComboBox#cargoBox{text-align: center;}")
         self.u_frame.hide()
         self.c_frame.show()
         con_cargo = mysql.connector.connect(**config)
@@ -191,6 +252,7 @@ class user_info(QWidget):
         self.user_info = uic.loadUi("templates/interfaces/user_info.ui", self)
         self.user_btn_details = self.findChild(QPushButton, "btn_details")
         self.user_btn_details.clicked.connect(self.user_details)
+        
     def user_details(self):
         self.user_d = user_details()
         self.user_frame = self.findChild(QFrame, "frame_user_details")
@@ -204,13 +266,54 @@ class bag_view(QWidget):
     def __init__(self):
         super().__init__()
         self.bag_screen = uic.loadUi("templates/interfaces/bag.ui", self)
-        self.btn_add_item = self.findChild(QPushButton, "regItem")
-        self.btn_add_item.clicked.connect(self.bag_cad)
         self.produtos = []
         self.produtos_temporarios = []
-        self.btn_details = self.findChild(QPushButton, "details_btn")
-        self.btn_details.hide()
         
+        self.btn_add_item = self.findChild(QPushButton, "regItem")
+        self.btn_add_item.clicked.connect(self.bag_cad)
+        self.btn_add_item.installEventFilter(self)
+        
+        self.btn_details = self.findChild(QPushButton, "details_btn")
+        self.btn_details.installEventFilter(self)
+        self.btn_details.hide()
+
+        self.btn_del = self.findChild(QPushButton, "del_btn")
+        self.btn_del.installEventFilter(self)
+
+        self.search_item = self.findChild(QPushButton, "search_item_btn")
+        self.search_item.installEventFilter(self)
+        
+        
+        self.frame_view = self.findChild(QFrame, "frame_view")
+        self.del_frame = self.findChild(QFrame, "del_frame")
+        self.frame_search = self.findChild(QFrame, "frame_search")
+        self.btn_top_frame = self.findChild(QFrame, "btn_top_frame")
+        
+        self.shadow_view = QGraphicsDropShadowEffect() 
+        self.shadow_view.setOffset(0, 0)
+        self.shadow_view.setBlurRadius(9)
+        self.shadow_view.setColor(QtGui.QColor(0, 0, 0, 128))
+        
+        self.shadow_del = QGraphicsDropShadowEffect() 
+        self.shadow_del.setOffset(0, 0)
+        self.shadow_del.setBlurRadius(9)
+        self.shadow_del.setColor(QtGui.QColor(0, 0, 0, 128))
+        
+        self.shadow_search = QGraphicsDropShadowEffect() 
+        self.shadow_search.setOffset(0, 0)
+        self.shadow_search.setBlurRadius(9)
+        self.shadow_search.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_btn_top = QGraphicsDropShadowEffect() 
+        self.shadow_btn_top.setOffset(0, 0)
+        self.shadow_btn_top.setBlurRadius(9)
+        self.shadow_btn_top.setColor(QtGui.QColor(0, 0, 0, 128))
+        
+        self.frame_view.setGraphicsEffect(self.shadow_view)
+        self.frame_search.setGraphicsEffect(self.shadow_search)
+        self.del_frame.setGraphicsEffect(self.shadow_del)
+        self.btn_top_frame.setGraphicsEffect(self.shadow_btn_top)
+
         self.table_item = self.findChild(QTableView, "table_bag")
         modelo = conecta_view_tela('select * from principal_patrimonio_view')
         self.table_item.setModel(modelo)
@@ -232,6 +335,12 @@ class bag_view(QWidget):
             self.btn_details.show()
         else:
             self.btn_details.hide()
+            
+
+    def eventFilter(self, obj, event):
+        pass
+        return super().eventFilter(obj, event)
+    
 
     def lista_itens(self):
         pass

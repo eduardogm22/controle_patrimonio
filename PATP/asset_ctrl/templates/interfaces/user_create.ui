@@ -75,7 +75,7 @@
        </widget>
       </item>
       <item alignment="Qt::AlignRight">
-       <widget class="QFrame" name="frame_6">
+       <widget class="QFrame" name="frame_back">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -143,7 +143,7 @@ border-radius:6px;</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
-       <widget class="QFrame" name="frame">
+       <widget class="QFrame" name="frame_body">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -165,7 +165,9 @@ border-radius:6px;</string>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>15</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -181,20 +183,28 @@ border-radius:6px;</string>
               <property name="minimumSize">
                <size>
                 <width>300</width>
-                <height>30</height>
+                <height>36</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>300</width>
-                <height>30</height>
+                <height>36</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>15</pointsize>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Usuário utilizado para login</string>
               </property>
              </widget>
             </item>
@@ -203,7 +213,9 @@ border-radius:6px;</string>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>15</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="text">
@@ -216,20 +228,28 @@ border-radius:6px;</string>
               <property name="minimumSize">
                <size>
                 <width>300</width>
-                <height>30</height>
+                <height>36</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>300</width>
-                <height>30</height>
+                <height>36</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>15</pointsize>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Senha do usuário</string>
               </property>
              </widget>
             </item>
@@ -250,7 +270,9 @@ border-radius:6px;</string>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>15</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="text">
@@ -263,20 +285,28 @@ border-radius:6px;</string>
               <property name="minimumSize">
                <size>
                 <width>300</width>
-                <height>30</height>
+                <height>36</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>300</width>
-                <height>30</height>
+                <height>36</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>15</pointsize>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Nome do usuário</string>
               </property>
              </widget>
             </item>
@@ -285,7 +315,9 @@ border-radius:6px;</string>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>15</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="text">
@@ -298,20 +330,28 @@ border-radius:6px;</string>
               <property name="minimumSize">
                <size>
                 <width>300</width>
-                <height>30</height>
+                <height>36</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>300</width>
-                <height>30</height>
+                <height>36</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>15</pointsize>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Email do usuário</string>
               </property>
              </widget>
             </item>
@@ -322,7 +362,7 @@ border-radius:6px;</string>
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="frame_7">
+       <widget class="QFrame" name="frame_rodape">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -358,18 +398,28 @@ border-radius:6px;</string>
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
-            <item>
+            <item alignment="Qt::AlignRight">
              <widget class="QLabel" name="cargLabel">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>45</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
-                <width>60</width>
-                <height>16777215</height>
+                <width>90</width>
+                <height>45</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>15</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+                <strikeout>false</strikeout>
+                <kerning>true</kerning>
                </font>
               </property>
               <property name="text">
@@ -377,7 +427,7 @@ border-radius:6px;</string>
               </property>
              </widget>
             </item>
-            <item>
+            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
              <widget class="QComboBox" name="cargoBox">
               <property name="minimumSize">
                <size>
@@ -393,20 +443,32 @@ border-radius:6px;</string>
               </property>
               <property name="font">
                <font>
-                <pointsize>15</pointsize>
+                <family>Roboto</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
               </property>
               <property name="styleSheet">
                <string notr="true"/>
               </property>
               <property name="currentText">
-               <string notr="true"/>
+               <string/>
               </property>
               <property name="insertPolicy">
                <enum>QComboBox::InsertAtBottom</enum>
               </property>
               <property name="sizeAdjustPolicy">
                <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>12</width>
+                <height>12</height>
+               </size>
               </property>
               <property name="frame">
                <bool>false</bool>
@@ -420,7 +482,7 @@ border-radius:6px;</string>
           </widget>
          </item>
          <item alignment="Qt::AlignRight">
-          <widget class="QFrame" name="frame_3">
+          <widget class="QFrame" name="frame_btns">
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -432,24 +494,29 @@ border-radius:6px;</string>
              <widget class="QPushButton" name="btnClear">
               <property name="minimumSize">
                <size>
-                <width>90</width>
-                <height>33</height>
+                <width>120</width>
+                <height>45</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>51</width>
-                <height>16777215</height>
+                <width>120</width>
+                <height>45</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
                 <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">margin-right:15px;</string>
               </property>
               <property name="text">
                <string>Clear</string>
@@ -461,19 +528,21 @@ border-radius:6px;</string>
               <property name="minimumSize">
                <size>
                 <width>120</width>
-                <height>33</height>
+                <height>45</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>51</width>
-                <height>16777215</height>
+                <width>120</width>
+                <height>45</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
                 <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="text">
@@ -501,7 +570,7 @@ border-radius:6px;</string>
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frame_9">
+    <widget class="QFrame" name="frame_bottom">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -535,12 +604,12 @@ border-radius:6px;</string>
            <property name="minimumSize">
             <size>
              <width>150</width>
-             <height>33</height>
+             <height>45</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>300</width>
+             <width>120</width>
              <height>45</height>
             </size>
            </property>
@@ -548,6 +617,8 @@ border-radius:6px;</string>
             <font>
              <family>Roboto</family>
              <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
             </font>
            </property>
            <property name="cursor">
