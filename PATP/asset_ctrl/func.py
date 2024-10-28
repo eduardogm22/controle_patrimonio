@@ -1,7 +1,7 @@
 # funcionalidades de cada tela que for chamada
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
-from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView
+from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
@@ -208,25 +208,31 @@ class bag_view(QWidget):
         self.btn_add_item.clicked.connect(self.bag_cad)
         self.produtos = []
         self.produtos_temporarios = []
+        self.btn_details = self.findChild(QPushButton, "details_btn")
+        self.btn_details.hide()
         
-        
-        self.tblMostraPatrimonio = self.findChild(QTableView, "tableView")
+        self.table_item = self.findChild(QTableView, "table_bag")
         modelo = conecta_view_tela('select * from principal_patrimonio_view')
-        self.tblMostraPatrimonio.setModel(modelo)
+        self.table_item.setModel(modelo)
         
-        self.tblMostraPatrimonio.verticalHeader().setVisible(False)
-        self.tblMostraPatrimonio.resizeColumnsToContents()
-        self.tblMostraPatrimonio.setColumnWidth(1, 250)
-        header = self.tblMostraPatrimonio.horizontalHeader()
+        self.table_item.verticalHeader().setVisible(False)
+        self.table_item.resizeColumnsToContents()
+        self.table_item.setColumnWidth(1, 250)
+        header = self.table_item.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.Stretch)
         header.setStretchLastSection(True)
-        self.tblMostraPatrimonio.setAlternatingRowColors(True)
-        self.tblMostraPatrimonio.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
-        self.tblMostraPatrimonio.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.tblMostraPatrimonio.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.table_item.setAlternatingRowColors(True)
+        self.table_item.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+        self.table_item.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.table_item.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.selected_rows = []
+        self.table_item.clicked.connect(self.handle_row_click)
+        self.l_t = None
+        if self.l_t != None:
+            self.btn_details.show()
+        else:
+            self.btn_details.hide()
 
-        
-        
     def lista_itens(self):
         pass
         
@@ -246,7 +252,30 @@ class bag_view(QWidget):
         self.layout_tb.removeWidget(item)
         self.layout_tb.update()
 
+    def handle_row_click(self, index):
+        row = index.row()
+        print(f"Dados da linha {row}:")
+        t = 0
+        l_test = []
+        for column in range(self.table_item.model().columnCount()):
+            data = self.table_item.model().index(row, column).data()
+            print(f"{self.table_item.model().horizontalHeaderItem(column).text()}: {data}")
+            if t < 1:
+                l_test.append(data)
+                t += 1
+            else:
+                pass
+        r = int(l_test[0])
+        self.selected_rows.clear()
+        self.selected_rows.append(self.table_item.model().index(row, column).data())
+        self.l_t = r
+        self.btn_details.show()
+        self.btn_details.clicked.connect(self.details_screen)
 
+    def details_screen(self):
+        self.window_details = detail_window(str(self.l_t), str(self.l_t))
+        self.window_details.exec_()
+    
 class bag_item_cad(QWidget):
     def __init__(self):
         super().__init__()
@@ -427,3 +456,20 @@ class local_info(QWidget):
     def __init__(self):
         super().__init__()
         self.local_info = uic.loadUi("templates/interfaces/local_info.ui", self)
+        
+class detail_window(QDialog):
+    def __init__(self, msg, type_msg):
+        super().__init__()
+        self.type_msg = type_msg
+        print (type_msg)
+        self.setWindowFlags(Qt.Popup | Qt.FramelessWindowHint)
+        self.setModal(True)
+        self.setStyleSheet("background-color: #f0f0f0; border: 1px solid #ccc;")
+        layout = QVBoxLayout()
+        label_mensagem = QLabel(msg)
+        label_mensagem.setAlignment(Qt.AlignCenter)
+        layout.setAlignment(Qt.AlignCenter)
+        layout.setContentsMargins(10, 10, 10, 10)
+        layout.setSpacing(10)
+        layout.addWidget(label_mensagem)
+        self.setLayout(layout)

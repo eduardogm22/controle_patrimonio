@@ -466,6 +466,7 @@ class interface(QMainWindow):
             if self.btn_home.isVisible() == False:
                 print('menu bag teste')
                 self.btn_home.show()
+                
     def item_view(self):
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")  
