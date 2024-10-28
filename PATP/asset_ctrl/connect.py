@@ -89,10 +89,3 @@ class bank_acess():
 
     def home(self):
         pass
-
-'''INSERT INTO pessoas (nome, email, senha) VALUES ('João Pedro', 'joao.pedro@example.com', 'senha123');
-''''''
-cursor.execute("INSERT INTO pessoas (nome, idade, sexo, peso, altura, nacionalidade) VALUES ('João Pedro', 25, 'M', 80.5, 1.75, 'Brasileiro')")
-cursor.execute("INSERT INTO pessoas (nome, idade, sexo, peso, altura, nacionalidade) VALUES ('Gabriela', 25, 'F', 80.5, 1.75, 'Brasileiro')") 
-# Executa uma consulta
-'''

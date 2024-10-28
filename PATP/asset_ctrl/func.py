@@ -127,7 +127,7 @@ class user_menu(QWidget):
         self.c_frame.show()
         con_cargo = mysql.connector.connect(**config)
         cursor2 = con_cargo.cursor()
-        query = "SELECT nome FROM cargo"
+        query = "SELECT nome FROM cargos"
         cursor2.execute(query)
         dados = cursor2.fetchall()
         for dado in dados:
@@ -189,6 +189,16 @@ class user_info(QWidget):
     def __init__(self):
         super().__init__()
         self.user_info = uic.loadUi("templates/interfaces/user_info.ui", self)
+        self.user_btn_details = self.findChild(QPushButton, "btn_details")
+        self.user_btn_details.clicked.connect(self.user_details)
+    def user_details(self):
+        self.user_d = user_details()
+        self.user_frame = self.findChild(QFrame, "frame_user_details")
+        self.f_info = self.findChild(QFrame, "frame_info")
+        self.user_frame.layout().addWidget(self.user_d)
+        self.f_info.hide()
+        self.user_frame.show()
+
 
 class bag_view(QWidget):
     def __init__(self):
@@ -349,3 +359,9 @@ class bag_item_cad(QWidget):
         self.listagem.clear()
         self.atualizar_tabela()
         print("Itens confirmados e adicionados ao banco de dados:", self.listagem)
+
+class user_details(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.user_details = uic.loadUi("templates/interfaces/user_details.ui", self)
+        

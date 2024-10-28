@@ -71,6 +71,9 @@
               <height>30</height>
              </size>
             </property>
+            <property name="placeholderText">
+             <string>User</string>
+            </property>
            </widget>
           </item>
          </layout>
@@ -110,6 +113,15 @@
               <width>0</width>
               <height>30</height>
              </size>
+            </property>
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+            <property name="placeholderText">
+             <string>Password</string>
             </property>
            </widget>
           </item>
