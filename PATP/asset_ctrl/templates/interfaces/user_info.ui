@@ -110,7 +110,8 @@
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;</string>
+               <string notr="true">background-color:white;
+border:3px solid black;</string>
               </property>
               <property name="text">
                <string>Usuário</string>
@@ -145,8 +146,7 @@
                  </property>
                  <property name="styleSheet">
                   <string notr="true">background-color:white;
-border-radius: 3px;
-border:2px solid black;</string>
+border:3px solid black;</string>
                  </property>
                  <property name="text">
                   <string>btn_edit</string>
@@ -264,7 +264,8 @@ border:2px solid black;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;</string>
+               <string notr="true">background-color:white;
+border:3px solid black;</string>
               </property>
               <property name="text">
                <string>Senha</string>
@@ -286,7 +287,8 @@ border:2px solid black;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;</string>
+               <string notr="true">background-color:white;
+border:3px solid black;</string>
               </property>
               <property name="text">
                <string>Nome</string>
@@ -308,7 +310,8 @@ border:2px solid black;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;</string>
+               <string notr="true">background-color:white;
+border:3px solid black;</string>
               </property>
               <property name="text">
                <string>Email</string>
@@ -374,8 +377,7 @@ border:2px solid black;</string>
               </property>
               <property name="styleSheet">
                <string notr="true">background-color:white;
-border-radius: 3px;
-border:2px solid black;</string>
+border:3px solid black;</string>
               </property>
               <item>
                <property name="text">
@@ -474,8 +476,7 @@ border:2px solid black;</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">background-color:white;
-border-radius: 3px;
-border:2px solid black;</string>
+border:3px solid black;</string>
                  </property>
                  <property name="text">
                   <string>cancel_btn</string>
@@ -501,8 +502,7 @@ border:2px solid black;</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">background-color:white;
-border-radius: 3px;
-border:2px solid black;</string>
+border:3px solid black;</string>
                  </property>
                  <property name="text">
                   <string>confirm_btn</string>
@@ -543,8 +543,7 @@ border:2px solid black;</string>
               </property>
               <property name="styleSheet">
                <string notr="true">background-color:white;
-border-radius: 3px;
-border:2px solid black;</string>
+border:3px solid black;</string>
               </property>
               <property name="text">
                <string>btn_detail</string>

@@ -359,6 +359,7 @@ class bag_item_cad(QWidget):
         cursor = con_confirm.cursor()
         for item_id, item_data in self.listagem.items():
             print(f'Produto id:{item_id}, Produto da lista: {item_data}')
+        
         # Apenas para teste de funcionalidade
         # Faltando regra de negócio
         #for item_id, item_data in self.listagem.items():
@@ -378,3 +379,51 @@ class user_details(QWidget):
         super().__init__()
         self.user_details = uic.loadUi("templates/interfaces/user_details.ui", self)
         
+class items_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.item_view = uic.loadUi("templates/interfaces/item_view.ui", self)
+        self.btn_categ = self.findChild(QPushButton, "cat_item_btn")
+        self.btn_categ.clicked.connect(self.categ_view)
+
+    def categ_view(self):
+        self.categview = categ_view()
+        self.frame_v1 = self.findChild(QFrame, "body_item")
+        self.frame_v2 = self.findChild(QFrame, "frame_view2")
+        self.frame_v2.layout().addWidget(self.categview)
+        self.frame_v2.show()
+        self.frame_v1.hide()
+        
+        
+
+
+class categ_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.item_category = uic.loadUi("templates/interfaces/categ_view.ui", self)
+        
+class rel_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.rel_view = uic.loadUi("templates/interfaces/rel_view.ui", self)
+        
+
+class patr_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.patr_view = uic.loadUi("templates/interfaces/patr_view.ui", self)
+        
+class logs_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.logs_view = uic.loadUi("templates/interfaces/logs_view.ui", self)
+
+class config_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_view = uic.loadUi("templates/interfaces/config_screen.ui", self)
+
+class local_info(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.local_info = uic.loadUi("templates/interfaces/local_info.ui", self)

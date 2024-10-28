@@ -78,6 +78,13 @@
                 <height>33</height>
                </size>
               </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid black;</string>
+              </property>
               <property name="text">
                <string>REGISTRAR</string>
               </property>
@@ -96,6 +103,10 @@
                 <family>Roboto</family>
                 <pointsize>9</pointsize>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid black;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -125,6 +136,10 @@
                 <kerning>true</kerning>
                </font>
               </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid black;</string>
+              </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
@@ -150,6 +165,10 @@
                 <height>24</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid black;</string>
+              </property>
              </widget>
             </item>
             <item>
@@ -166,8 +185,15 @@
                 <height>33</height>
                </size>
               </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid black;</string>
+              </property>
               <property name="text">
-               <string>PushButton</string>
+               <string>serach_btn</string>
               </property>
              </widget>
             </item>
@@ -190,6 +216,10 @@
                 <width>800</width>
                 <height>501</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid black;</string>
               </property>
               <property name="showGrid">
                <bool>true</bool>
@@ -255,8 +285,15 @@
                 <height>33</height>
                </size>
               </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid black;</string>
+              </property>
               <property name="text">
-               <string>PushButton</string>
+               <string>edit_btn</string>
               </property>
              </widget>
             </item>
@@ -274,8 +311,15 @@
                 <height>33</height>
                </size>
               </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid black;</string>
+              </property>
               <property name="text">
-               <string>PushButton</string>
+               <string>details_btn</string>
               </property>
              </widget>
             </item>
@@ -311,8 +355,15 @@
                 <height>33</height>
                </size>
               </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid black;</string>
+              </property>
               <property name="text">
-               <string>PushButton</string>
+               <string>del_btn</string>
               </property>
              </widget>
             </item>
