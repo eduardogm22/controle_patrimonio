@@ -184,33 +184,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <widget class="QTableWidget" name="tableWidget">
-              <column>
-               <property name="text">
-                <string>ID</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Descrição</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Nº Patrimônio</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Data de R.</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Qntd</string>
-               </property>
-              </column>
-             </widget>
+             <widget class="QTableView" name="tableView"/>
             </item>
            </layout>
           </widget>

@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFo
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
-from connect import config_acess, config
+from connect import conecta_view_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
 
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
@@ -199,6 +199,15 @@ class bag_view(QWidget):
         self.produtos = []
         self.produtos_temporarios = []
         
+        
+        self.tblMostraPatrimonio = self.findChild(QTableView, "tableView")
+        modelo = conecta_view_tela('select * from principal_patrimonio_view')
+        self.tblMostraPatrimonio.setModel(modelo)
+        
+        
+    def lista_itens(self):
+        pass
+        
     def bag_cad(self):
         self.cad_itens = bag_item_cad()
         self.cad_frame = self.findChild(QFrame, "cad_frame")
@@ -208,9 +217,6 @@ class bag_view(QWidget):
         self.body_frame.hide()
         self.cad_frame.show()        
  
-    def list_itens(self):
-        pass
-
     def del_item(self, item):
         self.produtos_temporarios.remove(item)
         item.deleteLater()
@@ -330,24 +336,14 @@ class bag_item_cad(QWidget):
         con_confirm = mysql.connector.connect(**config)
         cursor = con_confirm.cursor()
         
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS teste_produtos (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                nome VARCHAR(255),
-                valor VARCHAR(255)
-            )
-        ''')
         # Apenas para teste de funcionalidade
         # Faltando regra de negócio
         for item_id, item_data in self.listagem.items():
             nome, valor, quantidade = item_data
-            cursor.callproc('cadastra_varios', [nome, valor, quantidade])
-            
-            '''cursor.execute(''' 
-                #INSERT INTO teste_produtos (nome, valor) 
-               #VALUES (%s, %s)
-            ''', (nome, valor))'''
-            
+            #cursor.callproc('cadastra_quantidade', [nome, valor, quantidade])
+            #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel,
+            #                                        idsituacao, idfornecedor, quantidade])
+                
         con_confirm.commit()
         con_confirm.close()
         self.listagem.clear()

@@ -1,5 +1,6 @@
 # Arquivo para conexão e funções que interagem com o banco de dados
 import mysql.connector # type: ignore
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 
 config = {
@@ -9,12 +10,6 @@ config = {
         'password': ''
         }
 
-'''config = {
-        'user': 'root',
-        'password': '',
-        'host': 'localhost',
-        'database': 'cadastro',  
-        }#como estava antes'''
         
 config_acess = {
         'host': 'localhost',
@@ -23,14 +18,32 @@ config_acess = {
         'password': ''
         }
  
-'''config_acess = {
-        'user': 'root',
-        'password': '',
-        'host': 'localhost',
-        'database': 'cadastro'
-        }#como estava antes'''
+def criar_conexao():
+    return mysql.connector.connect(**config)
 
+def fechar_conexao(con):
+    con.close()
 
+def conecta_view_tela(view):
+    con = criar_conexao()
+    cursor = con.cursor()
+
+    cursor.execute(view)
+    dados = cursor.fetchall()
+    colunas = [desc[0] for desc in cursor.description]
+
+    modelo = QStandardItemModel(len(dados), len(colunas))
+    modelo.setHorizontalHeaderLabels(colunas)
+    
+    for idx_linha, dados_linha in enumerate(dados):
+        for idx_coluna, dados_celula in enumerate(dados_linha):
+            dado = QStandardItem(str(dados_celula))
+            modelo.setItem(idx_linha, idx_coluna, dado) 
+
+    cursor.close()
+    fechar_conexao(con)
+        
+    return modelo
 
 class bank_acess():
     def __init__(self):
