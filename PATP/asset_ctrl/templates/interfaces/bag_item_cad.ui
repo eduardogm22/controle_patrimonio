@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>993</width>
-    <height>610</height>
+    <height>587</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -131,7 +131,7 @@ border:1px solid black;</string>
                <item>
                 <widget class="QLabel" name="label_7">
                  <property name="text">
-                  <string>TextLabel</string>
+                  <string>NF</string>
                  </property>
                 </widget>
                </item>
@@ -145,7 +145,7 @@ border:1px solid black;</string>
                <item>
                 <widget class="QLabel" name="label_6">
                  <property name="text">
-                  <string>TextLabel</string>
+                  <string>N SERIE</string>
                  </property>
                 </widget>
                </item>
@@ -183,7 +183,7 @@ border:1px solid black;</string>
                <item>
                 <widget class="QLabel" name="label_5">
                  <property name="text">
-                  <string>TextLabel</string>
+                  <string>Nome do Fornecedor</string>
                  </property>
                 </widget>
                </item>
@@ -194,10 +194,10 @@ border:1px solid black;</string>
                  </property>
                 </widget>
                </item>
-               <item alignment="Qt::AlignBottom">
+               <item alignment="Qt::AlignLeft">
                 <widget class="QLabel" name="label_4">
                  <property name="text">
-                  <string>TextLabel</string>
+                  <string>Data de Compra</string>
                  </property>
                 </widget>
                </item>
@@ -220,7 +220,7 @@ border:1px solid black;</string>
               </layout>
              </widget>
             </item>
-            <item alignment="Qt::AlignLeft|Qt::AlignBottom">
+            <item>
              <widget class="QFrame" name="frame_13">
               <property name="minimumSize">
                <size>
@@ -238,7 +238,30 @@ border:1px solid black;</string>
                <item>
                 <widget class="QLabel" name="label_3">
                  <property name="text">
-                  <string>TextLabel</string>
+                  <string>Recebido por</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit">
+                 <property name="minimumSize">
+                  <size>
+                   <width>240</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>240</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item alignment="Qt::AlignBottom">
+                <widget class="QLabel" name="label_12">
+                 <property name="text">
+                  <string>Data de Recebimento</string>
                  </property>
                 </widget>
                </item>

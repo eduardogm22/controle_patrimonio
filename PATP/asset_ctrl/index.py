@@ -18,17 +18,26 @@ class login_inicial(QMainWindow):
         self.btn_cancel = self.findChild(QPushButton, "cancelBtn")
         self.btn_login.clicked.connect(self.login_check)
         self.btn_cancel.clicked.connect(self.cancel_event)
-
-
+        self.tentativas = 0
+#faltando lógica para garantir um bloqueio de tentativas de login em determinado periodo de tempo
     def login_check(self):
-        if self.user.text() == 'Administrador' and self.password.text() == '123':
-            u = self.user.text()
-            print(u)
-            self.close()
-            self.rodar_main(u)
-        else:
-            print('erro')
-            
+        try:
+            if self.tentativas < 5:
+                u = self.user.text()
+                p = self.password.text()
+                conn = mysql.connector.connect(**config_acess)
+                cursor = conn.cursor()
+                cursor.execute("SELECT * FROM usuarios WHERE usuario = %s AND senha = %s", (u, p))
+                filter = cursor.fetchone()
+                if filter:
+                    self.close()
+                    self.rodar_main(filter[1])
+                else:
+                    print('erro')
+                    self.tentativas += 1
+                    print(self.tentativas)
+        except Exception as e:
+            print(e)
     def cancel_event(self):
         if self.user == '' and self.password =='':
             self.close()
