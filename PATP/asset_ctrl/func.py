@@ -1,14 +1,18 @@
 # funcionalidades de cada tela que for chamada
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
-from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog
+from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog, QDateEdit
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QResource , QTimer, QLocale
+from PyQt5.QtCore import QResource , QTimer, QLocale, QDate
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
 from connect import conecta_view_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
+from datetime import datetime
+
+timer_rec = datetime.now().strftime("%d/%m/%Y")
+timer = QDate.fromString(timer_rec, "dd/MM/yyyy")
 
 
 # icones svg
@@ -429,7 +433,14 @@ class bag_item_cad(QWidget):
         self.cad_item = uic.loadUi("templates/interfaces/bag_item_cad.ui", self)
         self.name_item = self.findChild(QLineEdit, "name_prod")        
         self.quantidade = self.findChild(QSpinBox, "qnt")
-        
+        #date_buy
+        #date_rec
+        self.return_btn = self.findChild(QPushButton, "return_btn")
+        self.return_btn.clicked.connect(self.test)
+        self.date_c = self.findChild(QDateEdit, "date_buy")
+        self.date_c.setDate(QDate(timer))
+        self.date_r = self.findChild(QDateEdit, "date_rec")
+        self.date_r.setDate(QDate(timer))
         # filtro para o campo de valor, aplicada regras para não aceitar virgula e nem outros digitos.
         self.number_input = self.findChild(QLineEdit, "value_prod")
         validator = QDoubleValidator(0.0, 10000.0, 2)
@@ -468,6 +479,8 @@ class bag_item_cad(QWidget):
         self.quantidade.valueChanged.connect(self.update_label)
 
         self.atualizar_tabela()
+    def test(self):
+        print(timer)
 
     def update_label(self):
         try:

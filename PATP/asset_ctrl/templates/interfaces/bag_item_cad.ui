@@ -67,7 +67,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="return_btn">
               <property name="minimumSize">
                <size>
                 <width>33</width>
@@ -145,7 +145,7 @@ border:3px solid black;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_2">
+                <widget class="QLineEdit" name="nf_line">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -172,7 +172,7 @@ border:3px solid black;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_3">
+                <widget class="QLineEdit" name="ns_line">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -223,7 +223,7 @@ border:3px solid black;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_4">
+                <widget class="QLineEdit" name="forn_line">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -250,7 +250,7 @@ border:3px solid black;</string>
                 </widget>
                </item>
                <item alignment="Qt::AlignLeft">
-                <widget class="QDateEdit" name="dateEdit">
+                <widget class="QDateEdit" name="date_buy">
                  <property name="styleSheet">
                   <string notr="true">background-color:white;</string>
                  </property>
@@ -291,7 +291,7 @@ border:3px solid black;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit">
+                <widget class="QLineEdit" name="rec_por">
                  <property name="minimumSize">
                   <size>
                    <width>240</width>
@@ -318,7 +318,7 @@ border:3px solid black;</string>
                 </widget>
                </item>
                <item alignment="Qt::AlignLeft|Qt::AlignBottom">
-                <widget class="QDateEdit" name="dateEdit_2">
+                <widget class="QDateEdit" name="date_rec">
                  <property name="styleSheet">
                   <string notr="true">background-color:white;</string>
                  </property>
@@ -417,7 +417,7 @@ border:3px solid black;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="comboBox">
+                <widget class="QComboBox" name="cat_box">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
