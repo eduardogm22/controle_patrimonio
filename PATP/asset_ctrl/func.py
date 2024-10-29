@@ -196,7 +196,25 @@ class user_menu(QWidget):
         self.u_frame.hide()
         self.c_frame.show()
         con_cargo.close()
+
+
+    def test_cad(self):
+        con_cad = mysql.connector.connect(**config)
+        crs = con_cad.cursor()
+        user = self.user_edit_line.text()
+        name = self.name_edit_line.text()
+        passw = self.pass_edit_line.text()
+        email = self.email_edit_line.text()
+        cargo = self.cargo_box.currentText()
+        query = "INSERT INTO usuarios (user, name, passw, email, cargo) VALUES (%s, %s, %s, %s, %s)"
+        values = (user, name, passw, email, cargo)
+        crs.execute(query, values)
+        con_cad.commit()
+        con_cad.close()        
         print('Register')
+        
+
+
         
 
 
@@ -269,6 +287,8 @@ class bag_view(QWidget):
         self.produtos = []
         self.produtos_temporarios = []
 
+        self.line_search = self.findChild(QLineEdit, "line_search")
+        
 
         self.btn_add_item = self.findChild(QPushButton, "regItem")
         self.btn_add_item.clicked.connect(self.bag_cad)
@@ -454,7 +474,7 @@ class bag_item_cad(QWidget):
             resultado = q * v
             self.value_result.setText(f"Resultado: {resultado:.2f}")
         except ValueError:
-            self.value_result.setText("Por favor, insira um número válido no campo de valor.")
+            self.value_result.setText("Inválido.")
         pass
 
     def temp_list(self):

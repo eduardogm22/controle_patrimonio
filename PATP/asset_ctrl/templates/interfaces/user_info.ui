@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>977</width>
+    <width>896</width>
     <height>644</height>
    </rect>
   </property>
@@ -96,7 +96,7 @@
              </widget>
             </item>
             <item alignment="Qt::AlignBottom">
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="user_line">
               <property name="minimumSize">
                <size>
                 <width>300</width>
@@ -250,7 +250,7 @@ border:2px solid black;</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
-             <widget class="QLineEdit" name="lineEdit_2">
+             <widget class="QLineEdit" name="pass_line_info">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -273,7 +273,7 @@ border:3px solid black;</string>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_3">
+             <widget class="QLineEdit" name="name_user_info">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -296,7 +296,7 @@ border:3px solid black;</string>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_4">
+             <widget class="QLineEdit" name="email_user_info">
               <property name="minimumSize">
                <size>
                 <width>0</width>
