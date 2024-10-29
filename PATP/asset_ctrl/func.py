@@ -306,6 +306,7 @@ class bag_view(QWidget):
 
         self.search_item = self.findChild(QPushButton, "search_item_btn")
         self.search_item.installEventFilter(self)
+        self.search_item.clicked.connect(self.func_search)
 
 
         self.frame_view = self.findChild(QFrame, "frame_view")
@@ -367,6 +368,8 @@ class bag_view(QWidget):
         else:
             self.btn_details.hide()
 
+    def func_search(self):
+        print('Valor Buscado: ', self.line_search.text())
 
     def eventFilter(self, obj, event):
         pass
