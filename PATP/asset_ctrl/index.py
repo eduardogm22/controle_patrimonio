@@ -19,6 +19,7 @@ class login_inicial(QMainWindow):
         self.btn_login.clicked.connect(self.login_check)
         self.btn_cancel.clicked.connect(self.cancel_event)
         self.tentativas = 0
+
 #faltando lógica para garantir um bloqueio de tentativas de login em determinado periodo de tempo
     def login_check(self):
         try:
