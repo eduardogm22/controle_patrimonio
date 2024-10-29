@@ -47,4 +47,4 @@ insert into usuarios
 values
 (1, 'eduardogm', '1234', 1);
 
-call cadastra_quantidade('Cadeira', 40, null, null, 1, 1, 1, 1, 1, 3);
+call cadastra_quantidade('Notebook', 3000, current_date(), 1, 1, 1, 1, 1, 2);

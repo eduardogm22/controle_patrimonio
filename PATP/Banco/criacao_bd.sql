@@ -1,20 +1,8 @@
+drop database cadastro;
 create database if not exists cadastro;
 use cadastro;
 
--- criando as tabelas
-
-create table patrimonios (
-	idpatrimonio integer not null auto_increment primary key,
-	nome varchar(100) not null,
-	valor_unitario decimal(10,2) not null,
-	num_patrimonio varchar(30) unique,
-	num_serie varchar(30) unique,
-    data_recebimento date,
-	idnota integer,
-	idcategoria integer not null,
-    idsetor_responsavel integer not null,
-	idsituacao integer not null
-); 
+-- criando as tabelas 
 
 create table categorias(
 	idcategoria integer primary key auto_increment,
@@ -38,6 +26,24 @@ create table setores_responsaveis (
 create table situacoes (
 	idsituacao integer not null auto_increment primary key,
     nome varchar(30) not null
+);
+
+create table patrimonios (
+	idpatrimonio integer not null auto_increment primary key,
+	nome varchar(100) not null,
+	valor_unitario decimal(10,2) not null,
+    data_recebimento date,
+    num_patrimonio varchar(30),
+    num_serie varchar(30),
+	idnota integer,
+	idcategoria integer not null,
+    idsetor_responsavel integer not null,
+	idsituacao integer not null,
+    
+    constraint fk_ptr_info_notas foreign key (idnota) references info_notas (idnota),
+    constraint fk_ptr_categorias foreign key (idcategoria) references categorias (idcategoria),
+    constraint fk_ptr_setores_responsaveis foreign key (idsetor_responsavel) references setores_responsaveis (idsetor_responsavel),
+    constraint fk_ptr_situacoes foreign key (idsituacao) references situacoes (idsituacao)
 );
 
 create table estados (
@@ -107,18 +113,17 @@ create table usuarios (
 -- stored procedures
 
 -- procedure que recebe a quantidade e cadastra 1 produto para cada distinto vezes o valor da quantidade
-
+-- drop procedure cadastra_quantidade;
 delimiter $$
-create procedure cadastra_quantidade (in nome varchar(100), in valor_unitario decimal(10, 2), in num_patrimonio varchar(30), in num_serie varchar(30), 
-in idnota integer, in idcategoria integer, in idsetor_responsavel integer, in idsituacao integer, in idfornecedor integer, in quantidade integer)
+create procedure cadastra_quantidade (in nome varchar(100), in valor_unitario decimal(10, 2), in data_recebimento date, in idnota integer, in idcategoria integer, 
+in idsetor_responsavel integer, in idsituacao integer, in idpatrimonio_numero integer, in quantidade integer)
 begin
 	declare contador integer default 1;
     while 
 		contador <= quantidade do
-			insert into
-				patrimonios (nome, valor_unitario, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel, idsituacao, idfornecedor)
-                values 
-				(nome, valor_unitario, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel, idsituacao, idfornecedor);
+				insert into patrimonios (idpatrimonio, nome, valor_unitario, num_patrimonio, num_serie, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao)
+				values
+                (default, nome, valor_unitario, data_recebimento, null, null, idnota, idcategoria, idsetor_responsavel, idsituacao);
 			set contador = contador + 1;
 	end while;
 end 
@@ -128,9 +133,9 @@ $$ delimiter ;
 delimiter $$
 create procedure cadastra_nota(in chave_acesso integer, in numero integer, in serie integer, in data_aquisicao date)
 begin
-	insert into info_notas (chave_acesso, numero, serie, data_aquisicao)
+	insert into info_notas (chave_acesso, numero, serie, idfornecedor, data_aquisicao)
     values
-    (chave_acesso, numero, serie, data_aquisicao);
+    (chave_acesso, numero, serie, idfornecedor, data_aquisicao);
 end
 $$ delimiter ;
 
@@ -167,32 +172,39 @@ left outer join
 left outer join situacoes as sit on ptr.idsituacao = sit.idsituacao;
 
 -- Criação tabela auditoria para verificar logs
-
+-- drop table patrimonios_audit;
 create table patrimonios_audit (
     idusuario integer,
     tipo_alteracao varchar(10),
     data_alteracao timestamp,
-    idpatrimonio integer,
-	nome varchar(100),
-	valor_unitario decimal(10,2),
-	num_patrimonio varchar(30),
-	num_serie varchar(30),
-	idnota integer,
-	idcategoria integer,
-    idsetor_responsavel integer,
-	idsituacao integer,
-	idfornecedor integer    
+    idpatrimonio integer not null,
+	nome varchar(100) default null,
+	valor_unitario decimal(10,2) default null,
+    data_recebimento date default null,
+    num_patrimonio varchar(30) default null,
+    num_serie varchar(30) default null,
+	idnota integer default null,
+	idcategoria integer default null,
+    idsetor_responsavel integer default null,
+	idsituacao integer default null   
 );
 
 -- triggers auditoria
 
-DELIMITER $$
+delimiter $$
 create trigger patrimonios_trigger_insert 
-before insert on patrimonios 
-for each row 
+after insert on patrimonios 
+for each row
 begin
-	insert into patrimonios_audit (idusuario, tipo_alteracao, data_alteracao, idpatrimonio, nome, valor_unitario, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel, idsituacao, idfornecedor)
-    values
-    (@idusuario,'insert', now(), new.idpatrimonio, new.nome, new.valor_unitario, new.num_patrimonio, new.num_serie, new.idnota, new.idcategoria, new.idsetor_responsavel, new.idsituacao, new.idfornecedor);
-end;
-DELIMITER $$;
+	insert into patrimonios_audit (idusuario, tipo_alteracao, data_alteracao, idpatrimonio)
+	values
+	(@idusuario, 'insert', current_date(), 1);
+end $$
+delimiter ;
+
+/*
+set @idusuario = 444;
+
+call cadastra_quantidade('verificando logs', 50, current_date(), 1, 1, 1, 1, 1, 2);
+
+select * from patrimonios_audit; */
