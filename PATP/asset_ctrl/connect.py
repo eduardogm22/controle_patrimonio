@@ -27,7 +27,6 @@ def fechar_conexao(con):
 def conecta_view_tela(view):
     con = criar_conexao()
     cursor = con.cursor()
-
     cursor.execute(view)
     dados = cursor.fetchall()
     colunas = [desc[0] for desc in cursor.description]

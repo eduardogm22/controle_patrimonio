@@ -9,11 +9,11 @@ create table patrimonios (
 	valor_unitario decimal(10,2) not null,
 	num_patrimonio varchar(30) unique,
 	num_serie varchar(30) unique,
+    data_recebimento date,
 	idnota integer,
 	idcategoria integer not null,
     idsetor_responsavel integer not null,
-	idsituacao integer not null,
-	idfornecedor integer not null
+	idsituacao integer not null
 ); 
 
 create table categorias(
@@ -25,7 +25,8 @@ create table info_notas(
 	idnota integer not null primary key auto_increment,  
 	chave_acesso integer not null unique,  
 	numero integer not null unique,  
-	serie integer not null,  
+	serie integer not null,
+    idfornecedor integer not null,
 	data_aquisicao date not null
 ); 
 
@@ -66,6 +67,7 @@ create table enderecos (
 create table fornecedores (
 	idfornecedor integer not null auto_increment primary key,
     nome varchar(50) not null,
+    cnpj varchar(18),
     idendereco integer,
     
     constraint id_fcd_enderecos foreign key (idendereco) references enderecos(idendereco)
@@ -163,3 +165,34 @@ left outer join
 left outer join
 	setores_responsaveis as srp on ptr.idsetor_responsavel = srp.idsetor_responsavel
 left outer join situacoes as sit on ptr.idsituacao = sit.idsituacao;
+
+-- Criação tabela auditoria para verificar logs
+
+create table patrimonios_audit (
+    idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+    idpatrimonio integer,
+	nome varchar(100),
+	valor_unitario decimal(10,2),
+	num_patrimonio varchar(30),
+	num_serie varchar(30),
+	idnota integer,
+	idcategoria integer,
+    idsetor_responsavel integer,
+	idsituacao integer,
+	idfornecedor integer    
+);
+
+-- triggers auditoria
+
+DELIMITER $$
+create trigger patrimonios_trigger_insert 
+before insert on patrimonios 
+for each row 
+begin
+	insert into patrimonios_audit (idusuario, tipo_alteracao, data_alteracao, idpatrimonio, nome, valor_unitario, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel, idsituacao, idfornecedor)
+    values
+    (@idusuario,'insert', now(), new.idpatrimonio, new.nome, new.valor_unitario, new.num_patrimonio, new.num_serie, new.idnota, new.idcategoria, new.idsetor_responsavel, new.idsituacao, new.idfornecedor);
+end;
+DELIMITER $$;

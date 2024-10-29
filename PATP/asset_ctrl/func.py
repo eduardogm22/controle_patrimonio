@@ -500,11 +500,10 @@ class bag_item_cad(QWidget):
         
         # Apenas para teste de funcionalidade
         # Faltando regra de negócio
-        #for item_id, item_data in self.listagem.items():
-        #    nome, valor, quantidade = item_data
-            #cursor.callproc('cadastra_quantidade', [nome, valor, quantidade])
-            #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel,
-            #                                        idsituacao, idfornecedor, quantidade])
+        for item_id, item_data in self.listagem.items():
+            #nome, valor, quantidade = item_data
+            '''cursor.callproc('cadastra_quantidade', ['teste procedure', 123, 123, 123, 1, 1, 1,
+                                                    1, 1, 2])'''
                 
         con_confirm.commit()
         con_confirm.close()
@@ -582,3 +581,9 @@ class detail_window(QDialog):
         layout.setSpacing(10)
         layout.addWidget(label_mensagem)
         self.setLayout(layout)
+
+con = criar_conexao()
+cursor = con.cursor()
+cursor.callproc('cadastra_quantidade', ['teste procedure', 50, 0, 0, 1, 1, 1, 1, 1, 2])
+cursor.close()
+fechar_conexao(con)

@@ -13,7 +13,7 @@ values
 
 insert into info_notas
 values
-(default, 123123123, 1, 1, '2024-10-27');
+(default, 123123123, 1, 1, 1, '2024-10-27');
 
 insert into setores_responsaveis
 values
@@ -33,7 +33,7 @@ values
 
 insert into fornecedores
 values
-(default, 'teste fornecedor', 1);
+(default, 'teste fornecedor', '12.123.123/0001-12', 1);
 
 insert into cargos
 values
