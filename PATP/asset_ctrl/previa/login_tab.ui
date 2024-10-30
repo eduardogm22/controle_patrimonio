@@ -868,6 +868,9 @@ border-bottom: 2px solid rgb(108, 108, 108);
 
 QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
               </property>
+              <property name="echoMode">
+               <enum>QLineEdit::Password</enum>
+              </property>
               <property name="placeholderText">
                <string>Senha</string>
               </property>

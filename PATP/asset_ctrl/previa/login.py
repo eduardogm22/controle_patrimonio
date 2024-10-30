@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -329,8 +328,6 @@ class Ui_MainWindow(object):
         self.password_3.setText(_translate("MainWindow", "Senha"))
         self.label_nao_tem_umaconta_2.setText(_translate("MainWindow", "Não tem uma conta? Cadastre-se"))
         self.goBtn_2.setText(_translate("MainWindow", "Entrar"))
-import recurses_rc
-
 
 if __name__ == "__main__":
     import sys
