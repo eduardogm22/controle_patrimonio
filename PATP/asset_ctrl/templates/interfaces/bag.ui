@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
+    <width>984</width>
     <height>664</height>
    </rect>
   </property>
@@ -38,13 +38,13 @@
        <widget class="QFrame" name="central_frame">
         <property name="minimumSize">
          <size>
-          <width>840</width>
+          <width>630</width>
           <height>600</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>840</width>
+          <width>720</width>
           <height>900</height>
          </size>
         </property>
@@ -56,7 +56,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QFrame" name="frame">
+          <widget class="QFrame" name="frame_search">
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -68,18 +68,33 @@
              <widget class="QPushButton" name="regItem">
               <property name="minimumSize">
                <size>
-                <width>93</width>
-                <height>33</height>
+                <width>111</width>
+                <height>45</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>93</width>
-                <height>33</height>
+                <width>111</width>
+                <height>45</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;
+border-radius:12px;</string>
+              </property>
               <property name="text">
-               <string>REGISTRAR</string>
+               <string>Registrar</string>
               </property>
              </widget>
             </item>
@@ -88,14 +103,20 @@
               <property name="maximumSize">
                <size>
                 <width>93</width>
-                <height>16777215</height>
+                <height>30</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
                 <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;
+</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -113,7 +134,7 @@
               <property name="maximumSize">
                <size>
                 <width>93</width>
-                <height>16777215</height>
+                <height>30</height>
                </size>
               </property>
               <property name="font">
@@ -124,6 +145,9 @@
                 <bold>false</bold>
                 <kerning>true</kerning>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -137,7 +161,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="line_search">
               <property name="minimumSize">
                <size>
                 <width>90</width>
@@ -147,35 +171,81 @@
               <property name="maximumSize">
                <size>
                 <width>400</width>
-                <height>24</height>
+                <height>36</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;
+border-radius:12px;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Pesquisar</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="search_item_btn">
               <property name="minimumSize">
                <size>
-                <width>60</width>
-                <height>33</height>
+                <width>111</width>
+                <height>45</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>60</width>
-                <height>33</height>
+                <width>111</width>
+                <height>45</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;
+border-radius:12px;
+</string>
+              </property>
               <property name="text">
-               <string>PushButton</string>
+               <string>Pesquisar</string>
               </property>
              </widget>
             </item>
            </layout>
           </widget>
          </item>
-         <item>
+         <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QFrame" name="frame_view">
+           <property name="minimumSize">
+            <size>
+             <width>720</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>1200</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -183,33 +253,29 @@
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QTableWidget" name="tableWidget">
-              <column>
-               <property name="text">
-                <string>ID</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Descrição</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Nº Patrimônio</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Data de R.</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Qntd</string>
-               </property>
-              </column>
+            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+             <widget class="QTableView" name="table_bag">
+              <property name="minimumSize">
+               <size>
+                <width>690</width>
+                <height>450</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>840</width>
+                <height>620</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="showGrid">
+               <bool>true</bool>
+              </property>
+              <property name="gridStyle">
+               <enum>Qt::SolidLine</enum>
+              </property>
              </widget>
             </item>
            </layout>
@@ -222,13 +288,13 @@
        <widget class="QFrame" name="lateral_frame">
         <property name="minimumSize">
          <size>
-          <width>140</width>
+          <width>150</width>
           <height>600</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>140</width>
+          <width>150</width>
           <height>900</height>
          </size>
         </property>
@@ -243,8 +309,14 @@
           <widget class="QFrame" name="btn_top_frame">
            <property name="minimumSize">
             <size>
-             <width>120</width>
+             <width>240</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>240</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="frameShape">
@@ -254,42 +326,120 @@
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item>
-             <widget class="QPushButton" name="pushButton_3">
+            <item alignment="Qt::AlignVCenter">
+             <widget class="QFrame" name="frame_edit">
               <property name="minimumSize">
                <size>
-                <width>93</width>
-                <height>33</height>
+                <width>240</width>
+                <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>93</width>
-                <height>33</height>
+                <width>240</width>
+                <height>16777215</height>
                </size>
               </property>
-              <property name="text">
-               <string>PushButton</string>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
               </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_7">
+               <item>
+                <widget class="QPushButton" name="edit_btn">
+                 <property name="minimumSize">
+                  <size>
+                   <width>111</width>
+                   <height>45</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>111</width>
+                   <height>45</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>12</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color:white;
+border-radius:12px;</string>
+                 </property>
+                 <property name="text">
+                  <string>Editar</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QFrame" name="frame_detail">
               <property name="minimumSize">
                <size>
-                <width>90</width>
-                <height>33</height>
+                <width>240</width>
+                <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>93</width>
-                <height>33</height>
+                <width>240</width>
+                <height>16777215</height>
                </size>
               </property>
-              <property name="text">
-               <string>PushButton</string>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
               </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item>
+                <widget class="QPushButton" name="details_btn">
+                 <property name="minimumSize">
+                  <size>
+                   <width>111</width>
+                   <height>45</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>111</width>
+                   <height>45</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>12</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color:white;
+border-radius:12px;</string>
+                 </property>
+                 <property name="text">
+                  <string>Detalhes</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>
@@ -311,21 +461,36 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="del_btn">
               <property name="minimumSize">
                <size>
-                <width>93</width>
-                <height>33</height>
+                <width>111</width>
+                <height>45</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>93</width>
-                <height>33</height>
+                <width>111</width>
+                <height>45</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:white;
+border-radius:12px;</string>
+              </property>
               <property name="text">
-               <string>PushButton</string>
+               <string>Deletar</string>
               </property>
              </widget>
             </item>

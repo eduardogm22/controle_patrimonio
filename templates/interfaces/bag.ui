@@ -184,32 +184,22 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <widget class="QTableWidget" name="tableWidget">
-              <column>
-               <property name="text">
-                <string>ID</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Descrição</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Nº Patrimônio</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Data de R.</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Qntd</string>
-               </property>
-              </column>
+             <widget class="QTableView" name="tableView">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="showGrid">
+               <bool>false</bool>
+              </property>
              </widget>
             </item>
            </layout>

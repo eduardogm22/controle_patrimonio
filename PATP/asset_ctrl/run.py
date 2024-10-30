@@ -2,7 +2,7 @@ import sys
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from templates.interfaces import *
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QListWidget, QTableWidget, QListView,QTableView, QAbstractItemView, QHeaderView
-from func import user_menu, user_info, bag_view
+from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info
 from connect import config, config_acess
 from PyQt5.QtCore import QResource , QTimer, Qt
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
@@ -45,14 +45,11 @@ class interface(QMainWindow):
         self.ui.setWindowIcon(server_svg)
         
 
-        # id do usuario
-        self.id_user = id_user(user)
-        self.identificador = self.id_user.id
-
         # botoes da barra de menu
         self.btn_rel = self.findChild(QPushButton, "relBtn")
         self.btn_rel.setIcon(file_text_svg)
-        self.btn_rel.installEventFilter(self)        
+        self.btn_rel.installEventFilter(self)     
+        self.btn_rel.clicked.connect(self.rel_screen)  
 
         self.btn_users = self.findChild(QPushButton, "usersBtn")
         self.btn_users.setIcon(users_svg)
@@ -64,7 +61,8 @@ class interface(QMainWindow):
 
         self.btn_logs = self.findChild(QPushButton, "logBtn")
         self.btn_logs.setIcon(activity_svg)
-        self.btn_logs.installEventFilter(self)        
+        self.btn_logs.installEventFilter(self)
+        self.btn_logs.clicked.connect(self.config_screen)  
 
         self.btn_bckp = self.findChild(QPushButton, "bckpBtn")
         self.btn_bckp.setIcon(save_svg)
@@ -130,7 +128,7 @@ class interface(QMainWindow):
         self.table_view = self.findChild(QTableView, "tableView")
         conn = mysql.connector.connect(**config) # argumentos do dicionário config...
         cursor = conn.cursor()
-        cursor.execute("SELECT id_usuario, nome, email FROM usuario")
+        cursor.execute("SELECT * FROM usuario_nome_view")
         results = cursor.fetchall()
         
          # Criar o modelo para o QTableView
@@ -161,7 +159,7 @@ class interface(QMainWindow):
         self.table_view2 = self.findChild(QTableView, "tableView_2")
         conn2 = mysql.connector.connect(**config) # argumentos do dicionário config...
         cursor = conn2.cursor()
-        cursor.execute("SELECT id_usuario, nome FROM usuario")
+        cursor.execute("SELECT idpessoa, usuario FROM usuarios")
             # teste 1
         results1 = cursor.fetchall()
         for row in results1:
@@ -226,25 +224,28 @@ class interface(QMainWindow):
         self.frame_card1 = self.findChild(QFrame, 'card1') 
         self.frame_card1.setObjectName("frame_card1") 
         self.btn_item.installEventFilter(self)
+        self.btn_item.clicked.connect(self.item_view)
 
         self.btn_reg = self.findChild(QPushButton, "btnReg")
         self.btn_reg.setIcon(database_svg)
         self.frame_card2 = self.findChild(QFrame, 'card2')
         self.frame_card2.setObjectName("frame_card2")
         self.btn_reg.installEventFilter(self)
+        self.btn_reg.clicked.connect(self.logs_screen)
 
         self.btn_local = self.findChild(QPushButton, "btnLocal")
         self.btn_local.setIcon(map_pin_svg)
         self.frame_card3 = self.findChild(QFrame, 'card3')
         self.frame_card3.setObjectName("frame_card3")
         self.btn_local.installEventFilter(self)
-
+        self.btn_local.clicked.connect(self.local_screen)
 
         self.btn_vp = self.findChild(QPushButton, "btnVP")
         self.btn_vp.setIcon(dollar_sign_svg)
         self.frame_card4 = self.findChild(QFrame, 'card4')
         self.frame_card4.setObjectName("frame_card4")
         self.btn_vp.installEventFilter(self)
+        self.btn_vp.clicked.connect(self.patr_screen)
 
 
 
@@ -420,7 +421,6 @@ class interface(QMainWindow):
 
     def home(self):
         print('Home Teste')
-        print(self.identificador)
         self.h_frame = self.findChild(QFrame, "homeFrame")
         self.clear_frame()
         self.h_frame.show()
@@ -466,6 +466,82 @@ class interface(QMainWindow):
             if self.btn_home.isVisible() == False:
                 print('menu bag teste')
                 self.btn_home.show()
+                
+    def item_view(self):
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")  
+        self.itemview = items_view()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.itemview)
+        if self.itemview in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                print('item view teste')
+                self.btn_home.show()
+    def rel_screen(self):
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.rel = rel_view()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.rel)
+        if self.rel in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                print('menu rel teste')
+                self.btn_home.show()
+                
+    def patr_screen(self):
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.patr = patr_view()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.patr)
+        if self.patr in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                print('menu patr teste')
+                self.btn_home.show()
+                
+    def logs_screen(self):
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.logs = logs_view()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.logs)
+        if self.logs in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                print('menu logs teste')
+                self.btn_home.show()
+                
+    def config_screen(self):
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.config = config_view()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.config)
+        if self.config in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                print('menu config teste')
+                self.btn_home.show()
+    def local_screen(self):
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.local = local_info()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.local)
+        if self.local in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                print('menu local teste')
+                self.btn_home.show()
 
 
     # pagina de ajuda e documentação
@@ -473,30 +549,12 @@ class interface(QMainWindow):
         help_page= os.path.abspath("asset_ctrl/documentation/helps/index.html")
         webbrowser.open(f"file://{help_page}")
 
-        
-        
-
-# classe responsável por fazer o filtro e verificar o nível de acesso do usuário
-class id_user:
-    def __init__(self, user):
-        self.user = user
-        verify = mysql.connector.connect(**config)
-        cursor = verify.cursor()
-        cursor.execute(f"SELECT id_cargo FROM cargo WHERE nome = '{self.user}'")
-        result = cursor.fetchone()
-        if result:
-            self.id = result[0]  # Extrai o valor do id da tupla
-        else:
-            self.id = None
-        verify.close()
-
-
 if __name__ == "__main__":    
     app = QApplication(sys.argv)
     if len(sys.argv) > 1:
         user = sys.argv[1]
+        window = interface()
+        window.show()
+        sys.exit(app.exec_())
     else:
         user = "Desconhecido"
-    window = interface()
-    window.show()
-    sys.exit(app.exec_())

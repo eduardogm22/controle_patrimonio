@@ -1,13 +1,12 @@
 # funcionalidades de cada tela que for chamada
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
-from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView
+from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QResource , QTimer, QLocale
+from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
-from connect import config_acess, config
+from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
-
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
 
@@ -59,7 +58,11 @@ class user_menu(QWidget):
         self.info_frame = self.findChild(QFrame, "infoFrame")
         self.btn_info.installEventFilter(self)
         
-
+        self.table_user = self.findChild(QTableView, "userList")
+        self.table_logs = self.findChild(QTableView, "logsReg")
+        self.search_line = self.findChild(QLineEdit, "search_input")
+        
+        self.frame_user = self.findChild(QFrame, "info_user")
 
         self.btn_search.clicked.connect(self.search)
         self.btn_cad.clicked.connect(self.register)
@@ -95,10 +98,13 @@ class user_menu(QWidget):
         self.shadow_user6.setBlurRadius(9)
         self.shadow_user6.setColor(QtGui.QColor(0, 0, 0, 128))
 
-        self.search_frame.setGraphicsEffect(self.shadow_user1)
-        self.cad_frame.setGraphicsEffect(self.shadow_user2)
-        self.info_frame.setGraphicsEffect(self.shadow_user4)
+        self.head_frame = self.findChild(QFrame, "header_user_frame")
 
+        self.search_frame.setGraphicsEffect(self.shadow_user1)
+        self.info_frame.setGraphicsEffect(self.shadow_user5)
+        self.cad_frame.setGraphicsEffect(self.shadow_user2)
+        self.frame_user.setGraphicsEffect(self.shadow_user3)
+        self.head_frame.setGraphicsEffect(self.shadow_user6)
 
 
             
@@ -109,8 +115,19 @@ class user_menu(QWidget):
         self.c_frame.layout().addWidget(self.user_create)
         self.btn_clear = self.findChild(QPushButton, "btnClear")
         self.btn_clear.clicked.connect(self.clear)
+        self.frame_bot = self.findChild(QFrame, "frame_bottom")
+        self.frame_body = self.findChild(QFrame, "frame_body")
+        self.frame_rodape = self.findChild(QFrame, "frame_rodape")
         self.cargo_box = self.findChild(QComboBox, "cargoBox")
         self.cargo_box.setStyleSheet("QComboBox#cargoBox{border: 1px solid #000000;} QComboBox#cargoBox::drop-down{border: 1px solid #000000; border-radius:9px;}")
+        
+        self.user_edit_line = self.findChild(QLineEdit, "userEdit")
+        self.name_edit_line = self.findChild(QLineEdit, "nameEdit")
+        self.pass_edit_line = self.findChild(QLineEdit, "passEdit")
+        self.email_edit_line = self.findChild(QLineEdit, "emailEdit")
+
+        self.frame_btns = self.findChild(QFrame, "frame_btns")
+        self.frame_back = self.findChild(QFrame, "frame_back")
 
 
         self.btn_details = self.findChild(QPushButton, "btn_details")
@@ -121,13 +138,57 @@ class user_menu(QWidget):
         self.shadow_details.setOffset(0, 0)
         self.shadow_details.setBlurRadius(9)
         self.shadow_details.setColor(QtGui.QColor(0, 0, 0, 128))
-        self.btn_details.setGraphicsEffect(self.shadow_details)
+    
+        self.shadow_f1 = QGraphicsDropShadowEffect() 
+        self.shadow_f1.setOffset(0, 0)
+        self.shadow_f1.setBlurRadius(9)
+        self.shadow_f1.setColor(QtGui.QColor(0, 0, 0, 128))
 
+        self.shadow_f2 = QGraphicsDropShadowEffect() 
+        self.shadow_f2.setOffset(0, 0)
+        self.shadow_f2.setBlurRadius(9)
+        self.shadow_f2.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f3 = QGraphicsDropShadowEffect() 
+        self.shadow_f3.setOffset(0, 0)
+        self.shadow_f3.setBlurRadius(9)
+        self.shadow_f3.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f4 = QGraphicsDropShadowEffect() 
+        self.shadow_f4.setOffset(0, 0)
+        self.shadow_f4.setBlurRadius(9)
+        self.shadow_f4.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f5 = QGraphicsDropShadowEffect() 
+        self.shadow_f5.setOffset(0, 0)
+        self.shadow_f5.setBlurRadius(9)
+        self.shadow_f5.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f6 = QGraphicsDropShadowEffect() 
+        self.shadow_f6.setOffset(0, 0)
+        self.shadow_f6.setBlurRadius(9)
+        self.shadow_f6.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.shadow_f7 = QGraphicsDropShadowEffect() 
+        self.shadow_f7.setOffset(0, 0)
+        self.shadow_f7.setBlurRadius(9)
+        self.shadow_f7.setColor(QtGui.QColor(0, 0, 0, 128))
+
+        self.user_edit_line.setGraphicsEffect(self.shadow_f1)
+        self.name_edit_line.setGraphicsEffect(self.shadow_f2)
+        self.pass_edit_line.setGraphicsEffect(self.shadow_f3)
+        self.email_edit_line.setGraphicsEffect(self.shadow_f4)
+        self.cargo_box.setGraphicsEffect(self.shadow_f5)
+        self.frame_btns.setGraphicsEffect(self.shadow_f6)
+        self.frame_back.setGraphicsEffect(self.shadow_f7)
+        
+        self.frame_bot.setGraphicsEffect(self.shadow_details)
+        self.cargo_box.setStyleSheet("QComboBox#cargoBox{text-align: center;}")
         self.u_frame.hide()
         self.c_frame.show()
         con_cargo = mysql.connector.connect(**config)
         cursor2 = con_cargo.cursor()
-        query = "SELECT nome FROM cargo"
+        query = "SELECT nome FROM cargos"
         cursor2.execute(query)
         dados = cursor2.fetchall()
         for dado in dados:
@@ -189,16 +250,118 @@ class user_info(QWidget):
     def __init__(self):
         super().__init__()
         self.user_info = uic.loadUi("templates/interfaces/user_info.ui", self)
+        self.user_btn_details = self.findChild(QPushButton, "btn_details")
+        self.user_btn_details.clicked.connect(self.user_details)
+
+    def user_details(self):
+        self.user_d = user_details()
+        self.user_frame = self.findChild(QFrame, "frame_user_details")
+        self.f_info = self.findChild(QFrame, "frame_info")
+        self.user_frame.layout().addWidget(self.user_d)
+        self.f_info.hide()
+        self.user_frame.show()
+
 
 class bag_view(QWidget):
     def __init__(self):
         super().__init__()
         self.bag_screen = uic.loadUi("templates/interfaces/bag.ui", self)
-        self.btn_add_item = self.findChild(QPushButton, "regItem")
-        self.btn_add_item.clicked.connect(self.bag_cad)
         self.produtos = []
         self.produtos_temporarios = []
+
+
+        self.btn_add_item = self.findChild(QPushButton, "regItem")
+        self.btn_add_item.clicked.connect(self.bag_cad)
+        self.btn_add_item.installEventFilter(self)
+
+
+        self.btn_details = self.findChild(QPushButton, "details_btn")
+        self.btn_details.installEventFilter(self)
+        self.btn_details.hide()
+
+
+        self.btn_del = self.findChild(QPushButton, "del_btn")
+        self.btn_del.installEventFilter(self)
+
+
+        self.search_item = self.findChild(QPushButton, "search_item_btn")
+        self.search_item.installEventFilter(self)
+
+
+        self.frame_view = self.findChild(QFrame, "frame_view")
+        self.del_frame = self.findChild(QFrame, "del_frame")
+        self.frame_search = self.findChild(QFrame, "frame_search")
+        self.btn_top_frame = self.findChild(QFrame, "btn_top_frame")
+
+
+        self.shadow_view = QGraphicsDropShadowEffect() 
+        self.shadow_view.setOffset(0, 0)
+        self.shadow_view.setBlurRadius(9)
+        self.shadow_view.setColor(QtGui.QColor(0, 0, 0, 128))
+
+
+        self.shadow_del = QGraphicsDropShadowEffect() 
+        self.shadow_del.setOffset(0, 0)
+        self.shadow_del.setBlurRadius(9)
+        self.shadow_del.setColor(QtGui.QColor(0, 0, 0, 128))
+
+
+        self.shadow_search = QGraphicsDropShadowEffect() 
+        self.shadow_search.setOffset(0, 0)
+        self.shadow_search.setBlurRadius(9)
+        self.shadow_search.setColor(QtGui.QColor(0, 0, 0, 128))
+
+
+        self.shadow_btn_top = QGraphicsDropShadowEffect() 
+        self.shadow_btn_top.setOffset(0, 0)
+        self.shadow_btn_top.setBlurRadius(9)
+        self.shadow_btn_top.setColor(QtGui.QColor(0, 0, 0, 128))
+
+
+        self.frame_view.setGraphicsEffect(self.shadow_view)
+        self.frame_search.setGraphicsEffect(self.shadow_search)
+        self.del_frame.setGraphicsEffect(self.shadow_del)
+        self.btn_top_frame.setGraphicsEffect(self.shadow_btn_top)
+
+
+        self.table_item = self.findChild(QTableView, "table_bag")
+        modelo = conecta_procedure_tela('st_pesquisar', '')
+        self.table_item.setModel(modelo)
+        self.edtPesquisa = self.findChild(QLineEdit, "line_search")
+        self.edtPesquisa.textChanged.connect(lambda text: pesquisa(text))
         
+        def pesquisa(pesquisado):
+            modeloPesquisa = conecta_procedure_tela('st_pesquisar', pesquisado)
+            self.table_item.setModel(modeloPesquisa)
+
+        self.table_item.verticalHeader().setVisible(False)
+        self.table_item.resizeColumnsToContents()
+        self.table_item.setColumnWidth(1, 250)
+        header = self.table_item.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.Stretch)
+        header.setStretchLastSection(True)
+        self.table_item.setAlternatingRowColors(True)
+        self.table_item.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+        self.table_item.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.table_item.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.selected_rows = []
+        self.table_item.clicked.connect(self.handle_row_click)
+        self.l_t = None
+        if self.l_t != None:
+            self.btn_details.show()
+        else:
+            self.btn_details.hide()
+
+
+    def eventFilter(self, obj, event):
+        pass
+        return super().eventFilter(obj, event)
+
+
+    def lista_itens(self):
+        pass
+
+
     def bag_cad(self):
         self.cad_itens = bag_item_cad()
         self.cad_frame = self.findChild(QFrame, "cad_frame")
@@ -207,9 +370,7 @@ class bag_view(QWidget):
         self.btn_teste = self.findChild(QPushButton, "test")
         self.body_frame.hide()
         self.cad_frame.show()        
- 
-    def list_itens(self):
-        pass
+
 
     def del_item(self, item):
         self.produtos_temporarios.remove(item)
@@ -218,6 +379,30 @@ class bag_view(QWidget):
         self.layout_tb.removeWidget(item)
         self.layout_tb.update()
 
+
+    def handle_row_click(self, index):
+        row = index.row()
+        print(f"Dados da linha {row}:")
+        t = 0
+        l_test = []
+        for column in range(self.table_item.model().columnCount()):
+            data = self.table_item.model().index(row, column).data()
+            print(f"{self.table_item.model().horizontalHeaderItem(column).text()}: {data}")
+            if t < 1:
+                l_test.append(data)
+                t += 1
+            else:
+                pass
+        r = int(l_test[0])
+        self.selected_rows.clear()
+        self.selected_rows.append(self.table_item.model().index(row, column).data())
+        self.l_t = r
+        self.btn_details.show()
+        self.btn_details.clicked.connect(self.details_screen)
+
+    def details_screen(self):
+        self.window_details = detail_window(str(self.l_t), str(self.l_t))
+        self.window_details.exec_()
 
 class bag_item_cad(QWidget):
     def __init__(self):
@@ -246,9 +431,9 @@ class bag_item_cad(QWidget):
         self.listagem = {}
         self.id_counter = 0
         self.lista_produtos = self.findChild(QTableView, "list_itens_add")
-        
+
         self.btn_ok.clicked.connect(self.temp_list)
-        
+
         self.selected_row = None
 
         self.lista_produtos.clicked.connect(self.handle_row_click)
@@ -258,7 +443,24 @@ class bag_item_cad(QWidget):
         self.lista_produtos.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
         self.lista_produtos.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.lista_produtos.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+        self.value_result = self.findChild(QLabel, "value_r")
+        
+        self.number_input.textChanged.connect(self.update_label)
+        self.quantidade.valueChanged.connect(self.update_label)
+
         self.atualizar_tabela()
+
+    def update_label(self):
+        try:
+            valor = float(self.number_input.text() if self.number_input.text() else 0)
+            q = float(self.quantidade.value())
+            v = float(valor)
+            resultado = q * v
+            self.value_result.setText(f"Resultado: {resultado:.2f}")
+        except ValueError:
+            self.value_result.setText("Por favor, insira um número válido no campo de valor.")
+        pass
 
     def temp_list(self):
         nome = self.name_item.text()
@@ -329,27 +531,93 @@ class bag_item_cad(QWidget):
         print("Confirmando os itens:", self.listagem)
         con_confirm = mysql.connector.connect(**config)
         cursor = con_confirm.cursor()
+        for item_id, item_data in self.listagem.items():
+            print(f'Produto id:{item_id}, Produto da lista: {item_data}')
         
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS teste_produtos (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                nome VARCHAR(255),
-                valor VARCHAR(255)
-            )
-        ''')
         # Apenas para teste de funcionalidade
         # Faltando regra de negócio
-        for item_id, item_data in self.listagem.items():
-            nome, valor, quantidade = item_data
-            cursor.callproc('cadastra_varios', [nome, valor, quantidade])
-            
-            '''cursor.execute(''' 
-                #INSERT INTO teste_produtos (nome, valor) 
-               #VALUES (%s, %s)
-            ''', (nome, valor))'''
-            
+        #for item_id, item_data in self.listagem.items():
+        #    nome, valor, quantidade = item_data
+            #cursor.callproc('cadastra_quantidade', [nome, valor, quantidade])
+            #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel,
+            #                                        idsituacao, idfornecedor, quantidade])
+                
         con_confirm.commit()
         con_confirm.close()
         self.listagem.clear()
         self.atualizar_tabela()
         print("Itens confirmados e adicionados ao banco de dados:", self.listagem)
+
+class user_details(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.user_details = uic.loadUi("templates/interfaces/user_details.ui", self)
+        
+class items_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.item_view = uic.loadUi("templates/interfaces/item_view.ui", self)
+        self.btn_categ = self.findChild(QPushButton, "cat_item_btn")
+        self.btn_categ.clicked.connect(self.categ_view)
+
+    def categ_view(self):
+        self.categview = categ_view()
+        self.frame_v1 = self.findChild(QFrame, "body_item")
+        self.frame_v2 = self.findChild(QFrame, "frame_view2")
+        self.frame_v2.layout().addWidget(self.categview)
+        self.frame_v2.show()
+        self.frame_v1.hide()
+        
+        
+
+
+class categ_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.item_category = uic.loadUi("templates/interfaces/categ_view.ui", self)
+        
+class rel_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.rel_view = uic.loadUi("templates/interfaces/rel_view.ui", self)
+        
+
+class patr_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.patr_view = uic.loadUi("templates/interfaces/patr_view.ui", self)
+        
+class logs_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.logs_view = uic.loadUi("templates/interfaces/logs_view.ui", self)
+
+class config_view(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_view = uic.loadUi("templates/interfaces/config_screen.ui", self)
+
+class local_info(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.local_info = uic.loadUi("templates/interfaces/local_info.ui", self)
+        
+class detail_window(QDialog):
+    def __init__(self, msg, type_msg):
+        super().__init__()
+        self.type_msg = type_msg
+        print (type_msg)
+        self.setWindowFlags(Qt.Popup | Qt.FramelessWindowHint)
+        self.setModal(True)
+        self.setStyleSheet("background-color: #f0f0f0; border: 1px solid #ccc;")
+        layout = QVBoxLayout()
+        label_mensagem = QLabel(msg)
+        label_mensagem.setAlignment(Qt.AlignCenter)
+        layout.setAlignment(Qt.AlignCenter)
+        layout.setContentsMargins(10, 10, 10, 10)
+        layout.setSpacing(10)
+        layout.addWidget(label_mensagem)
+        self.setLayout(layout)
+    def dados_selected(self):
+        pass
+    

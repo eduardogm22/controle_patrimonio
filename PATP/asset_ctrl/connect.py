@@ -1,5 +1,6 @@
 # Arquivo para conexão e funções que interagem com o banco de dados
 import mysql.connector # type: ignore
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 
 config = {
@@ -9,12 +10,6 @@ config = {
         'password': ''
         }
 
-'''config = {
-        'user': 'root',
-        'password': '',
-        'host': 'localhost',
-        'database': 'cadastro',  
-        }#como estava antes'''
         
 config_acess = {
         'host': 'localhost',
@@ -23,14 +18,59 @@ config_acess = {
         'password': ''
         }
  
-'''config_acess = {
-        'user': 'root',
-        'password': '',
-        'host': 'localhost',
-        'database': 'cadastro'
-        }#como estava antes'''
+def criar_conexao():
+    return mysql.connector.connect(**config)
 
+def fechar_conexao(con):
+    con.close()
 
+def conecta_view_tela(view):
+    con = criar_conexao()
+    cursor = con.cursor()
+    cursor.execute(view)
+    dados = cursor.fetchall()
+    colunas = [desc[0] for desc in cursor.description]
+
+    modelo = QStandardItemModel(len(dados), len(colunas))
+    modelo.setHorizontalHeaderLabels(colunas)
+    
+    for idx_linha, dados_linha in enumerate(dados):
+        for idx_coluna, dados_celula in enumerate(dados_linha):
+            dado = QStandardItem(str(dados_celula))
+            modelo.setItem(idx_linha, idx_coluna, dado) 
+
+    cursor.close()
+    fechar_conexao(con)
+        
+    return modelo
+
+def conecta_procedure_tela(procedure, parametro):
+    con = criar_conexao()
+    cursor = con.cursor()
+    cursor.callproc(procedure, [parametro])
+    
+    dados = []
+    colunas = []
+    
+    resultados = cursor.stored_results()
+    for resultado in resultados:
+        if not colunas:
+            colunas = [desc[0] for desc in cursor.description]
+        dados.extend(resultado.fetchall())
+    
+    modelo = QStandardItemModel(len(dados), len(colunas))
+    print(colunas)
+    modelo.setHorizontalHeaderLabels(colunas)
+    
+    for idx_linha, dados_linha in enumerate(dados):
+        for idx_coluna, dados_celula in enumerate(dados_linha):
+            dado = QStandardItem(str(dados_celula))
+            modelo.setItem(idx_linha, idx_coluna, dado) 
+
+    cursor.close()
+    fechar_conexao(con)
+        
+    return modelo
 
 class bank_acess():
     def __init__(self):
@@ -76,10 +116,3 @@ class bank_acess():
 
     def home(self):
         pass
-
-'''INSERT INTO pessoas (nome, email, senha) VALUES ('João Pedro', 'joao.pedro@example.com', 'senha123');
-''''''
-cursor.execute("INSERT INTO pessoas (nome, idade, sexo, peso, altura, nacionalidade) VALUES ('João Pedro', 25, 'M', 80.5, 1.75, 'Brasileiro')")
-cursor.execute("INSERT INTO pessoas (nome, idade, sexo, peso, altura, nacionalidade) VALUES ('Gabriela', 25, 'F', 80.5, 1.75, 'Brasileiro')") 
-# Executa uma consulta
-'''
