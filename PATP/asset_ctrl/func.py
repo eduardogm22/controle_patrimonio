@@ -3,9 +3,9 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
 from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QResource , QTimer, QLocale
+from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
-from connect import conecta_view_tela, criar_conexao, fechar_conexao, config_acess, config
+from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
@@ -325,9 +325,14 @@ class bag_view(QWidget):
 
 
         self.table_item = self.findChild(QTableView, "table_bag")
-        modelo = conecta_view_tela('select * from principal_patrimonio_view')
+        modelo = conecta_procedure_tela('st_pesquisar', '')
         self.table_item.setModel(modelo)
-
+        self.edtPesquisa = self.findChild(QLineEdit, "line_search")
+        self.edtPesquisa.textChanged.connect(lambda text: pesquisa(text))
+        
+        def pesquisa(pesquisado):
+            modeloPesquisa = conecta_procedure_tela('st_pesquisar', pesquisado)
+            self.table_item.setModel(modeloPesquisa)
 
         self.table_item.verticalHeader().setVisible(False)
         self.table_item.resizeColumnsToContents()
@@ -615,3 +620,4 @@ class detail_window(QDialog):
         self.setLayout(layout)
     def dados_selected(self):
         pass
+    

@@ -48,3 +48,5 @@ values
 (1, 'eduardogm', '1234', 1);
 
 call cadastra_quantidade('Notebook', 3000, current_date(), 1, 1, 1, 1, 1, 2);
+
+call cadastra_quantidade('Cadeira', 150, current_date(), 1, 2, 1, 1, 1, 2);

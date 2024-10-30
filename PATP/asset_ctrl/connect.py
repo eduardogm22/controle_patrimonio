@@ -44,6 +44,34 @@ def conecta_view_tela(view):
         
     return modelo
 
+def conecta_procedure_tela(procedure, parametro):
+    con = criar_conexao()
+    cursor = con.cursor()
+    cursor.callproc(procedure, [parametro])
+    
+    dados = []
+    colunas = []
+    
+    resultados = cursor.stored_results()
+    for resultado in resultados:
+        if not colunas:
+            colunas = [desc[0] for desc in cursor.description]
+        dados.extend(resultado.fetchall())
+    
+    modelo = QStandardItemModel(len(dados), len(colunas))
+    print(colunas)
+    modelo.setHorizontalHeaderLabels(colunas)
+    
+    for idx_linha, dados_linha in enumerate(dados):
+        for idx_coluna, dados_celula in enumerate(dados_linha):
+            dado = QStandardItem(str(dados_celula))
+            modelo.setItem(idx_linha, idx_coluna, dado) 
+
+    cursor.close()
+    fechar_conexao(con)
+        
+    return modelo
+
 class bank_acess():
     def __init__(self):
         super().__init__()

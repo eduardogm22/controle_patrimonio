@@ -171,6 +171,37 @@ left outer join
 	setores_responsaveis as srp on ptr.idsetor_responsavel = srp.idsetor_responsavel
 left outer join situacoes as sit on ptr.idsituacao = sit.idsituacao;
 
+drop procedure st_pesquisar;
+
+delimiter $$
+create procedure st_pesquisar (in pesquisado varchar(30))
+begin
+select
+	ptr.idpatrimonio as "ID",
+    ptr.nome as "Patrimônio",
+    cat.nome as "Categoria",
+    ptr.valor_unitario as "Valor Unitário",
+    ptr.num_patrimonio as "Núm. Patrimônio",
+    nta.data_aquisicao as "Data de Aquisição",
+    srp.nome as "Setor Resp.",
+    sit.nome as "Situação"
+from
+	patrimonios as ptr
+inner join
+	categorias as cat on ptr.idcategoria = cat.idcategoria
+left outer join
+	info_notas as nta on ptr.idnota = nta.idnota
+left outer join
+	setores_responsaveis as srp on ptr.idsetor_responsavel = srp.idsetor_responsavel
+left outer join situacoes as sit on ptr.idsituacao = sit.idsituacao
+where ptr.nome like concat('%', pesquisado, '%') or ptr.idpatrimonio like concat('%', pesquisado, '%') or ptr.num_patrimonio like concat('%', pesquisado, '%');
+end;
+$$ delimiter ;
+
+set @pesquisado = "not";
+
+call st_pesquisar('note');
+
 -- Criação tabela auditoria para verificar logs
 -- drop table patrimonios_audit;
 create table patrimonios_audit (
