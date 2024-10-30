@@ -1,0 +1,20 @@
+<RCC>
+  <qresource>
+    <file>imagens/adicionar.png</file>
+    <file>imagens/alterar.png</file>
+    <file>imagens/Captura de tela 2024-08-10 171408.png</file>
+    <file>imagens/editar2.png</file>
+    <file>imagens/excluir2.png</file>
+    <file>imagens/fundo_meuperfil.png</file>
+    <file>imagens/fundo2_meuperfil.png</file>
+    <file>imagens/linha.png</file>
+    <file>imagens/logo__ideau.png</file>
+    <file>imagens/mala.png</file>
+    <file>imagens/menu.png</file>
+    <file>imagens/sair.png</file>
+    <file>imagens/imagem sem o fundo/ico.perfil.png</file>
+    <file>imagens/imagem sem o fundo/email.png</file>
+    <file>imagens/imagem sem o fundo/senha_icon.png</file>
+    <file>imagens/usuarios.png</file>
+  </qresource>
+</RCC>
