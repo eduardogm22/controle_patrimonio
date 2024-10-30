@@ -22,6 +22,7 @@ class login_inicial(QMainWindow):
 
 #faltando lógica para garantir um bloqueio de tentativas de login em determinado periodo de tempo
     def login_check(self):
+
         try:
             if self.tentativas < 5:
                 u = self.user.text()
@@ -39,6 +40,7 @@ class login_inicial(QMainWindow):
                     print(self.tentativas)
         except Exception as e:
             print(e)
+    
     def cancel_event(self):
         if self.user == '' and self.password =='':
             self.close()
