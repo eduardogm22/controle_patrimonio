@@ -55,7 +55,7 @@ def conecta_procedure_tela(procedure, parametro):
     resultados = cursor.stored_results()
     for resultado in resultados:
         if not colunas:
-            colunas = [desc[0] for desc in cursor.description]
+            colunas = [desc[0] for desc in resultado.description]
         dados.extend(resultado.fetchall())
     
     modelo = QStandardItemModel(len(dados), len(colunas))

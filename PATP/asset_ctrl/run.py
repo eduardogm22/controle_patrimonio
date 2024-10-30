@@ -32,9 +32,7 @@ save_svg = QIcon("feather/save.svg")
 help_circle_svg = QIcon("feather/help-circle.svg")
 link_svg = QIcon("feather/link.svg")
 
-#QLabel só aceita strings
-v = '35'
-# interface home, pós login.
+
 
 class interface(QMainWindow):
     def __init__(self):
@@ -549,6 +547,7 @@ class interface(QMainWindow):
         help_page= os.path.abspath("asset_ctrl/documentation/helps/index.html")
         webbrowser.open(f"file://{help_page}")
 
+# contexto
 if __name__ == "__main__":    
     app = QApplication(sys.argv)
     if len(sys.argv) > 1:
