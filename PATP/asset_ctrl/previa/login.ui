@@ -99,7 +99,7 @@ border-radius: 25px;
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="../../../../Login.QT/recurses.qrc">:/imagens/logo__ideau.png</pixmap>
+                <pixmap resource="recurses.qrc">:/newPrefix/imagens/logo__ideau.png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
@@ -692,6 +692,7 @@ QPushButton:pressed{
  </widget>
  <resources>
   <include location="../../../../Login.QT/recurses.qrc"/>
+  <include location="recurses.qrc"/>
  </resources>
  <connections>
   <connection>
