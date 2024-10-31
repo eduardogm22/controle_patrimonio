@@ -9,11 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import resource_rc
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint) # tira borda
+        MainWindow.setAttribute(QtCore.Qt.WA_TranslucentBackground) # deixa a tela transparente       
         MainWindow.resize(421, 641)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -24,6 +27,14 @@ class Ui_MainWindow(object):
         self.frame.setStyleSheet("background-color : rgb(0, 191, 99);\n"
 "border-radius: 25px;\n"
 "")
+
+        shadow_effect = QtWidgets.QGraphicsDropShadowEffect(self.frame)#
+        shadow_effect.setBlurRadius(30)  # Grau de desfoque
+        shadow_effect.setXOffset(0)  # Deslocamento horizontal
+        shadow_effect.setYOffset(0)  # Deslocamento vertical
+        shadow_effect.setColor(QtGui.QColor(0, 0, 0, 120))  # Cor da sombra com opacidade
+        self.frame.setGraphicsEffect(shadow_effect) #]
+        
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -125,6 +136,7 @@ class Ui_MainWindow(object):
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.frame_4)
+        self.verticalLayout_14.setSpacing(0)
         self.verticalLayout_14.setObjectName("verticalLayout_14")
         self.frame_11 = QtWidgets.QFrame(self.frame_4)
         self.frame_11.setMinimumSize(QtCore.QSize(0, 240))
@@ -145,7 +157,9 @@ class Ui_MainWindow(object):
         self.frame_21 = QtWidgets.QFrame(self.frame_14)
         self.frame_21.setMaximumSize(QtCore.QSize(60, 60))
         self.frame_21.setStyleSheet("background-color:#E1DCDB;\n"
-"border-radius: 0px")
+"border-radius: 0px;\n"
+"    border-top-left-radius: 17px;  \n"
+"    border-bottom-left-radius: 17px;")
         self.frame_21.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_21.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_21.setObjectName("frame_21")
@@ -176,12 +190,16 @@ class Ui_MainWindow(object):
 "border-radius: 0px;\n"
 "padding:15px;\n"
 "border-bottom: 2px solid rgb(108, 108, 108);\n"
-"    color: rgb(117, 117, 117)\n"
+"\n"
+"    border-top-right-radius: 15px;  \n"
+"    border-bottom-right-radius: 15px;\n"
 "}\n"
 "\n"
 "\n"
 "\n"
 "QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}")
+        self.user_2.setInputMask("")
+        self.user_2.setText("")
         self.user_2.setObjectName("user_2")
         self.horizontalLayout_5.addWidget(self.user_2)
         self.verticalLayout_8.addWidget(self.frame_14)
@@ -195,7 +213,9 @@ class Ui_MainWindow(object):
         self.frame_20 = QtWidgets.QFrame(self.frame_15)
         self.frame_20.setMaximumSize(QtCore.QSize(58, 58))
         self.frame_20.setStyleSheet("background-color:#E1DCDB;\n"
-"border-radius: 0px")
+"border-radius: 0px;\n"
+"    border-top-left-radius: 17px;  \n"
+"    border-bottom-left-radius: 17px;")
         self.frame_20.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_20.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_20.setObjectName("frame_20")
@@ -227,28 +247,37 @@ class Ui_MainWindow(object):
 "border-radius: 0px;\n"
 "padding:15px;\n"
 "border-bottom: 2px solid rgb(108, 108, 108);\n"
-"    color: rgb(117, 117, 117)\n"
+"\n"
+"    border-top-right-radius: 15px;  \n"
+"    border-bottom-right-radius: 15px;\n"
 "}\n"
 "\n"
 "QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}\n"
 "")
+        self.password_3.setInputMask("")
+        self.password_3.setText("")
+        self.password_3.setEchoMode(QtWidgets.QLineEdit.Password)
         self.password_3.setObjectName("password_3")
         self.horizontalLayout_6.addWidget(self.password_3)
         self.verticalLayout_8.addWidget(self.frame_15)
-        self.label_nao_tem_umaconta_2 = QtWidgets.QLabel(self.frame_11)
-        self.label_nao_tem_umaconta_2.setMinimumSize(QtCore.QSize(0, 0))
-        self.label_nao_tem_umaconta_2.setMaximumSize(QtCore.QSize(350, 30))
+        self.verticalLayout_14.addWidget(self.frame_11)
+        self.frame_12 = QtWidgets.QFrame(self.frame_4)
+        self.frame_12.setMaximumSize(QtCore.QSize(16777215, 27))
+        self.frame_12.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_12.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_12.setObjectName("frame_12")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_12)
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame_12)
+        self.pushButton_2.setMinimumSize(QtCore.QSize(250, 0))
+        self.pushButton_2.setMaximumSize(QtCore.QSize(250, 16777215))
         font = QtGui.QFont()
-        font.setPointSize(7)
-        font.setBold(True)
         font.setUnderline(True)
-        font.setWeight(75)
         font.setStrikeOut(False)
-        self.label_nao_tem_umaconta_2.setFont(font)
-        self.label_nao_tem_umaconta_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.label_nao_tem_umaconta_2.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.label_nao_tem_umaconta_2.setAutoFillBackground(False)
-        self.label_nao_tem_umaconta_2.setStyleSheet("QLabel {\n"
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setStyleSheet("QPushButton{\n"
 "    qproperty-iconSize: 40px 48px; \n"
 "    border: none;\n"
 "color:rgb(65, 65, 65);\n"
@@ -256,23 +285,20 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "\n"
-"QLabel:hover{\n"
+"QPushButton:hover{\n"
 "border-radius:10px;\n"
-"background-color:rgb(235, 235, 235); \n"
+"\n"
 "color:rgb(0, 85, 127);\n"
 "}\n"
 "\n"
-"QLabel:pressed{\n"
+"QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
 " \n"
-"    background-color: rgb(0, 85, 0);\n"
-" \n"
 "}")
-        self.label_nao_tem_umaconta_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_nao_tem_umaconta_2.setObjectName("label_nao_tem_umaconta_2")
-        self.verticalLayout_8.addWidget(self.label_nao_tem_umaconta_2)
-        self.verticalLayout_14.addWidget(self.frame_11)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.verticalLayout_4.addWidget(self.pushButton_2, 0, QtCore.Qt.AlignHCenter)
+        self.verticalLayout_14.addWidget(self.frame_12)
         self.frame_16 = QtWidgets.QFrame(self.frame_4)
         self.frame_16.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_16.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -302,7 +328,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+"\n"
 "}")
         self.goBtn_2.setObjectName("goBtn_2")
         self.horizontalLayout_4.addWidget(self.goBtn_2)
@@ -325,11 +351,11 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "X"))
-        self.user_2.setInputMask(_translate("MainWindow", "Usuário"))
-        self.password_3.setText(_translate("MainWindow", "Senha"))
-        self.label_nao_tem_umaconta_2.setText(_translate("MainWindow", "Não tem uma conta? Cadastre-se"))
+        self.user_2.setPlaceholderText(_translate("MainWindow", "Usuário"))
+        self.password_3.setPlaceholderText(_translate("MainWindow", "Senha"))
+        self.pushButton_2.setText(_translate("MainWindow", "Não tem uma conta? Cadastre-se"))
         self.goBtn_2.setText(_translate("MainWindow", "Entrar"))
-import recurses_rc
+        
 
 
 if __name__ == "__main__":
