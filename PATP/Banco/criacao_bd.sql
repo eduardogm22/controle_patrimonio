@@ -51,6 +51,7 @@ create table estados (
     nome varchar(20) not null unique,
     sigla char(2) not null unique
 );
+
 create table cidades (
 	idcidade integer not null auto_increment primary key,
     nome varchar(50) not null,
@@ -140,6 +141,7 @@ $$ delimiter ;
 
 -- views
 
+-- drop view usuario_nome_view; -- descomentar caso fizer alteração
 create view usuario_nome_view as
 SELECT 
 	usr.idpessoa, 
@@ -150,6 +152,7 @@ FROM
 inner join 
 	pessoas as pss on usr.idpessoa = pss.idpessoa;
 
+-- drop view principal_patrimonio_view; -- descomentar caso fizer alteração
 create view principal_patrimonio_view as
 select
 	ptr.idpatrimonio as "ID",
@@ -170,8 +173,7 @@ left outer join
 	setores_responsaveis as srp on ptr.idsetor_responsavel = srp.idsetor_responsavel
 left outer join situacoes as sit on ptr.idsituacao = sit.idsituacao;
 
-drop procedure st_pesquisar;
-
+-- drop procedure st_pesquisar; descomentar caso fizer alteração
 delimiter $$
 create procedure st_pesquisar (in pesquisado varchar(30))
 begin
@@ -196,101 +198,7 @@ left outer join situacoes as sit on ptr.idsituacao = sit.idsituacao
 where ptr.nome like concat('%', pesquisado, '%') or ptr.idpatrimonio like concat('%', pesquisado, '%') or ptr.num_patrimonio like concat('%', pesquisado, '%');
 end;
 $$ delimiter ;
-select * from categorias;
 
--- Teste
-DELIMITER $$
-CREATE PROCEDURE st_pesquisar(IN pesquisado VARCHAR(30))
-BEGIN
-    SELECT
-        ptr.idpatrimonio AS "ID",
-        ptr.nome AS "Patrimônio",
-        cat.nome AS "Categoria",
-        ptr.valor_unitario AS "Valor Unitário",
-        ptr.num_patrimonio AS "Núm. Patrimônio",
-        nta.data_aquisicao AS "Data de Aquisição",
-        srp.nome AS "Setor Resp.",
-        sit.nome AS "Situação"
-    FROM
-        patrimonios AS ptr
-    INNER JOIN
-        categorias AS cat ON ptr.idcategoria = cat.idcategoria
-    LEFT OUTER JOIN
-        info_notas AS nta ON ptr.idnota = nta.idnota
-    LEFT OUTER JOIN
-        setores_responsaveis AS srp ON ptr.idsetor_responsavel = srp.idsetor_responsavel
-    LEFT OUTER JOIN
-        situacoes AS sit ON ptr.idsituacao = sit.idsituacao
-    WHERE
-        ptr.nome LIKE CONCAT('%', pesquisado, '%')
-        OR ptr.idpatrimonio LIKE CONCAT('%', pesquisado, '%')
-        OR ptr.num_patrimonio LIKE CONCAT('%', pesquisado, '%');
-END $$
-
-DELIMITER ;
--- Final teste 1
--- Teste busca
-CALL st_pesquisar('Computador Dell');
-
-
-SELECT
-    ptr.idpatrimonio AS "ID",
-    ptr.nome AS "Patrimônio",
-    cat.nome AS "Categoria",
-    ptr.valor_unitario AS "Valor Unitário",
-    ptr.num_patrimonio AS "Núm. Patrimônio",
-    nta.data_aquisicao AS "Data de Aquisição",
-    srp.nome AS "Setor Resp.",
-    sit.nome AS "Situação"
-FROM
-    patrimonios AS ptr
-INNER JOIN
-    categorias AS cat ON ptr.idcategoria = cat.idcategoria
-LEFT OUTER JOIN
-    info_notas AS nta ON ptr.idnota = nta.idnota
-LEFT OUTER JOIN
-    setores_responsaveis AS srp ON ptr.idsetor_responsavel = srp.idsetor_responsavel
-LEFT OUTER JOIN
-    situacoes AS sit ON ptr.idsituacao = sit.idsituacao
-WHERE
-    ptr.nome LIKE CONCAT('%', 'Computador Dell', '%');
-
-
-
-
--- Teste 2
-SELECT 
-    ptr.idpatrimonio AS "ID",
-    ptr.nome AS "Patrimônio",
-    cat.nome AS "Categoria",
-    ptr.valor_unitario AS "Valor Unitário",
-    ptr.num_patrimonio AS "Núm. Patrimônio",
-    nta.data_aquisicao AS "Data de Aquisição",
-    srp.nome AS "Setor Resp.",
-    sit.nome AS "Situação"
-FROM
-    patrimonios AS ptr
-INNER JOIN
-    categorias AS cat ON ptr.idcategoria = cat.idcategoria
-LEFT OUTER JOIN
-    info_notas AS nta ON ptr.idnota = nta.idnota
-LEFT OUTER JOIN
-    setores_responsaveis AS srp ON ptr.idsetor_responsavel = srp.idsetor_responsavel
-LEFT OUTER JOIN
-    situacoes AS sit ON ptr.idsituacao = sit.idsituacao
-WHERE
-    ptr.nome;
--- Final Teste 2
-
-
-
-
-
-
-
-call st_pesquisar('');
-
-select * from patrimonios;
 -- Criação tabela auditoria para verificar logs
 -- drop table patrimonios_audit;
 create table patrimonios_audit (
@@ -311,13 +219,6 @@ create table patrimonios_audit (
 
 -- triggers auditoria
 
-select * from usuarios;
-select * from cargos;
-insert into cargos(nome,acesso_geral,pode_registrar,controle_adm,controle_usuario,pode_modificar,pode_visualizar) values ('Administrador',1,1,1,1,1,1);
-insert into usuarios(usuario,senha,idcargo) values ('Luan',123,1);
-
-select usuario,nome from usuarios as u inner join cargos as c where c.idcargo = u.idcargo;
-
 delimiter $$
 create trigger patrimonios_trigger_insert 
 after insert on patrimonios 
@@ -328,14 +229,3 @@ begin
 	(@idusuario, 'insert', current_date(), 1);
 end $$
 delimiter ;
-
-select * from patrimonios;
-
-
-select * from info_notas;
-/*
-set @idusuario = 444;
-
-call cadastra_quantidade('verificando logs', 50, current_date(), 1, 1, 1, 1, 1, 2);
-
-select * from patrimonios_audit; */
