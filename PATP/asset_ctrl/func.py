@@ -320,12 +320,10 @@ class bag_view(QWidget):
         self.del_frame.setGraphicsEffect(self.shadow_del)
         self.btn_top_frame.setGraphicsEffect(self.shadow_btn_top)
 
-        self.model = conecta_view_tela('select nome,valor_unitario,data_recebimento,idnota from patrimonios')
-        self.table_item = self.findChild(QTableView, "table_bag")
-        self.table_item.setModel(self.model)
-        
-
+        #efetua a pesquisa usando a storec proc st_pesquisar
         self.modelo = conecta_procedure_tela('st_pesquisar', '')
+        self.table_item = self.findChild(QTableView, "table_bag")
+        self.table_item.setModel(self.modelo)
         self.edtPesquisa = self.findChild(QLineEdit, "line_search")
         self.edtPesquisa.textChanged.connect(lambda text: self.pesquisa(text))
         
@@ -350,13 +348,11 @@ class bag_view(QWidget):
             self.btn_details.show()
         else:
             self.btn_details.hide()
-
+#retirada redundancia que estava acontecendo nessa função pesquisa
     def pesquisa(self,pesquisado):
-        if pesquisado == "":
-            self.table_item.setModel(self.model)
-        else:
             self.modelo = conecta_procedure_tela('st_pesquisar', pesquisado)
             self.table_item.setModel(self.modelo)
+   
     def eventFilter(self, obj, event):
         pass
         return super().eventFilter(obj, event)
@@ -405,9 +401,20 @@ class bag_item_cad(QWidget):
     def __init__(self):
         super().__init__()
         
-        self.cad_item = uic.loadUi("templates/interfaces/bag_item_cad.ui", self)
-        self.name_item = self.findChild(QLineEdit, "name_prod")        
-        self.quantidade = self.findChild(QSpinBox, "qnt")
+        self.cad_item = uic.loadUi("templates/interfaces/bag_item_cad.ui", self);
+        self.name_item = self.findChild(QLineEdit, "name_prod");        
+        self.quantidade = self.findChild(QSpinBox, "qnt");
+        self.cbxCategoria = self.findChild(QComboBox, "cat_box");
+        
+        #colocando as categorias na combo box
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute('select nome from categorias')
+        resultado = cursor.fetchall()
+        for dados in resultado:
+            self.cbxCategoria.addItem(dados[0])
+        cursor.close()
+        fechar_conexao(con)
         
         # filtro para o campo de valor, aplicada regras para não aceitar virgula e nem outros digitos.
         self.number_input = self.findChild(QLineEdit, "value_prod")
@@ -526,21 +533,30 @@ class bag_item_cad(QWidget):
         
     def confirm(self):
         print("Confirmando os itens:", self.listagem)
-        con_confirm = mysql.connector.connect(**config)
-        cursor = con_confirm.cursor()
         for item_id, item_data in self.listagem.items():
             print(f'Produto id:{item_id}, Produto da lista: {item_data}')
         
+        #!!!!!!!!EM OBRAS!!!!!!!!!! Nao reparem na bagunça
+        
         # Apenas para teste de funcionalidade
         # Faltando regra de negócio
-        #for item_id, item_data in self.listagem.items():
-        #    nome, valor, quantidade = item_data
-            #cursor.callproc('cadastra_quantidade', [nome, valor, quantidade])
-            #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel,
-            #                                        idsituacao, idfornecedor, quantidade])
-                
-        con_confirm.commit()
-        con_confirm.close()
+        '''for item_id, item_data in self.listagem.items():
+            nome, valor_unitario, quantidade = item_data'''
+            #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao]'''
+            #cursor.callproc('cadastra_nota', [chave_acesso, numero, serie, idfornecedor, data_aquisicao])
+        
+        con = criar_conexao()
+        cursor = con.cursor()
+        try:
+            cursor.callproc('cadastra_quantidade_teste', ['testedireto', 50, 1]);
+            con.commit()
+            print('deu certo')
+        except Exception as e:
+            print('erroou ', e)
+        finally:
+            cursor.close()   
+            fechar_conexao(con)
+        
         self.listagem.clear()
         self.atualizar_tabela()
         print("Itens confirmados e adicionados ao banco de dados:", self.listagem)

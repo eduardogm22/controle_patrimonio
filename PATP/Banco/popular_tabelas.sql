@@ -61,7 +61,11 @@ INSERT INTO info_notas (idnota, chave_acesso, numero, serie, idfornecedor, data_
 
 insert into cargos
 values
-(default, 'Desenvolvedor', 's', 's', 's','s','s','s');
+(default, 'Admin', '1', '1', '1','1','1','1'),
+(default, 'Supervisor', '0', '1', '1','1','1','1'),
+(default, 'Funcionario Registrador', '0', '1', '0','0','1','1'),
+(default, 'Funcionario Leitor', '0', '0', '0','0','0','1');
+
 
 insert into pessoas
 values
@@ -72,8 +76,8 @@ values
 insert into usuarios
 values
 (1, 'eduardogm', '1234', 1),
-(2, 'emillylv', 1234, 2),
-(3, 'luanlz', 1234, 3); 
+(2, 'emillylv', 1234, 1),
+(3, 'luanlz', 1234, 1); 
    
 INSERT INTO patrimonios (nome, valor_unitario, data_recebimento, num_patrimonio, num_serie, idnota, idcategoria, idsetor_responsavel, idsituacao)
 VALUES

@@ -1,4 +1,3 @@
-drop database cadastro;
 create database if not exists cadastro;
 use cadastro;
 
@@ -110,20 +109,38 @@ create table usuarios (
     constraint fk_usr_cargos foreign key (idcargo) references cargos (idcargo)
 ); 
 
+-- Criação tabela auditoria para verificar logs
+-- drop table patrimonios_audit;
+create table patrimonios_audit (
+    idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+    idpatrimonio integer not null,
+	nome varchar(100) default null,
+	valor_unitario decimal(10,2) default null,
+    data_recebimento date default null,
+    num_patrimonio varchar(30) default null,
+    num_serie varchar(30) default null,
+	idnota integer default null,
+	idcategoria integer default null,
+    idsetor_responsavel integer default null,
+	idsituacao integer default null   
+);
+
 -- stored procedures
 
 -- procedure que recebe a quantidade e cadastra 1 produto para cada distinto vezes o valor da quantidade
--- drop procedure cadastra_quantidade;
+ -- drop procedure cadastra_quantidade;
 delimiter $$
 create procedure cadastra_quantidade (in nome varchar(100), in valor_unitario decimal(10, 2), in data_recebimento date, in idnota integer, in idcategoria integer, 
-in idsetor_responsavel integer, in idsituacao integer, in idpatrimonio_numero integer, in quantidade integer)
+in idsetor_responsavel integer, in idsituacao integer, in quantidade integer)
 begin
 	declare contador integer default 1;
     while 
 		contador <= quantidade do
 				insert into patrimonios (idpatrimonio, nome, valor_unitario, num_patrimonio, num_serie, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao)
 				values
-                (default, nome, valor_unitario, data_recebimento, null, null, idnota, idcategoria, idsetor_responsavel, idsituacao);
+                (default, nome, valor_unitario, null, null, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao);
 			set contador = contador + 1;
 	end while;
 end 
@@ -139,7 +156,7 @@ begin
 end
 $$ delimiter ;
 
--- views
+-- views 
 
 -- drop view usuario_nome_view; -- descomentar caso fizer alteração
 create view usuario_nome_view as
@@ -178,12 +195,10 @@ delimiter $$
 create procedure st_pesquisar (in pesquisado varchar(30))
 begin
 select
-	ptr.idpatrimonio as "ID",
     ptr.nome as "Patrimônio",
     cat.nome as "Categoria",
     ptr.valor_unitario as "Valor Unitário",
-    ptr.num_patrimonio as "Núm. Patrimônio",
-    nta.data_aquisicao as "Data de Aquisição",
+    ptr.data_recebimento as "Data Receb.",
     srp.nome as "Setor Resp.",
     sit.nome as "Situação"
 from
@@ -195,27 +210,9 @@ left outer join
 left outer join
 	setores_responsaveis as srp on ptr.idsetor_responsavel = srp.idsetor_responsavel
 left outer join situacoes as sit on ptr.idsituacao = sit.idsituacao
-where ptr.nome like concat('%', pesquisado, '%') or ptr.idpatrimonio like concat('%', pesquisado, '%') or ptr.num_patrimonio like concat('%', pesquisado, '%');
+where ptr.nome like concat('%', pesquisado, '%') or cat.nome like concat('%', pesquisado, '%') or srp.nome like concat('%', pesquisado, '%');
 end;
 $$ delimiter ;
-
--- Criação tabela auditoria para verificar logs
--- drop table patrimonios_audit;
-create table patrimonios_audit (
-    idusuario integer,
-    tipo_alteracao varchar(10),
-    data_alteracao timestamp,
-    idpatrimonio integer not null,
-	nome varchar(100) default null,
-	valor_unitario decimal(10,2) default null,
-    data_recebimento date default null,
-    num_patrimonio varchar(30) default null,
-    num_serie varchar(30) default null,
-	idnota integer default null,
-	idcategoria integer default null,
-    idsetor_responsavel integer default null,
-	idsituacao integer default null   
-);
 
 -- triggers auditoria
 

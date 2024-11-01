@@ -82,3 +82,36 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+#testando cadastro pela procedure
+
+create table patrimonios_teste (
+	idpatrimonio integer auto_increment primary key,
+	nome varchar(100),
+	valor_unitario decimal(10,2),
+    data_recebimento date,
+    num_patrimonio varchar(30),
+    num_serie varchar(30),
+	idnota integer,
+	idcategoria integer,
+    idsetor_responsavel integer,
+	idsituacao integer
+);
+
+delimiter $$
+create procedure cadastra_quantidade_teste (in nome varchar(100), in valor_unitario decimal(10, 2), in quantidade integer)
+begin
+	declare contador integer default 1;
+    while 
+		contador <= quantidade do
+				insert into patrimonios_teste (idpatrimonio, nome, valor_unitario, num_patrimonio, num_serie, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao)
+				values
+                (default, nome, valor_unitario, null, null, current_date(), null, null, null, null);
+			set contador = contador + 1;
+	end while;
+end 
+$$ delimiter ;
+
+call cadastra_quantidade_teste('teste1', 50, 1);
+select * from patrimonios_teste;
