@@ -409,13 +409,13 @@ class bag_item_cad(QWidget):
         #colocando as categorias na combo box
         con = criar_conexao()
         cursor = con.cursor()
-        cursor.execute('select nome from categorias')
+        cursor.execute('select nome from categorias order by nome')
         resultado = cursor.fetchall()
         for dados in resultado:
             self.cbxCategoria.addItem(dados[0])
         cursor.close()
         fechar_conexao(con)
-        
+
         # filtro para o campo de valor, aplicada regras para não aceitar virgula e nem outros digitos.
         self.number_input = self.findChild(QLineEdit, "value_prod")
         validator = QDoubleValidator(0.0, 10000.0, 2)
@@ -532,9 +532,20 @@ class bag_item_cad(QWidget):
         QLineEdit.keyPressEvent(self.number_input, event)
         
     def confirm(self):
-        print("Confirmando os itens:", self.listagem)
+        #pegando os valores dos campos
+        self.cat_sel_nome = self.cbxCategoria.currentText();
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute('select idcategoria from categorias where nome = %s', (self.cat_sel_nome,));
+        resultado_cat = cursor.fetchone()
+        self.cat_sel_id = resultado_cat[0]
+        cursor.close()
+        fechar_conexao(con)
+        print(self.cat_sel_id);
+        
+        print("Confirmando os itens:", self.listagem);
         for item_id, item_data in self.listagem.items():
-            print(f'Produto id:{item_id}, Produto da lista: {item_data}')
+            print(f'Produto id:{item_id}, Produto da lista: {item_data}');
         
         #!!!!!!!!EM OBRAS!!!!!!!!!! Nao reparem na bagunça
         
@@ -545,17 +556,17 @@ class bag_item_cad(QWidget):
             #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao]'''
             #cursor.callproc('cadastra_nota', [chave_acesso, numero, serie, idfornecedor, data_aquisicao])
         
-        con = criar_conexao()
+        '''con = criar_conexao()
         cursor = con.cursor()
         try:
-            cursor.callproc('cadastra_quantidade_teste', ['testedireto', 50, 1]);
+            cursor.callproc('cadastra_quantidade_teste', ['testedireto2', 50, 2]);
             con.commit()
             print('deu certo')
         except Exception as e:
             print('erroou ', e)
         finally:
             cursor.close()   
-            fechar_conexao(con)
+            fechar_conexao(con)'''
         
         self.listagem.clear()
         self.atualizar_tabela()
