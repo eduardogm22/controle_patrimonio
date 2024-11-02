@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>421</width>
-    <height>641</height>
+    <height>633</height>
    </rect>
   </property>
   <property name="cursor">
@@ -325,8 +325,8 @@ border-radius: 0px;
                     <widget class="QLabel" name="label_2">
                      <property name="maximumSize">
                       <size>
-                       <width>47</width>
-                       <height>45</height>
+                       <width>40</width>
+                       <height>40</height>
                       </size>
                      </property>
                      <property name="styleSheet">
@@ -429,27 +429,12 @@ border-radius: 0px;
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_9">
-                   <property name="spacing">
-                    <number>4</number>
-                   </property>
-                   <property name="leftMargin">
-                    <number>5</number>
-                   </property>
-                   <property name="topMargin">
-                    <number>7</number>
-                   </property>
-                   <property name="rightMargin">
-                    <number>4</number>
-                   </property>
-                   <property name="bottomMargin">
-                    <number>7</number>
-                   </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_5">
                    <item>
                     <widget class="QLabel" name="label_3">
                      <property name="maximumSize">
                       <size>
-                       <width>40</width>
+                       <width>30</width>
                        <height>35</height>
                       </size>
                      </property>
@@ -464,7 +449,7 @@ border-radius: 0px;
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="../../../../Login.QT/recurses.qrc">:/imagens/imagem sem o fundo/email.png</pixmap>
+                      <pixmap resource="../../../../Login.QT/recurses.qrc">:/imagens/imagem sem o fundo/senha_icon.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
@@ -643,7 +628,7 @@ QPushButton:pressed{
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton { color: rgb(243, 239, 238);
-	border-radius:25px;		
+	border-radius:15px;		
 	border: 4px solid #00BF63;
 	background-color:#00BF63;
 	font: 13pt &quot;MS Shell Dlg 2&quot;;
