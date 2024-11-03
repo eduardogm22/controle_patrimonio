@@ -31,6 +31,15 @@
   <property name="palette">
    <palette>
     <active>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>248</green>
+        <blue>248</blue>
+       </color>
+      </brush>
+     </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
@@ -40,8 +49,35 @@
        </color>
       </brush>
      </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>248</green>
+        <blue>248</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>248</green>
+        <blue>248</blue>
+       </color>
+      </brush>
+     </colorrole>
     </active>
     <inactive>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>248</green>
+        <blue>248</blue>
+       </color>
+      </brush>
+     </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
@@ -51,14 +87,59 @@
        </color>
       </brush>
      </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>248</green>
+        <blue>248</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>248</green>
+        <blue>248</blue>
+       </color>
+      </brush>
+     </colorrole>
     </inactive>
     <disabled>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>248</green>
+        <blue>248</blue>
+       </color>
+      </brush>
+     </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
         <red>160</red>
         <green>160</green>
         <blue>160</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>248</green>
+        <blue>248</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>248</green>
+        <blue>248</blue>
        </color>
       </brush>
      </colorrole>
@@ -69,8 +150,11 @@
    <string>Controle de Patrimônio</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../feather/resource.qrc">
+   <iconset>
     <normaloff>:/icons/server.svg</normaloff>:/icons/server.svg</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color : rgb(255, 248, 248)</string>
   </property>
   <property name="animated">
    <bool>false</bool>
@@ -122,172 +206,350 @@ QLineEdit{
         <height>16777215</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #057A3A;
+    border-top-right-radius: 15px;  
+    border-bottom-right-radius: 15px;</string>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_6">
-       <item alignment="Qt::AlignTop">
-        <widget class="QFrame" name="menuFrame">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="sizeIncrement">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>ArrowCursor</cursorShape>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
+       <property name="leftMargin">
+        <number>11</number>
+       </property>
+       <property name="topMargin">
+        <number>11</number>
+       </property>
+       <property name="rightMargin">
+        <number>11</number>
+       </property>
+       <property name="bottomMargin">
+        <number>11</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_7">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_7">
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>13</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
-           <widget class="QPushButton" name="relBtn">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>45</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="text">
-             <string>Relatório</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
-              <normaloff>:/icons/file-text.svg</normaloff>:/icons/file-text.svg</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="usersBtn">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>45</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>45</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="text">
-             <string>Users</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
-              <normaloff>:/icons/users.svg</normaloff>:/icons/users.svg</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="bagBtn">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>45</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="text">
-             <string>Inventário</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
-              <normaloff>:/icons/shopping-bag.svg</normaloff>:/icons/shopping-bag.svg</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="logBtn">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>45</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="text">
-             <string>Definições</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
-              <normaloff>:/icons/activity.svg</normaloff>:/icons/activity.svg</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="bckpBtn">
+           <widget class="QFrame" name="frame_11">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>45</height>
+              <height>50</height>
              </size>
             </property>
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-             </font>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
             </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
             </property>
-            <property name="mouseTracking">
-             <bool>false</bool>
+            <layout class="QVBoxLayout" name="verticalLayout_15">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+              <widget class="QPushButton" name="relBtn">
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:hover{background-color:rgb(0, 109, 0);color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+               </property>
+               <property name="text">
+                <string>Relatório</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>:/icons/file-text.svg</normaloff>:/icons/file-text.svg</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_9">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
             </property>
-            <property name="text">
-             <string>Backup</string>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
             </property>
-            <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
-              <normaloff>:/icons/save.svg</normaloff>:/icons/save.svg</iconset>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
             </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_16">
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QPushButton" name="pushButton">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:hover{background-color:rgb(0, 109, 0);color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+               </property>
+               <property name="text">
+                <string>Usuários</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_13">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_17">
+             <item>
+              <widget class="QPushButton" name="bagBtn">
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:hover{background-color:rgb(0, 109, 0);color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+               </property>
+               <property name="text">
+                <string>Inventário</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>:/icons/shopping-bag.svg</normaloff>:/icons/shopping-bag.svg</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_12">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_18">
+             <item>
+              <widget class="QPushButton" name="bckpBtn">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="mouseTracking">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:hover{background-color:rgb(0, 109, 0);color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+               </property>
+               <property name="text">
+                <string>Backup</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>:/icons/save.svg</normaloff>:/icons/save.svg</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_10">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_19">
+             <item>
+              <widget class="QPushButton" name="logBtn">
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:hover{background-color:rgb(0, 109, 0);color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+               </property>
+               <property name="text">
+                <string>Definições</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>:/icons/activity.svg</normaloff>:/icons/activity.svg</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
@@ -312,11 +574,26 @@ QLineEdit{
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:hover{background-color:rgb(0, 109, 0);color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+            </property>
             <property name="text">
              <string>Ajuda</string>
             </property>
             <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
+             <iconset>
               <normaloff>:/icons/help-circle.svg</normaloff>:/icons/help-circle.svg</iconset>
             </property>
            </widget>
@@ -331,11 +608,26 @@ QLineEdit{
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:hover{background-color:rgb(0, 109, 0);color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+            </property>
             <property name="text">
              <string>Sobre</string>
             </property>
             <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
+             <iconset>
               <normaloff>:/icons/link.svg</normaloff>:/icons/link.svg</iconset>
             </property>
            </widget>
@@ -364,7 +656,11 @@ QLineEdit{
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">margin-top:6px;</string>
+          <string notr="true">background-color : rgb(0, 191, 99);
+    border-top-right-radius: 15px;  
+    border-bottom-right-radius: 15px;
+border-bottom: 2px solid rgb(45, 45, 45);
+</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <property name="spacing">
@@ -380,12 +676,31 @@ QLineEdit{
            <number>0</number>
           </property>
           <property name="bottomMargin">
-           <number>0</number>
+           <number>5</number>
           </property>
           <item alignment="Qt::AlignLeft">
            <widget class="QWidget" name="btnHome" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
-             <item alignment="Qt::AlignRight">
+            <property name="minimumSize">
+             <size>
+              <width>45</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-bottom:none
+</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <property name="topMargin">
+              <number>6</number>
+             </property>
+             <property name="rightMargin">
+              <number>11</number>
+             </property>
+             <property name="bottomMargin">
+              <number>11</number>
+             </property>
+             <item>
               <widget class="QPushButton" name="homeBtn">
                <property name="minimumSize">
                 <size>
@@ -407,11 +722,14 @@ QLineEdit{
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
                <property name="text">
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="../../feather/resource.qrc">
+                <iconset>
                  <normaloff>:/icons/home.svg</normaloff>:/icons/home.svg</iconset>
                </property>
                <property name="iconSize">
@@ -433,6 +751,11 @@ QLineEdit{
               <height>0</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">border-bottom: none
+
+</string>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -443,6 +766,10 @@ QLineEdit{
           </item>
           <item>
            <widget class="QLabel" name="labelUser">
+            <property name="styleSheet">
+             <string notr="true">border-bottom: none
+</string>
+            </property>
             <property name="text">
              <string>TextLabel</string>
             </property>
@@ -480,11 +807,15 @@ QLineEdit{
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
+               <property name="styleSheet">
+                <string notr="true">border-bottom: none
+</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="../../feather/resource.qrc">
+                <iconset>
                  <normaloff>:/icons/user.svg</normaloff>:/icons/user.svg</iconset>
                </property>
                <property name="iconSize">
@@ -564,6 +895,12 @@ QLineEdit{
             <layout class="QHBoxLayout" name="horizontalLayout_7">
              <item>
               <widget class="QFrame" name="card1">
+               <property name="styleSheet">
+                <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+
+</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -573,6 +910,9 @@ QLineEdit{
                <layout class="QVBoxLayout" name="verticalLayout_2">
                 <item>
                  <widget class="QFrame" name="frame">
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
@@ -586,6 +926,9 @@ QLineEdit{
                       <font>
                        <pointsize>12</pointsize>
                       </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
                      </property>
                      <property name="text">
                       <string>Produtos</string>
@@ -601,7 +944,7 @@ QLineEdit{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/codesandbox.svg</normaloff>:/icons/codesandbox.svg</iconset>
                      </property>
                      <property name="iconSize">
@@ -622,6 +965,9 @@ QLineEdit{
                     <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="text">
                    <string>Titulo</string>
                   </property>
@@ -632,6 +978,12 @@ QLineEdit{
              </item>
              <item>
               <widget class="QFrame" name="card2">
+               <property name="styleSheet">
+                <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+
+</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -641,6 +993,9 @@ QLineEdit{
                <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
                  <widget class="QFrame" name="frame_2">
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
@@ -655,6 +1010,9 @@ QLineEdit{
                        <pointsize>12</pointsize>
                       </font>
                      </property>
+                     <property name="styleSheet">
+                      <string notr="true">border: 0px</string>
+                     </property>
                      <property name="text">
                       <string>Logs</string>
                      </property>
@@ -665,11 +1023,14 @@ QLineEdit{
                      <property name="cursor">
                       <cursorShape>PointingHandCursor</cursorShape>
                      </property>
+                     <property name="styleSheet">
+                      <string notr="true">border: 0px</string>
+                     </property>
                      <property name="text">
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/database.svg</normaloff>:/icons/database.svg</iconset>
                      </property>
                      <property name="iconSize">
@@ -690,6 +1051,9 @@ QLineEdit{
                     <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="text">
                    <string>Titulo</string>
                   </property>
@@ -700,6 +1064,12 @@ QLineEdit{
              </item>
              <item>
               <widget class="QFrame" name="card3">
+               <property name="styleSheet">
+                <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+
+</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -709,6 +1079,9 @@ QLineEdit{
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>
                  <widget class="QFrame" name="frame_3">
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
@@ -737,7 +1110,7 @@ QLineEdit{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/map-pin.svg</normaloff>:/icons/map-pin.svg</iconset>
                      </property>
                      <property name="iconSize">
@@ -758,6 +1131,9 @@ QLineEdit{
                     <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="text">
                    <string>Titulo</string>
                   </property>
@@ -768,6 +1144,12 @@ QLineEdit{
              </item>
              <item>
               <widget class="QFrame" name="card4">
+               <property name="styleSheet">
+                <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+
+</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -777,6 +1159,9 @@ QLineEdit{
                <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
                  <widget class="QFrame" name="frame_4">
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
@@ -802,7 +1187,7 @@ QLineEdit{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/dollar-sign.svg</normaloff>:/icons/dollar-sign.svg</iconset>
                      </property>
                      <property name="iconSize">
@@ -822,6 +1207,9 @@ QLineEdit{
                    <font>
                     <pointsize>12</pointsize>
                    </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
                   </property>
                   <property name="text">
                    <string>Titulo</string>
@@ -885,7 +1273,10 @@ QLineEdit{
                 <item>
                  <widget class="QFrame" name="frame_5">
                   <property name="styleSheet">
-                   <string notr="true">background-color:white;</string>
+                   <string notr="true">background-color : rgb(0, 191, 99);
+border-radius: 15px;
+border-bottom: 2px solid rgb(45, 45, 45);
+</string>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
@@ -900,6 +1291,10 @@ QLineEdit{
                       <font>
                        <pointsize>12</pointsize>
                       </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">border-bottom: none;
+color: rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
                       <string>Relatório</string>
@@ -916,11 +1311,15 @@ QLineEdit{
                      <property name="cursor">
                       <cursorShape>ForbiddenCursor</cursorShape>
                      </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);
+border-bottom: none;</string>
+                     </property>
                      <property name="text">
                       <string>Detalhes</string>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/alert-circle.svg</normaloff>:/icons/alert-circle.svg</iconset>
                      </property>
                     </widget>
@@ -931,7 +1330,10 @@ QLineEdit{
                 <item>
                  <widget class="QTableView" name="tableView">
                   <property name="styleSheet">
-                   <string notr="true">background-color:white;</string>
+                   <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+
+</string>
                   </property>
                   <property name="horizontalScrollBarPolicy">
                    <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -989,7 +1391,10 @@ QLineEdit{
                 <item>
                  <widget class="QFrame" name="frame_8">
                   <property name="styleSheet">
-                   <string notr="true">background-color:white;</string>
+                   <string notr="true">background-color : rgb(0, 191, 99);
+border-radius: 15px;
+border-bottom: 2px solid rgb(45, 45, 45);
+</string>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
@@ -1004,6 +1409,10 @@ QLineEdit{
                       <font>
                        <pointsize>12</pointsize>
                       </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">border-bottom: none;
+color: rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
                       <string>Logs de Registros</string>
@@ -1020,11 +1429,15 @@ QLineEdit{
                      <property name="cursor">
                       <cursorShape>ForbiddenCursor</cursorShape>
                      </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);
+border-bottom: none;</string>
+                     </property>
                      <property name="text">
                       <string>Detalhes</string>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/alert-circle.svg</normaloff>:/icons/alert-circle.svg</iconset>
                      </property>
                     </widget>
@@ -1038,7 +1451,10 @@ QLineEdit{
                    <bool>true</bool>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:white;</string>
+                   <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+
+</string>
                   </property>
                   <property name="horizontalScrollBarPolicy">
                    <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1091,7 +1507,7 @@ QLineEdit{
   </widget>
  </widget>
  <resources>
-  <include location="../../feather/resource.qrc"/>
+  <include location="recurses.qrc"/>
  </resources>
  <connections/>
 </ui>
