@@ -7,11 +7,16 @@
     <x>0</x>
     <y>0</y>
     <width>896</width>
-    <height>644</height>
+    <height>653</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color : rgb(255, 248, 248);
+
+background-color:qradialgradient(spread:pad, cx:0.525, cy:0, radius:0.711, fx:0.550202, fy:0.709842, stop:0.641791 rgba(7, 153, 73, 255), stop:0.965174 rgba(7, 153, 73, 255), stop:1 rgba(255, 255, 255, 255))</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -21,6 +26,10 @@
        <width>0</width>
        <height>0</height>
       </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: 0;
+border-bottom:0</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -39,6 +48,10 @@
        <height>600</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: 0;
+border-bottom:0</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -48,6 +61,11 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QFrame" name="frame_6">
+        <property name="font">
+         <font>
+          <pointsize>7</pointsize>
+         </font>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -55,6 +73,21 @@
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>7</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QFrame" name="frame_2">
            <property name="minimumSize">
@@ -68,6 +101,10 @@
              <width>490</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color : rgba(0, 191, 99,199);
+border-radius: 15px;</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -90,6 +127,10 @@
                 <height>90</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: 0;
+border-bottom:0</string>
+              </property>
               <property name="text">
                <string>user_info</string>
               </property>
@@ -110,11 +151,20 @@
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border:3px solid black;</string>
+               <string notr="true">QLineEdit{
+	color:rgb(8, 8, 8);
+background-color:white;
+border-radius: 5px;
+border-bottom: 1px solid rgb(91, 91, 91)
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
               </property>
               <property name="text">
-               <string>Usuário</string>
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Usuário:</string>
               </property>
              </widget>
             </item>
@@ -123,6 +173,10 @@ border:3px solid black;</string>
          </item>
          <item>
           <widget class="QFrame" name="frame_3">
+           <property name="styleSheet">
+            <string notr="true">background-color : rgba(0, 191, 99,199);
+border-radius: 15px;</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -130,34 +184,12 @@ border:3px solid black;</string>
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item alignment="Qt::AlignBottom">
-             <widget class="QFrame" name="frame_9">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <item>
-                <widget class="QPushButton" name="pushButton_3">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color:white;
-border:3px solid black;</string>
-                 </property>
-                 <property name="text">
-                  <string>btn_edit</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item alignment="Qt::AlignTop">
+            <item>
              <widget class="QFrame" name="frame_10">
+              <property name="styleSheet">
+               <string notr="true">background-color: 0;
+border-bottom:0</string>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -166,14 +198,75 @@ border:3px solid black;</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_3">
                <item>
-                <widget class="QPushButton" name="pushButton_2">
+                <widget class="QPushButton" name="pushButton_3">
+                 <property name="maximumSize">
+                  <size>
+                   <width>90</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;
-border-radius: 3px;
-border:2px solid black;</string>
+                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;		
+	border: 4px solid rgb(255, 255, 255);
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>btn_edit</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_2">
+                 <property name="maximumSize">
+                  <size>
+                   <width>90</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;		
+	border: 4px solid rgb(255, 255, 255);
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
                  </property>
                  <property name="text">
                   <string>btn_foto</string>
@@ -183,8 +276,12 @@ border:2px solid black;</string>
               </layout>
              </widget>
             </item>
-            <item alignment="Qt::AlignHCenter">
+            <item>
              <widget class="QFrame" name="frame_11">
+              <property name="styleSheet">
+               <string notr="true">background-color: 0;
+border-bottom:0</string>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -192,6 +289,21 @@ border:2px solid black;</string>
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_4">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QPushButton" name="pushButton">
                  <property name="minimumSize">
@@ -202,14 +314,14 @@ border:2px solid black;</string>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>90</width>
-                   <height>90</height>
+                   <width>100</width>
+                   <height>100</height>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;
-border-radius: 3px;
-border:2px solid black;</string>
+                  <string notr="true">background-color:rgba(255, 255, 255,199);
+border:3px solid #057A3A;
+border-radius:10px</string>
                  </property>
                  <property name="text">
                   <string>FOTO</string>
@@ -227,6 +339,10 @@ border:2px solid black;</string>
       </item>
       <item>
        <widget class="QFrame" name="frame_4">
+        <property name="styleSheet">
+         <string notr="true">background-color : rgba(0, 191, 99,199);
+border-radius: 15px;</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -241,6 +357,10 @@ border:2px solid black;</string>
              <width>490</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: 0;
+border-bottom:0</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -264,11 +384,23 @@ border:2px solid black;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border:3px solid black;</string>
+               <string notr="true">QLineEdit{
+	color:rgb(8, 8, 8);
+background-color:white;
+border-radius: 5px;
+border-bottom: 1px solid rgb(91, 91, 91)
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
               </property>
               <property name="text">
-               <string>Senha</string>
+               <string/>
+              </property>
+              <property name="echoMode">
+               <enum>QLineEdit::Password</enum>
+              </property>
+              <property name="placeholderText">
+               <string>Senha:</string>
               </property>
              </widget>
             </item>
@@ -287,11 +419,20 @@ border:3px solid black;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border:3px solid black;</string>
+               <string notr="true">QLineEdit{
+	color:rgb(8, 8, 8);
+background-color:white;
+border-radius: 5px;
+border-bottom: 1px solid rgb(91, 91, 91)
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
               </property>
               <property name="text">
-               <string>Nome</string>
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Nome:</string>
               </property>
              </widget>
             </item>
@@ -310,11 +451,20 @@ border:3px solid black;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border:3px solid black;</string>
+               <string notr="true">QLineEdit{
+	color:rgb(8, 8, 8);
+background-color:white;
+border-radius: 5px;
+border-bottom: 1px solid rgb(91, 91, 91)
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
               </property>
               <property name="text">
-               <string>Email</string>
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Email:</string>
               </property>
              </widget>
             </item>
@@ -334,6 +484,10 @@ border:3px solid black;</string>
              <width>300</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: 0;
+border-bottom:0</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -376,8 +530,13 @@ border:3px solid black;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border:3px solid black;</string>
+               <string notr="true">QComboBox{background-color:white;
+border-radius: 15px;
+border-radius: 5px;
+border-bottom: 1px solid rgb(91, 91, 91)}
+
+
+ </string>
               </property>
               <item>
                <property name="text">
@@ -436,18 +595,18 @@ border:3px solid black;</string>
               </layout>
              </widget>
             </item>
-            <item alignment="Qt::AlignLeft">
+            <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
              <widget class="QFrame" name="frame_15">
               <property name="minimumSize">
                <size>
                 <width>400</width>
-                <height>0</height>
+                <height>100</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>400</width>
-                <height>16777215</height>
+                <height>100</height>
                </size>
               </property>
               <property name="frameShape">
@@ -457,12 +616,27 @@ border:3px solid black;</string>
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_4">
-               <item alignment="Qt::AlignTop">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item alignment="Qt::AlignVCenter">
                 <widget class="QPushButton" name="pushButton_5">
                  <property name="minimumSize">
                   <size>
                    <width>90</width>
-                   <height>27</height>
+                   <height>40</height>
                   </size>
                  </property>
                  <property name="maximumSize">
@@ -475,34 +649,62 @@ border:3px solid black;</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;
-border:3px solid black;</string>
+                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 85, 0);
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
                  </property>
                  <property name="text">
                   <string>cancel_btn</string>
                  </property>
                 </widget>
                </item>
-               <item alignment="Qt::AlignTop">
+               <item alignment="Qt::AlignVCenter">
                 <widget class="QPushButton" name="pushButton_6">
                  <property name="minimumSize">
                   <size>
                    <width>90</width>
-                   <height>27</height>
+                   <height>40</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>90</width>
-                   <height>27</height>
+                   <width>100</width>
+                   <height>50</height>
                   </size>
                  </property>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;
-border:3px solid black;</string>
+                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 85, 0);
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
                  </property>
                  <property name="text">
                   <string>confirm_btn</string>
@@ -542,8 +744,22 @@ border:3px solid black;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border:3px solid black;</string>
+               <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 85, 0);
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
               </property>
               <property name="text">
                <string>btn_detail</string>
