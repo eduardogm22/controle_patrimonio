@@ -7,6 +7,9 @@ from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
 import mysql.connector # type: ignore
 import os
 import subprocess
+import json
+
+log_list = {}
 
 class login_inicial(QMainWindow):
     def __init__(self):
@@ -31,9 +34,17 @@ class login_inicial(QMainWindow):
                 cursor = conn.cursor()
                 cursor.execute("SELECT * FROM usuarios WHERE usuario = %s AND senha = %s", (u, p))
                 filter = cursor.fetchone()
+                cursor_c = conn.cursor()
+                cursor_c.execute("SELECT idcargo FROM usuarios WHERE usuario = %s", (u,))
+                filter_c = cursor.fetchall()
                 if filter:
+                    log_list['user'] = u
+                    log_list['cargo'] = filter_c[0][0]
+                    log_list['password'] = p
+                    #print(log_list)
                     self.close()
                     self.rodar_main(filter[1])
+                    self.json_login()
                 else:
                     print('erro')
                     self.tentativas += 1
@@ -47,6 +58,15 @@ class login_inicial(QMainWindow):
         else:
             self.user.clear()
             self.password.clear()
+
+    def json_login(self):
+        log = {
+            "user": log_list["user"],
+            "cargo": log_list["cargo"],
+            "password": log_list["password"]
+        }
+        with open("line/dados.json", "w") as info_json:
+            json.dump(log, info_json)
 
     def rodar_main(self, usuario):
         subprocess.Popen(['python', 'run.py', usuario])        

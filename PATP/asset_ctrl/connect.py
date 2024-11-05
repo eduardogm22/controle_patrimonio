@@ -1,6 +1,20 @@
 # Arquivo para conexão e funções que interagem com o banco de dados
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
+import os, json
+data_user = ''
+data_pass = ''
+data_cargo = 15
+if os.path.exists('line/dados.json'):
+    print("Arquivo JSON existe.")
+    v_j = json.load(open("line/dados.json"))
+    data_user = v_j["user"]
+    data_pass = v_j["password"]
+    data_cargo = v_j["cargo"]
+    print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo,'connect')
+else:
+    print("Arquivo JSON inexistente connect.")
+    
 
 
 config = {

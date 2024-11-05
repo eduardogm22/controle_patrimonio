@@ -9,6 +9,21 @@ from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fe
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
+import os, json
+
+
+data_user = ''
+data_pass = ''
+data_cargo = 15
+if os.path.exists('line/dados.json'):
+    print("Arquivo JSON existe.")
+    v_j = json.load(open("line/dados.json"))
+    data_user = v_j["user"]
+    data_pass = v_j["password"]
+    data_cargo = v_j["cargo"]
+    print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
+else:
+    print("Arquivo JSON inexistente func.")
 
 
 # icones svg
@@ -492,10 +507,10 @@ class bag_item_cad(QWidget):
         pass
 
     def temp_list(self):        
-        nome = self.name_item.text().strip();
-        valor = self.number_input.text();
-        categoria = self.cat_sel_nome = self.cbxCategoria.currentText();
-        quantidade = self.quantidade.value();
+        nome = self.name_item.text().strip()
+        valor = self.number_input.text()
+        categoria = self.cat_sel_nome = self.cbxCategoria.currentText()
+        quantidade = self.quantidade.value()
         if not nome or not valor or quantidade == 0:
             print('Sem valores')
         else:
@@ -558,25 +573,25 @@ class bag_item_cad(QWidget):
         QLineEdit.keyPressEvent(self.number_input, event)
         
     def confirm(self):
-        print("Confirmando os itens:", self.listagem);
+        print("Confirmando os itens:", self.listagem)
         for item_id, item_data in self.listagem.items():
-            print(f'Produto id:{item_id}, Produto da lista: {item_data}');
+            print(f'Produto id:{item_id}, Produto da lista: {item_data}')
             
         con = criar_conexao()
         cursor = con.cursor()
-        cursor.execute('select idcategoria from categorias where nome = %s', (self.cbxCategoria.currentText(),));
+        cursor.execute('select idcategoria from categorias where nome = %s', (self.cbxCategoria.currentText(),))
         resultado_cat = cursor.fetchone()
         self.cat_sel_id = resultado_cat[0]
         
-        cursor.execute('select idfornecedor from fornecedores where nome = %s', (self.cbxFornecedores.currentText(),));
+        cursor.execute('select idfornecedor from fornecedores where nome = %s', (self.cbxFornecedores.currentText(),))
         resultado_forn = cursor.fetchone()
         self.forn_sel_id = resultado_forn[0]
         
-        cursor.execute('select idsetor_responsavel from setores_responsaveis where nome = %s', (self.cbxSetoresResponsaveis.currentText(),));
+        cursor.execute('select idsetor_responsavel from setores_responsaveis where nome = %s', (self.cbxSetoresResponsaveis.currentText(),))
         resultado_set_resp = cursor.fetchone()
         self.set_resp_sel_id = resultado_set_resp[0]
         
-        cursor.execute('select idsituacao from situacoes where nome = %s', (self.cbxSituacao.currentText(),));
+        cursor.execute('select idsituacao from situacoes where nome = %s', (self.cbxSituacao.currentText(),))
         resultado_situacao = cursor.fetchone()
         self.sit_sel_id = resultado_situacao[0]
                 
@@ -584,10 +599,10 @@ class bag_item_cad(QWidget):
         fechar_conexao(con)
         
         data_recebimento = self.dteDataRecebimento.date().toString("yyyy-MM-dd");
-        data_aquisicao = self.dteDataAquisicao.date().toString("yyyy-MM-dd");
-        chave_acesso = self.edtChaveAcesso.text();
-        numero = self.edtNumero.text();
-        serie = self.edtSerie.text();
+        data_aquisicao = self.dteDataAquisicao.date().toString("yyyy-MM-dd")
+        chave_acesso = self.edtChaveAcesso.text()
+        numero = self.edtNumero.text()
+        serie = self.edtSerie.text()
         
         #!!!!!!!!EM OBRAS!!!!!!!!!! Nao reparem na bagunça
         

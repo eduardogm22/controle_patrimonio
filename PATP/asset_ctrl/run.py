@@ -7,9 +7,22 @@ from connect import config, config_acess
 from PyQt5.QtCore import QResource , QTimer, Qt
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
 import mysql.connector # type: ignore
-import os
+import os, json
 import webbrowser
 
+data_user = ''
+data_pass = ''
+data_cargo = 15
+if os.path.exists('line/dados.json'):
+    print("Arquivo JSON existe.")
+    v_j = json.load(open("line/dados.json"))
+    data_user = v_j["user"]
+    data_pass = v_j["password"]
+    data_cargo = v_j["cargo"]
+    print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo,'run')
+    os.remove('line/dados.json')
+else:
+    print("Arquivo JSON inexistente run.")
 
 # icones svg
 QResource.registerResource("feather/resource.qrc")
@@ -162,7 +175,6 @@ class interface(QMainWindow):
         results1 = cursor.fetchall()
         for row in results1:
             nome, id = row
-            print(f"Nome t1: {nome}, ID: {id}")
 
 
 
@@ -418,7 +430,6 @@ class interface(QMainWindow):
             widget.deleteLater()
 
     def home(self):
-        print('Home Teste')
         self.h_frame = self.findChild(QFrame, "homeFrame")
         self.clear_frame()
         self.h_frame.show()
@@ -435,11 +446,11 @@ class interface(QMainWindow):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
-                print('menu info teste')
                 self.btn_home.show()
 
     # Chamada para tela de gerenciamento de usuários
     def menu_users(self):
+        print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo)
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")
         self.users_menu = user_menu()
@@ -449,7 +460,6 @@ class interface(QMainWindow):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
-                print('menu user teste')
                 self.btn_home.show()
 
     def bag_screen(self):
@@ -462,7 +472,6 @@ class interface(QMainWindow):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
-                print('menu bag teste')
                 self.btn_home.show()
                 
     def item_view(self):
@@ -475,8 +484,9 @@ class interface(QMainWindow):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
-                print('item view teste')
                 self.btn_home.show()
+
+
     def rel_screen(self):
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")
@@ -487,7 +497,6 @@ class interface(QMainWindow):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
-                print('menu rel teste')
                 self.btn_home.show()
                 
     def patr_screen(self):
@@ -500,7 +509,6 @@ class interface(QMainWindow):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
-                print('menu patr teste')
                 self.btn_home.show()
                 
     def logs_screen(self):
@@ -513,7 +521,6 @@ class interface(QMainWindow):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
-                print('menu logs teste')
                 self.btn_home.show()
                 
     def config_screen(self):
@@ -526,7 +533,6 @@ class interface(QMainWindow):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
-                print('menu config teste')
                 self.btn_home.show()
     def local_screen(self):
         self.frame = self.findChild(QFrame, "userFrame")
@@ -538,7 +544,6 @@ class interface(QMainWindow):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
-                print('menu local teste')
                 self.btn_home.show()
 
 
