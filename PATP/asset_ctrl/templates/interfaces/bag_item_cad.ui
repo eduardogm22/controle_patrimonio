@@ -325,7 +325,7 @@ border:3px solid black;</string>
                 <string>Fornecedor</string>
                </property>
               </widget>
-              <widget class="QWidget" name="">
+              <widget class="QWidget" name="layoutWidget">
                <property name="geometry">
                 <rect>
                  <x>10</x>
@@ -366,7 +366,24 @@ border:3px solid black;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QComboBox" name="cbxFornecedor"/>
+                   <widget class="QComboBox" name="cbxFornecedor">
+                    <property name="minimumSize">
+                     <size>
+                      <width>220</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>220</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:white;	
+border:3px solid black;</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -447,7 +464,7 @@ border:3px solid black;</string>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <widget class="QWidget" name="">
+              <widget class="QWidget" name="layoutWidget">
                <property name="geometry">
                 <rect>
                  <x>0</x>

@@ -98,20 +98,20 @@ create table patrimonios_teste (
     idsetor_responsavel integer,
 	idsituacao integer
 );
-
+drop procedure cadastra_quantidade_teste;
 delimiter $$
-create procedure cadastra_quantidade_teste (in nome varchar(100), in valor_unitario decimal(10, 2), in quantidade integer)
+create procedure cadastra_quantidade_teste (in nome varchar(100), in valor_unitario decimal(10, 2), in categoria integer, in quantidade integer)
 begin
 	declare contador integer default 1;
     while 
 		contador <= quantidade do
 				insert into patrimonios_teste (idpatrimonio, nome, valor_unitario, num_patrimonio, num_serie, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao)
 				values
-                (default, nome, valor_unitario, null, null, current_date(), null, null, null, null);
+                (default, nome, valor_unitario, null, null, current_date(), null, categoria, null, null);
 			set contador = contador + 1;
 	end while;
 end 
 $$ delimiter ;
 
-call cadastra_quantidade_teste('teste1', 50, 1);
+call cadastra_quantidade_teste('testecat1', 50, 1, 1);
 select * from patrimonios_teste;

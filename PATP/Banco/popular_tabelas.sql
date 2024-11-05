@@ -44,13 +44,15 @@ values
 (default, 'Porto Alegre', 1),
 (default, 'Curitiba', 5);
 
-insert into enderecos
+insert into enderecos (logradouro, bairro, numero, cep, idcidade)
 values
-(default, 'Av Rui Barbosa', 'Petrópolis', 103, '99050-120', 1);
+(default, 'Av Rui Barbosa', 'Petrópolis', 103, '99050-120', 1),
+('Av. Brasil Centro', 'Centro', 501, '99025-001', 1);
 
-insert into fornecedores
+insert into fornecedores (nome, cnpj, idendereco)
 values
-(default, 'teste fornecedor', '12.123.123/0001-12', 1);
+('Faculdades Ideau', '17.590.477/0001-77', 1),
+('Deltasul', '98.102.924/0001-01', 2);
 
 INSERT INTO info_notas (idnota, chave_acesso, numero, serie, idfornecedor, data_aquisicao) VALUES
     (default, '123456', '001', 1, 1, '2023-01-15'),

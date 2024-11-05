@@ -404,14 +404,16 @@ class bag_item_cad(QWidget):
         self.cad_item = uic.loadUi("templates/interfaces/bag_item_cad.ui", self);
         self.name_item = self.findChild(QLineEdit, "name_prod");        
         self.quantidade = self.findChild(QSpinBox, "qnt");
-        self.cbxCategoria = self.findChild(QComboBox, "cat_box");
+        self.cbxCategoria = self.findChild(QComboBox, "cbxCategoria");
         self.dteDataRecebimento = self.findChild(QDateEdit, "date_rec");
+        self.cbxSetoresResponsaveis = self.findChild(QComboBox, "cbxSetResp");
+        self.cbxSituacao = self.findChild(QComboBox, "cbxSituacao");
         
-        self.edtChaveAcesso
-        self.edtNumero
-        self.edtSerie
-        #self.idfornecedor
-        self.dataAquisicao = self.findChild(QDateEdit, "date_buy");
+        self.edtChaveAcesso = self.findChildren(QLineEdit, "edtChaveAcessoNota");
+        self.edtNumero = self.findChild(QLineEdit, "edtNumeroNota");
+        self.edtSerie = self.findChild(QLineEdit, "edtSerieNota");
+        self.cbxFornecedores = self.findChild(QComboBox, "cbxFornecedor");
+        self.dteDataAquisicao = self.findChild(QDateEdit, "date_buy");
         
         #colocando as categorias na combo box
         con = criar_conexao()
@@ -420,6 +422,22 @@ class bag_item_cad(QWidget):
         resultado = cursor.fetchall()
         for dados in resultado:
             self.cbxCategoria.addItem(dados[0])
+            
+        cursor.execute('select nome from fornecedores order by nome')
+        resultado_forn = cursor.fetchall()
+        for dados in resultado_forn:
+            self.cbxFornecedor.addItem(dados[0])
+            
+        cursor.execute('select nome from setores_responsaveis order by nome')
+        resultado_set_resp = cursor.fetchall()
+        for dados in resultado_set_resp:
+            self.cbxSetoresResponsaveis.addItem(dados[0])
+            
+        cursor.execute('select nome from situacoes order by nome')
+        resultado_situacoes = cursor.fetchall()
+        for dados in resultado_situacoes:
+            self.cbxSituacao.addItem(dados[0])
+            
         cursor.close()
         fechar_conexao(con)
 
@@ -544,40 +562,52 @@ class bag_item_cad(QWidget):
         for item_id, item_data in self.listagem.items():
             print(f'Produto id:{item_id}, Produto da lista: {item_data}');
             
-        
-        
         con = criar_conexao()
         cursor = con.cursor()
         cursor.execute('select idcategoria from categorias where nome = %s', (self.cbxCategoria.currentText(),));
         resultado_cat = cursor.fetchone()
         self.cat_sel_id = resultado_cat[0]
+        
+        cursor.execute('select idfornecedor from fornecedores where nome = %s', (self.cbxFornecedores.currentText(),));
+        resultado_forn = cursor.fetchone()
+        self.forn_sel_id = resultado_forn[0]
+        
+        cursor.execute('select idsetor_responsavel from setores_responsaveis where nome = %s', (self.cbxSetoresResponsaveis.currentText(),));
+        resultado_set_resp = cursor.fetchone()
+        self.set_resp_sel_id = resultado_set_resp[0]
+        
+        cursor.execute('select idsituacao from situacoes where nome = %s', (self.cbxSituacao.currentText(),));
+        resultado_situacao = cursor.fetchone()
+        self.sit_sel_id = resultado_situacao[0]
+                
         cursor.close()
         fechar_conexao(con)
         
         data_recebimento = self.dteDataRecebimento.date().toString("yyyy-MM-dd");
-        print(data_recebimento);
+        data_aquisicao = self.dteDataAquisicao.date().toString("yyyy-MM-dd");
+        chave_acesso = self.edtChaveAcesso.text();
+        numero = self.edtNumero.text();
+        serie = self.edtSerie.text();
         
         #!!!!!!!!EM OBRAS!!!!!!!!!! Nao reparem na bagunça
         
-        # Apenas para teste de funcionalidade
-        # Faltando regra de negócio
-        '''for item_id, item_data in self.listagem.items():
-            nome, valor_unitario, categoria, quantidade = item_data'''
-            #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, idnota, cat_sel_id, idsetor_responsavel, idsituacao]'''
-            #cursor.callproc('cadastra_nota', [chave_acesso, numero, serie, idfornecedor, data_aquisicao])
+        # Quase pronto, falta apenas pegar o id nota
+        '''try:
+            for item_id, item_data in self.listagem.items():
+                nome, valor_unitario, categoria, quantidade = item_data
         
-        '''con = criar_conexao()
-        cursor = con.cursor()
-        try:
-            cursor.callproc('cadastra_quantidade_teste', ['testedireto2', 50, 2]);
+            con = criar_conexao()
+            cursor = con.cursor()
+            cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, idnota, categoria, self.set_resp_sel_id, self.sit_sel_id])
+            cursor.callproc('cadastra_nota', [chave_acesso, numero, serie, self.forn_sel_id, data_aquisicao])
             con.commit()
-            print('deu certo')
+            print('Produtos cadastrados com sucesso!')
         except Exception as e:
-            print('erroou ', e)
+            print('Erro no cadastro', e)
         finally:
             cursor.close()   
             fechar_conexao(con)'''
-        
+    
         self.listagem.clear()
         self.atualizar_tabela()
         print("Itens confirmados e adicionados ao banco de dados:", self.listagem)
