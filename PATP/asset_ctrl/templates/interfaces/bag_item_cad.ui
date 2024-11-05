@@ -140,12 +140,12 @@ border:3px solid black;</string>
                <item>
                 <widget class="QLabel" name="label_7">
                  <property name="text">
-                  <string>NF</string>
+                  <string>Chave de Acesso</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="nf_line">
+                <widget class="QLineEdit" name="edtChaveAcessoNota">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -167,12 +167,12 @@ border:3px solid black;</string>
                <item>
                 <widget class="QLabel" name="label_6">
                  <property name="text">
-                  <string>N SERIE</string>
+                  <string>Recebido por</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="ns_line">
+                <widget class="QLineEdit" name="edtRecebidoPor">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -218,21 +218,21 @@ border:3px solid black;</string>
                <item>
                 <widget class="QLabel" name="label_5">
                  <property name="text">
-                  <string>Nome do Fornecedor</string>
+                  <string>Número</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="forn_line">
+                <widget class="QLineEdit" name="edtNumeroNota">
                  <property name="minimumSize">
                   <size>
-                   <width>0</width>
+                   <width>220</width>
                    <height>24</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>16777215</width>
+                   <width>220</width>
                    <height>24</height>
                   </size>
                  </property>
@@ -245,23 +245,27 @@ border:3px solid black;</string>
                <item alignment="Qt::AlignLeft">
                 <widget class="QLabel" name="label_4">
                  <property name="text">
-                  <string>Data de Compra</string>
+                  <string>Série</string>
                  </property>
                 </widget>
                </item>
-               <item alignment="Qt::AlignLeft">
-                <widget class="QDateEdit" name="date_buy">
+               <item>
+                <widget class="QLineEdit" name="edtSerieNota">
+                 <property name="minimumSize">
+                  <size>
+                   <width>220</width>
+                   <height>24</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>220</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;</string>
-                 </property>
-                 <property name="displayFormat">
-                  <string notr="true">dd/MM/yyyy</string>
-                 </property>
-                 <property name="calendarPopup">
-                  <bool>true</bool>
-                 </property>
-                 <property name="timeSpec">
-                  <enum>Qt::TimeZone</enum>
+                  <string notr="true">background-color:white;	
+border:3px solid black;</string>
                  </property>
                 </widget>
                </item>
@@ -282,55 +286,117 @@ border:3px solid black;</string>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_11">
-               <item>
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>Recebido por</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="rec_por">
-                 <property name="minimumSize">
-                  <size>
-                   <width>240</width>
-                   <height>24</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>240</width>
-                   <height>24</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color:white;	
-border:3px solid black;</string>
-                 </property>
-                </widget>
-               </item>
-               <item alignment="Qt::AlignBottom">
-                <widget class="QLabel" name="label_12">
-                 <property name="text">
-                  <string>Data de Recebimento</string>
-                 </property>
-                </widget>
-               </item>
-               <item alignment="Qt::AlignLeft|Qt::AlignBottom">
-                <widget class="QDateEdit" name="date_rec">
-                 <property name="styleSheet">
-                  <string notr="true">background-color:white;</string>
-                 </property>
-                 <property name="displayFormat">
-                  <string>dd/MM/yyyy</string>
-                 </property>
-                 <property name="calendarPopup">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+              <widget class="QLabel" name="label_3">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>10</y>
+                 <width>91</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Data de Aquisição</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_12">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>62</y>
+                 <width>363</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Data de Recebimento</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_13">
+               <property name="geometry">
+                <rect>
+                 <x>111</x>
+                 <y>10</y>
+                 <width>363</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Fornecedor</string>
+               </property>
+              </widget>
+              <widget class="QWidget" name="">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>28</y>
+                 <width>371</width>
+                 <height>71</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_11">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_2">
+                  <item>
+                   <widget class="QDateEdit" name="date_buy">
+                    <property name="minimumSize">
+                     <size>
+                      <width>90</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>90</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:white;</string>
+                    </property>
+                    <property name="displayFormat">
+                     <string notr="true">dd/MM/yyyy</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>true</bool>
+                    </property>
+                    <property name="timeSpec">
+                     <enum>Qt::TimeZone</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="cbxFornecedor"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QDateEdit" name="date_rec">
+                  <property name="minimumSize">
+                   <size>
+                    <width>90</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>90</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color:white;</string>
+                  </property>
+                  <property name="displayFormat">
+                   <string>dd/MM/yyyy</string>
+                  </property>
+                  <property name="calendarPopup">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
              </widget>
             </item>
            </layout>
@@ -381,62 +447,142 @@ border:3px solid black;</string>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <item>
-                <widget class="QLabel" name="label_8">
-                 <property name="text">
-                  <string>Nome do Produto</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="name_prod">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>24</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>24</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color:white;	
+              <widget class="QWidget" name="">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>401</width>
+                 <height>121</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_15">
+                <item>
+                 <widget class="QLabel" name="label_8">
+                  <property name="text">
+                   <string>Nome do Produto</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="name_prod">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color:white;	
 border:3px solid black;</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="label_9">
-                 <property name="text">
-                  <string>Categoria</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QComboBox" name="cat_box">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>24</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>24</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color:white;	
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_5">
+                    <item>
+                     <widget class="QLabel" name="label_9">
+                      <property name="text">
+                       <string>Categoria</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="cbxCategoria">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>24</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>24</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color:white;	
 border:3px solid black;</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_13">
+                    <item>
+                     <widget class="QLabel" name="label_14">
+                      <property name="text">
+                       <string>Setor Responsável</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="cbxSetResp">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>24</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>24</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color:white;	
+border:3px solid black;</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_14">
+                    <item>
+                     <widget class="QLabel" name="label_15">
+                      <property name="text">
+                       <string>Situação</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="cbxSituacao">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>24</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>24</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color:white;	
+border:3px solid black;</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
              </widget>
             </item>
             <item>
@@ -532,6 +678,9 @@ border:3px solid black;</string>
                     <property name="styleSheet">
                      <string notr="true">background-color:white;	
 border:3px solid black;</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
                     </property>
                     <property name="maximum">
                      <number>9999</number>

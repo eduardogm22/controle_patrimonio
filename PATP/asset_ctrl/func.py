@@ -1,7 +1,7 @@
 # funcionalidades de cada tela que for chamada
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
-from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog
+from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
@@ -405,6 +405,13 @@ class bag_item_cad(QWidget):
         self.name_item = self.findChild(QLineEdit, "name_prod");        
         self.quantidade = self.findChild(QSpinBox, "qnt");
         self.cbxCategoria = self.findChild(QComboBox, "cat_box");
+        self.dteDataRecebimento = self.findChild(QDateEdit, "date_rec");
+        
+        self.edtChaveAcesso
+        self.edtNumero
+        self.edtSerie
+        #self.idfornecedor
+        self.dataAquisicao = self.findChild(QDateEdit, "date_buy");
         
         #colocando as categorias na combo box
         con = criar_conexao()
@@ -466,15 +473,16 @@ class bag_item_cad(QWidget):
             self.value_result.setText("Por favor, insira um número válido no campo de valor.")
         pass
 
-    def temp_list(self):
-        nome = self.name_item.text()
-        valor = self.number_input.text()
-        quantidade = self.quantidade.value()
+    def temp_list(self):        
+        nome = self.name_item.text().strip();
+        valor = self.number_input.text();
+        categoria = self.cat_sel_nome = self.cbxCategoria.currentText();
+        quantidade = self.quantidade.value();
         if not nome or not valor or quantidade == 0:
             print('Sem valores')
         else:
             self.id_counter += 1
-            self.listagem[self.id_counter] = [nome, valor, quantidade]
+            self.listagem[self.id_counter] = [nome, valor, categoria, quantidade]
             self.atualizar_tabela()
             self.clear_c()
         
@@ -486,7 +494,7 @@ class bag_item_cad(QWidget):
 
     def atualizar_tabela(self):
         mdl = QStandardItemModel()
-        hdr = ["Nome", "Valor", "Quantidade"]
+        hdr = ["Nome", "Valor", "Categoria", "Quantidade"]
         mdl.setHorizontalHeaderLabels(hdr)
         for item_id, item_data in self.listagem.items():
             row_items = []
@@ -532,28 +540,30 @@ class bag_item_cad(QWidget):
         QLineEdit.keyPressEvent(self.number_input, event)
         
     def confirm(self):
-        #pegando os valores dos campos
-        self.cat_sel_nome = self.cbxCategoria.currentText();
+        print("Confirmando os itens:", self.listagem);
+        for item_id, item_data in self.listagem.items():
+            print(f'Produto id:{item_id}, Produto da lista: {item_data}');
+            
+        
+        
         con = criar_conexao()
         cursor = con.cursor()
-        cursor.execute('select idcategoria from categorias where nome = %s', (self.cat_sel_nome,));
+        cursor.execute('select idcategoria from categorias where nome = %s', (self.cbxCategoria.currentText(),));
         resultado_cat = cursor.fetchone()
         self.cat_sel_id = resultado_cat[0]
         cursor.close()
         fechar_conexao(con)
-        print(self.cat_sel_id);
         
-        print("Confirmando os itens:", self.listagem);
-        for item_id, item_data in self.listagem.items():
-            print(f'Produto id:{item_id}, Produto da lista: {item_data}');
+        data_recebimento = self.dteDataRecebimento.date().toString("yyyy-MM-dd");
+        print(data_recebimento);
         
         #!!!!!!!!EM OBRAS!!!!!!!!!! Nao reparem na bagunça
         
         # Apenas para teste de funcionalidade
         # Faltando regra de negócio
         '''for item_id, item_data in self.listagem.items():
-            nome, valor_unitario, quantidade = item_data'''
-            #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao]'''
+            nome, valor_unitario, categoria, quantidade = item_data'''
+            #cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, idnota, cat_sel_id, idsetor_responsavel, idsituacao]'''
             #cursor.callproc('cadastra_nota', [chave_acesso, numero, serie, idfornecedor, data_aquisicao])
         
         '''con = criar_conexao()
