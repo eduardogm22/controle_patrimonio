@@ -22,7 +22,7 @@ class login_inicial(QMainWindow):
         self.btn_login.clicked.connect(self.login_check)
         self.btn_cancel.clicked.connect(self.cancel_event)
         self.tentativas = 0
-        
+
 #faltando lógica para garantir um bloqueio de tentativas de login em determinado periodo de tempo
     def login_check(self):
 
@@ -51,9 +51,9 @@ class login_inicial(QMainWindow):
                     print(self.tentativas)
         except Exception as e:
             print(e)
-    
+
     def cancel_event(self):
-        if self.user == '' and self.password =='':
+        if self.user == '' and self.password == '':
             self.close()
         else:
             self.user.clear()
@@ -69,7 +69,7 @@ class login_inicial(QMainWindow):
             json.dump(log, info_json)
 
     def rodar_main(self, usuario):
-        subprocess.Popen(['python', 'run.py', usuario])        
+        subprocess.Popen(['python', 'run.py', usuario])
 
 app = QApplication(sys.argv)
 i = login_inicial()

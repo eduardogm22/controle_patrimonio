@@ -141,10 +141,10 @@ class interface(QMainWindow):
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM usuario_nome_view")
         results = cursor.fetchall()
-        
+
          # Criar o modelo para o QTableView
         model = QStandardItemModel(len(results), 3)  # (número de linhas, número de colunas)
-        
+
         for row_idx, row_data in enumerate(results):
             for col_idx, data in enumerate(row_data):
                 item = QStandardItem(str(data))
@@ -152,8 +152,8 @@ class interface(QMainWindow):
                 item.setTextAlignment(Qt.AlignCenter)
                 model.setHorizontalHeaderLabels(['ID', 'Usuario', 'Email'])
                 model.setItem(row_idx, col_idx, item)
-                
-    
+
+
         header = self.table_view.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.Stretch)
         header.setStretchLastSection(True)

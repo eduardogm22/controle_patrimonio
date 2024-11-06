@@ -1,7 +1,7 @@
 # funcionalidades de cada tela que for chamada
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
-from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog
+from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
@@ -62,7 +62,7 @@ class user_menu(QWidget):
         self.btn_search.setIcon(search_svg)
         self.search_frame = self.findChild(QFrame, "search_frame")
         self.btn_search.installEventFilter(self)        
-
+        
         self.btn_cad = self.findChild(QPushButton, "btnCad")
         self.btn_cad.setIcon(user_plus_svg)
         self.cad_frame = self.findChild(QFrame, "cadFrame")
@@ -130,6 +130,8 @@ class user_menu(QWidget):
         self.c_frame.layout().addWidget(self.user_create)
         self.btn_clear = self.findChild(QPushButton, "btnClear")
         self.btn_clear.clicked.connect(self.clear)
+        self.btn_confirm = self.findChild(QPushButton, "btnConfirm")
+        self.btn_confirm.clicked.connect(self.create_user)
         self.frame_bot = self.findChild(QFrame, "frame_bottom")
         self.frame_body = self.findChild(QFrame, "frame_body")
         self.frame_rodape = self.findChild(QFrame, "frame_rodape")
@@ -144,11 +146,9 @@ class user_menu(QWidget):
         self.frame_btns = self.findChild(QFrame, "frame_btns")
         self.frame_back = self.findChild(QFrame, "frame_back")
 
-
         self.btn_details = self.findChild(QPushButton, "btn_details")
         self.btn_details.setIcon(alert_circle_svg)
         
-
         self.shadow_details = QGraphicsDropShadowEffect() 
         self.shadow_details.setOffset(0, 0)
         self.shadow_details.setBlurRadius(9)
@@ -196,7 +196,7 @@ class user_menu(QWidget):
         self.cargo_box.setGraphicsEffect(self.shadow_f5)
         self.frame_btns.setGraphicsEffect(self.shadow_f6)
         self.frame_back.setGraphicsEffect(self.shadow_f7)
-        
+
         self.frame_bot.setGraphicsEffect(self.shadow_details)
         self.cargo_box.setStyleSheet("QComboBox#cargoBox{text-align: center;}")
         self.u_frame.hide()
@@ -211,10 +211,16 @@ class user_menu(QWidget):
         self.u_frame.hide()
         self.c_frame.show()
         con_cargo.close()
-        print('Register')
-        
-
-
+    
+    def create_user(self):
+        user = self.user_edit_line.text()
+        name = self.name_edit_line.text()
+        passw = self.pass_edit_line.text()
+        email = self.email_edit_line.text()
+        cargo = self.cargo_box.currentText()
+        # faltando lógica para verificar se usuário já existe no banco com o mesmo nome.
+        print(user,name,passw,email,cargo)
+    
     def eventFilter(self, obj, event):
 
         if obj == self.btn_search:
@@ -222,7 +228,7 @@ class user_menu(QWidget):
                 self.search_frame.setStyleSheet("QPushButton#btnSearch{border:2px solid #666666;border-radius:15px;}")
             elif event.type() == QtCore.QEvent.Leave:
                 self.search_frame.setStyleSheet("QPushButton#btnSearch{border: 0px solid transparent;}")
-                
+
         elif obj == self.btn_cad:
             if event.type() == QtCore.QEvent.Enter:
                 self.cad_frame.setStyleSheet("QPushButton#btnCad{border:2px solid #666666;border-radius:15px;}")
@@ -275,7 +281,6 @@ class user_info(QWidget):
         self.user_frame.layout().addWidget(self.user_d)
         self.f_info.hide()
         self.user_frame.show()
-
 
 class bag_view(QWidget):
     def __init__(self):
@@ -416,19 +421,19 @@ class bag_item_cad(QWidget):
     def __init__(self):
         super().__init__()
         
-        self.cad_item = uic.loadUi("templates/interfaces/bag_item_cad.ui", self);
+        self.cad_item = uic.loadUi("templates/interfaces/bag_item_cad.ui", self)
         self.name_item = self.findChild(QLineEdit, "name_prod");        
-        self.quantidade = self.findChild(QSpinBox, "qnt");
-        self.cbxCategoria = self.findChild(QComboBox, "cbxCategoria");
-        self.dteDataRecebimento = self.findChild(QDateEdit, "date_rec");
-        self.cbxSetoresResponsaveis = self.findChild(QComboBox, "cbxSetResp");
-        self.cbxSituacao = self.findChild(QComboBox, "cbxSituacao");
+        self.quantidade = self.findChild(QSpinBox, "qnt")
+        self.cbxCategoria = self.findChild(QComboBox, "cbxCategoria")
+        self.dteDataRecebimento = self.findChild(QDateEdit, "date_rec")
+        self.cbxSetoresResponsaveis = self.findChild(QComboBox, "cbxSetResp")
+        self.cbxSituacao = self.findChild(QComboBox, "cbxSituacao")
         
-        self.edtChaveAcesso = self.findChildren(QLineEdit, "edtChaveAcessoNota");
-        self.edtNumero = self.findChild(QLineEdit, "edtNumeroNota");
-        self.edtSerie = self.findChild(QLineEdit, "edtSerieNota");
-        self.cbxFornecedores = self.findChild(QComboBox, "cbxFornecedor");
-        self.dteDataAquisicao = self.findChild(QDateEdit, "date_buy");
+        self.edtChaveAcesso = self.findChildren(QLineEdit, "edtChaveAcessoNota")
+        self.edtNumero = self.findChild(QLineEdit, "edtNumeroNota")
+        self.edtSerie = self.findChild(QLineEdit, "edtSerieNota")
+        self.cbxFornecedores = self.findChild(QComboBox, "cbxFornecedor")
+        self.dteDataAquisicao = self.findChild(QDateEdit, "date_buy")
         
         #colocando as categorias na combo box
         con = criar_conexao()
@@ -505,6 +510,7 @@ class bag_item_cad(QWidget):
         except ValueError:
             self.value_result.setText("Por favor, insira um número válido no campo de valor.")
         pass
+    
 
     def temp_list(self):        
         nome = self.name_item.text().strip()
@@ -598,7 +604,7 @@ class bag_item_cad(QWidget):
         cursor.close()
         fechar_conexao(con)
         
-        data_recebimento = self.dteDataRecebimento.date().toString("yyyy-MM-dd");
+        data_recebimento = self.dteDataRecebimento.date().toString("yyyy-MM-dd")
         data_aquisicao = self.dteDataAquisicao.date().toString("yyyy-MM-dd")
         chave_acesso = self.edtChaveAcesso.text()
         numero = self.edtNumero.text()
@@ -659,13 +665,41 @@ class rel_view(QWidget):
     def __init__(self):
         super().__init__()
         self.rel_view = uic.loadUi("templates/interfaces/rel_view.ui", self)
-        
+
 
 class patr_view(QWidget):
     def __init__(self):
         super().__init__()
         self.patr_view = uic.loadUi("templates/interfaces/patr_view.ui", self)
+        self.list_ptr = self.findChild(QListView, "list_patr")
+        self.grap_veiw = self.findChild(QGraphicsView, "grap_view")
+        self.value_d = self.findChild(QListView, "date_view")
+        self.date_i = self.findChild(QDateEdit, "dt_inicial")
+        self.date_f = self.findChild(QDateEdit, "dt_final")
+        self.btn_filter = self.findChild(QPushButton, "filter_dt")
+        self.btn_filter.clicked.connect(self.filter_grp)
+        model = QStandardItemModel()
+        data = ["Item A", "Item B", "Item C"]
+        for item in data:
+            standard_item = QStandardItem(item)
+            model.appendRow(standard_item)
+        self.list_ptr.setResizeMode(QListView.Adjust)
+        self.list_ptr.setModel(model)
         
+    def show_graph(self):
+        pass
+    
+    def list_patr(self):
+        pass
+    
+    def filter_grp(self):
+        d_i = self.date_i.date().toString("yyyy-MM-dd")
+        d_f = self.date_f.date().toString("yyyy-MM-dd")
+        print(d_i, d_f)
+
+
+
+
 class logs_view(QWidget):
     def __init__(self):
         super().__init__()

@@ -2,9 +2,11 @@
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 import os, json
+
 data_user = ''
 data_pass = ''
 data_cargo = 15
+
 if os.path.exists('line/dados.json'):
     print("Arquivo JSON existe.")
     v_j = json.load(open("line/dados.json"))
@@ -14,7 +16,7 @@ if os.path.exists('line/dados.json'):
     print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo,'connect')
 else:
     print("Arquivo JSON inexistente connect.")
-    
+
 
 
 config = {
