@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>747</height>
+    <height>742</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -185,7 +185,7 @@ border-bottom: 3px solid rgb(91, 91, 91)
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>15</pointsize>
+                <pointsize>11</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
                 <underline>true</underline>
@@ -245,7 +245,7 @@ QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</s
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>15</pointsize>
+                <pointsize>11</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
                 <underline>true</underline>
@@ -324,7 +324,7 @@ border-bottom: 3px solid rgb(91, 91, 91)</string>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>15</pointsize>
+                <pointsize>11</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
                 <underline>true</underline>
@@ -385,7 +385,7 @@ QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</s
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>15</pointsize>
+                <pointsize>11</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
                 <underline>true</underline>
@@ -508,7 +508,7 @@ border-bottom: 3px solid rgb(91, 91, 91)
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>15</pointsize>
+                <pointsize>11</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
                 <strikeout>false</strikeout>
