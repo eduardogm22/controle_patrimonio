@@ -671,20 +671,32 @@ class patr_view(QWidget):
     def __init__(self):
         super().__init__()
         self.patr_view = uic.loadUi("templates/interfaces/patr_view.ui", self)
-        self.list_ptr = self.findChild(QListView, "list_patr")
+        self.list_ptr = self.findChild(QTableView, "list_patr")
         self.grap_veiw = self.findChild(QGraphicsView, "grap_view")
         self.value_d = self.findChild(QListView, "date_view")
         self.date_i = self.findChild(QDateEdit, "dt_inicial")
         self.date_f = self.findChild(QDateEdit, "dt_final")
         self.btn_filter = self.findChild(QPushButton, "filter_dt")
         self.btn_filter.clicked.connect(self.filter_grp)
+        self.list_ptr.setEditTriggers(QTableView.NoEditTriggers)
+        self.list_ptr.setSelectionMode(QTableView.NoSelection)
         model = QStandardItemModel()
-        data = ["Item A", "Item B", "Item C"]
-        for item in data:
-            standard_item = QStandardItem(item)
-            model.appendRow(standard_item)
-        self.list_ptr.setResizeMode(QListView.Adjust)
+        model.setHorizontalHeaderLabels(["Nome", "Valor Uni.", "Nº Patrimônio", "Data de Recebimento"])
+        self.list_ptr.setAlternatingRowColors(True)
+        self.list_ptr.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute("SELECT nome, valor_unitario, num_patrimonio, data_recebimento FROM patrimonios")
+        for row in cursor.fetchall():
+            items = [QStandardItem(str(cell)) for cell in row]
+            for item in items:
+                item.setSelectable(False)  # Impede a seleção
+            model.appendRow(items)
         self.list_ptr.setModel(model)
+        self.list_ptr.setEditTriggers(QTableView.NoEditTriggers)
+        self.list_ptr.setSelectionMode(QTableView.NoSelection)
+        self.list_ptr.resizeColumnsToContents()
+        self.list_ptr.horizontalHeader().setStretchLastSection(True)
         
     def show_graph(self):
         pass

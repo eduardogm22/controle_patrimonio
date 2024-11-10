@@ -74,4 +74,4 @@ class login_inicial(QMainWindow):
 app = QApplication(sys.argv)
 i = login_inicial()
 i.show()
-sys.exit(app.exec_())
+sys.exit(app.exec_())   

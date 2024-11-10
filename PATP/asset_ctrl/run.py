@@ -30,10 +30,10 @@ home_svg = QIcon("feather/home.svg")
 chevrons_left_svg = QIcon("feather/chevrons-left.svg")
 menu_svg = QIcon("feather/menu.svg")
 user_svg = QIcon("feather/user.svg")
-codesandbox_svg = QIcon("feather/codesandbox.svg")
-database_svg = QIcon("feather/database.svg")
-map_pin_svg = QIcon("feather/map-pin.svg")
-dollar_sign_svg = QIcon("feather/dollar-sign.svg")
+codesandbox_svg = QIcon("feather-black/codesandbox.svg")
+database_svg = QIcon("feather-black/database.svg")
+map_pin_svg = QIcon("feather-black/map-pin.svg")
+dollar_sign_svg = QIcon("feather-black/dollar-sign.svg")
 server_svg = QIcon("feather/server.svg")
 search_svg = QIcon("feather/search.svg")
 alert_circle_svg = QIcon("feather/alert-circle.svg")
@@ -103,7 +103,7 @@ class interface(QMainWindow):
         self.shadow_frame1 = QGraphicsDropShadowEffect() 
         self.shadow_frame1.setOffset(0, 0)  # posição da sombra
         self.shadow_frame1.setBlurRadius(9)  # tamanho da sombra
-        self.shadow_frame1.setColor(QtGui.QColor(0, 0, 0, 128))
+        self.shadow_frame1.setColor(QtGui.QColor(0, 100, 0, 128))
 
         self.shadow_frame2 = QGraphicsDropShadowEffect() 
         self.shadow_frame2.setOffset(0, 0)
@@ -304,30 +304,30 @@ class interface(QMainWindow):
         # botão produtos
         if obj == self.btn_item:
             if event.type() == QtCore.QEvent.Leave:
-                self.frame_card1.setStyleSheet("QFrame#frame_card1{border: 1px solid transparent;}")
+                self.frame_card1.setStyleSheet("QFrame#frame_card1{border:1px solid #057A3A;}")
             elif event.type() == QtCore.QEvent.Enter:
-                self.frame_card1.setStyleSheet("QFrame#frame_card1{border:2px solid #666666;border-radius:15px;}")
+                self.frame_card1.setStyleSheet("QFrame#frame_card1{border:2px solid #057A3A;border-radius:15px;}")
 
         # botão logs
         elif obj == self.btn_reg:
             if event.type() == QtCore.QEvent.Leave:
-                self.frame_card2.setStyleSheet("QFrame#frame_card2{border: 1px solid transparent;}")
+                self.frame_card2.setStyleSheet("QFrame#frame_card2{border: 1px solid #057A3A;}")
             elif event.type() == QtCore.QEvent.Enter:
-                self.frame_card2.setStyleSheet("QFrame#frame_card2{border:2px solid #666666;border-radius:15px;}")
+                self.frame_card2.setStyleSheet("QFrame#frame_card2{border:2px solid #057A3A;border-radius:15px;}")
 
         # botão local       
         elif obj == self.btn_local:
             if event.type() == QtCore.QEvent.Leave:
-                self.frame_card3.setStyleSheet("QFrame#frame_card3{border: 1px solid transparent;}")
+                self.frame_card3.setStyleSheet("QFrame#frame_card3{border: 1px solid #057A3A;}")
             elif event.type() == QtCore.QEvent.Enter:
-                self.frame_card3.setStyleSheet("QFrame#frame_card3{border:2px solid #666666;border-radius:15px;}")
+                self.frame_card3.setStyleSheet("QFrame#frame_card3{border:2px solid #057A3A;border-radius:15px;}")
 
         # botão patrimônio
         elif obj == self.btn_vp:
             if event.type() == QtCore.QEvent.Leave:
-                self.frame_card4.setStyleSheet("QFrame#frame_card4{border: 1px solid transparent;}")
+                self.frame_card4.setStyleSheet("QFrame#frame_card4{border: 1px solid #057A3A;}")
             elif event.type() == QtCore.QEvent.Enter:
-                self.frame_card4.setStyleSheet("QFrame#frame_card4{border:2px solid #666666;border-radius:15px;}")
+                self.frame_card4.setStyleSheet("QFrame#frame_card4{border:2px solid #057A3A;border-radius:15px;}")
 
         # botão conta
         elif obj == self.btn_account:

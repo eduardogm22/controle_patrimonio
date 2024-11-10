@@ -122,6 +122,11 @@ QLineEdit{
         <height>16777215</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #057A3A;
+    border-top-right-radius: 15px;  
+    border-bottom-right-radius: 15px;</string>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item alignment="Qt::AlignTop">
         <widget class="QFrame" name="menuFrame">
@@ -172,6 +177,19 @@ QLineEdit{
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+            </property>
             <property name="text">
              <string>Relatório</string>
             </property>
@@ -203,6 +221,19 @@ QLineEdit{
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+            </property>
             <property name="text">
              <string>Users</string>
             </property>
@@ -228,6 +259,20 @@ QLineEdit{
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+            </property>
             <property name="text">
              <string>Inventário</string>
             </property>
@@ -252,6 +297,20 @@ QLineEdit{
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
             </property>
             <property name="text">
              <string>Definições</string>
@@ -280,6 +339,20 @@ QLineEdit{
             </property>
             <property name="mouseTracking">
              <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
             </property>
             <property name="text">
              <string>Backup</string>
@@ -312,6 +385,19 @@ QLineEdit{
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+            </property>
             <property name="text">
              <string>Ajuda</string>
             </property>
@@ -330,6 +416,20 @@ QLineEdit{
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:10px;	
+ }
+
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
             </property>
             <property name="text">
              <string>Sobre</string>
@@ -364,7 +464,9 @@ QLineEdit{
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">margin-top:6px;</string>
+          <string notr="true">background-color:#057a3a;
+border-radius: 9px;
+color:white;</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <property name="spacing">
@@ -382,10 +484,14 @@ QLineEdit{
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item alignment="Qt::AlignLeft">
+          <item alignment="Qt::AlignHCenter">
            <widget class="QWidget" name="btnHome" native="true">
+            <property name="styleSheet">
+             <string notr="true">border-bottom: none
+</string>
+            </property>
             <layout class="QHBoxLayout" name="horizontalLayout_11">
-             <item alignment="Qt::AlignRight">
+             <item alignment="Qt::AlignHCenter">
               <widget class="QPushButton" name="homeBtn">
                <property name="minimumSize">
                 <size>
@@ -406,6 +512,10 @@ QLineEdit{
                </property>
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-bottom: none
+</string>
                </property>
                <property name="text">
                 <string/>
@@ -433,6 +543,10 @@ QLineEdit{
               <height>0</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">border-bottom: none
+</string>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -441,17 +555,12 @@ QLineEdit{
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLabel" name="labelUser">
-            <property name="text">
-             <string>TextLabel</string>
-            </property>
-           </widget>
-          </item>
           <item alignment="Qt::AlignRight">
            <widget class="QWidget" name="btnAccount" native="true">
             <property name="styleSheet">
-             <string notr="true">margin:15px;</string>
+             <string notr="true">margin-right:15px;
+border-bottom: none
+</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
              <property name="spacing">
@@ -470,6 +579,17 @@ QLineEdit{
               <number>0</number>
              </property>
              <item>
+              <widget class="QLabel" name="labelUser">
+               <property name="styleSheet">
+                <string notr="true">border-bottom: none
+</string>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="accountBtn">
                <property name="maximumSize">
                 <size>
@@ -479,6 +599,10 @@ QLineEdit{
                </property>
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+</string>
                </property>
                <property name="text">
                 <string/>
@@ -564,6 +688,12 @@ QLineEdit{
             <layout class="QHBoxLayout" name="horizontalLayout_7">
              <item>
               <widget class="QFrame" name="card1">
+               <property name="styleSheet">
+                <string notr="true">background-color:white;	
+border:1px solid #057A3A;
+
+</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -573,6 +703,9 @@ QLineEdit{
                <layout class="QVBoxLayout" name="verticalLayout_2">
                 <item>
                  <widget class="QFrame" name="frame">
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
@@ -584,8 +717,14 @@ QLineEdit{
                     <widget class="QLabel" name="textProd">
                      <property name="font">
                       <font>
+                       <family>Roboto</family>
                        <pointsize>12</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color:#057a3a;</string>
                      </property>
                      <property name="text">
                       <string>Produtos</string>
@@ -596,6 +735,9 @@ QLineEdit{
                     <widget class="QPushButton" name="btnItem">
                      <property name="cursor">
                       <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color:#057a3a;</string>
                      </property>
                      <property name="text">
                       <string/>
@@ -619,11 +761,18 @@ QLineEdit{
                  <widget class="QLabel" name="label_7">
                   <property name="font">
                    <font>
+                    <family>Roboto</family>
                     <pointsize>12</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;
+color:#057a3a;</string>
+                  </property>
                   <property name="text">
-                   <string>Titulo</string>
+                   <string>PRODUTOS</string>
                   </property>
                  </widget>
                 </item>
@@ -632,6 +781,12 @@ QLineEdit{
              </item>
              <item>
               <widget class="QFrame" name="card2">
+               <property name="styleSheet">
+                <string notr="true">background-color:white;	
+border:1px solid #057A3A;
+
+</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -641,6 +796,9 @@ QLineEdit{
                <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
                  <widget class="QFrame" name="frame_2">
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
@@ -652,8 +810,14 @@ QLineEdit{
                     <widget class="QLabel" name="textLogs">
                      <property name="font">
                       <font>
+                       <family>Roboto</family>
                        <pointsize>12</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color:#057a3a;</string>
                      </property>
                      <property name="text">
                       <string>Logs</string>
@@ -687,11 +851,18 @@ QLineEdit{
                  <widget class="QLabel" name="label_11">
                   <property name="font">
                    <font>
+                    <family>Roboto</family>
                     <pointsize>12</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;
+color:#057a3a;</string>
+                  </property>
                   <property name="text">
-                   <string>Titulo</string>
+                   <string>REGISTROS</string>
                   </property>
                  </widget>
                 </item>
@@ -700,6 +871,12 @@ QLineEdit{
              </item>
              <item>
               <widget class="QFrame" name="card3">
+               <property name="styleSheet">
+                <string notr="true">background-color:white;	
+border:1px solid #057A3A;
+
+</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -709,6 +886,9 @@ QLineEdit{
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>
                  <widget class="QFrame" name="frame_3">
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
@@ -720,8 +900,14 @@ QLineEdit{
                     <widget class="QLabel" name="textLocal">
                      <property name="font">
                       <font>
+                       <family>Roboto</family>
                        <pointsize>12</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color:#057a3a;</string>
                      </property>
                      <property name="text">
                       <string>Locais</string>
@@ -755,11 +941,18 @@ QLineEdit{
                  <widget class="QLabel" name="label_4">
                   <property name="font">
                    <font>
+                    <family>Roboto</family>
                     <pointsize>12</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;
+color:#057a3a;</string>
+                  </property>
                   <property name="text">
-                   <string>Titulo</string>
+                   <string>SETORES</string>
                   </property>
                  </widget>
                 </item>
@@ -768,6 +961,12 @@ QLineEdit{
              </item>
              <item>
               <widget class="QFrame" name="card4">
+               <property name="styleSheet">
+                <string notr="true">background-color:white;	
+border:1px solid #057A3A;
+
+</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -777,6 +976,9 @@ QLineEdit{
                <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
                  <widget class="QFrame" name="frame_4">
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px</string>
+                  </property>
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
@@ -785,8 +987,14 @@ QLineEdit{
                     <widget class="QLabel" name="textVp">
                      <property name="font">
                       <font>
+                       <family>Roboto</family>
                        <pointsize>12</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color:#057a3a;</string>
                      </property>
                      <property name="text">
                       <string>Patrimônio</string>
@@ -820,11 +1028,18 @@ QLineEdit{
                  <widget class="QLabel" name="label_5">
                   <property name="font">
                    <font>
+                    <family>Roboto</family>
                     <pointsize>12</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;
+color:#057a3a;</string>
+                  </property>
                   <property name="text">
-                   <string>Titulo</string>
+                   <string>PATRIMÔNIO</string>
                   </property>
                  </widget>
                 </item>
@@ -885,7 +1100,9 @@ QLineEdit{
                 <item>
                  <widget class="QFrame" name="frame_5">
                   <property name="styleSheet">
-                   <string notr="true">background-color:white;</string>
+                   <string notr="true">background-color:#057a3a;
+border-radius: 15px;
+color:white;</string>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
@@ -898,23 +1115,37 @@ QLineEdit{
                     <widget class="QLabel" name="label">
                      <property name="font">
                       <font>
-                       <pointsize>12</pointsize>
+                       <family>Roboto</family>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
                      </property>
+                     <property name="styleSheet">
+                      <string notr="true">border-bottom: none;
+color: rgb(255, 255, 255);</string>
+                     </property>
                      <property name="text">
-                      <string>Relatório</string>
+                      <string>Produtos recentes</string>
                      </property>
                     </widget>
                    </item>
-                   <item alignment="Qt::AlignHCenter">
+                   <item alignment="Qt::AlignRight|Qt::AlignVCenter">
                     <widget class="QPushButton" name="btnRegDetails">
                      <property name="font">
                       <font>
-                       <pointsize>12</pointsize>
+                       <family>Roboto</family>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
                      </property>
                      <property name="cursor">
                       <cursorShape>ForbiddenCursor</cursorShape>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">border-bottom: none;
+color: rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
                       <string>Detalhes</string>
@@ -931,7 +1162,10 @@ QLineEdit{
                 <item>
                  <widget class="QTableView" name="tableView">
                   <property name="styleSheet">
-                   <string notr="true">background-color:white;</string>
+                   <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+
+</string>
                   </property>
                   <property name="horizontalScrollBarPolicy">
                    <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -989,7 +1223,9 @@ QLineEdit{
                 <item>
                  <widget class="QFrame" name="frame_8">
                   <property name="styleSheet">
-                   <string notr="true">background-color:white;</string>
+                   <string notr="true">background-color:#057a3a;
+border-radius: 15px;
+color:white;</string>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
@@ -1002,23 +1238,37 @@ QLineEdit{
                     <widget class="QLabel" name="label_3">
                      <property name="font">
                       <font>
-                       <pointsize>12</pointsize>
+                       <family>Roboto</family>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
                      </property>
+                     <property name="styleSheet">
+                      <string notr="true">border-bottom: none;
+color: rgb(255, 255, 255);</string>
+                     </property>
                      <property name="text">
-                      <string>Logs de Registros</string>
+                      <string>Últimos Registros</string>
                      </property>
                     </widget>
                    </item>
-                   <item>
+                   <item alignment="Qt::AlignRight">
                     <widget class="QPushButton" name="btnLogDetails">
                      <property name="font">
                       <font>
-                       <pointsize>12</pointsize>
+                       <family>Roboto</family>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
                      </property>
                      <property name="cursor">
                       <cursorShape>ForbiddenCursor</cursorShape>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">border-bottom: none;
+color: rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
                       <string>Detalhes</string>
@@ -1038,7 +1288,10 @@ QLineEdit{
                    <bool>true</bool>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:white;</string>
+                   <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+
+</string>
                   </property>
                   <property name="horizontalScrollBarPolicy">
                    <enum>Qt::ScrollBarAlwaysOff</enum>
