@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>993</width>
-    <height>675</height>
+    <width>999</width>
+    <height>710</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -49,6 +49,9 @@
              <height>45</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #057A3A</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -59,7 +62,7 @@
             <item>
              <widget class="QLabel" name="label">
               <property name="styleSheet">
-               <string notr="true">margin:0px;</string>
+               <string notr="true">color:white;</string>
               </property>
               <property name="text">
                <string>TextLabel</string>
@@ -80,15 +83,37 @@
                 <height>16777215</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;</string>
+               <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 2px solid rgb(255, 255, 255);
+
+ }
+
+QPushButton:hover{background-color:rgb(0, 170, 0);color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}
+</string>
               </property>
               <property name="text">
-               <string>Back</string>
+               <string>Voltar</string>
               </property>
              </widget>
             </item>
@@ -100,7 +125,7 @@ border:3px solid black;</string>
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>120</height>
+             <height>150</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -139,6 +164,17 @@ border:3px solid black;</string>
               <layout class="QVBoxLayout" name="verticalLayout_10">
                <item>
                 <widget class="QLabel" name="label_7">
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgb(5, 122, 58)</string>
+                 </property>
                  <property name="text">
                   <string>Chave de Acesso</string>
                  </property>
@@ -159,13 +195,36 @@ border:3px solid black;</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;	
-border:3px solid black;</string>
+                  <string notr="true">
+QLineEdit{
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+
+    border-top-right-radius: 5px;  
+    border-bottom-right-radius: 5px;
+}
+
+
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QLabel" name="label_6">
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgb(5, 122, 58)</string>
+                 </property>
                  <property name="text">
                   <string>Recebido por</string>
                  </property>
@@ -186,8 +245,20 @@ border:3px solid black;</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;	
-border:3px solid black;</string>
+                  <string notr="true">
+QLineEdit{
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+
+    border-top-right-radius: 5px;  
+    border-bottom-right-radius: 5px;
+}
+
+
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
                  </property>
                 </widget>
                </item>
@@ -217,6 +288,17 @@ border:3px solid black;</string>
               <layout class="QVBoxLayout" name="verticalLayout_9">
                <item>
                 <widget class="QLabel" name="label_5">
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgb(5, 122, 58)</string>
+                 </property>
                  <property name="text">
                   <string>Número</string>
                  </property>
@@ -237,13 +319,36 @@ border:3px solid black;</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;	
-border:3px solid black;</string>
+                  <string notr="true">
+QLineEdit{
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+
+    border-top-right-radius: 5px;  
+    border-bottom-right-radius: 5px;
+}
+
+
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
                  </property>
                 </widget>
                </item>
                <item alignment="Qt::AlignLeft">
                 <widget class="QLabel" name="label_4">
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgb(5, 122, 58)</string>
+                 </property>
                  <property name="text">
                   <string>Série</string>
                  </property>
@@ -264,8 +369,20 @@ border:3px solid black;</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;	
-border:3px solid black;</string>
+                  <string notr="true">
+QLineEdit{
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+
+    border-top-right-radius: 5px;  
+    border-bottom-right-radius: 5px;
+}
+
+
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
                  </property>
                 </widget>
                </item>
@@ -286,57 +403,41 @@ border:3px solid black;</string>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <widget class="QLabel" name="label_3">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>10</y>
-                 <width>91</width>
-                 <height>16</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Data de Aquisição</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_12">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>62</y>
-                 <width>363</width>
-                 <height>16</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Data de Recebimento</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_13">
-               <property name="geometry">
-                <rect>
-                 <x>111</x>
-                 <y>10</y>
-                 <width>363</width>
-                 <height>16</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Fornecedor</string>
-               </property>
-              </widget>
-              <widget class="QWidget" name="layoutWidget">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>28</y>
-                 <width>371</width>
-                 <height>71</height>
-                </rect>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_11">
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <layout class="QHBoxLayout" name="horizontalLayout_9">
+               <item>
+                <widget class="QFrame" name="frame_18">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_16">
+                  <item>
+                   <widget class="QLabel" name="label_3">
+                    <property name="font">
+                     <font>
+                      <family>Roboto</family>
+                      <pointsize>9</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:rgb(5, 122, 58)</string>
+                    </property>
+                    <property name="text">
+                     <string>Data de Aquisição</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item>
                    <widget class="QDateEdit" name="date_buy">
                     <property name="minimumSize">
@@ -352,7 +453,23 @@ border:3px solid black;</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">background-color:white;</string>
+                     <string notr="true">QDateEdit{
+color:rgb(0, 85, 0);
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+}
+
+
+/* Estilo dos botões de navegação */
+QCalendarWidget QToolButton {
+    color: #FFFFFF; /* Cor do texto dos botões */
+    background-color: rgb(0, 85, 0); /* Cor de fundo dos botões */
+    border: none; /* Sem borda */
+}
+
+</string>
                     </property>
                     <property name="displayFormat">
                      <string notr="true">dd/MM/yyyy</string>
@@ -366,10 +483,105 @@ border:3px solid black;</string>
                    </widget>
                   </item>
                   <item>
+                   <widget class="QLabel" name="label_12">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>21</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Roboto</family>
+                      <pointsize>9</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:rgb(5, 122, 58)</string>
+                    </property>
+                    <property name="text">
+                     <string>Data de Recebimento</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QDateEdit" name="date_rec">
+                    <property name="minimumSize">
+                     <size>
+                      <width>90</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>90</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QDateEdit{
+color:rgb(0, 85, 0);
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+}
+
+
+/* Estilo dos botões de navegação */
+QCalendarWidget QToolButton {
+    color: #FFFFFF; /* Cor do texto dos botões */
+    background-color: rgb(0, 85, 0); /* Cor de fundo dos botões */
+    border: none; /* Sem borda */
+}
+
+</string>
+                    </property>
+                    <property name="displayFormat">
+                     <string>dd/MM/yyyy</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item alignment="Qt::AlignTop">
+                <widget class="QFrame" name="frame_19">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_15">
+                  <item>
+                   <widget class="QLabel" name="label_13">
+                    <property name="font">
+                     <font>
+                      <family>Roboto</family>
+                      <pointsize>9</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:rgb(5, 122, 58)</string>
+                    </property>
+                    <property name="text">
+                     <string>Fornecedor</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QComboBox" name="cbxFornecedor">
                     <property name="minimumSize">
                      <size>
-                      <width>220</width>
+                      <width>150</width>
                       <height>24</height>
                      </size>
                     </property>
@@ -380,40 +592,22 @@ border:3px solid black;</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">background-color:white;	
-border:3px solid black;</string>
+                     <string notr="true">QComboBox{
+background-color : rgb(255, 248, 248);
+border-radius: 12px;
+border-bottom: 2px solid rgb(108, 108, 108);
+}
+
+
+
+QComboBox:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
                     </property>
                    </widget>
                   </item>
                  </layout>
-                </item>
-                <item>
-                 <widget class="QDateEdit" name="date_rec">
-                  <property name="minimumSize">
-                   <size>
-                    <width>90</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>90</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color:white;</string>
-                  </property>
-                  <property name="displayFormat">
-                   <string>dd/MM/yyyy</string>
-                  </property>
-                  <property name="calendarPopup">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>
@@ -424,17 +618,19 @@ border:3px solid black;</string>
            <property name="minimumSize">
             <size>
              <width>810</width>
-             <height>150</height>
+             <height>161</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>1200</width>
-             <height>150</height>
+             <height>161</height>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color:rgb(222, 222, 222);
+            <string notr="true">background-color : rgb(0, 191, 99);
+border-radius: 15px;
+border-bottom: 2px solid rgb(108, 108, 108);
 </string>
            </property>
            <property name="frameShape">
@@ -444,12 +640,12 @@ border:3px solid black;</string>
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
+            <item alignment="Qt::AlignHCenter|Qt::AlignTop">
              <widget class="QFrame" name="frame_4">
               <property name="minimumSize">
                <size>
                 <width>400</width>
-                <height>120</height>
+                <height>171</height>
                </size>
               </property>
               <property name="maximumSize">
@@ -458,148 +654,276 @@ border:3px solid black;</string>
                 <height>120</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">border:none;</string>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <widget class="QWidget" name="layoutWidget">
-               <property name="geometry">
-                <rect>
-                 <x>0</x>
-                 <y>0</y>
-                 <width>401</width>
-                 <height>121</height>
-                </rect>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_15">
-                <item>
-                 <widget class="QLabel" name="label_8">
-                  <property name="text">
-                   <string>Nome do Produto</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="name_prod">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color:white;	
-border:3px solid black;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <layout class="QVBoxLayout" name="verticalLayout_17">
+               <item>
+                <widget class="QFrame" name="frame_14">
+                 <property name="styleSheet">
+                  <string notr="true">border:none;
+</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_18">
                   <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_5">
-                    <item>
-                     <widget class="QLabel" name="label_9">
-                      <property name="text">
-                       <string>Categoria</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QComboBox" name="cbxCategoria">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>24</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>24</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">background-color:white;	
-border:3px solid black;</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
+                   <widget class="QLabel" name="label_8">
+                    <property name="font">
+                     <font>
+                      <family>Roboto</family>
+                      <pointsize>9</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);
+border:none;</string>
+                    </property>
+                    <property name="text">
+                     <string>Nome do Produto</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_13">
-                    <item>
-                     <widget class="QLabel" name="label_14">
-                      <property name="text">
-                       <string>Setor Responsável</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QComboBox" name="cbxSetResp">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>24</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>24</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">background-color:white;	
-border:3px solid black;</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
+                   <widget class="QLineEdit" name="name_prod">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">
+QLineEdit{
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+
+    border-top-right-radius: 5px;  
+    border-bottom-right-radius: 5px;
+}
+
+
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_14">
-                    <item>
-                     <widget class="QLabel" name="label_15">
-                      <property name="text">
-                       <string>Situação</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QComboBox" name="cbxSituacao">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>24</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>24</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">background-color:white;	
-border:3px solid black;</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
+                   <widget class="QFrame" name="frame_12">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>66</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_8">
+                     <item>
+                      <widget class="QFrame" name="frame_17">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_14">
+                        <item>
+                         <widget class="QLabel" name="label_15">
+                          <property name="font">
+                           <font>
+                            <family>Roboto</family>
+                            <pointsize>9</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(255, 255, 255);
+border:none;</string>
+                          </property>
+                          <property name="text">
+                           <string>Situação</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QComboBox" name="cbxSituacao">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QComboBox{
+background-color : rgb(255, 248, 248);
+border-radius: 12px;
+border-bottom: 2px solid rgb(108, 108, 108);
+}
+
+
+
+QComboBox:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_16">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_13">
+                        <item>
+                         <widget class="QLabel" name="label_14">
+                          <property name="font">
+                           <font>
+                            <family>Roboto</family>
+                            <pointsize>9</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(255, 255, 255);
+border:none;</string>
+                          </property>
+                          <property name="text">
+                           <string>Setor Responsável</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QComboBox" name="cbxSetResp">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QComboBox{
+background-color : rgb(255, 248, 248);
+border-radius: 12px;
+border-bottom: 2px solid rgb(108, 108, 108);
+}
+
+
+
+QComboBox:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_15">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_5">
+                        <item>
+                         <widget class="QLabel" name="label_9">
+                          <property name="font">
+                           <font>
+                            <family>Roboto</family>
+                            <pointsize>9</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(255, 255, 255);
+border:none;</string>
+                          </property>
+                          <property name="text">
+                           <string>Categoria</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QComboBox" name="cbxCategoria">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QComboBox{
+background-color : rgb(255, 248, 248);
+border-radius: 12px;
+border-bottom: 2px solid rgb(108, 108, 108);
+}
+
+
+
+QComboBox:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
                   </item>
                  </layout>
-                </item>
-               </layout>
-              </widget>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
             <item>
@@ -615,6 +939,9 @@ border:3px solid black;</string>
                 <width>16777215</width>
                 <height>150</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border:none;</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -637,6 +964,9 @@ border:3px solid black;</string>
                    <height>120</height>
                   </size>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">border:none;</string>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -646,6 +976,18 @@ border:3px solid black;</string>
                  <layout class="QVBoxLayout" name="verticalLayout_6">
                   <item>
                    <widget class="QLabel" name="label_10">
+                    <property name="font">
+                     <font>
+                      <family>Roboto</family>
+                      <pointsize>9</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);
+border:none;</string>
+                    </property>
                     <property name="text">
                      <string>Valor Unitário</string>
                     </property>
@@ -666,35 +1008,63 @@ border:3px solid black;</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">background-color:white;	
-border:3px solid black;</string>
+                     <string notr="true">
+QLineEdit{
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+
+    border-top-right-radius: 5px;  
+    border-bottom-right-radius: 5px;
+}
+
+
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
                     </property>
                    </widget>
                   </item>
-                  <item>
+                  <item alignment="Qt::AlignHCenter">
                    <widget class="QLabel" name="label_11">
+                    <property name="font">
+                     <font>
+                      <family>Roboto</family>
+                      <pointsize>9</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);
+border:none;</string>
+                    </property>
                     <property name="text">
                      <string>Quantidade</string>
                     </property>
                    </widget>
                   </item>
-                  <item>
+                  <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
                    <widget class="QSpinBox" name="qnt">
                     <property name="minimumSize">
                      <size>
-                      <width>0</width>
+                      <width>60</width>
                       <height>24</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>16777215</width>
+                      <width>72</width>
                       <height>24</height>
                      </size>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">background-color:white;	
-border:3px solid black;</string>
+border:1px solid green;
+border-radius:12px;</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                     <property name="minimum">
                      <number>1</number>
@@ -709,6 +1079,9 @@ border:3px solid black;</string>
                </item>
                <item>
                 <widget class="QFrame" name="frame_valor">
+                 <property name="styleSheet">
+                  <string notr="true">border:none;</string>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -718,8 +1091,20 @@ border:3px solid black;</string>
                  <layout class="QVBoxLayout" name="verticalLayout_7">
                   <item alignment="Qt::AlignHCenter">
                    <widget class="QLabel" name="value_r">
+                    <property name="font">
+                     <font>
+                      <family>Roboto</family>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);
+border:none;</string>
+                    </property>
                     <property name="text">
-                     <string>Value</string>
+                     <string>Valor Total:</string>
                     </property>
                    </widget>
                   </item>
@@ -743,6 +1128,9 @@ border:3px solid black;</string>
                 <height>120</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">border:none;</string>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -764,12 +1152,35 @@ border:3px solid black;</string>
                    <height>36</height>
                   </size>
                  </property>
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;	
-border:3px solid black;</string>
+                  <string notr="true">QPushButton { 
+	background-color: #057A3A;
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	border: 3px solid rgb(255, 255, 255);
+	padding:8px
+ }
+
+QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
                  </property>
                  <property name="text">
                   <string>OK</string>
@@ -819,7 +1230,9 @@ border:3px solid black;</string>
               </property>
               <property name="styleSheet">
                <string notr="true">background-color:white;	
-border:3px solid black;</string>
+border:3px solid #057A3A;
+
+</string>
               </property>
              </widget>
             </item>
@@ -838,8 +1251,23 @@ border:3px solid black;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;</string>
+               <string notr="true">QPushButton { 
+	background-color: rgb(170, 0, 0);
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	border: 3px solid rgb(255, 255, 255);
+	padding:5px
+ }
+
+QPushButton:hover{;color:white;
+background-color:rgb(255, 0, 4)}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color:rgb(231, 0, 0)
+ }</string>
               </property>
               <property name="text">
                <string>X</string>
@@ -857,13 +1285,13 @@ border:3px solid black;</string>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>45</height>
+          <height>72</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>90</height>
+          <height>72</height>
          </size>
         </property>
         <property name="frameShape">
@@ -896,16 +1324,37 @@ border:3px solid black;</string>
                 <height>36</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;
-margin:0px</string>
+               <string notr="true">
+
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
+
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
+ 
+}</string>
               </property>
               <property name="text">
-               <string>Clear</string>
+               <string>LIMPAR</string>
               </property>
              </widget>
             </item>
@@ -935,15 +1384,37 @@ margin:0px</string>
                 <height>36</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;</string>
+               <string notr="true">
+
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
+
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
+ 
+}</string>
               </property>
               <property name="text">
-               <string>Confirm</string>
+               <string>CONFIRMAR</string>
               </property>
              </widget>
             </item>

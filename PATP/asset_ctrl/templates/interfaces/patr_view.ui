@@ -30,7 +30,8 @@
 10px;
 border:5px solid #057A3A;
 background-color: #057A3A;
-border-bottom: 2px solid rgb(108, 108, 108);</string>
+border-bottom: 2px solid rgb(108, 108, 108);
+border:none;</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -41,6 +42,9 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item alignment="Qt::AlignLeft">
           <widget class="QFrame" name="frame_4">
+           <property name="styleSheet">
+            <string notr="true">border:none;</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -96,7 +100,7 @@ QPushButton:pressed{
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="rlt_btn">
               <property name="minimumSize">
                <size>
                 <width>90</width>
@@ -159,6 +163,9 @@ QPushButton:pressed{
              <height>16777215</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">border:none;</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -168,6 +175,9 @@ QPushButton:pressed{
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
              <widget class="QFrame" name="frame_9">
+              <property name="styleSheet">
+               <string notr="true">border:none;</string>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -234,6 +244,9 @@ QPushButton:pressed{
             </item>
             <item>
              <widget class="QFrame" name="frame_8">
+              <property name="styleSheet">
+               <string notr="true">border:none;</string>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -258,7 +271,7 @@ QPushButton:pressed{
                  <property name="font">
                   <font>
                    <family>Roboto</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>9</pointsize>
                    <weight>75</weight>
                    <bold>true</bold>
                   </font>
@@ -282,6 +295,9 @@ QCalendarWidget QToolButton {
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="displayFormat">
+                  <string>dd/MM/yyyy</string>
                  </property>
                 </widget>
                </item>
@@ -302,7 +318,7 @@ QCalendarWidget QToolButton {
                  <property name="font">
                   <font>
                    <family>Roboto</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>9</pointsize>
                    <weight>75</weight>
                    <bold>true</bold>
                   </font>
@@ -327,6 +343,9 @@ QCalendarWidget QToolButton {
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="displayFormat">
+                  <string>dd/MM/yyyy</string>
                  </property>
                 </widget>
                </item>

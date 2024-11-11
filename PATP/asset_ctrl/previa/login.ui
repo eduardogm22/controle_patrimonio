@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>421</width>
-    <height>633</height>
+    <height>629</height>
    </rect>
   </property>
   <property name="cursor">
@@ -337,7 +337,7 @@ border-radius: 0px</string>
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="../../../../Login.QT/recurses.qrc">:/imagens/imagem sem o fundo/ico.perfil.png</pixmap>
+                      <pixmap>:/imagens/imagem sem o fundo/ico.perfil.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
@@ -449,7 +449,7 @@ border-radius: 0px;
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="../../../../Login.QT/recurses.qrc">:/imagens/imagem sem o fundo/senha_icon.png</pixmap>
+                      <pixmap>:/imagens/imagem sem o fundo/senha_icon.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
@@ -676,8 +676,8 @@ QPushButton:pressed{
   </widget>
  </widget>
  <resources>
-  <include location="../../../../Login.QT/recurses.qrc"/>
   <include location="recurses.qrc"/>
+  <include location="../../../../Login.QT/recurses.qrc"/>
  </resources>
  <connections>
   <connection>

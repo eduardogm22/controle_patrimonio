@@ -1,7 +1,7 @@
 # funcionalidades de cada tela que for chamada
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
-from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView
+from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QSizePolicy, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView, QGraphicsScene, QFileDialog, QMessageBox
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
@@ -9,7 +9,14 @@ from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fe
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
+import matplotlib.pyplot as plt # type: ignore
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas # type: ignore
+from matplotlib.figure import Figure # type: ignore
+import pandas as pd
+from datetime import datetime,timedelta
 import os, json
+import openpyxl #type: ignore
+from openpyxl.styles import Font, Alignment #type: ignore
 
 
 data_user = ''
@@ -506,7 +513,7 @@ class bag_item_cad(QWidget):
             q = float(self.quantidade.value())
             v = float(valor)
             resultado = q * v
-            self.value_result.setText(f"Resultado: {resultado:.2f}")
+            self.value_result.setText(f"Valor Total: {resultado:.2f}")
         except ValueError:
             self.value_result.setText("Por favor, insira um número válido no campo de valor.")
         pass
@@ -672,45 +679,146 @@ class patr_view(QWidget):
         super().__init__()
         self.patr_view = uic.loadUi("templates/interfaces/patr_view.ui", self)
         self.list_ptr = self.findChild(QTableView, "list_patr")
-        self.grap_veiw = self.findChild(QGraphicsView, "grap_view")
-        self.value_d = self.findChild(QListView, "date_view")
+        self.grap_view = self.findChild(QGraphicsView, "grap_view")
         self.date_i = self.findChild(QDateEdit, "dt_inicial")
         self.date_f = self.findChild(QDateEdit, "dt_final")
         self.btn_filter = self.findChild(QPushButton, "filter_dt")
-        self.btn_filter.clicked.connect(self.filter_grp)
+        self.btn_filter.clicked.connect(self.filter_data)
+        self.btn_rlt = self.findChild(QPushButton, "rlt_btn")
+        self.btn_rlt.clicked.connect(self.rlt_patrimonio)
+
+        self.setup_table()
+        self.setup_graph()
+        self.set_default_dates()
+
+    def set_default_dates(self):
+        today = datetime.now()
+        one_year_ago = today - timedelta(days=365)
+        self.date_i.setDate(one_year_ago)
+        self.date_f.setDate(today)
+    def setup_table(self):
         self.list_ptr.setEditTriggers(QTableView.NoEditTriggers)
         self.list_ptr.setSelectionMode(QTableView.NoSelection)
-        model = QStandardItemModel()
-        model.setHorizontalHeaderLabels(["Nome", "Valor Uni.", "Nº Patrimônio", "Data de Recebimento"])
+        self.model = QStandardItemModel()
+        self.model.setHorizontalHeaderLabels(["Nome", "Valor Uni.", "Data de Recebimento"])
         self.list_ptr.setAlternatingRowColors(True)
         self.list_ptr.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+        self.load_table_data()
+
+    def load_table_data(self, d_i=None, d_f=None):
         con = criar_conexao()
         cursor = con.cursor()
-        cursor.execute("SELECT nome, valor_unitario, num_patrimonio, data_recebimento FROM patrimonios")
+
+        if d_i and d_f:
+            cursor.execute("""
+                SELECT nome, valor_unitario, data_recebimento 
+                FROM patrimonios 
+                WHERE data_recebimento BETWEEN %s AND %s
+            """, (d_i, d_f))
+        else:
+            cursor.execute("SELECT nome, valor_unitario, data_recebimento FROM patrimonios")
+
+        self.model.clear()
         for row in cursor.fetchall():
             items = [QStandardItem(str(cell)) for cell in row]
             for item in items:
-                item.setSelectable(False)  # Impede a seleção
-            model.appendRow(items)
-        self.list_ptr.setModel(model)
-        self.list_ptr.setEditTriggers(QTableView.NoEditTriggers)
-        self.list_ptr.setSelectionMode(QTableView.NoSelection)
+                item.setSelectable(False)
+            self.model.appendRow(items)
+
+        self.list_ptr.setModel(self.model)
         self.list_ptr.resizeColumnsToContents()
         self.list_ptr.horizontalHeader().setStretchLastSection(True)
-        
-    def show_graph(self):
-        pass
-    
-    def list_patr(self):
-        pass
-    
-    def filter_grp(self):
+
+    def setup_graph(self):
+        layout = QVBoxLayout()
+        self.figure = plt.figure(figsize=(8, 6))
+        self.canvas = FigureCanvas(self.figure)
+        layout.addWidget(self.canvas)
+        self.grap_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        widget = QWidget()
+        widget.setLayout(layout)
+        scene = QGraphicsScene()
+        scene.addWidget(widget)
+        self.grap_view.setScene(scene)
+
+    def filter_data(self):
         d_i = self.date_i.date().toString("yyyy-MM-dd")
         d_f = self.date_f.date().toString("yyyy-MM-dd")
-        print(d_i, d_f)
+        self.load_table_data(d_i, d_f)
+        self.create_graph(d_i, d_f)
 
+    def create_graph(self, d_i, d_f):
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute("""
+            SELECT DATE(data_recebimento) as data, 
+                   SUM(valor_unitario) as valor_total
+            FROM patrimonios
+            WHERE data_recebimento BETWEEN %s AND %s
+            GROUP BY DATE(data_recebimento)
+            ORDER BY data_recebimento
+        """, (d_i, d_f))
 
+        data = cursor.fetchall()
+        df = pd.DataFrame(data, columns=['data', 'valor_total'])
 
+        self.figure.clear()
+        ax = self.figure.add_subplot(111)
+        ax.plot(df['data'], df['valor_total'], color='green', marker='o')
+        ax.set_title('Valor Total por Data')
+        ax.set_xlabel('Data')
+        ax.set_ylabel('Valor Total (R$)')
+        ax.tick_params(axis='x', rotation=45)
+        self.figure.tight_layout()
+        self.canvas.draw()
+        self.grap_view.fitInView(self.grap_view.sceneRect(), Qt.KeepAspectRatio)
+
+    def rlt_patrimonio(self):
+        d_i = self.date_i.date().toString("yyyy-MM-dd")
+        d_f = self.date_f.date().toString("yyyy-MM-dd")
+
+        # Carregar os dados da tabela
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute("""
+            SELECT nome, valor_unitario, num_patrimonio, data_recebimento 
+            FROM patrimonios
+            WHERE data_recebimento BETWEEN %s AND %s
+        """, (d_i, d_f))
+        data = cursor.fetchall()
+
+        # Criar o arquivo Excel
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
+        worksheet.title = "Relatório de Patrimônio"
+
+        # Estilos
+        bold_font = Font(bold=True)
+        centered_alignment = Alignment(horizontal='center', vertical='center')
+
+        # Escrever o cabeçalho
+        worksheet['A1'] = 'Nome'
+        worksheet['B1'] = 'Valor Unitário'
+        worksheet['C1'] = 'Número de Patrimônio'
+        worksheet['D1'] = 'Data de Recebimento'
+        for col in range(1, 5):
+            worksheet.cell(row=1, column=col).font = bold_font
+            worksheet.cell(row=1, column=col).alignment = centered_alignment
+
+        # Escrever os dados
+        row = 2
+        for nome, valor_unitario, num_patrimonio, data_recebimento in data:
+            worksheet.cell(row=row, column=1, value=nome)
+            worksheet.cell(row=row, column=2, value=valor_unitario)
+            worksheet.cell(row=row, column=3, value=num_patrimonio)
+            worksheet.cell(row=row, column=4, value=data_recebimento)
+            row += 1
+
+        # Salvar o arquivo
+        file_path, _ = QFileDialog.getSaveFileName(self, "Salvar Relatório", os.path.expanduser("~"), "Arquivos Excel (*.xlsx)")
+        if file_path:
+            workbook.save(file_path)
+            QMessageBox.information(self, "Relatório Gerado", f"O relatório foi salvo em: {file_path}")
 
 class logs_view(QWidget):
     def __init__(self):

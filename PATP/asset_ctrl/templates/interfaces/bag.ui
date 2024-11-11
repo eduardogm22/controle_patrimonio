@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>984</width>
+    <width>957</width>
     <height>664</height>
    </rect>
   </property>
@@ -57,6 +57,12 @@
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QFrame" name="frame_search">
+           <property name="styleSheet">
+            <string notr="true">border-radius:5px;
+border:5px solid #057A3A;
+background-color: #057A3A;
+border-bottom: 2px solid rgb(108, 108, 108);</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -81,7 +87,7 @@
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>9</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
                </font>
@@ -90,11 +96,25 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:12px;</string>
+               <string notr="true">
+
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
+
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
+ 
+}</string>
               </property>
               <property name="text">
-               <string>Registrar</string>
+               <string>REGISTRAR</string>
               </property>
              </widget>
             </item>
@@ -121,8 +141,14 @@ border-radius:12px;</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:12px;</string>
+               <string notr="true">QLineEdit{
+background-color:white;	;
+border-radius: 10px;
+border-bottom: 2px solid rgb(108, 108, 108);
+
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -171,7 +197,11 @@ border-radius:12px;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true"/>
+               <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+border-radius:10px
+
+</string>
               </property>
               <property name="showGrid">
                <bool>true</bool>
@@ -201,6 +231,10 @@ border-radius:12px;</string>
           <height>900</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius:10px;
+background-color: #057A3A;</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -229,7 +263,7 @@ border-radius:12px;</string>
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item alignment="Qt::AlignVCenter">
+            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
              <widget class="QFrame" name="frame_edit">
               <property name="minimumSize">
                <size>
@@ -267,7 +301,7 @@ border-radius:12px;</string>
                  <property name="font">
                   <font>
                    <family>Roboto</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>9</pointsize>
                    <weight>75</weight>
                    <bold>true</bold>
                   </font>
@@ -276,11 +310,27 @@ border-radius:12px;</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;
-border-radius:12px;</string>
+                  <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
                  </property>
                  <property name="text">
-                  <string>Editar</string>
+                  <string>EDITAR</string>
                  </property>
                 </widget>
                </item>
@@ -300,6 +350,10 @@ border-radius:12px;</string>
                 <width>240</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+border-bottom:none</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -325,7 +379,7 @@ border-radius:12px;</string>
                  <property name="font">
                   <font>
                    <family>Roboto</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>9</pointsize>
                    <weight>75</weight>
                    <bold>true</bold>
                   </font>
@@ -334,11 +388,27 @@ border-radius:12px;</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;
-border-radius:12px;</string>
+                  <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
                  </property>
                  <property name="text">
-                  <string>Detalhes</string>
+                  <string>DETALHES</string>
                  </property>
                 </widget>
                </item>
@@ -380,7 +450,7 @@ border-radius:12px;</string>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>9</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
                </font>
@@ -389,11 +459,26 @@ border-radius:12px;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:12px;</string>
+               <string notr="true">QPushButton { 
+	background-color: rgb(170, 0, 0);
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	border: 3px solid rgb(255, 255, 255);
+	padding:5px
+ }
+
+QPushButton:hover{;color:white;
+background-color:rgb(255, 0, 4)}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color:rgb(231, 0, 0)
+ }</string>
               </property>
               <property name="text">
-               <string>Deletar</string>
+               <string>DELETAR</string>
               </property>
              </widget>
             </item>
