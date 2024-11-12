@@ -347,9 +347,9 @@ class interface(QMainWindow):
                 shadow.setOffset(0, 0)
                 shadow.setBlurRadius(3)
                 shadow.setColor(QtGui.QColor(0, 0, 2))
-                self.btn_home.setGraphicsEffect(shadow)
+                self.home_btn.setGraphicsEffect(shadow)
             elif event.type() == QtCore.QEvent.Leave:
-                self.btn_home.setGraphicsEffect(None)
+                self.home_btn.setGraphicsEffect(None)
     
         # botões menu lateral
         elif obj == self.btn_rel:

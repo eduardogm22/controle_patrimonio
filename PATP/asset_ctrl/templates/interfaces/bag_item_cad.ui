@@ -845,11 +845,10 @@ border:none;</string>
                           </property>
                           <property name="styleSheet">
                            <string notr="true">QComboBox{
-background-color : rgb(255, 248, 248);
+background-color : white;
 border-radius: 12px;
 border-bottom: 2px solid rgb(108, 108, 108);
 }
-
 
 
 QComboBox:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>

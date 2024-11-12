@@ -422,29 +422,6 @@ border-radius:10px
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QListView" name="date_view">
-              <property name="minimumSize">
-               <size>
-                <width>300</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>600</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid #057A3A;
-border-radius:10px
-
-</string>
-              </property>
-             </widget>
-            </item>
            </layout>
           </widget>
          </item>

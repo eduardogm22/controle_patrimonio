@@ -687,15 +687,18 @@ class patr_view(QWidget):
         self.btn_rlt = self.findChild(QPushButton, "rlt_btn")
         self.btn_rlt.clicked.connect(self.rlt_patrimonio)
 
+
         self.setup_table()
         self.setup_graph()
         self.set_default_dates()
+        self.create_graph(self.date_i.date().toString("yyyy-MM-dd"), self.date_f.date().toString("yyyy-MM-dd"))
 
     def set_default_dates(self):
         today = datetime.now()
-        one_year_ago = today - timedelta(days=365)
-        self.date_i.setDate(one_year_ago)
+        three_years_ago = today - timedelta(days=365 * 3)
+        self.date_i.setDate(three_years_ago)
         self.date_f.setDate(today)
+
     def setup_table(self):
         self.list_ptr.setEditTriggers(QTableView.NoEditTriggers)
         self.list_ptr.setSelectionMode(QTableView.NoSelection)
@@ -752,8 +755,8 @@ class patr_view(QWidget):
         cursor = con.cursor()
         cursor.execute("""
             SELECT DATE(data_recebimento) as data, 
-                   SUM(valor_unitario) as valor_total
-            FROM patrimonios
+                SUM(valor_unitario) as valor_total
+            FROM patrimonios 
             WHERE data_recebimento BETWEEN %s AND %s
             GROUP BY DATE(data_recebimento)
             ORDER BY data_recebimento
@@ -777,7 +780,6 @@ class patr_view(QWidget):
         d_i = self.date_i.date().toString("yyyy-MM-dd")
         d_f = self.date_f.date().toString("yyyy-MM-dd")
 
-        # Carregar os dados da tabela
         con = criar_conexao()
         cursor = con.cursor()
         cursor.execute("""
@@ -787,16 +789,13 @@ class patr_view(QWidget):
         """, (d_i, d_f))
         data = cursor.fetchall()
 
-        # Criar o arquivo Excel
         workbook = openpyxl.Workbook()
         worksheet = workbook.active
         worksheet.title = "Relatório de Patrimônio"
 
-        # Estilos
         bold_font = Font(bold=True)
         centered_alignment = Alignment(horizontal='center', vertical='center')
 
-        # Escrever o cabeçalho
         worksheet['A1'] = 'Nome'
         worksheet['B1'] = 'Valor Unitário'
         worksheet['C1'] = 'Número de Patrimônio'
@@ -805,7 +804,6 @@ class patr_view(QWidget):
             worksheet.cell(row=1, column=col).font = bold_font
             worksheet.cell(row=1, column=col).alignment = centered_alignment
 
-        # Escrever os dados
         row = 2
         for nome, valor_unitario, num_patrimonio, data_recebimento in data:
             worksheet.cell(row=row, column=1, value=nome)
