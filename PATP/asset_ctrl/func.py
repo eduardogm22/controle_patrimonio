@@ -414,14 +414,16 @@ class bag_view(QWidget):
         for column in range(self.table_item.model().columnCount()):
             data = self.table_item.model().index(row, column).data()
             print(f"{self.table_item.model().horizontalHeaderItem(column).text()}: {data}")
+            if self.table_item.model().horizontalHeaderItem(column).text() == 'ID':
+                self.l_t = data
         self.selected_rows.clear()
         self.selected_rows.append(self.table_item.model().index(row, column).data())
         self.btn_details.show()
         self.btn_details.clicked.connect(self.details_screen)
 
     def details_screen(self):
-        #self.window_details = detail_window(str(self.l_t), str(self.l_t))
-        #self.window_details.exec_()
+        self.window_details = detail_window(str(self.l_t), str(self.l_t))
+        self.window_details.exec_()
         print('Faltando ajuste')
 
 class bag_item_cad(QWidget):
@@ -480,7 +482,7 @@ class bag_item_cad(QWidget):
         self.number_input.keyPressEvent = self.keyPressEvent
         self.btn_confirm = self.findChild(QPushButton, "cadItens")
         self.btn_confirm.clicked.connect(self.confirm)
-        
+
         self.btn_del = self.findChild(QPushButton, "del")
         self.btn_del.clicked.connect(self.deletar_item)
 
@@ -501,7 +503,7 @@ class bag_item_cad(QWidget):
         self.lista_produtos.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
         self.value_result = self.findChild(QLabel, "value_r")
-        
+
         self.number_input.textChanged.connect(self.update_label)
         self.quantidade.valueChanged.connect(self.update_label)
 
@@ -704,6 +706,12 @@ class patr_view(QWidget):
         self.list_ptr.setSelectionMode(QTableView.NoSelection)
         self.model = QStandardItemModel()
         self.model.setHorizontalHeaderLabels(["Nome", "Valor Uni.", "Data de Recebimento"])
+        self.list_ptr.setModel(self.model)
+        header = self.list_ptr.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.Stretch)
+        header.setStretchLastSection(True)
+        self.list_ptr.verticalHeader().setVisible(False)
+        self.list_ptr.setGridStyle(Qt.NoPen)
         self.list_ptr.setAlternatingRowColors(True)
         self.list_ptr.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
         self.load_table_data()
@@ -727,7 +735,7 @@ class patr_view(QWidget):
             for item in items:
                 item.setSelectable(False)
             self.model.appendRow(items)
-
+        self.model.setHorizontalHeaderLabels(["Nome", "Valor Uni.", "Data de Recebimento"])
         self.list_ptr.setModel(self.model)
         self.list_ptr.resizeColumnsToContents()
         self.list_ptr.horizontalHeader().setStretchLastSection(True)
@@ -837,18 +845,20 @@ class detail_window(QDialog):
     def __init__(self, msg, type_msg):
         super().__init__()
         self.type_msg = type_msg
-        print (type_msg)
+        self.msg = msg
+        print(type_msg)
         self.setWindowFlags(Qt.Popup | Qt.FramelessWindowHint)
         self.setModal(True)
         self.setStyleSheet("background-color: #f0f0f0; border: 1px solid #ccc;")
         layout = QVBoxLayout()
-        label_mensagem = QLabel(msg)
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute("SELECT * FROM patrimonios WHERE idpatrimonio = %s", (self.type_msg,))
+        data = cursor.fetchone()
+        label_mensagem = QLabel("Dados selecionados:" + str(data))
         label_mensagem.setAlignment(Qt.AlignCenter)
         layout.setAlignment(Qt.AlignCenter)
-        layout.setContentsMargins(10, 10, 10, 10)
+        layout.setContentsMargins(10, 100, 10, 100)
         layout.setSpacing(10)
         layout.addWidget(label_mensagem)
         self.setLayout(layout)
-    def dados_selected(self):
-        pass
-    

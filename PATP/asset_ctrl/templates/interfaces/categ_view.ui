@@ -25,6 +25,12 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QFrame" name="frame_2">
+        <property name="styleSheet">
+         <string notr="true">
+    border-top-right-radius: 15px;  
+background-color: #057A3A;
+border-bottom: 3px solid rgb(91, 91, 91)</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -34,6 +40,9 @@
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
           <widget class="QFrame" name="frame_4">
+           <property name="styleSheet">
+            <string notr="true">border:none;</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -59,8 +68,26 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;</string>
+               <string notr="true">
+
+
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
               </property>
               <property name="text">
                <string>bag</string>
@@ -85,8 +112,26 @@ border:3px solid black;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;</string>
+               <string notr="true">
+
+
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
               </property>
               <property name="text">
                <string>logs_view</string>
@@ -111,8 +156,26 @@ border:3px solid black;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;</string>
+               <string notr="true">
+
+
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
               </property>
               <property name="text">
                <string>patrim_view</string>
@@ -124,6 +187,9 @@ border:3px solid black;</string>
          </item>
          <item>
           <widget class="QFrame" name="frame_5">
+           <property name="styleSheet">
+            <string notr="true">border:none</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -149,8 +215,26 @@ border:3px solid black;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;</string>
+               <string notr="true">
+
+
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
               </property>
               <property name="text">
                <string>rlt_cat</string>
@@ -188,7 +272,10 @@ border:3px solid black;</string>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color:white;	
-border:3px solid black;</string>
+border:3px solid #057A3A;
+border-radius:10px
+
+</string>
            </property>
           </widget>
          </item>
@@ -208,12 +295,21 @@ border:3px solid black;</string>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color:white;	
-border:3px solid black;</string>
+border:3px solid #057A3A;
+border-radius:10px
+
+</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QFrame" name="frame_6">
+           <property name="styleSheet">
+            <string notr="true">
+    border-bottom-right-radius: 15px;
+background-color: #057A3A;
+border-bottom: 3px solid rgb(91, 91, 91)</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -239,8 +335,26 @@ border:3px solid black;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;</string>
+               <string notr="true">
+
+
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
               </property>
               <property name="text">
                <string>new_cat</string>
@@ -265,8 +379,26 @@ border:3px solid black;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;	
-border:3px solid black;</string>
+               <string notr="true">
+
+
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
               </property>
               <property name="text">
                <string>del_cat</string>

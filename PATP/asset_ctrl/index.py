@@ -32,14 +32,12 @@ class login_inicial(QMainWindow):
                 p = self.password.text()
                 conn = mysql.connector.connect(**config_acess)
                 cursor = conn.cursor()
-                cursor.execute("SELECT usuario, idcargo FROM usuarios WHERE usuario = %s AND senha = %s", (u, p))
+                cursor.execute("SELECT * FROM usuarios WHERE usuario = %s AND senha = %s", (u, p))
                 filter = cursor.fetchone()
-                cursor.close()
-                conn.close()
-                
                 if filter:
-                    log_list['user'] = filter[0]
-                    log_list['cargo'] = filter[1]
+                    log_list['user'] = filter[1]
+                    log_list['cargo'] = filter[3]
+                    log_list['password'] = filter[2]
                     #print(log_list)
                     self.close()
                     self.rodar_main(str(filter[1]))
@@ -61,12 +59,12 @@ class login_inicial(QMainWindow):
     def json_login(self):
         log = {
             "user": log_list["user"],
-            "cargo": log_list["cargo"], 
+            "cargo": log_list["cargo"],
             "password": log_list["password"]
         }
         with open("line/dados.json", "w") as info_json:
             json.dump(log, info_json)
-
+            
     def rodar_main(self, usuario):
         subprocess.Popen(['python', 'run.py', usuario])
 

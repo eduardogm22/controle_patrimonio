@@ -69,7 +69,7 @@
    <string>Controle de Patrimônio</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../feather/resource.qrc">
+   <iconset>
     <normaloff>:/icons/server.svg</normaloff>:/icons/server.svg</iconset>
   </property>
   <property name="animated">
@@ -194,7 +194,7 @@ QPushButton:pressed{
              <string>Relatório</string>
             </property>
             <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
+             <iconset>
               <normaloff>:/icons/file-text.svg</normaloff>:/icons/file-text.svg</iconset>
             </property>
            </widget>
@@ -238,7 +238,7 @@ QPushButton:pressed{
              <string>Users</string>
             </property>
             <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
+             <iconset>
               <normaloff>:/icons/users.svg</normaloff>:/icons/users.svg</iconset>
             </property>
            </widget>
@@ -277,7 +277,7 @@ QPushButton:pressed{
              <string>Inventário</string>
             </property>
             <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
+             <iconset>
               <normaloff>:/icons/shopping-bag.svg</normaloff>:/icons/shopping-bag.svg</iconset>
             </property>
            </widget>
@@ -316,7 +316,7 @@ QPushButton:pressed{
              <string>Definições</string>
             </property>
             <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
+             <iconset>
               <normaloff>:/icons/activity.svg</normaloff>:/icons/activity.svg</iconset>
             </property>
            </widget>
@@ -358,7 +358,7 @@ QPushButton:pressed{
              <string>Backup</string>
             </property>
             <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
+             <iconset>
               <normaloff>:/icons/save.svg</normaloff>:/icons/save.svg</iconset>
             </property>
            </widget>
@@ -402,7 +402,7 @@ QPushButton:pressed{
              <string>Ajuda</string>
             </property>
             <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
+             <iconset>
               <normaloff>:/icons/help-circle.svg</normaloff>:/icons/help-circle.svg</iconset>
             </property>
            </widget>
@@ -435,7 +435,7 @@ QPushButton:pressed{
              <string>Sobre</string>
             </property>
             <property name="icon">
-             <iconset resource="../../feather/resource.qrc">
+             <iconset>
               <normaloff>:/icons/link.svg</normaloff>:/icons/link.svg</iconset>
             </property>
            </widget>
@@ -521,7 +521,7 @@ color:white;</string>
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="../../feather/resource.qrc">
+                <iconset>
                  <normaloff>:/icons/home.svg</normaloff>:/icons/home.svg</iconset>
                </property>
                <property name="iconSize">
@@ -608,7 +608,7 @@ border-bottom: none
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="../../feather/resource.qrc">
+                <iconset>
                  <normaloff>:/icons/user.svg</normaloff>:/icons/user.svg</iconset>
                </property>
                <property name="iconSize">
@@ -713,7 +713,7 @@ border:1px solid #057A3A;
                    <enum>QFrame::Raised</enum>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_12">
-                   <item alignment="Qt::AlignHCenter">
+                   <item alignment="Qt::AlignRight|Qt::AlignBottom">
                     <widget class="QLabel" name="textProd">
                      <property name="font">
                       <font>
@@ -743,7 +743,7 @@ border:1px solid #057A3A;
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/codesandbox.svg</normaloff>:/icons/codesandbox.svg</iconset>
                      </property>
                      <property name="iconSize">
@@ -806,7 +806,7 @@ border:1px solid #057A3A;
                    <enum>QFrame::Raised</enum>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_13">
-                   <item alignment="Qt::AlignHCenter">
+                   <item alignment="Qt::AlignRight|Qt::AlignBottom">
                     <widget class="QLabel" name="textLogs">
                      <property name="font">
                       <font>
@@ -833,7 +833,7 @@ border:1px solid #057A3A;
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/database.svg</normaloff>:/icons/database.svg</iconset>
                      </property>
                      <property name="iconSize">
@@ -896,7 +896,7 @@ border:1px solid #057A3A;
                    <enum>QFrame::Raised</enum>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_14">
-                   <item alignment="Qt::AlignHCenter">
+                   <item alignment="Qt::AlignRight|Qt::AlignBottom">
                     <widget class="QLabel" name="textLocal">
                      <property name="font">
                       <font>
@@ -923,7 +923,7 @@ border:1px solid #057A3A;
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/map-pin.svg</normaloff>:/icons/map-pin.svg</iconset>
                      </property>
                      <property name="iconSize">
@@ -983,7 +983,7 @@ border:1px solid #057A3A;
                    <enum>QFrame::Raised</enum>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_15">
-                   <item alignment="Qt::AlignHCenter">
+                   <item alignment="Qt::AlignRight|Qt::AlignBottom">
                     <widget class="QLabel" name="textVp">
                      <property name="font">
                       <font>
@@ -1010,7 +1010,7 @@ border:1px solid #057A3A;
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/dollar-sign.svg</normaloff>:/icons/dollar-sign.svg</iconset>
                      </property>
                      <property name="iconSize">
@@ -1151,7 +1151,7 @@ color: rgb(255, 255, 255);</string>
                       <string>Detalhes</string>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/alert-circle.svg</normaloff>:/icons/alert-circle.svg</iconset>
                      </property>
                     </widget>
@@ -1274,7 +1274,7 @@ color: rgb(255, 255, 255);</string>
                       <string>Detalhes</string>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../feather/resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/alert-circle.svg</normaloff>:/icons/alert-circle.svg</iconset>
                      </property>
                     </widget>

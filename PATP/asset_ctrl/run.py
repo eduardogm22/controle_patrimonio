@@ -3,7 +3,7 @@ from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from templates.interfaces import *
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QListWidget, QTableWidget, QListView,QTableView, QAbstractItemView, QHeaderView
 from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info
-from connect import config, config_acess
+from connect import config, config_acess, criar_conexao
 from PyQt5.QtCore import QResource , QTimer, Qt
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
 import mysql.connector # type: ignore
@@ -90,13 +90,26 @@ class interface(QMainWindow):
         
         # TESTE TEXTO PRODUTO
         self.text_item = self.findChild(QLabel, "textProd")
-        self.text_item.setText('Produtos')
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute('select count(*) from patrimonios')
+        data_prod = cursor.fetchall()
+        self.text_item.setText('Quantidade: '+str(data_prod[0][0]))
+        con.close()
+        
         self.text_logs = self.findChild(QLabel, "textLogs")
         self.text_logs.setText('Logs')
+
         self.text_local = self.findChild(QLabel, "textLocal")
         self.text_local.setText('Local')
+
         self.text_vp = self.findChild(QLabel, "textVp")
-        self.text_vp.setText('Patrimônio')
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute('select sum(valor_unitario) from patrimonios')
+        data_vp = cursor.fetchall()
+        self.text_vp.setText('R$: '+str(data_vp[0][0]))
+        con.close()
         
 
         # instância das sombras 
