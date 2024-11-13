@@ -112,7 +112,7 @@ border-radius:6px;</string>
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../../../feather/resource.qrc">
+            <iconset>
              <normaloff>:/icons/corner-up-left.svg</normaloff>:/icons/corner-up-left.svg</iconset>
            </property>
            <property name="iconSize">
@@ -214,13 +214,13 @@ border-bottom: none</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QLineEdit{
-	color:rgb(121, 121, 121);
+	color:black;
 background-color:white;
 border-radius: 10px;
 border-bottom: 3px solid rgb(91, 91, 91)
 }
 
-QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:black}</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -273,13 +273,13 @@ border-bottom: none</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QLineEdit{
-	color:rgb(121, 121, 121);
+	color:black;
 background-color:white;
 border-radius: 10px;
 border-bottom: 3px solid rgb(91, 91, 91)
 }
 
-QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:black}</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -351,13 +351,13 @@ border-bottom: none</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QLineEdit{
-	color:rgb(121, 121, 121);
+	color:black;
 background-color:white;
 border-radius: 10px;
 border-bottom: 3px solid rgb(91, 91, 91)
 }
 
-QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:black}</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -410,13 +410,13 @@ border-bottom: none</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QLineEdit{
-	color:rgb(121, 121, 121);
+	color:black;
 background-color:white;
 border-radius: 10px;
 border-bottom: 3px solid rgb(91, 91, 91)
 }
 
-QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}</string>
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:black}</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -774,7 +774,7 @@ QPushButton:pressed{
             <string>Detalhes</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../../feather/resource.qrc">
+            <iconset>
              <normaloff>:/icons/alert-circle.svg</normaloff>:/icons/alert-circle.svg</iconset>
            </property>
            <property name="iconSize">

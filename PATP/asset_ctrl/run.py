@@ -2,7 +2,7 @@ import sys
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from templates.interfaces import *
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QListWidget, QTableWidget, QListView,QTableView, QAbstractItemView, QHeaderView
-from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info
+from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info, categ_view
 from connect import config, config_acess, criar_conexao
 from PyQt5.QtCore import QResource , QTimer, Qt
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
@@ -54,7 +54,7 @@ class interface(QMainWindow):
         self.label_user = self.findChild(QLabel, "labelUser")
         self.label_user.setText(user)
         self.ui.setWindowIcon(server_svg)
-        
+
 
         # botoes da barra de menu
         self.btn_rel = self.findChild(QPushButton, "relBtn")
@@ -537,6 +537,7 @@ class interface(QMainWindow):
                 self.btn_home.show()
                 
     def config_screen(self):
+        print('teste config')
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")
         self.config = config_view()

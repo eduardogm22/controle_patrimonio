@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>848</width>
-    <height>500</height>
+    <width>846</width>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -75,7 +75,7 @@ QPushButton:pressed{
 }</string>
            </property>
            <property name="text">
-            <string>categ</string>
+            <string>Cargos</string>
            </property>
           </widget>
          </item>
@@ -116,7 +116,7 @@ QPushButton:pressed{
 }</string>
            </property>
            <property name="text">
-            <string>cargo</string>
+            <string>Categorias</string>
            </property>
           </widget>
          </item>
@@ -157,7 +157,7 @@ QPushButton:pressed{
 }</string>
            </property>
            <property name="text">
-            <string>local</string>
+            <string>Locais</string>
            </property>
           </widget>
          </item>
@@ -198,7 +198,7 @@ QPushButton:pressed{
 }</string>
            </property>
            <property name="text">
-            <string>def_acesso</string>
+            <string>Fornecedores</string>
            </property>
           </widget>
          </item>
@@ -216,6 +216,12 @@ QPushButton:pressed{
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QFrame" name="frame_2">
+           <property name="maximumSize">
+            <size>
+             <width>450</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -225,6 +231,12 @@ QPushButton:pressed{
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
              <widget class="QFrame" name="frame_6">
+              <property name="maximumSize">
+               <size>
+                <width>450</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">border-radius:10px;
 background-color: #057A3A;
@@ -238,63 +250,134 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_2">
                <item>
-                <widget class="QComboBox" name="comboBox">
-                 <property name="minimumSize">
-                  <size>
-                   <width>250</width>
-                   <height>30</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>35</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Roboto</family>
-                   <pointsize>15</pointsize>
-                  </font>
-                 </property>
-                 <property name="contextMenuPolicy">
-                  <enum>Qt::ActionsContextMenu</enum>
-                 </property>
-                 <property name="layoutDirection">
-                  <enum>Qt::LeftToRight</enum>
-                 </property>
+                <widget class="QFrame" name="frame_10">
                  <property name="styleSheet">
-                  <string notr="true">QComboBox{background-color:white;
-text-align:center;
-border-radius: 15px;}
+                  <string notr="true">border:0;</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_7">
+                  <item alignment="Qt::AlignHCenter">
+                   <widget class="QFrame" name="frame_11">
+                    <property name="styleSheet">
+                     <string notr="true">border:0;</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_8">
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit">
+                       <property name="minimumSize">
+                        <size>
+                         <width>240</width>
+                         <height>33</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>240</width>
+                         <height>24</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color:white;</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item alignment="Qt::AlignHCenter">
+                   <widget class="QComboBox" name="comboBox">
+                    <property name="minimumSize">
+                     <size>
+                      <width>240</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>240</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Roboto</family>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="contextMenuPolicy">
+                     <enum>Qt::ActionsContextMenu</enum>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">
 
-QComboBox::drop-down {
-    width: 25px; /* Largura do quadrado */
+
+QComboBox{background-color:white;
+border-radius: 50px;
 
 }
 
+QComboBox::drop-down {
+    width: 25px; /* Largura do quadrado */
+align-itens:center;
+}
+
  </string>
-                 </property>
-                 <property name="sizeAdjustPolicy">
-                  <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>cargo</string>
-                  </property>
-                 </item>
+                    </property>
+                    <property name="sizeAdjustPolicy">
+                     <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>cargo</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_5">
-                 <property name="maximumSize">
-                  <size>
-                   <width>70</width>
-                   <height>40</height>
-                  </size>
-                 </property>
+                <widget class="QFrame" name="frame_12">
                  <property name="styleSheet">
-                  <string notr="true">
+                  <string notr="true">border:0;</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <item>
+                   <widget class="QPushButton" name="pushButton_5">
+                    <property name="minimumSize">
+                     <size>
+                      <width>71</width>
+                      <height>33</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>70</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">
 
 QPushButton { color: rgb(243, 239, 238);
 	border-radius:15px;		
@@ -310,10 +393,87 @@ QPushButton:pressed{
 	background-color: rgb(227, 227, 227);
  
 }</string>
-                 </property>
-                 <property name="text">
-                  <string>edit</string>
-                 </property>
+                    </property>
+                    <property name="text">
+                     <string>edit</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_6">
+                    <property name="minimumSize">
+                     <size>
+                      <width>71</width>
+                      <height>33</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>70</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">
+
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
+
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
+ 
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>edit</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_7">
+                    <property name="minimumSize">
+                     <size>
+                      <width>71</width>
+                      <height>33</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>70</width>
+                      <height>33</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">
+
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
+
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
+ 
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>edit</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
@@ -356,18 +516,27 @@ QPushButton:pressed{
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="frame_4">
+          <widget class="QFrame" name="frame_8">
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QCheckBox" name="checkBox_5">
-              <property name="styleSheet">
-               <string notr="true"> QCheckBox {
+             <widget class="QFrame" name="frame_4">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <widget class="QCheckBox" name="checkBox_5">
+                 <property name="styleSheet">
+                  <string notr="true"> QCheckBox {
     spacing: 5px; /* Espaçamento entre o checkbox e o texto */
     color: rgb(0, 85, 0); /* Cor do texto */
 }
@@ -391,175 +560,252 @@ QCheckBox::indicator:unchecked:hover {
       background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
 border: 2px solid rgb(0, 85, 0); 
 }</string>
-              </property>
-              <property name="text">
-               <string>CheckBox</string>
-              </property>
+                 </property>
+                 <property name="text">
+                  <string>CheckBox</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBox">
+                 <property name="styleSheet">
+                  <string notr="true"> QCheckBox {
+    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
+    color: rgb(0, 85, 0); /* Cor do texto */
+}
+
+QCheckBox::indicator {
+    width: 20px;  /* Largura do checkbox */
+    height: 20px; /* Altura do checkbox */
+      background-color: #aaaaaa; /* Cor de fundo padrão */
+    border: 2px solid rgb(74, 74, 74);
+    border-radius: 3px;
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+    border: 2px solid rgb(0, 85, 0);
+    background-color: #4CAF50; /* Cor de fundo quando está marcado */
+    border: 2px solid #4CAF50;
+ 
+}
+QCheckBox::indicator:unchecked:hover {
+      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+border: 2px solid rgb(0, 85, 0); 
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>CheckBox</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBox_2">
+                 <property name="styleSheet">
+                  <string notr="true"> QCheckBox {
+    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
+    color: rgb(0, 85, 0); /* Cor do texto */
+}
+
+QCheckBox::indicator {
+    width: 20px;  /* Largura do checkbox */
+    height: 20px; /* Altura do checkbox */
+      background-color: #aaaaaa; /* Cor de fundo padrão */
+    border: 2px solid rgb(74, 74, 74);
+    border-radius: 3px;
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+    border: 2px solid rgb(0, 85, 0);
+    background-color: #4CAF50; /* Cor de fundo quando está marcado */
+    border: 2px solid #4CAF50;
+ 
+}
+QCheckBox::indicator:unchecked:hover {
+      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+border: 2px solid rgb(0, 85, 0); 
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>CheckBox</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBox_3">
+                 <property name="styleSheet">
+                  <string notr="true"> QCheckBox {
+    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
+    color: rgb(0, 85, 0); /* Cor do texto */
+}
+
+QCheckBox::indicator {
+    width: 20px;  /* Largura do checkbox */
+    height: 20px; /* Altura do checkbox */
+      background-color: #aaaaaa; /* Cor de fundo padrão */
+    border: 2px solid rgb(74, 74, 74);
+    border-radius: 3px;
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+    border: 2px solid rgb(0, 85, 0);
+    background-color: #4CAF50; /* Cor de fundo quando está marcado */
+    border: 2px solid #4CAF50;
+ 
+}
+QCheckBox::indicator:unchecked:hover {
+      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+border: 2px solid rgb(0, 85, 0); 
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>CheckBox</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBox_4">
+                 <property name="styleSheet">
+                  <string notr="true"> QCheckBox {
+    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
+    color: rgb(0, 85, 0); /* Cor do texto */
+}
+
+QCheckBox::indicator {
+    width: 20px;  /* Largura do checkbox */
+    height: 20px; /* Altura do checkbox */
+      background-color: #aaaaaa; /* Cor de fundo padrão */
+    border: 2px solid rgb(74, 74, 74);
+    border-radius: 3px;
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+    border: 2px solid rgb(0, 85, 0);
+    background-color: #4CAF50; /* Cor de fundo quando está marcado */
+    border: 2px solid #4CAF50;
+ 
+}
+QCheckBox::indicator:unchecked:hover {
+      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+border: 2px solid rgb(0, 85, 0); 
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>CheckBox</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBox_6">
+                 <property name="styleSheet">
+                  <string notr="true"> QCheckBox {
+    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
+    color: rgb(0, 85, 0); /* Cor do texto */
+}
+
+QCheckBox::indicator {
+    width: 20px;  /* Largura do checkbox */
+    height: 20px; /* Altura do checkbox */
+      background-color: #aaaaaa; /* Cor de fundo padrão */
+    border: 2px solid rgb(74, 74, 74);
+    border-radius: 3px;
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+    border: 2px solid rgb(0, 85, 0);
+    background-color: #4CAF50; /* Cor de fundo quando está marcado */
+    border: 2px solid #4CAF50;
+ 
+}
+QCheckBox::indicator:unchecked:hover {
+      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
+border: 2px solid rgb(0, 85, 0); 
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>CheckBox</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox">
-              <property name="styleSheet">
-               <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
+             <widget class="QFrame" name="frame_9">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_9">
+               <item>
+                <widget class="QPushButton" name="pushButton_8">
+                 <property name="maximumSize">
+                  <size>
+                   <width>70</width>
+                   <height>33</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
 
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
 
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
  
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
 }</string>
-              </property>
-              <property name="text">
-               <string>CheckBox</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBox_2">
-              <property name="styleSheet">
-               <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
+                 </property>
+                 <property name="text">
+                  <string>PushButton</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_9">
+                 <property name="maximumSize">
+                  <size>
+                   <width>70</width>
+                   <height>33</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
 
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
 
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
  
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
 }</string>
-              </property>
-              <property name="text">
-               <string>CheckBox</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBox_3">
-              <property name="styleSheet">
-               <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
-
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
- 
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
-}</string>
-              </property>
-              <property name="text">
-               <string>CheckBox</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBox_4">
-              <property name="styleSheet">
-               <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
-
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
- 
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
-}</string>
-              </property>
-              <property name="text">
-               <string>CheckBox</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBox_6">
-              <property name="styleSheet">
-               <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
-
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
- 
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
-}</string>
-              </property>
-              <property name="text">
-               <string>CheckBox</string>
-              </property>
+                 </property>
+                 <property name="text">
+                  <string>PushButton</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>

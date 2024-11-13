@@ -318,7 +318,7 @@ border-bottom: 3px solid rgb(91, 91, 91)</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="category">
               <property name="minimumSize">
                <size>
                 <width>90</width>

@@ -3,7 +3,7 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
 from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QSizePolicy, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView, QGraphicsScene, QFileDialog, QMessageBox
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel
+from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
 from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
@@ -683,9 +683,17 @@ class items_view(QWidget):
 
 
 class categ_view(QWidget):
+    sinal_config = pyqtSignal()      
     def __init__(self):
         super().__init__()
         self.item_category = uic.loadUi("templates/interfaces/categ_view.ui", self)
+        self.btn_config = self.findChild(QPushButton, "category")
+        self.btn_config.clicked.connect(self.config_categ)
+
+    def config_categ(self):
+        print('teste categoria')
+        self.sinal_config.emit()
+
         
 class rel_view(QWidget):
     def __init__(self):
@@ -705,12 +713,11 @@ class patr_view(QWidget):
         self.btn_filter.clicked.connect(self.filter_data)
         self.btn_rlt = self.findChild(QPushButton, "rlt_btn")
         self.btn_rlt.clicked.connect(self.rlt_patrimonio)
-
-
+        self.set_default_dates()
         self.setup_table()
         self.setup_graph()
-        self.set_default_dates()
         self.create_graph(self.date_i.date().toString("yyyy-MM-dd"), self.date_f.date().toString("yyyy-MM-dd"))
+        self.filter_data()
 
     def set_default_dates(self):
         today = datetime.now()
@@ -734,6 +741,7 @@ class patr_view(QWidget):
         self.load_table_data()
 
     def load_table_data(self, d_i=None, d_f=None):
+        self.model.clear()
         con = criar_conexao()
         cursor = con.cursor()
 
@@ -744,9 +752,8 @@ class patr_view(QWidget):
                 WHERE data_recebimento BETWEEN %s AND %s
             """, (d_i, d_f))
         else:
-            cursor.execute("SELECT nome, valor_unitario, data_recebimento FROM patrimonios")
+            cursor.execute("SELECT nome, valor_unitario, data_recebimento FROM patrimonios")            
 
-        self.model.clear()
         for row in cursor.fetchall():
             items = [QStandardItem(str(cell)) for cell in row]
             for item in items:
@@ -765,9 +772,9 @@ class patr_view(QWidget):
         self.grap_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         widget = QWidget()
         widget.setLayout(layout)
-        scene = QGraphicsScene()
-        scene.addWidget(widget)
-        self.grap_view.setScene(scene)
+        self.scene = QGraphicsScene()
+        self.scene.addWidget(widget)
+        self.grap_view.setScene(self.scene)
 
     def filter_data(self):
         d_i = self.date_i.date().toString("yyyy-MM-dd")
