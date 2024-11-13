@@ -147,8 +147,9 @@ end
 $$ delimiter ;
 
 -- procedure que faz o cadastro das notas
+drop procedure cadastra_nota;
 delimiter $$
-create procedure cadastra_nota(in chave_acesso integer, in numero integer, in serie integer, in data_aquisicao date)
+create procedure cadastra_nota(in chave_acesso integer, in numero integer, in serie integer, in idfornecedor integer, in data_aquisicao date)
 begin
 	insert into info_notas (chave_acesso, numero, serie, idfornecedor, data_aquisicao)
     values
