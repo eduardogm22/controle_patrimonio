@@ -35,6 +35,7 @@ class login_inicial(QMainWindow):
                 cursor.execute("SELECT * FROM usuarios WHERE usuario = %s AND senha = %s", (u, p))
                 filter = cursor.fetchone()
                 if filter:
+                    log_list['idusuario'] = filter[0]
                     log_list['user'] = filter[1]
                     log_list['cargo'] = filter[3]
                     log_list['password'] = filter[2]
@@ -58,10 +59,12 @@ class login_inicial(QMainWindow):
 
     def json_login(self):
         log = {
+            'idusuario': log_list['idusuario'],
             "user": log_list["user"],
             "cargo": log_list["cargo"],
             "password": log_list["password"]
         }
+        os.makedirs("line", exist_ok=True)
         with open("line/dados.json", "w") as info_json:
             json.dump(log, info_json)
             
