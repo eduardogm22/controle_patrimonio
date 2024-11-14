@@ -25,13 +25,18 @@ data_cargo = 15
 if os.path.exists('line/dados.json'):
     print("Arquivo JSON existe.")
     v_j = json.load(open("line/dados.json"))
+    data_idusuario = v_j["idusuario"]
     data_user = v_j["user"]
     data_pass = v_j["password"]
     data_cargo = v_j["cargo"]
-    print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
+    print('ID Usuário', data_idusuario,'Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
 else:
     print("Arquivo JSON inexistente func.")
-
+    
+def obter_idusuario():
+    with open("line/dados.json", "r") as info_json:
+        dados = json.load(info_json)
+        return dados.get("idusuario")
 
 # icones svg
 QResource.registerResource("feather/resource.qrc")
@@ -646,6 +651,8 @@ class bag_item_cad(QWidget):
         
             con = criar_conexao()
             cursor = con.cursor()
+            print('usuario', obter_idusuario())
+            cursor.execute('set @idusuario = %s', (obter_idusuario(),))
             cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, nota_sel_id, categoria, self.set_resp_sel_id, self.sit_sel_id])
             con.commit()
             print('Produtos cadastrados com sucesso!')

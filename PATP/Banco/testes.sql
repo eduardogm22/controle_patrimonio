@@ -1,4 +1,5 @@
-
+select * from patrimonios_audit;
+select * from patrimonios;
 
 -- Final teste 1
 -- Teste busca
