@@ -665,36 +665,37 @@ class user_details(QWidget):
         self.user_details = uic.loadUi("templates/interfaces/user_details.ui", self)
         
 class items_view(QWidget):
-    def __init__(self):
+    def __init__(self, interface):
         super().__init__()
+        self.interface = interface
         self.item_view = uic.loadUi("templates/interfaces/item_view.ui", self)
         self.btn_categ = self.findChild(QPushButton, "cat_item_btn")
         self.btn_categ.clicked.connect(self.categ_view)
 
     def categ_view(self):
         self.categview = categ_view()
+        self.categview.configRequested.connect(self.interface.config_screen)
         self.frame_v1 = self.findChild(QFrame, "body_item")
         self.frame_v2 = self.findChild(QFrame, "frame_view2")
         self.frame_v2.layout().addWidget(self.categview)
         self.frame_v2.show()
         self.frame_v1.hide()
         
-        
 
 
-class categ_view(QWidget):
-    sinal_config = pyqtSignal()      
+class categ_view(QWidget):   
+    configRequested = pyqtSignal()
     def __init__(self):
         super().__init__()
         self.item_category = uic.loadUi("templates/interfaces/categ_view.ui", self)
         self.btn_config = self.findChild(QPushButton, "category")
-        self.btn_config.clicked.connect(self.config_categ)
+        self.btn_config.clicked.connect(self.on_config_click)
+    def on_config_click(self):
+        self.configRequested.emit()
 
-    def config_categ(self):
-        print('teste categoria')
-        self.sinal_config.emit()
 
-        
+
+
 class rel_view(QWidget):
     def __init__(self):
         super().__init__()
