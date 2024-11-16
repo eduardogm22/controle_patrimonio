@@ -1,8 +1,8 @@
 import sys
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from templates.interfaces import *
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QListWidget, QTableWidget, QListView,QTableView, QAbstractItemView, QHeaderView
-from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info, categ_view
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QListWidget, QTableWidget, QListView,QTableView, QAbstractItemView, QHeaderView, QTextBrowser
+from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info, categ_view, config_cargo
 from connect import config, config_acess, criar_conexao
 from PyQt5.QtCore import QResource , QTimer, Qt
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
@@ -538,18 +538,43 @@ class interface(QMainWindow):
             if self.btn_home.isVisible() == False:
                 self.btn_home.show()
                 
+    def cfg_cargo(self):
+        self.cargo_config = config_cargo()
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.config_cargo = config_view()
+        self.frame_config = self.config_cargo.findChild(QFrame, "configs_frame")
+        self.text_view = self.config_cargo.findChild(QFrame, "intro_frame")
+        self.text_view.hide()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.config_cargo)
+        self.frame_config.layout().addWidget(self.cargo_config)
+        if self.config_cargo in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                self.btn_home.show()
+
     def config_screen(self):
         print('teste config')
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")
         self.config = config_view()
         self.clear_frame()
+        self.text_view = self.config.findChild(QFrame, "into_frame")
         self.frame.layout().addWidget(self.config)
         if self.config in self.frame.findChildren(QWidget):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
                 self.btn_home.show()
+        self.cargo = self.config.findChild(QPushButton, "cargo_config")
+        self.categoria = self.config.findChild(QPushButton, "cat_config")
+        self.fornecedor = self.config.findChild(QPushButton, "forec_config")
+        self.local = self.config.findChild(QPushButton, "local_config")
+        self.cargo.clicked.connect(self.cfg_cargo)
+        
+
     def local_screen(self):
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")

@@ -894,3 +894,9 @@ class detail_window(QDialog):
         layout.setSpacing(10)
         layout.addWidget(label_mensagem)
         self.setLayout(layout)
+        
+
+class config_cargo(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_cargo = uic.loadUi("templates/interfaces/cargo_config.ui", self)

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>846</width>
-    <height>491</height>
+    <height>751</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,6 +25,18 @@
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
        <widget class="QFrame" name="frame_3">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>60</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">border-radius:15px;
 border:5px solid #057A3A;
@@ -39,7 +51,7 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="cargo_config">
            <property name="minimumSize">
             <size>
              <width>90</width>
@@ -80,7 +92,7 @@ QPushButton:pressed{
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="cat_config">
            <property name="minimumSize">
             <size>
              <width>90</width>
@@ -121,7 +133,7 @@ QPushButton:pressed{
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="local_config">
            <property name="minimumSize">
             <size>
              <width>90</width>
@@ -162,7 +174,7 @@ QPushButton:pressed{
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="fornec_config">
            <property name="minimumSize">
             <size>
              <width>90</width>
@@ -206,612 +218,70 @@ QPushButton:pressed{
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="frame_7">
+       <widget class="QFrame" name="intro_frame">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QFrame" name="frame_2">
-           <property name="maximumSize">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item alignment="Qt::AlignTop">
+          <widget class="QTextBrowser" name="textBrowser">
+           <property name="minimumSize">
             <size>
-             <width>450</width>
-             <height>16777215</height>
+             <width>0</width>
+             <height>600</height>
             </size>
            </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>600</height>
+            </size>
            </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
+           <property name="font">
+            <font>
+             <family>Roboto</family>
+             <pointsize>9</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item>
-             <widget class="QFrame" name="frame_6">
-              <property name="maximumSize">
-               <size>
-                <width>450</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-radius:10px;
-background-color: #057A3A;
-border-bottom: 2px solid rgb(108, 108, 108);</string>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-               <item>
-                <widget class="QFrame" name="frame_10">
-                 <property name="styleSheet">
-                  <string notr="true">border:0;</string>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_7">
-                  <item alignment="Qt::AlignHCenter">
-                   <widget class="QFrame" name="frame_11">
-                    <property name="styleSheet">
-                     <string notr="true">border:0;</string>
-                    </property>
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_8">
-                     <item>
-                      <widget class="QLineEdit" name="lineEdit">
-                       <property name="minimumSize">
-                        <size>
-                         <width>240</width>
-                         <height>33</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>240</width>
-                         <height>24</height>
-                        </size>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color:white;</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item alignment="Qt::AlignHCenter">
-                   <widget class="QComboBox" name="comboBox">
-                    <property name="minimumSize">
-                     <size>
-                      <width>240</width>
-                      <height>24</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>240</width>
-                      <height>24</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Roboto</family>
-                      <pointsize>15</pointsize>
-                     </font>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::ActionsContextMenu</enum>
-                    </property>
-                    <property name="layoutDirection">
-                     <enum>Qt::LeftToRight</enum>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">
-
-
-QComboBox{background-color:white;
-border-radius: 50px;
-
-}
-
-QComboBox::drop-down {
-    width: 25px; /* Largura do quadrado */
-align-itens:center;
-}
-
- </string>
-                    </property>
-                    <property name="sizeAdjustPolicy">
-                     <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
-                    </property>
-                    <item>
-                     <property name="text">
-                      <string>cargo</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QFrame" name="frame_12">
-                 <property name="styleSheet">
-                  <string notr="true">border:0;</string>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_6">
-                  <item>
-                   <widget class="QPushButton" name="pushButton_5">
-                    <property name="minimumSize">
-                     <size>
-                      <width>71</width>
-                      <height>33</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>70</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
-	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
- }
-
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
-
-QPushButton:pressed{
- padding-left: 5px;
- padding-top:5px;
-	background-color: rgb(227, 227, 227);
- 
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>edit</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton_6">
-                    <property name="minimumSize">
-                     <size>
-                      <width>71</width>
-                      <height>33</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>70</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
-	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
- }
-
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
-
-QPushButton:pressed{
- padding-left: 5px;
- padding-top:5px;
-	background-color: rgb(227, 227, 227);
- 
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>edit</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton_7">
-                    <property name="minimumSize">
-                     <size>
-                      <width>71</width>
-                      <height>33</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>70</width>
-                      <height>33</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
-	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
- }
-
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
-
-QPushButton:pressed{
- padding-left: 5px;
- padding-top:5px;
-	background-color: rgb(227, 227, 227);
- 
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>edit</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_5">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_3">
-               <item>
-                <widget class="QLabel" name="label">
-                 <property name="text">
-                  <string>TextLabel</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="label_2">
-                 <property name="text">
-                  <string>TextLabel</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>TextLabel</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame_8">
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
+           <property name="styleSheet">
+            <string notr="true">background-color:white;
+border-radius:15px;
+</string>
            </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Roboto'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt; Lorem ipsum dolor sit amet. Qui praesentium eaque ut culpa rerum et laborum cupiditate ut sint illum eos fuga exercitationem et veritatis quasi. Qui illo quasi est inventore rerum est exercitationem earum et assumenda error eos explicabo consequatur sed quod earum! Ad ipsam dolor et commodi quos qui quas ipsam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Qui inventore fugit rem officiis animi in totam natus a perspiciatis consequatur ex assumenda accusantium. Qui corrupti voluptatem id sunt deleniti hic aperiam odio quo beatae nobis! Ut atque similique eos illo excepturi est dolorem exercitationem est sint molestiae est animi numquam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Sit quia explicabo aut earum doloribus a maxime beatae ut maxime labore aut commodi sint. Id ipsam asperiores quo corrupti suscipit ea voluptatem distinctio?  Lorem ipsum dolor sit amet. Qui praesentium eaque ut culpa rerum et laborum cupiditate ut sint illum eos fuga exercitationem et veritatis quasi. Qui illo quasi est inventore rerum est exercitationem earum et assumenda error eos explicabo consequatur sed quod earum! Ad ipsam dolor et commodi quos qui quas ipsam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Qui inventore fugit rem officiis animi in totam natus a perspiciatis consequatur ex assumenda accusantium. Qui corrupti voluptatem id sunt deleniti hic aperiam odio quo beatae nobis! Ut atque similique eos illo excepturi est dolorem exercitationem est sint molestiae est animi numquam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Sit quia explicabo aut earum doloribus a maxime beatae ut maxime labore aut commodi sint. Id ipsam asperiores quo corrupti suscipit ea voluptatem distinctio?  Lorem ipsum dolor sit amet. Qui praesentium eaque ut culpa rerum et laborum cupiditate ut sint illum eos fuga exercitationem et veritatis quasi. Qui illo quasi est inventore rerum est exercitationem earum et assumenda error eos explicabo consequatur sed quod earum! Ad ipsam dolor et commodi quos qui quas ipsam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Qui inventore fugit rem officiis animi in totam natus a perspiciatis consequatur ex assumenda accusantium. Qui corrupti voluptatem id sunt deleniti hic aperiam odio quo beatae nobis! Ut atque similique eos illo excepturi est dolorem exercitationem est sint molestiae est animi numquam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Sit quia explicabo aut earum doloribus a maxime beatae ut maxime labore aut commodi sint. Id ipsam asperiores quo corrupti suscipit ea voluptatem distinctio?  Lorem ipsum dolor sit amet. Qui praesentium eaque ut culpa rerum et laborum cupiditate ut sint illum eos fuga exercitationem et veritatis quasi. Qui illo quasi est inventore rerum est exercitationem earum et assumenda error eos explicabo consequatur sed quod earum! Ad ipsam dolor et commodi quos qui quas ipsam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Qui inventore fugit rem officiis animi in totam natus a perspiciatis consequatur ex assumenda accusantium. Qui corrupti voluptatem id sunt deleniti hic aperiam odio quo beatae nobis! Ut atque similique eos illo excepturi est dolorem exercitationem est sint molestiae est animi numquam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Sit quia explicabo aut earum doloribus a maxime beatae ut maxime labore aut commodi sint. Id ipsam asperiores quo corrupti suscipit ea voluptatem distinctio? &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QFrame" name="frame_4">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_2">
-               <item>
-                <widget class="QCheckBox" name="checkBox_5">
-                 <property name="styleSheet">
-                  <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
-
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
- 
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>CheckBox</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBox">
-                 <property name="styleSheet">
-                  <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
-
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
- 
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>CheckBox</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBox_2">
-                 <property name="styleSheet">
-                  <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
-
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
- 
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>CheckBox</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBox_3">
-                 <property name="styleSheet">
-                  <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
-
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
- 
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>CheckBox</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBox_4">
-                 <property name="styleSheet">
-                  <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
-
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
- 
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>CheckBox</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBox_6">
-                 <property name="styleSheet">
-                  <string notr="true"> QCheckBox {
-    spacing: 5px; /* Espaçamento entre o checkbox e o texto */
-    color: rgb(0, 85, 0); /* Cor do texto */
-}
-
-QCheckBox::indicator {
-    width: 20px;  /* Largura do checkbox */
-    height: 20px; /* Altura do checkbox */
-      background-color: #aaaaaa; /* Cor de fundo padrão */
-    border: 2px solid rgb(74, 74, 74);
-    border-radius: 3px;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-    border: 2px solid rgb(0, 85, 0);
-    background-color: #4CAF50; /* Cor de fundo quando está marcado */
-    border: 2px solid #4CAF50;
- 
-}
-QCheckBox::indicator:unchecked:hover {
-      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */
-border: 2px solid rgb(0, 85, 0); 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>CheckBox</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_9">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_9">
-               <item>
-                <widget class="QPushButton" name="pushButton_8">
-                 <property name="maximumSize">
-                  <size>
-                   <width>70</width>
-                   <height>33</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
-	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
- }
-
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
-
-QPushButton:pressed{
- padding-left: 5px;
- padding-top:5px;
-	background-color: rgb(227, 227, 227);
- 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>PushButton</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_9">
-                 <property name="maximumSize">
-                  <size>
-                   <width>70</width>
-                   <height>33</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
-	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
- }
-
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
-
-QPushButton:pressed{
- padding-left: 5px;
- padding-top:5px;
-	background-color: rgb(227, 227, 227);
- 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>PushButton</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
           </widget>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="configs_frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3"/>
        </widget>
       </item>
      </layout>
