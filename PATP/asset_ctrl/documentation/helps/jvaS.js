@@ -2,25 +2,23 @@ class MenuBars {
     constructor(menuBar, navList, navLinks) {
         this.menuBar = document.querySelector(menuBar);
         this.navList = document.querySelector(navList);
-        this.navLinks = document.querySelector(navLinks);
+        this.navLinks = document.querySelectorAll(navLinks);
         this.activeClass = "active";
-        
+
         this.handleClick = this.handleClick.bind(this);
     }
 
     animateLinks() {
-        this.navLinks.forEach((link) => {
-            link.style.animation
-                ? (link.style.animation = "")
-                : (link.style.animation = "navLinkFade 0.5s ease forwards 0.3s");
+        this.navLinks.forEach((link, index) => {
+            link.style.setProperty("--i", index); 
         });
     }
-    
+
     handleClick() {
         this.navList.classList.toggle(this.activeClass);
+        this.menuBar.classList.toggle(this.activeClass);
         this.animateLinks();
-    }    
-    
+    }
 
     addClickEvent() {
         this.menuBar.addEventListener("click", this.handleClick);
@@ -31,7 +29,7 @@ class MenuBars {
             this.addClickEvent();
         }
         return this;
-    }  
+    }
 }
 
 const menuBars = new MenuBars(
