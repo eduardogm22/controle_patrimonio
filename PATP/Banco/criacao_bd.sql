@@ -223,6 +223,6 @@ for each row
 begin
 	insert into patrimonios_audit (idusuario, tipo_alteracao, data_alteracao, idpatrimonio)
 	values
-	(@idusuario, 'insert', current_date(), 1);
+	(@idusuario, 'insert', current_date(), new.idpatrimonio);
 end $$
 delimiter ;

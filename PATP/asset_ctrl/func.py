@@ -18,13 +18,18 @@ data_cargo = 15
 if os.path.exists('line/dados.json'):
     print("Arquivo JSON existe.")
     v_j = json.load(open("line/dados.json"))
+    data_idusuario = v_j["idusuario"]
     data_user = v_j["user"]
     data_pass = v_j["password"]
     data_cargo = v_j["cargo"]
-    print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
+    print('ID Usuário', data_idusuario,'Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
 else:
     print("Arquivo JSON inexistente func.")
-
+    
+def obter_idusuario():
+    with open("line/dados.json", "r") as info_json:
+        dados = json.load(info_json)
+        return dados.get("idusuario")
 
 # icones svg
 QResource.registerResource("feather/resource.qrc")
@@ -619,8 +624,14 @@ class bag_item_cad(QWidget):
         
             con = criar_conexao()
             cursor = con.cursor()
+<<<<<<< HEAD
             cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, idnota, categoria, self.set_resp_sel_id, self.sit_sel_id])
             cursor.callproc('cadastra_nota', [chave_acesso, numero, serie, self.forn_sel_id, data_aquisicao])
+=======
+            print('usuario', obter_idusuario())
+            cursor.execute('set @idusuario = %s', (obter_idusuario(),))
+            cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, nota_sel_id, categoria, self.set_resp_sel_id, self.sit_sel_id])
+>>>>>>> f32e14cc56916eac7eee1c04ac2ca0f29fb53751
             con.commit()
             print('Produtos cadastrados com sucesso!')
         except Exception as e:
@@ -639,28 +650,45 @@ class user_details(QWidget):
         self.user_details = uic.loadUi("templates/interfaces/user_details.ui", self)
         
 class items_view(QWidget):
-    def __init__(self):
+    def __init__(self, interface):
         super().__init__()
+        self.interface = interface
         self.item_view = uic.loadUi("templates/interfaces/item_view.ui", self)
         self.btn_categ = self.findChild(QPushButton, "cat_item_btn")
         self.btn_categ.clicked.connect(self.categ_view)
 
     def categ_view(self):
         self.categview = categ_view()
+        self.categview.configRequested.connect(self.interface.config_screen)
         self.frame_v1 = self.findChild(QFrame, "body_item")
         self.frame_v2 = self.findChild(QFrame, "frame_view2")
         self.frame_v2.layout().addWidget(self.categview)
         self.frame_v2.show()
         self.frame_v1.hide()
         
-        
 
 
+<<<<<<< HEAD
 class categ_view(QWidget):
     def __init__(self):
         super().__init__()
         self.item_category = uic.loadUi("templates/interfaces/categ_view.ui", self)
         
+=======
+class categ_view(QWidget):   
+    configRequested = pyqtSignal()
+    def __init__(self):
+        super().__init__()
+        self.item_category = uic.loadUi("templates/interfaces/categ_view.ui", self)
+        self.btn_config = self.findChild(QPushButton, "category")
+        self.btn_config.clicked.connect(self.on_config_click)
+    def on_config_click(self):
+        self.configRequested.emit()
+
+
+
+
+>>>>>>> f32e14cc56916eac7eee1c04ac2ca0f29fb53751
 class rel_view(QWidget):
     def __init__(self):
         super().__init__()

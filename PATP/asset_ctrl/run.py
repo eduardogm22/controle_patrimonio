@@ -54,6 +54,11 @@ class interface(QMainWindow):
         self.label_user = self.findChild(QLabel, "labelUser")
         self.label_user.setText(user)
         self.ui.setWindowIcon(server_svg)
+<<<<<<< HEAD
+=======
+
+        self.itemsview_instancia = items_view(self)
+>>>>>>> f32e14cc56916eac7eee1c04ac2ca0f29fb53751
         
 
         # botoes da barra de menu
@@ -477,7 +482,7 @@ class interface(QMainWindow):
     def item_view(self):
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")  
-        self.itemview = items_view()
+        self.itemview = items_view(self)
         self.clear_frame()
         self.frame.layout().addWidget(self.itemview)
         if self.itemview in self.frame.findChildren(QWidget):
