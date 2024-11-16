@@ -900,3 +900,18 @@ class config_cargo(QWidget):
     def __init__(self):
         super().__init__()
         self.config_cargo = uic.loadUi("templates/interfaces/cargo_config.ui", self)
+        
+class config_cat(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_cat = uic.loadUi("templates/interfaces/categ_config.ui", self)
+        
+class config_forn(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_forn = uic.loadUi("templates/interfaces/forn_config.ui", self)
+        
+class config_local(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_local = uic.loadUi("templates/interfaces/local_config.ui", self)
