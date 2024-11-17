@@ -1330,6 +1330,23 @@ QPushButton:pressed{
              </property>
             </widget>
            </widget>
+           <widget class="QTableView" name="usersList">
+            <property name="geometry">
+             <rect>
+              <x>-90</x>
+              <y>0</y>
+              <width>620</width>
+              <height>324</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+border-radius:10px
+
+</string>
+            </property>
+           </widget>
           </widget>
          </item>
         </layout>
