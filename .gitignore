@@ -2,3 +2,4 @@
 Telas/login2.ui
 "*.pyc" 
 "PATP/asset_ctrl/__pycache__/" 
+PATP/asset_ctrl/__pycache__/func.cpython-312.pyc
