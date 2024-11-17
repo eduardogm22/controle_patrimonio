@@ -6,18 +6,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>290</width>
-    <height>400</height>
+    <width>300</width>
+    <height>315</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>315</height>
+   </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>400</width>
-    <height>400</height>
+    <width>300</width>
+    <height>315</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">border-radius:
+10px;
+border:5px solid #057A3A;
+background-color: #057A3A;
+border-bottom: 2px solid rgb(108, 108, 108);
+border:none;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -29,6 +43,14 @@
         <height>240</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:
+10px;
+border:5px solid #057A3A;
+background-color: #057A3A;
+border-bottom: 2px solid rgb(108, 108, 108);
+border:none;</string>
+      </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
@@ -36,7 +58,7 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
-       <item alignment="Qt::AlignTop">
+       <item alignment="Qt::AlignBottom">
         <widget class="QFrame" name="frame_3">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -55,8 +77,14 @@
             </property>
             <property name="font">
              <font>
+              <family>Roboto</family>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
             </property>
             <property name="text">
              <string>Login:</string>
@@ -70,6 +98,20 @@
               <width>0</width>
               <height>30</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
+background-color:white;
+border-radius: 9px;
+padding:9px;
+border-bottom: 2px solid rgb(108, 108, 108);
+}
+</string>
             </property>
             <property name="placeholderText">
              <string>User</string>
@@ -98,8 +140,14 @@
             </property>
             <property name="font">
              <font>
+              <family>Roboto</family>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
             </property>
             <property name="text">
              <string>Senha:</string>
@@ -113,6 +161,21 @@
               <width>0</width>
               <height>30</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
+background-color:white;
+border-radius: 9px;
+padding:9px;
+border-bottom: 2px solid rgb(108, 108, 108);
+}
+
+</string>
             </property>
             <property name="inputMask">
              <string/>
@@ -133,6 +196,14 @@
     </item>
     <item alignment="Qt::AlignTop">
      <widget class="QFrame" name="frame_2">
+      <property name="styleSheet">
+       <string notr="true">border-radius:
+10px;
+border:5px solid #057A3A;
+background-color: #057A3A;
+border-bottom: 2px solid rgb(108, 108, 108);
+border:none;</string>
+      </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
@@ -154,6 +225,24 @@
            <height>33</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+         </property>
          <property name="text">
           <string>Cancelar</string>
          </property>
@@ -173,6 +262,24 @@
            <height>33</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 4px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+         </property>
          <property name="text">
           <string>Entrar</string>
          </property>
@@ -183,7 +290,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

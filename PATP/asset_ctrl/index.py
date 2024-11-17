@@ -34,23 +34,14 @@ class login_inicial(QMainWindow):
                 cursor = conn.cursor()
                 cursor.execute("SELECT * FROM usuarios WHERE usuario = %s AND senha = %s", (u, p))
                 filter = cursor.fetchone()
-                cursor_c = conn.cursor()
-                cursor_c.execute("SELECT idcargo FROM usuarios WHERE usuario = %s", (u,))
-                filter_c = cursor.fetchall()
                 if filter:
-<<<<<<< HEAD
-                    log_list['user'] = u
-                    log_list['cargo'] = filter_c[0][0]
-                    log_list['password'] = p
-=======
                     log_list['idusuario'] = filter[0]
                     log_list['user'] = filter[1]
                     log_list['cargo'] = filter[3]
                     log_list['password'] = filter[2]
->>>>>>> f32e14cc56916eac7eee1c04ac2ca0f29fb53751
                     #print(log_list)
                     self.close()
-                    self.rodar_main(filter[1])
+                    self.rodar_main(str(filter[1]))
                     self.json_login()
                 else:
                     print('erro')
@@ -76,11 +67,11 @@ class login_inicial(QMainWindow):
         os.makedirs("line", exist_ok=True)
         with open("line/dados.json", "w") as info_json:
             json.dump(log, info_json)
-
+            
     def rodar_main(self, usuario):
         subprocess.Popen(['python', 'run.py', usuario])
 
 app = QApplication(sys.argv)
 i = login_inicial()
 i.show()
-sys.exit(app.exec_())
+sys.exit(app.exec_())   

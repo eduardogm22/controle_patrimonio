@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-select * from patrimonios_audit;
-select * from patrimonios;
-
->>>>>>> f32e14cc56916eac7eee1c04ac2ca0f29fb53751
 -- Final teste 1
 -- Teste busca
 CALL st_pesquisar('Computador Dell');

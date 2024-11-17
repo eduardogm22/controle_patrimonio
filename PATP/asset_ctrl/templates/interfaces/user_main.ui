@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>995</width>
-    <height>549</height>
+    <height>555</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,8 +78,15 @@
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:9px;
+               <string notr="true">QLineEdit{
+	color:rgb(121, 121, 121);
+background-color:white;
+border: 1px solid rgb(199, 199, 199);
+border-radius: 10px;
+border-bottom: 3px solid rgb(91, 91, 91)
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}
 </string>
               </property>
               <property name="alignment">
@@ -131,14 +138,28 @@ border-radius:9px;
                <enum>Qt::NoContextMenu</enum>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:12px;</string>
+               <string notr="true">
+
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
+
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
+ 
+}</string>
               </property>
               <property name="text">
                <string>Buscar</string>
               </property>
               <property name="icon">
-               <iconset resource="../../feather/resource01.qrc">
+               <iconset>
                 <normaloff>:/icons/search.svg</normaloff>:/icons/search.svg</iconset>
               </property>
               <property name="iconSize">
@@ -190,14 +211,28 @@ border-radius:12px;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:12px;</string>
+               <string notr="true">
+
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
+
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
+ 
+}</string>
               </property>
               <property name="text">
                <string>Detalhes</string>
               </property>
               <property name="icon">
-               <iconset resource="../../feather/resource01.qrc">
+               <iconset>
                 <normaloff>:/icons/info.svg</normaloff>:/icons/info.svg</iconset>
               </property>
               <property name="iconSize">
@@ -255,15 +290,28 @@ border-radius:12px;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:9px;
-</string>
+               <string notr="true">
+
+QPushButton { color: rgb(243, 239, 238);
+	border-radius:15px;		
+	border: 4px solid #00BF63;
+	background-color:#00BF63;
+ }
+
+QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+	background-color: rgb(227, 227, 227);
+ 
+}</string>
               </property>
               <property name="text">
                <string>Cadastrar</string>
               </property>
               <property name="icon">
-               <iconset resource="../../feather/resource01.qrc">
+               <iconset>
                 <normaloff>:/icons/user-plus.svg</normaloff>:/icons/user-plus.svg</iconset>
               </property>
               <property name="iconSize">
@@ -294,6 +342,11 @@ border-radius:9px;
           <height>45</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: #057A3A;
+    border-top-right-radius: 15px;  
+    border-bottom-right-radius: 15px;</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -306,7 +359,7 @@ border-radius:9px;
            <property name="minimumSize">
             <size>
              <width>300</width>
-             <height>45</height>
+             <height>30</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -314,6 +367,17 @@ border-radius:9px;
              <width>300</width>
              <height>45</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Roboto</family>
+             <pointsize>11</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:rgb(255, 255, 255)</string>
            </property>
            <property name="text">
             <string>Usuários cadastrados</string>
@@ -325,7 +389,7 @@ border-radius:9px;
            <property name="minimumSize">
             <size>
              <width>300</width>
-             <height>45</height>
+             <height>30</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -333,6 +397,17 @@ border-radius:9px;
              <width>300</width>
              <height>45</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Roboto</family>
+             <pointsize>11</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:rgb(255, 255, 255)</string>
            </property>
            <property name="text">
             <string>Últimos registros</string>
@@ -363,8 +438,11 @@ border-radius:9px;
          <item>
           <widget class="QTableView" name="usersList">
            <property name="styleSheet">
-            <string notr="true">background-color:white;
-margin-right:36px;</string>
+            <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+border-radius:10px
+
+</string>
            </property>
           </widget>
          </item>
@@ -377,7 +455,11 @@ margin-right:36px;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color:white;</string>
+            <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+border-radius:10px
+
+</string>
            </property>
           </widget>
          </item>
