@@ -1,3 +1,4 @@
 
 Telas/login2.ui
 "*.pyc" 
+"PATP/asset_ctrl/__pycache__/" 
