@@ -1,9 +1,9 @@
 import sys
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from templates.interfaces import *
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QListWidget, QTableWidget, QListView,QTableView, QAbstractItemView, QHeaderView
-from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info
-from connect import config, config_acess
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QListWidget, QTableWidget, QListView,QTableView, QAbstractItemView, QHeaderView, QTextBrowser
+from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info, categ_view, config_cargo, config_cat, config_local, config_forn
+from connect import config, config_acess, criar_conexao
 from PyQt5.QtCore import QResource , QTimer, Qt
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
 import mysql.connector # type: ignore
@@ -30,10 +30,10 @@ home_svg = QIcon("feather/home.svg")
 chevrons_left_svg = QIcon("feather/chevrons-left.svg")
 menu_svg = QIcon("feather/menu.svg")
 user_svg = QIcon("feather/user.svg")
-codesandbox_svg = QIcon("feather/codesandbox.svg")
-database_svg = QIcon("feather/database.svg")
-map_pin_svg = QIcon("feather/map-pin.svg")
-dollar_sign_svg = QIcon("feather/dollar-sign.svg")
+codesandbox_svg = QIcon("feather-black/codesandbox.svg")
+database_svg = QIcon("feather-black/database.svg")
+map_pin_svg = QIcon("feather-black/map-pin.svg")
+dollar_sign_svg = QIcon("feather-black/dollar-sign.svg")
 server_svg = QIcon("feather/server.svg")
 search_svg = QIcon("feather/search.svg")
 alert_circle_svg = QIcon("feather/alert-circle.svg")
@@ -54,11 +54,8 @@ class interface(QMainWindow):
         self.label_user = self.findChild(QLabel, "labelUser")
         self.label_user.setText(user)
         self.ui.setWindowIcon(server_svg)
-<<<<<<< HEAD
-=======
 
         self.itemsview_instancia = items_view(self)
->>>>>>> f32e14cc56916eac7eee1c04ac2ca0f29fb53751
         
 
         # botoes da barra de menu
@@ -95,20 +92,33 @@ class interface(QMainWindow):
         
         # TESTE TEXTO PRODUTO
         self.text_item = self.findChild(QLabel, "textProd")
-        self.text_item.setText('Produtos')
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute('select count(*) from patrimonios')
+        data_prod = cursor.fetchall()
+        self.text_item.setText('Quantidade: '+str(data_prod[0][0]))
+        con.close()
+        
         self.text_logs = self.findChild(QLabel, "textLogs")
         self.text_logs.setText('Logs')
+
         self.text_local = self.findChild(QLabel, "textLocal")
         self.text_local.setText('Local')
+
         self.text_vp = self.findChild(QLabel, "textVp")
-        self.text_vp.setText('Patrimônio')
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute('select sum(valor_unitario) from patrimonios')
+        data_vp = cursor.fetchall()
+        self.text_vp.setText('R$: '+str(data_vp[0][0]))
+        con.close()
         
 
         # instância das sombras 
         self.shadow_frame1 = QGraphicsDropShadowEffect() 
         self.shadow_frame1.setOffset(0, 0)  # posição da sombra
         self.shadow_frame1.setBlurRadius(9)  # tamanho da sombra
-        self.shadow_frame1.setColor(QtGui.QColor(0, 0, 0, 128))
+        self.shadow_frame1.setColor(QtGui.QColor(0, 100, 0, 128))
 
         self.shadow_frame2 = QGraphicsDropShadowEffect() 
         self.shadow_frame2.setOffset(0, 0)
@@ -309,30 +319,30 @@ class interface(QMainWindow):
         # botão produtos
         if obj == self.btn_item:
             if event.type() == QtCore.QEvent.Leave:
-                self.frame_card1.setStyleSheet("QFrame#frame_card1{border: 1px solid transparent;}")
+                self.frame_card1.setStyleSheet("QFrame#frame_card1{border:1px solid #057A3A;}")
             elif event.type() == QtCore.QEvent.Enter:
-                self.frame_card1.setStyleSheet("QFrame#frame_card1{border:2px solid #666666;border-radius:15px;}")
+                self.frame_card1.setStyleSheet("QFrame#frame_card1{border:2px solid #057A3A;border-radius:15px;}")
 
         # botão logs
         elif obj == self.btn_reg:
             if event.type() == QtCore.QEvent.Leave:
-                self.frame_card2.setStyleSheet("QFrame#frame_card2{border: 1px solid transparent;}")
+                self.frame_card2.setStyleSheet("QFrame#frame_card2{border: 1px solid #057A3A;}")
             elif event.type() == QtCore.QEvent.Enter:
-                self.frame_card2.setStyleSheet("QFrame#frame_card2{border:2px solid #666666;border-radius:15px;}")
+                self.frame_card2.setStyleSheet("QFrame#frame_card2{border:2px solid #057A3A;border-radius:15px;}")
 
         # botão local       
         elif obj == self.btn_local:
             if event.type() == QtCore.QEvent.Leave:
-                self.frame_card3.setStyleSheet("QFrame#frame_card3{border: 1px solid transparent;}")
+                self.frame_card3.setStyleSheet("QFrame#frame_card3{border: 1px solid #057A3A;}")
             elif event.type() == QtCore.QEvent.Enter:
-                self.frame_card3.setStyleSheet("QFrame#frame_card3{border:2px solid #666666;border-radius:15px;}")
+                self.frame_card3.setStyleSheet("QFrame#frame_card3{border:2px solid #057A3A;border-radius:15px;}")
 
         # botão patrimônio
         elif obj == self.btn_vp:
             if event.type() == QtCore.QEvent.Leave:
-                self.frame_card4.setStyleSheet("QFrame#frame_card4{border: 1px solid transparent;}")
+                self.frame_card4.setStyleSheet("QFrame#frame_card4{border: 1px solid #057A3A;}")
             elif event.type() == QtCore.QEvent.Enter:
-                self.frame_card4.setStyleSheet("QFrame#frame_card4{border:2px solid #666666;border-radius:15px;}")
+                self.frame_card4.setStyleSheet("QFrame#frame_card4{border:2px solid #057A3A;border-radius:15px;}")
 
         # botão conta
         elif obj == self.btn_account:
@@ -352,9 +362,9 @@ class interface(QMainWindow):
                 shadow.setOffset(0, 0)
                 shadow.setBlurRadius(3)
                 shadow.setColor(QtGui.QColor(0, 0, 2))
-                self.btn_home.setGraphicsEffect(shadow)
+                self.home_btn.setGraphicsEffect(shadow)
             elif event.type() == QtCore.QEvent.Leave:
-                self.btn_home.setGraphicsEffect(None)
+                self.home_btn.setGraphicsEffect(None)
     
         # botões menu lateral
         elif obj == self.btn_rel:
@@ -528,17 +538,131 @@ class interface(QMainWindow):
             if self.btn_home.isVisible() == False:
                 self.btn_home.show()
                 
+    def cfg_cargo(self):
+        self.cargo_config = config_cargo()
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.config = config_view()
+        self.frame_config = self.config.findChild(QFrame, "configs_frame")
+        self.text_view = self.config.findChild(QFrame, "intro_frame")
+        self.text_view.hide()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.config)
+        self.frame_config.layout().addWidget(self.cargo_config)
+        if self.config in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                self.btn_home.show()
+        self.cargo = self.config.findChild(QPushButton, "cargo_config")
+        self.categoria = self.config.findChild(QPushButton, "cat_config")
+        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
+        self.local = self.config.findChild(QPushButton, "local_config")
+        self.cargo.clicked.connect(self.cfg_cargo)
+        self.local.clicked.connect(self.cfg_local)
+        self.fornecedor.clicked.connect(self.cfg_forn)
+        self.categoria.clicked.connect(self.cfg_cat)
+                
+    def cfg_local(self):
+        self.local_config = config_local()
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.config = config_view()
+        self.frame_config = self.config.findChild(QFrame, "configs_frame")
+        self.text_view = self.config.findChild(QFrame, "intro_frame")
+        self.text_view.hide()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.config)
+        self.frame_config.layout().addWidget(self.local_config)
+        if self.config in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                self.btn_home.show()
+        self.cargo = self.config.findChild(QPushButton, "cargo_config")
+        self.categoria = self.config.findChild(QPushButton, "cat_config")
+        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
+        self.local = self.config.findChild(QPushButton, "local_config")
+        self.cargo.clicked.connect(self.cfg_cargo)
+        self.local.clicked.connect(self.cfg_local)
+        self.fornecedor.clicked.connect(self.cfg_forn)
+        self.categoria.clicked.connect(self.cfg_cat)
+        
+    def cfg_cat(self):
+        self.cat_config = config_cat()
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.config = config_view()
+        self.frame_config = self.config.findChild(QFrame, "configs_frame")
+        self.text_view = self.config.findChild(QFrame, "intro_frame")
+        self.text_view.hide()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.config)
+        self.frame_config.layout().addWidget(self.cat_config)
+        if self.config in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                self.btn_home.show()
+        self.cargo = self.config.findChild(QPushButton, "cargo_config")
+        self.categoria = self.config.findChild(QPushButton, "cat_config")
+        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
+        self.local = self.config.findChild(QPushButton, "local_config")
+        self.cargo.clicked.connect(self.cfg_cargo)
+        self.local.clicked.connect(self.cfg_local)
+        self.fornecedor.clicked.connect(self.cfg_forn)
+        self.categoria.clicked.connect(self.cfg_cat)
+                
+    def cfg_forn(self):
+        self.forn_config = config_forn()
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.config = config_view()
+        self.frame_config = self.config.findChild(QFrame, "configs_frame")
+        self.text_view = self.config.findChild(QFrame, "intro_frame")
+        self.text_view.hide()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.config)
+        self.frame_config.layout().addWidget(self.forn_config)
+        if self.config in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                self.btn_home.show()
+        self.cargo = self.config.findChild(QPushButton, "cargo_config")
+        self.categoria = self.config.findChild(QPushButton, "cat_config")
+        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
+        self.local = self.config.findChild(QPushButton, "local_config")
+        self.cargo.clicked.connect(self.cfg_cargo)
+        self.local.clicked.connect(self.cfg_local)
+        self.fornecedor.clicked.connect(self.cfg_forn)
+        self.categoria.clicked.connect(self.cfg_cat)
+
+
+
     def config_screen(self):
+        print('teste config')
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")
         self.config = config_view()
         self.clear_frame()
+        self.text_view = self.config.findChild(QFrame, "into_frame")
         self.frame.layout().addWidget(self.config)
         if self.config in self.frame.findChildren(QWidget):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
                 self.btn_home.show()
+        self.cargo = self.config.findChild(QPushButton, "cargo_config")
+        self.categoria = self.config.findChild(QPushButton, "cat_config")
+        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
+        self.local = self.config.findChild(QPushButton, "local_config")
+        self.cargo.clicked.connect(self.cfg_cargo)
+        self.local.clicked.connect(self.cfg_local)
+        self.fornecedor.clicked.connect(self.cfg_forn)
+        self.categoria.clicked.connect(self.cfg_cat)
+        
+
     def local_screen(self):
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")

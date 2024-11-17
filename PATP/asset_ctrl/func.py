@@ -1,15 +1,22 @@
 # funcionalidades de cada tela que for chamada
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
-from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView
+from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QSizePolicy, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView, QGraphicsScene, QFileDialog, QMessageBox
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel
+from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
 from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
+import matplotlib.pyplot as plt # type: ignore
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas # type: ignore
+from matplotlib.figure import Figure # type: ignore
+import pandas as pd
+from datetime import datetime,timedelta
 import os, json
+import openpyxl #type: ignore
+from openpyxl.styles import Font, Alignment #type: ignore
 
 
 data_user = ''
@@ -412,14 +419,16 @@ class bag_view(QWidget):
         for column in range(self.table_item.model().columnCount()):
             data = self.table_item.model().index(row, column).data()
             print(f"{self.table_item.model().horizontalHeaderItem(column).text()}: {data}")
+            if self.table_item.model().horizontalHeaderItem(column).text() == 'ID':
+                self.l_t = data
         self.selected_rows.clear()
         self.selected_rows.append(self.table_item.model().index(row, column).data())
         self.btn_details.show()
         self.btn_details.clicked.connect(self.details_screen)
 
     def details_screen(self):
-        #self.window_details = detail_window(str(self.l_t), str(self.l_t))
-        #self.window_details.exec_()
+        self.window_details = detail_window(str(self.l_t), str(self.l_t))
+        self.window_details.exec_()
         print('Faltando ajuste')
 
 class bag_item_cad(QWidget):
@@ -434,7 +443,7 @@ class bag_item_cad(QWidget):
         self.cbxSetoresResponsaveis = self.findChild(QComboBox, "cbxSetResp")
         self.cbxSituacao = self.findChild(QComboBox, "cbxSituacao")
         
-        self.edtChaveAcesso = self.findChildren(QLineEdit, "edtChaveAcessoNota")
+        self.edtChaveAcesso = self.findChild(QLineEdit, "edtChaveAcessoNota")
         self.edtNumero = self.findChild(QLineEdit, "edtNumeroNota")
         self.edtSerie = self.findChild(QLineEdit, "edtSerieNota")
         self.cbxFornecedores = self.findChild(QComboBox, "cbxFornecedor")
@@ -478,7 +487,7 @@ class bag_item_cad(QWidget):
         self.number_input.keyPressEvent = self.keyPressEvent
         self.btn_confirm = self.findChild(QPushButton, "cadItens")
         self.btn_confirm.clicked.connect(self.confirm)
-        
+
         self.btn_del = self.findChild(QPushButton, "del")
         self.btn_del.clicked.connect(self.deletar_item)
 
@@ -499,7 +508,7 @@ class bag_item_cad(QWidget):
         self.lista_produtos.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
         self.value_result = self.findChild(QLabel, "value_r")
-        
+
         self.number_input.textChanged.connect(self.update_label)
         self.quantidade.valueChanged.connect(self.update_label)
 
@@ -511,7 +520,7 @@ class bag_item_cad(QWidget):
             q = float(self.quantidade.value())
             v = float(valor)
             resultado = q * v
-            self.value_result.setText(f"Resultado: {resultado:.2f}")
+            self.value_result.setText(f"Valor Total: {resultado:.2f}")
         except ValueError:
             self.value_result.setText("Por favor, insira um número válido no campo de valor.")
         pass
@@ -522,13 +531,34 @@ class bag_item_cad(QWidget):
         valor = self.number_input.text()
         categoria = self.cat_sel_nome = self.cbxCategoria.currentText()
         quantidade = self.quantidade.value()
-        if not nome or not valor or quantidade == 0:
-            print('Sem valores')
+
+        data_aquisicao = self.dteDataAquisicao.date().toString("yyyy-MM-dd")
+        chave_acesso = self.edtChaveAcesso.text()
+        numero = self.edtNumero.text()
+        serie = self.edtSerie.text()
+
+        if not nome or not valor or quantidade == 0 or not chave_acesso or not numero or not serie or not data_aquisicao:
+            print('Faltando valores. Verifique!')
         else:
             self.id_counter += 1
             self.listagem[self.id_counter] = [nome, valor, categoria, quantidade]
             self.atualizar_tabela()
             self.clear_c()
+            
+            con = criar_conexao()
+            cursor = con.cursor()
+
+            cursor.execute('select idfornecedor from fornecedores where nome = %s', (self.cbxFornecedores.currentText(),))
+            resultado_forn = cursor.fetchone()
+            self.forn_sel_id = resultado_forn[0]
+            try:
+                cursor.callproc('cadastra_nota', [chave_acesso, numero, serie, self.forn_sel_id, data_aquisicao])
+                con.commit()
+            except Exception as e:
+                print('Erro no cadastro: ', e)
+            
+            cursor.close()
+            fechar_conexao(con)
         
     def clear_c(self):
         self.name_item.clear()
@@ -553,6 +583,7 @@ class bag_item_cad(QWidget):
         self.lista_produtos.horizontalHeader().setStretchLastSection(True)
         print(self.listagem)
         
+                
     # função responsável pela interação de seleção de linha
     # print com o for apenas para teste
     def handle_row_click(self, index):
@@ -594,10 +625,6 @@ class bag_item_cad(QWidget):
         resultado_cat = cursor.fetchone()
         self.cat_sel_id = resultado_cat[0]
         
-        cursor.execute('select idfornecedor from fornecedores where nome = %s', (self.cbxFornecedores.currentText(),))
-        resultado_forn = cursor.fetchone()
-        self.forn_sel_id = resultado_forn[0]
-        
         cursor.execute('select idsetor_responsavel from setores_responsaveis where nome = %s', (self.cbxSetoresResponsaveis.currentText(),))
         resultado_set_resp = cursor.fetchone()
         self.set_resp_sel_id = resultado_set_resp[0]
@@ -605,40 +632,35 @@ class bag_item_cad(QWidget):
         cursor.execute('select idsituacao from situacoes where nome = %s', (self.cbxSituacao.currentText(),))
         resultado_situacao = cursor.fetchone()
         self.sit_sel_id = resultado_situacao[0]
+        
+        cursor.execute('select idnota from info_notas where chave_acesso = %s', (self.edtChaveAcesso.text(),))
+        resultado_idnota = cursor.fetchone()
+        nota_sel_id = resultado_idnota[0]
                 
         cursor.close()
         fechar_conexao(con)
         
         data_recebimento = self.dteDataRecebimento.date().toString("yyyy-MM-dd")
-        data_aquisicao = self.dteDataAquisicao.date().toString("yyyy-MM-dd")
-        chave_acesso = self.edtChaveAcesso.text()
-        numero = self.edtNumero.text()
-        serie = self.edtSerie.text()
         
         #!!!!!!!!EM OBRAS!!!!!!!!!! Nao reparem na bagunça
         
         # Quase pronto, falta apenas pegar o id nota
-        '''try:
+        try:
             for item_id, item_data in self.listagem.items():
                 nome, valor_unitario, categoria, quantidade = item_data
         
             con = criar_conexao()
             cursor = con.cursor()
-<<<<<<< HEAD
-            cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, idnota, categoria, self.set_resp_sel_id, self.sit_sel_id])
-            cursor.callproc('cadastra_nota', [chave_acesso, numero, serie, self.forn_sel_id, data_aquisicao])
-=======
             print('usuario', obter_idusuario())
             cursor.execute('set @idusuario = %s', (obter_idusuario(),))
             cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, nota_sel_id, categoria, self.set_resp_sel_id, self.sit_sel_id])
->>>>>>> f32e14cc56916eac7eee1c04ac2ca0f29fb53751
             con.commit()
             print('Produtos cadastrados com sucesso!')
         except Exception as e:
             print('Erro no cadastro', e)
         finally:
             cursor.close()   
-            fechar_conexao(con)'''
+            fechar_conexao(con)
     
         self.listagem.clear()
         self.atualizar_tabela()
@@ -668,13 +690,6 @@ class items_view(QWidget):
         
 
 
-<<<<<<< HEAD
-class categ_view(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.item_category = uic.loadUi("templates/interfaces/categ_view.ui", self)
-        
-=======
 class categ_view(QWidget):   
     configRequested = pyqtSignal()
     def __init__(self):
@@ -688,7 +703,6 @@ class categ_view(QWidget):
 
 
 
->>>>>>> f32e14cc56916eac7eee1c04ac2ca0f29fb53751
 class rel_view(QWidget):
     def __init__(self):
         super().__init__()
@@ -699,34 +713,150 @@ class patr_view(QWidget):
     def __init__(self):
         super().__init__()
         self.patr_view = uic.loadUi("templates/interfaces/patr_view.ui", self)
-        self.list_ptr = self.findChild(QListView, "list_patr")
-        self.grap_veiw = self.findChild(QGraphicsView, "grap_view")
-        self.value_d = self.findChild(QListView, "date_view")
+        self.list_ptr = self.findChild(QTableView, "list_patr")
+        self.grap_view = self.findChild(QGraphicsView, "grap_view")
         self.date_i = self.findChild(QDateEdit, "dt_inicial")
         self.date_f = self.findChild(QDateEdit, "dt_final")
         self.btn_filter = self.findChild(QPushButton, "filter_dt")
-        self.btn_filter.clicked.connect(self.filter_grp)
-        model = QStandardItemModel()
-        data = ["Item A", "Item B", "Item C"]
-        for item in data:
-            standard_item = QStandardItem(item)
-            model.appendRow(standard_item)
-        self.list_ptr.setResizeMode(QListView.Adjust)
-        self.list_ptr.setModel(model)
-        
-    def show_graph(self):
-        pass
-    
-    def list_patr(self):
-        pass
-    
-    def filter_grp(self):
+        self.btn_filter.clicked.connect(self.filter_data)
+        self.btn_rlt = self.findChild(QPushButton, "rlt_btn")
+        self.btn_rlt.clicked.connect(self.rlt_patrimonio)
+        self.set_default_dates()
+        self.setup_table()
+        self.setup_graph()
+        self.create_graph(self.date_i.date().toString("yyyy-MM-dd"), self.date_f.date().toString("yyyy-MM-dd"))
+        self.filter_data()
+
+    def set_default_dates(self):
+        today = datetime.now()
+        three_years_ago = today - timedelta(days=365 * 3)
+        self.date_i.setDate(three_years_ago)
+        self.date_f.setDate(today)
+
+    def setup_table(self):
+        self.list_ptr.setEditTriggers(QTableView.NoEditTriggers)
+        self.list_ptr.setSelectionMode(QTableView.NoSelection)
+        self.model = QStandardItemModel()
+        self.model.setHorizontalHeaderLabels(["Nome", "Valor Uni.", "Data de Recebimento"])
+        self.list_ptr.setModel(self.model)
+        header = self.list_ptr.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.Stretch)
+        header.setStretchLastSection(True)
+        self.list_ptr.verticalHeader().setVisible(False)
+        self.list_ptr.setGridStyle(Qt.NoPen)
+        self.list_ptr.setAlternatingRowColors(True)
+        self.list_ptr.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+        self.load_table_data()
+
+    def load_table_data(self, d_i=None, d_f=None):
+        self.model.clear()
+        con = criar_conexao()
+        cursor = con.cursor()
+
+        if d_i and d_f:
+            cursor.execute("""
+                SELECT nome, valor_unitario, data_recebimento 
+                FROM patrimonios 
+                WHERE data_recebimento BETWEEN %s AND %s
+            """, (d_i, d_f))
+        else:
+            cursor.execute("SELECT nome, valor_unitario, data_recebimento FROM patrimonios")            
+
+        for row in cursor.fetchall():
+            items = [QStandardItem(str(cell)) for cell in row]
+            for item in items:
+                item.setSelectable(False)
+            self.model.appendRow(items)
+        self.model.setHorizontalHeaderLabels(["Nome", "Valor Uni.", "Data de Recebimento"])
+        self.list_ptr.setModel(self.model)
+        self.list_ptr.resizeColumnsToContents()
+        self.list_ptr.horizontalHeader().setStretchLastSection(True)
+
+    def setup_graph(self):
+        layout = QVBoxLayout()
+        self.figure = plt.figure(figsize=(8, 6))
+        self.canvas = FigureCanvas(self.figure)
+        layout.addWidget(self.canvas)
+        self.grap_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        widget = QWidget()
+        widget.setLayout(layout)
+        self.scene = QGraphicsScene()
+        self.scene.addWidget(widget)
+        self.grap_view.setScene(self.scene)
+
+    def filter_data(self):
         d_i = self.date_i.date().toString("yyyy-MM-dd")
         d_f = self.date_f.date().toString("yyyy-MM-dd")
-        print(d_i, d_f)
+        self.load_table_data(d_i, d_f)
+        self.create_graph(d_i, d_f)
 
+    def create_graph(self, d_i, d_f):
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute("""
+            SELECT DATE(data_recebimento) as data, 
+                SUM(valor_unitario) as valor_total
+            FROM patrimonios 
+            WHERE data_recebimento BETWEEN %s AND %s
+            GROUP BY DATE(data_recebimento)
+            ORDER BY data_recebimento
+        """, (d_i, d_f))
 
+        data = cursor.fetchall()
+        df = pd.DataFrame(data, columns=['data', 'valor_total'])
 
+        self.figure.clear()
+        ax = self.figure.add_subplot(111)
+        ax.plot(df['data'], df['valor_total'], color='green', marker='o')
+        ax.set_title('Valor Total por Data')
+        ax.set_xlabel('Data')
+        ax.set_ylabel('Valor Total (R$)')
+        ax.tick_params(axis='x', rotation=45)
+        self.figure.tight_layout()
+        self.canvas.draw()
+        self.grap_view.fitInView(self.grap_view.sceneRect(), Qt.KeepAspectRatio)
+
+    def rlt_patrimonio(self):
+        d_i = self.date_i.date().toString("yyyy-MM-dd")
+        d_f = self.date_f.date().toString("yyyy-MM-dd")
+
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute("""
+            SELECT nome, valor_unitario, num_patrimonio, data_recebimento 
+            FROM patrimonios
+            WHERE data_recebimento BETWEEN %s AND %s
+        """, (d_i, d_f))
+        data = cursor.fetchall()
+
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
+        worksheet.title = "Relatório de Patrimônio"
+
+        bold_font = Font(bold=True)
+        centered_alignment = Alignment(horizontal='center', vertical='center')
+
+        worksheet['A1'] = 'Nome'
+        worksheet['B1'] = 'Valor Unitário'
+        worksheet['C1'] = 'Número de Patrimônio'
+        worksheet['D1'] = 'Data de Recebimento'
+        for col in range(1, 5):
+            worksheet.cell(row=1, column=col).font = bold_font
+            worksheet.cell(row=1, column=col).alignment = centered_alignment
+
+        row = 2
+        for nome, valor_unitario, num_patrimonio, data_recebimento in data:
+            worksheet.cell(row=row, column=1, value=nome)
+            worksheet.cell(row=row, column=2, value=valor_unitario)
+            worksheet.cell(row=row, column=3, value=num_patrimonio)
+            worksheet.cell(row=row, column=4, value=data_recebimento)
+            row += 1
+
+        # Salvar o arquivo
+        file_path, _ = QFileDialog.getSaveFileName(self, "Salvar Relatório", os.path.expanduser("~"), "Arquivos Excel (*.xlsx)")
+        if file_path:
+            workbook.save(file_path)
+            QMessageBox.information(self, "Relatório Gerado", f"O relatório foi salvo em: {file_path}")
 
 class logs_view(QWidget):
     def __init__(self):
@@ -747,18 +877,41 @@ class detail_window(QDialog):
     def __init__(self, msg, type_msg):
         super().__init__()
         self.type_msg = type_msg
-        print (type_msg)
+        self.msg = msg
+        print(type_msg)
         self.setWindowFlags(Qt.Popup | Qt.FramelessWindowHint)
         self.setModal(True)
         self.setStyleSheet("background-color: #f0f0f0; border: 1px solid #ccc;")
         layout = QVBoxLayout()
-        label_mensagem = QLabel(msg)
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute("SELECT * FROM patrimonios WHERE idpatrimonio = %s", (self.type_msg,))
+        data = cursor.fetchone()
+        label_mensagem = QLabel("Dados selecionados:" + str(data))
         label_mensagem.setAlignment(Qt.AlignCenter)
         layout.setAlignment(Qt.AlignCenter)
-        layout.setContentsMargins(10, 10, 10, 10)
+        layout.setContentsMargins(10, 100, 10, 100)
         layout.setSpacing(10)
         layout.addWidget(label_mensagem)
         self.setLayout(layout)
-    def dados_selected(self):
-        pass
-    
+        
+
+class config_cargo(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_cargo = uic.loadUi("templates/interfaces/cargo_config.ui", self)
+        
+class config_cat(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_cat = uic.loadUi("templates/interfaces/categ_config.ui", self)
+        
+class config_forn(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_forn = uic.loadUi("templates/interfaces/forn_config.ui", self)
+        
+class config_local(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.config_local = uic.loadUi("templates/interfaces/local_config.ui", self)

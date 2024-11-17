@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>984</width>
-    <height>664</height>
+    <width>918</width>
+    <height>599</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,6 +26,25 @@
     </widget>
    </item>
    <item>
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_9">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QFrame" name="body_frame">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -38,13 +57,13 @@
        <widget class="QFrame" name="central_frame">
         <property name="minimumSize">
          <size>
-          <width>630</width>
-          <height>600</height>
+          <width>0</width>
+          <height>0</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>720</width>
+          <width>16777215</width>
           <height>900</height>
          </size>
         </property>
@@ -57,6 +76,24 @@
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QFrame" name="frame_search">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>90</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>90</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius:5px;
+border:5px solid #057A3A;
+background-color: #057A3A;
+border-bottom: 2px solid rgb(108, 108, 108);</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -68,20 +105,20 @@
              <widget class="QPushButton" name="regItem">
               <property name="minimumSize">
                <size>
-                <width>111</width>
+                <width>90</width>
                 <height>45</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>111</width>
+                <width>90</width>
                 <height>45</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>9</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
                </font>
@@ -90,8 +127,24 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:12px;</string>
+               <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
               </property>
               <property name="text">
                <string>Registrar</string>
@@ -103,13 +156,13 @@ border-radius:12px;</string>
               <property name="minimumSize">
                <size>
                 <width>90</width>
-                <height>24</height>
+                <height>33</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>400</width>
-                <height>36</height>
+                <height>33</height>
                </size>
               </property>
               <property name="font">
@@ -121,8 +174,15 @@ border-radius:12px;</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:12px;</string>
+               <string notr="true">QLineEdit{
+background-color:white;	;
+border-radius: 10px;
+color:black;
+border:none;
+}
+
+QLineEdit:hover{background-color:rgb(238, 234, 233);color:black}
+</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -139,13 +199,13 @@ border-radius:12px;</string>
           <widget class="QFrame" name="frame_view">
            <property name="minimumSize">
             <size>
-             <width>720</width>
+             <width>0</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>1200</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
@@ -161,17 +221,21 @@ border-radius:12px;</string>
               <property name="minimumSize">
                <size>
                 <width>690</width>
-                <height>450</height>
+                <height>360</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>840</width>
+                <width>16777215</width>
                 <height>620</height>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true"/>
+               <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+border-radius:10px
+
+</string>
               </property>
               <property name="showGrid">
                <bool>true</bool>
@@ -191,15 +255,19 @@ border-radius:12px;</string>
        <widget class="QFrame" name="lateral_frame">
         <property name="minimumSize">
          <size>
-          <width>150</width>
-          <height>600</height>
+          <width>0</width>
+          <height>0</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>150</width>
-          <height>900</height>
+          <width>16777215</width>
+          <height>16777215</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius:10px;
+background-color: #057A3A;</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -212,13 +280,13 @@ border-radius:12px;</string>
           <widget class="QFrame" name="btn_top_frame">
            <property name="minimumSize">
             <size>
-             <width>240</width>
+             <width>0</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>240</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
@@ -229,19 +297,22 @@ border-radius:12px;</string>
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item alignment="Qt::AlignVCenter">
+            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
              <widget class="QFrame" name="frame_edit">
               <property name="minimumSize">
                <size>
-                <width>240</width>
+                <width>0</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>240</width>
+                <width>16777215</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:transparent;</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -254,20 +325,20 @@ border-radius:12px;</string>
                 <widget class="QPushButton" name="edit_btn">
                  <property name="minimumSize">
                   <size>
-                   <width>111</width>
+                   <width>90</width>
                    <height>45</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>111</width>
+                   <width>90</width>
                    <height>45</height>
                   </size>
                  </property>
                  <property name="font">
                   <font>
                    <family>Roboto</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>9</pointsize>
                    <weight>75</weight>
                    <bold>true</bold>
                   </font>
@@ -276,8 +347,24 @@ border-radius:12px;</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;
-border-radius:12px;</string>
+                  <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
                  </property>
                  <property name="text">
                   <string>Editar</string>
@@ -287,19 +374,23 @@ border-radius:12px;</string>
               </layout>
              </widget>
             </item>
-            <item>
+            <item alignment="Qt::AlignHCenter">
              <widget class="QFrame" name="frame_detail">
               <property name="minimumSize">
                <size>
-                <width>240</width>
+                <width>0</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>240</width>
+                <width>16777215</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:transparent;
+border-bottom:none</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -312,20 +403,20 @@ border-radius:12px;</string>
                 <widget class="QPushButton" name="details_btn">
                  <property name="minimumSize">
                   <size>
-                   <width>111</width>
+                   <width>90</width>
                    <height>45</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>111</width>
+                   <width>90</width>
                    <height>45</height>
                   </size>
                  </property>
                  <property name="font">
                   <font>
                    <family>Roboto</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>9</pointsize>
                    <weight>75</weight>
                    <bold>true</bold>
                   </font>
@@ -334,8 +425,24 @@ border-radius:12px;</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:white;
-border-radius:12px;</string>
+                  <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
                  </property>
                  <property name="text">
                   <string>Detalhes</string>
@@ -348,13 +455,16 @@ border-radius:12px;</string>
            </layout>
           </widget>
          </item>
-         <item alignment="Qt::AlignBottom">
+         <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
           <widget class="QFrame" name="del_frame">
            <property name="minimumSize">
             <size>
-             <width>120</width>
+             <width>0</width>
              <height>0</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color:transparent;</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -367,20 +477,20 @@ border-radius:12px;</string>
              <widget class="QPushButton" name="del_btn">
               <property name="minimumSize">
                <size>
-                <width>111</width>
+                <width>90</width>
                 <height>45</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>111</width>
+                <width>90</width>
                 <height>45</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>9</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
                </font>
@@ -389,8 +499,23 @@ border-radius:12px;</string>
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:white;
-border-radius:12px;</string>
+               <string notr="true">QPushButton { 
+	background-color: rgb(170, 0, 0);
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	border: 1px solid rgb(255, 255, 255);
+	padding:5px
+ }
+
+QPushButton:hover{;color:white;
+background-color:rgb(255, 0, 4)}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color:rgb(231, 0, 0)
+ }</string>
               </property>
               <property name="text">
                <string>Deletar</string>
