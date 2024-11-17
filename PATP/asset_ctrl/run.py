@@ -2,7 +2,7 @@ import sys
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from templates.interfaces import *
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QListWidget, QTableWidget, QListView,QTableView, QAbstractItemView, QHeaderView, QTextBrowser
-from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info, categ_view, config_cargo, config_cat, config_local, config_forn
+from func import user_menu, user_info, bag_view, items_view, rel_view, patr_view, logs_view, config_view, local_info, categ_view, config_cargo
 from connect import config, config_acess, criar_conexao
 from PyQt5.QtCore import QResource , QTimer, Qt
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
@@ -542,103 +542,18 @@ class interface(QMainWindow):
         self.cargo_config = config_cargo()
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")
-        self.config = config_view()
-        self.frame_config = self.config.findChild(QFrame, "configs_frame")
-        self.text_view = self.config.findChild(QFrame, "intro_frame")
+        self.config_cargo = config_view()
+        self.frame_config = self.config_cargo.findChild(QFrame, "configs_frame")
+        self.text_view = self.config_cargo.findChild(QFrame, "intro_frame")
         self.text_view.hide()
         self.clear_frame()
-        self.frame.layout().addWidget(self.config)
+        self.frame.layout().addWidget(self.config_cargo)
         self.frame_config.layout().addWidget(self.cargo_config)
-        if self.config in self.frame.findChildren(QWidget):
+        if self.config_cargo in self.frame.findChildren(QWidget):
             self.h_frame.hide()
             self.frame.show()
             if self.btn_home.isVisible() == False:
                 self.btn_home.show()
-        self.cargo = self.config.findChild(QPushButton, "cargo_config")
-        self.categoria = self.config.findChild(QPushButton, "cat_config")
-        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
-        self.local = self.config.findChild(QPushButton, "local_config")
-        self.cargo.clicked.connect(self.cfg_cargo)
-        self.local.clicked.connect(self.cfg_local)
-        self.fornecedor.clicked.connect(self.cfg_forn)
-        self.categoria.clicked.connect(self.cfg_cat)
-                
-    def cfg_local(self):
-        self.local_config = config_local()
-        self.frame = self.findChild(QFrame, "userFrame")
-        self.h_frame = self.findChild(QFrame, "homeFrame")
-        self.config = config_view()
-        self.frame_config = self.config.findChild(QFrame, "configs_frame")
-        self.text_view = self.config.findChild(QFrame, "intro_frame")
-        self.text_view.hide()
-        self.clear_frame()
-        self.frame.layout().addWidget(self.config)
-        self.frame_config.layout().addWidget(self.local_config)
-        if self.config in self.frame.findChildren(QWidget):
-            self.h_frame.hide()
-            self.frame.show()
-            if self.btn_home.isVisible() == False:
-                self.btn_home.show()
-        self.cargo = self.config.findChild(QPushButton, "cargo_config")
-        self.categoria = self.config.findChild(QPushButton, "cat_config")
-        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
-        self.local = self.config.findChild(QPushButton, "local_config")
-        self.cargo.clicked.connect(self.cfg_cargo)
-        self.local.clicked.connect(self.cfg_local)
-        self.fornecedor.clicked.connect(self.cfg_forn)
-        self.categoria.clicked.connect(self.cfg_cat)
-        
-    def cfg_cat(self):
-        self.cat_config = config_cat()
-        self.frame = self.findChild(QFrame, "userFrame")
-        self.h_frame = self.findChild(QFrame, "homeFrame")
-        self.config = config_view()
-        self.frame_config = self.config.findChild(QFrame, "configs_frame")
-        self.text_view = self.config.findChild(QFrame, "intro_frame")
-        self.text_view.hide()
-        self.clear_frame()
-        self.frame.layout().addWidget(self.config)
-        self.frame_config.layout().addWidget(self.cat_config)
-        if self.config in self.frame.findChildren(QWidget):
-            self.h_frame.hide()
-            self.frame.show()
-            if self.btn_home.isVisible() == False:
-                self.btn_home.show()
-        self.cargo = self.config.findChild(QPushButton, "cargo_config")
-        self.categoria = self.config.findChild(QPushButton, "cat_config")
-        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
-        self.local = self.config.findChild(QPushButton, "local_config")
-        self.cargo.clicked.connect(self.cfg_cargo)
-        self.local.clicked.connect(self.cfg_local)
-        self.fornecedor.clicked.connect(self.cfg_forn)
-        self.categoria.clicked.connect(self.cfg_cat)
-                
-    def cfg_forn(self):
-        self.forn_config = config_forn()
-        self.frame = self.findChild(QFrame, "userFrame")
-        self.h_frame = self.findChild(QFrame, "homeFrame")
-        self.config = config_view()
-        self.frame_config = self.config.findChild(QFrame, "configs_frame")
-        self.text_view = self.config.findChild(QFrame, "intro_frame")
-        self.text_view.hide()
-        self.clear_frame()
-        self.frame.layout().addWidget(self.config)
-        self.frame_config.layout().addWidget(self.forn_config)
-        if self.config in self.frame.findChildren(QWidget):
-            self.h_frame.hide()
-            self.frame.show()
-            if self.btn_home.isVisible() == False:
-                self.btn_home.show()
-        self.cargo = self.config.findChild(QPushButton, "cargo_config")
-        self.categoria = self.config.findChild(QPushButton, "cat_config")
-        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
-        self.local = self.config.findChild(QPushButton, "local_config")
-        self.cargo.clicked.connect(self.cfg_cargo)
-        self.local.clicked.connect(self.cfg_local)
-        self.fornecedor.clicked.connect(self.cfg_forn)
-        self.categoria.clicked.connect(self.cfg_cat)
-
-
 
     def config_screen(self):
         print('teste config')
@@ -655,12 +570,9 @@ class interface(QMainWindow):
                 self.btn_home.show()
         self.cargo = self.config.findChild(QPushButton, "cargo_config")
         self.categoria = self.config.findChild(QPushButton, "cat_config")
-        self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
+        self.fornecedor = self.config.findChild(QPushButton, "forec_config")
         self.local = self.config.findChild(QPushButton, "local_config")
         self.cargo.clicked.connect(self.cfg_cargo)
-        self.local.clicked.connect(self.cfg_local)
-        self.fornecedor.clicked.connect(self.cfg_forn)
-        self.categoria.clicked.connect(self.cfg_cat)
         
 
     def local_screen(self):
