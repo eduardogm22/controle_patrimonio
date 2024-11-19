@@ -17,24 +17,23 @@ from datetime import datetime,timedelta
 import os, json
 import openpyxl #type: ignore
 from openpyxl.styles import Font, Alignment #type: ignore
-global idusuario_global
+import time
 
-print("Diretório de trabalho atual: func", os.getcwd())
-
+time.sleep(1)
+id_user = ''
 data_user = ''
 data_pass = ''
 data_cargo = 15
-'''if os.path.exists('line/dados.json'):
+if os.path.exists('line/dados.json'):
     print("Arquivo JSON existe.")
     v_j = json.load(open("line/dados.json"))
-    data_idusuario = v_j["idusuario"]
+    id_user = v_j["idusuario"]
     data_user = v_j["user"]
     data_pass = v_j["password"]
     data_cargo = v_j["cargo"]
-    print('ID Usuário', data_idusuario,'Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
+    print('ID Usuário', id_user,'Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
 else:
-    print("Arquivo JSON inexistente func.")'''
-    
+    print("Arquivo JSON inexistente func.")
 
 # icones svg
 QResource.registerResource("feather/resource.qrc")

@@ -36,13 +36,11 @@ class login_inicial(QMainWindow):
                 cursor.execute("SELECT * FROM usuarios WHERE usuario = %s AND senha = %s", (u, p))
                 filter = cursor.fetchone()
                 if filter:
-                    '''log_list['idusuario'] = filter[0]
+                    log_list['idusuario'] = filter[0]
                     log_list['user'] = filter[1]
                     log_list['cargo'] = filter[3]
-                    log_list['password'] = filter[2]'''
+                    log_list['password'] = filter[2]
                     #print(log_list)
-                    global idusuario_global
-                    idusuario_global = filter[0]
                     self.close()
                     self.rodar_main(str(filter[1]))
                     self.json_login()
@@ -63,32 +61,16 @@ class login_inicial(QMainWindow):
             self.user.clear()
             self.password.clear()
 
-    '''def json_login(self):
-        try:
-            log = {
-                'idusuario': log_list['idusuario'],
-                "user": log_list["user"],
-                "cargo": log_list["cargo"],
-                "password": log_list["password"]
-            }
-            os.makedirs("line", exist_ok=True)
-            
-            base_path = os.path.dirname(os.path.abspath(__file__))  # Caminho da pasta do script atual
-            json_path = os.path.join(base_path, "line", "dados.json")
-            
-            with open(json_path, "w") as info_json:
-                json.dump(log, info_json)
-            print("Arquivo JSON salvo em:", json_path)
-            
-            with open(json_path, "r") as info_json:
-                dados = json.load(info_json)
-            
-            idusuario = dados.get("idusuario")
-
-            print(idusuario)
-            
-        except Exception as e:
-            print("Erro ao salvar o arquivo JSON:", e)'''
+    def json_login(self):
+        log = {
+            'idusuario': log_list['idusuario'],
+            "user": log_list["user"],
+            "cargo": log_list["cargo"],
+            "password": log_list["password"]
+        }
+        os.makedirs("line", exist_ok=True)
+        with open("line/dados.json", "w") as info_json:
+            json.dump(log, info_json)
             
                 
     def rodar_main(self, usuario):
