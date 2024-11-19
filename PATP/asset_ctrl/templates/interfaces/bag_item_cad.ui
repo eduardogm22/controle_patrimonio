@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>993</width>
-    <height>675</height>
+    <height>696</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -116,6 +116,21 @@ border:3px solid black;</string>
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QFrame" name="frame_6">
               <property name="minimumSize">
@@ -161,6 +176,12 @@ border:3px solid black;</string>
                  <property name="styleSheet">
                   <string notr="true">background-color:white;	
 border:3px solid black;</string>
+                 </property>
+                 <property name="inputMask">
+                  <string>00000000000000000000000000000000000000000000</string>
+                 </property>
+                 <property name="maxLength">
+                  <number>44</number>
                  </property>
                 </widget>
                </item>
@@ -240,6 +261,9 @@ border:3px solid black;</string>
                   <string notr="true">background-color:white;	
 border:3px solid black;</string>
                  </property>
+                 <property name="maxLength">
+                  <number>10</number>
+                 </property>
                 </widget>
                </item>
                <item alignment="Qt::AlignLeft">
@@ -266,6 +290,9 @@ border:3px solid black;</string>
                  <property name="styleSheet">
                   <string notr="true">background-color:white;	
 border:3px solid black;</string>
+                 </property>
+                 <property name="maxLength">
+                  <number>10</number>
                  </property>
                 </widget>
                </item>

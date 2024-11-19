@@ -125,7 +125,7 @@ QLineEdit:hover{background-color:rgb(238, 234, 233);color:rgb(181, 178, 177)}
               </property>
               <property name="font">
                <font>
-                <pointsize>12</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="cursor">
@@ -159,7 +159,7 @@ QPushButton:pressed{
                <string>Buscar</string>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="../feather/resource01.qrc">
                 <normaloff>:/icons/search.svg</normaloff>:/icons/search.svg</iconset>
               </property>
               <property name="iconSize">
@@ -204,7 +204,7 @@ QPushButton:pressed{
               </property>
               <property name="font">
                <font>
-                <pointsize>12</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="cursor">
@@ -232,7 +232,7 @@ QPushButton:pressed{
                <string>Detalhes</string>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="../feather/resource01.qrc">
                 <normaloff>:/icons/info.svg</normaloff>:/icons/info.svg</iconset>
               </property>
               <property name="iconSize">
@@ -283,7 +283,9 @@ QPushButton:pressed{
               </property>
               <property name="font">
                <font>
-                <pointsize>12</pointsize>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="cursor">
@@ -311,7 +313,7 @@ QPushButton:pressed{
                <string>Cadastrar</string>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="../feather/resource01.qrc">
                 <normaloff>:/icons/user-plus.svg</normaloff>:/icons/user-plus.svg</iconset>
               </property>
               <property name="iconSize">
@@ -498,7 +500,7 @@ border-radius:10px
   </layout>
  </widget>
  <resources>
-  <include location="../../feather/resource01.qrc"/>
+  <include location="../feather/resource01.qrc"/>
  </resources>
  <connections/>
 </ui>
