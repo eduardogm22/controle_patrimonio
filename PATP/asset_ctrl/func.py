@@ -630,7 +630,7 @@ class bag_item_cad(QWidget):
             for item_id, item_data in self.listagem.items():
                 nome, valor_unitario, categoria, quantidade = item_data
             
-            cursor.execute('set @idusuario = %s', idusuario_global)
+            cursor.execute('set @idusuario = %s', (id_user,))
             
             cursor.callproc('cadastra_quantidade', [nome, valor_unitario, data_recebimento, nota_sel_id, self.cat_sel_id, self.set_resp_sel_id, self.sit_sel_id, quantidade])
             con.commit()

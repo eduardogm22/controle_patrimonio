@@ -1,7 +1,5 @@
-call cadastra_nota(999999, 123, 123, 1, '2024-10-10', @nota_sel_id);
-select @nota_sel_id;
-call cadastra_quantidade ('verificando logs', 20, '2024-10-10', 1, 1, 
-1, 1, 1);
+select * from patrimonios;
+select * from patrimonios_audit;
 
 -- executar isso
 alter table info_notas
