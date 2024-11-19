@@ -11,7 +11,7 @@ create table categorias(
 create table info_notas( 
 	idnota integer not null primary key auto_increment,  
 	chave_acesso integer not null unique,  
-	numero integer not null unique,  
+	numero integer not null,  
 	serie integer not null,
     idfornecedor integer not null,
 	data_aquisicao date not null
@@ -147,12 +147,25 @@ end
 $$ delimiter ;
 
 -- procedure que faz o cadastro das notas
+drop procedure cadastra_nota;
 delimiter $$
-create procedure cadastra_nota(in chave_acesso integer, in numero integer, in serie integer, in data_aquisicao date)
+create procedure cadastra_nota(in e_chave_acesso integer, in e_numero integer, in e_serie integer, in e_idfornecedor integer,in e_data_aquisicao date, out s_idnota integer)    
 begin
-	insert into info_notas (chave_acesso, numero, serie, idfornecedor, data_aquisicao)
-    values
-    (chave_acesso, numero, serie, idfornecedor, data_aquisicao);
+	set @s_idnota = null;
+    
+	select idnota 
+	into s_idnota 
+	from info_notas 
+    where 
+		chave_acesso = e_chave_acesso;
+    
+    if s_idnota is null then
+		insert into info_notas (chave_acesso, numero, serie, idfornecedor, data_aquisicao)
+        values
+        (e_chave_acesso, e_numero, e_serie, e_idfornecedor, e_data_aquisicao);
+        
+        set @s_idnota = last_insert_id();
+    end if;
 end
 $$ delimiter ;
 
@@ -223,6 +236,6 @@ for each row
 begin
 	insert into patrimonios_audit (idusuario, tipo_alteracao, data_alteracao, idpatrimonio)
 	values
-	(@idusuario, 'insert', current_date(), 1);
+	(@idusuario, 'insert', current_timestamp(), 1);
 end $$
 delimiter ;
