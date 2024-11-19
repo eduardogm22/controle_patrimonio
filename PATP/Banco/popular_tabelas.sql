@@ -46,7 +46,7 @@ values
 
 insert into enderecos (logradouro, bairro, numero, cep, idcidade)
 values
-(default, 'Av Rui Barbosa', 'Petrópolis', 103, '99050-120', 1),
+('Av Rui Barbosa', 'Petrópolis', 103, '99050-120', 1),
 ('Av. Brasil Centro', 'Centro', 501, '99025-001', 1);
 
 insert into fornecedores (nome, cnpj, idendereco)

@@ -1,3 +1,4 @@
+drop database cadastro;
 create database if not exists cadastro;
 use cadastro;
 
@@ -147,7 +148,7 @@ end
 $$ delimiter ;
 
 -- procedure que faz o cadastro das notas
-drop procedure cadastra_nota;
+-- drop procedure cadastra_nota;
 delimiter $$
 create procedure cadastra_nota(in e_chave_acesso integer, in e_numero integer, in e_serie integer, in e_idfornecedor integer,in e_data_aquisicao date, out s_idnota integer)    
 begin
@@ -208,6 +209,7 @@ delimiter $$
 create procedure st_pesquisar (in pesquisado varchar(30))
 begin
 select
+	ptr.idpatrimonio as "ID",
     ptr.nome as "Patrimônio",
     cat.nome as "Categoria",
     ptr.valor_unitario as "Valor Unitário",

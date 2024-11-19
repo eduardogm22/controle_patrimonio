@@ -343,7 +343,6 @@ class bag_view(QWidget):
         self.shadow_btn_top.setBlurRadius(9)
         self.shadow_btn_top.setColor(QtGui.QColor(0, 0, 0, 128))
 
-
         self.frame_view.setGraphicsEffect(self.shadow_view)
         self.frame_search.setGraphicsEffect(self.shadow_search)
         self.del_frame.setGraphicsEffect(self.shadow_del)
@@ -401,7 +400,7 @@ class bag_view(QWidget):
         self.cad_frame.show()        
 
 
-    def del_item(self, item):
+    def del_item(self, item): #apagar?
         self.produtos_temporarios.remove(item)
         item.deleteLater()
         self.layout_tb = self.table_item.layout()
@@ -575,6 +574,7 @@ class bag_item_cad(QWidget):
         self.selected_rows.append(self.lista_produtos.model().index(row, column).data())
         
     def deletar_item(self):
+        print('deletar')
         if self.selected_row is None:
             print("Nenhuma linha selecionada para deletar.")
             return

@@ -1,6 +1,8 @@
 select * from patrimonios;
 select * from patrimonios_audit;
 
+select * from usuarios;
+
 -- executar isso
 alter table info_notas
 drop index chave_acesso;

@@ -8,7 +8,6 @@ import mysql.connector # type: ignore
 import os
 import subprocess
 import json
-global idusuario_global
 
 log_list = {}
 
