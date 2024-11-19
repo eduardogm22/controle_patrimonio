@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDa
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
-from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config
+from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config, cadastra_nota
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
@@ -17,12 +17,14 @@ from datetime import datetime,timedelta
 import os, json
 import openpyxl #type: ignore
 from openpyxl.styles import Font, Alignment #type: ignore
+global idusuario_global
 
+print("Diretório de trabalho atual: func", os.getcwd())
 
 data_user = ''
 data_pass = ''
 data_cargo = 15
-if os.path.exists('line/dados.json'):
+'''if os.path.exists('line/dados.json'):
     print("Arquivo JSON existe.")
     v_j = json.load(open("line/dados.json"))
     data_idusuario = v_j["idusuario"]
@@ -31,12 +33,8 @@ if os.path.exists('line/dados.json'):
     data_cargo = v_j["cargo"]
     print('ID Usuário', data_idusuario,'Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
 else:
-    print("Arquivo JSON inexistente func.")
+    print("Arquivo JSON inexistente func.")'''
     
-def obter_idusuario():
-    with open("line/dados.json", "r") as info_json:
-        dados = json.load(info_json)
-        return dados.get("idusuario")
 
 # icones svg
 QResource.registerResource("feather/resource.qrc")
@@ -532,33 +530,14 @@ class bag_item_cad(QWidget):
         categoria = self.cat_sel_nome = self.cbxCategoria.currentText()
         quantidade = self.quantidade.value()
 
-        data_aquisicao = self.dteDataAquisicao.date().toString("yyyy-MM-dd")
-        chave_acesso = self.edtChaveAcesso.text()
-        numero = self.edtNumero.text()
-        serie = self.edtSerie.text()
 
-        if not nome or not valor or quantidade == 0 or not chave_acesso or not numero or not serie or not data_aquisicao:
+        if not nome or not valor or quantidade == 0:
             print('Faltando valores. Verifique!')
         else:
             self.id_counter += 1
             self.listagem[self.id_counter] = [nome, valor, categoria, quantidade]
             self.atualizar_tabela()
             self.clear_c()
-            
-            con = criar_conexao()
-            cursor = con.cursor()
-
-            cursor.execute('select idfornecedor from fornecedores where nome = %s', (self.cbxFornecedores.currentText(),))
-            resultado_forn = cursor.fetchone()
-            self.forn_sel_id = resultado_forn[0]
-            try:
-                cursor.callproc('cadastra_nota', [chave_acesso, numero, serie, self.forn_sel_id, data_aquisicao])
-                con.commit()
-            except Exception as e:
-                print('Erro no cadastro: ', e)
-            
-            cursor.close()
-            fechar_conexao(con)
         
     def clear_c(self):
         self.name_item.clear()
@@ -619,6 +598,11 @@ class bag_item_cad(QWidget):
         for item_id, item_data in self.listagem.items():
             print(f'Produto id:{item_id}, Produto da lista: {item_data}')
             
+        data_aquisicao = self.dteDataAquisicao.date().toString("yyyy-MM-dd")
+        chave_acesso = self.edtChaveAcesso.text()
+        numero = self.edtNumero.text()
+        serie = self.edtSerie.text()
+        
         con = criar_conexao()
         cursor = con.cursor()
         cursor.execute('select idcategoria from categorias where nome = %s', (self.cbxCategoria.currentText(),))
@@ -633,29 +617,25 @@ class bag_item_cad(QWidget):
         resultado_situacao = cursor.fetchone()
         self.sit_sel_id = resultado_situacao[0]
         
-        cursor.execute('select idnota from info_notas where chave_acesso = %s', (self.edtChaveAcesso.text(),))
-        resultado_idnota = cursor.fetchone()
-        nota_sel_id = resultado_idnota[0]
-                
-        cursor.close()
-        fechar_conexao(con)
+        cursor.execute('select idfornecedor from fornecedores where nome = %s', (self.cbxFornecedores.currentText(),))
+        resultado_forn = cursor.fetchone()
+        self.forn_sel_id = resultado_forn[0]
         
+
+        nota_sel_id = cadastra_nota(chave_acesso, numero, serie, self.forn_sel_id, data_aquisicao, )
+
         data_recebimento = self.dteDataRecebimento.date().toString("yyyy-MM-dd")
         
-        #!!!!!!!!EM OBRAS!!!!!!!!!! Nao reparem na bagunça
         
-        # Quase pronto, falta apenas pegar o id nota
         try:
             for item_id, item_data in self.listagem.items():
                 nome, valor_unitario, categoria, quantidade = item_data
-        
-            con = criar_conexao()
-            cursor = con.cursor()
-            print('usuario', obter_idusuario())
-            cursor.execute('set @idusuario = %s', (obter_idusuario(),))
-            cursor.callproc('cadastra_quantidade', [nome, valor_unitario, quantidade, data_recebimento, nota_sel_id, categoria, self.set_resp_sel_id, self.sit_sel_id])
+            
+            cursor.execute('set @idusuario = %s', idusuario_global)
+            
+            cursor.callproc('cadastra_quantidade', [nome, valor_unitario, data_recebimento, nota_sel_id, self.cat_sel_id, self.set_resp_sel_id, self.sit_sel_id, quantidade])
             con.commit()
-            print('Produtos cadastrados com sucesso!')
+            print('Produto(s) cadastrado(s) com sucesso!', nome, valor_unitario, data_recebimento, nota_sel_id, self.cat_sel_id, self.set_resp_sel_id, self.sit_sel_id, quantidade)
         except Exception as e:
             print('Erro no cadastro', e)
         finally:

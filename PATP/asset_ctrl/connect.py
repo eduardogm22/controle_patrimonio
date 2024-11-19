@@ -40,6 +40,28 @@ def criar_conexao():
 def fechar_conexao(con):
     con.close()
 
+def cadastra_nota(chave_acesso, numero, serie, idfornecedor, data_aquisicao):
+    try:
+        conn = criar_conexao()
+        cursor = conn.cursor()
+        
+        nota_sel_id = 0
+        
+        cursor.execute('set @nota_sel_id = 0;')
+        params = [chave_acesso, numero, serie, idfornecedor, data_aquisicao, '@nota_sel_id']
+        resultado = cursor.callproc('cadastra_nota', params)
+        
+        nota_sel_id = resultado[5]
+        
+        conn.commit()
+        
+        return nota_sel_id
+    except Exception as e:
+        print('verifique os valores digitados', e)
+    finally:
+        cursor.close()
+        fechar_conexao(conn)
+
 def conecta_view_tela(view):
     con = criar_conexao()
     cursor = con.cursor()

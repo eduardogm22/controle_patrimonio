@@ -13,6 +13,7 @@ import webbrowser
 data_user = ''
 data_pass = ''
 data_cargo = 15
+print("Diretório de trabalho atual: run", os.getcwd())
 if os.path.exists('line/dados.json'):
     print("Arquivo JSON existe.")
     v_j = json.load(open("line/dados.json"))
