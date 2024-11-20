@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>827</width>
+    <height>651</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">border-radius:
+10px;
+border:5px solid #057A3A;
+background-color: #057A3A;
+border-bottom: 2px solid rgb(108, 108, 108);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>90</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85QPushButton { 
+	background-color: #057A3A;
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	padding:8px
+ }
+
+QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+} 0);
+ 
+}</string>
+        </property>
+        <property name="text">
+         <string>Itens</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>90</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85QPushButton { 
+	background-color: #057A3A;
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	padding:8px
+ }
+
+QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+} 0);
+ 
+}</string>
+        </property>
+        <property name="text">
+         <string>Registros</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>90</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85QPushButton { 
+	background-color: #057A3A;
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	padding:8px
+ }
+
+QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+} 0);
+ 
+}</string>
+        </property>
+        <property name="text">
+         <string>Locais</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="cat_item_btn">
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>90</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85QPushButton { 
+	background-color: #057A3A;
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	padding:8px
+ }
+
+QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+} 0);
+ 
+}</string>
+        </property>
+        <property name="text">
+         <string>Patrimônio</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignRight|Qt::AlignTop">
+       <widget class="QFrame" name="frame_4">
+        <property name="styleSheet">
+         <string notr="true">border:0</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QPushButton" name="pushButton_4">
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>36</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>90</width>
+             <height>36</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85QPushButton { 
+	background-color: #057A3A;
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	padding:8px
+ }
+
+QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+} 0);
+ 
+}</string>
+           </property>
+           <property name="text">
+            <string>Exportar</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame_2">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QFrame" name="frame_3">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QFrame" name="frame_5">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QFrame" name="frame_7">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QDateEdit" name="date_i">
+                 <property name="styleSheet">
+                  <string notr="true">QDateEdit{
+color:rgb(0, 85, 0);
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+}
+
+
+/* Estilo dos botões de navegação */
+QCalendarWidget QToolButton {
+    color: #FFFFFF; /* Cor do texto dos botões */
+    background-color: rgb(0, 85, 0); /* Cor de fundo dos botões */
+    border: none; /* Sem borda */
+}</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="displayFormat">
+                  <string>dd/MM/yyyy</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item alignment="Qt::AlignHCenter">
+                <widget class="QLabel" name="label">
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgb(0, 76, 0);</string>
+                 </property>
+                 <property name="text">
+                  <string> Data de Início                             Data Fim</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="date_f">
+                 <property name="styleSheet">
+                  <string notr="true">QDateEdit{
+color:rgb(0, 85, 0);
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+}
+
+
+/* Estilo dos botões de navegação */
+QCalendarWidget QToolButton {
+    color: #FFFFFF; /* Cor do texto dos botões */
+    background-color: rgb(0, 85, 0); /* Cor de fundo dos botões */
+    border: none; /* Sem borda */
+}</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="currentSection">
+                  <enum>QDateTimeEdit::DaySection</enum>
+                 </property>
+                 <property name="displayFormat">
+                  <string>dd/MM/yyyy</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListView" name="listView">
+              <property name="styleSheet">
+               <string notr="true">background-color:white;	
+border:3px solid #057A3A;
+border-radius:10px
+
+</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_6">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QPushButton" name="pushButton_5">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>36</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>90</width>
+                <height>36</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+
+QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85QPushButton { 
+	background-color: #057A3A;
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	padding:8px
+ }
+
+QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+} 0);
+ 
+}</string>
+              </property>
+              <property name="text">
+               <string>Filtrar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>text_log</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>date_text</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

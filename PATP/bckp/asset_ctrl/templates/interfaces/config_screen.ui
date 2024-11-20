@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>919</width>
+    <height>750</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QFrame" name="frame_3">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius:15px;
+border:5px solid #057A3A;
+background-color: #057A3A;
+border-bottom: 2px solid rgb(108, 108, 108);</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="cargo_config">
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>36</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+           </property>
+           <property name="text">
+            <string>Cargos</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="cat_config">
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>36</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+           </property>
+           <property name="text">
+            <string>Categorias</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="local_config">
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>36</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+           </property>
+           <property name="text">
+            <string>Locais</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="fornec_config">
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>36</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+           </property>
+           <property name="text">
+            <string>Fornecedores</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="intro_frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item alignment="Qt::AlignTop">
+          <widget class="QTextBrowser" name="textBrowser">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>600</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>600</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Roboto</family>
+             <pointsize>9</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color:white;
+border-radius:15px;
+</string>
+           </property>
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Roboto'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt; Lorem ipsum dolor sit amet. Qui praesentium eaque ut culpa rerum et laborum cupiditate ut sint illum eos fuga exercitationem et veritatis quasi. Qui illo quasi est inventore rerum est exercitationem earum et assumenda error eos explicabo consequatur sed quod earum! Ad ipsam dolor et commodi quos qui quas ipsam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Qui inventore fugit rem officiis animi in totam natus a perspiciatis consequatur ex assumenda accusantium. Qui corrupti voluptatem id sunt deleniti hic aperiam odio quo beatae nobis! Ut atque similique eos illo excepturi est dolorem exercitationem est sint molestiae est animi numquam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Sit quia explicabo aut earum doloribus a maxime beatae ut maxime labore aut commodi sint. Id ipsam asperiores quo corrupti suscipit ea voluptatem distinctio?  Lorem ipsum dolor sit amet. Qui praesentium eaque ut culpa rerum et laborum cupiditate ut sint illum eos fuga exercitationem et veritatis quasi. Qui illo quasi est inventore rerum est exercitationem earum et assumenda error eos explicabo consequatur sed quod earum! Ad ipsam dolor et commodi quos qui quas ipsam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Qui inventore fugit rem officiis animi in totam natus a perspiciatis consequatur ex assumenda accusantium. Qui corrupti voluptatem id sunt deleniti hic aperiam odio quo beatae nobis! Ut atque similique eos illo excepturi est dolorem exercitationem est sint molestiae est animi numquam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Sit quia explicabo aut earum doloribus a maxime beatae ut maxime labore aut commodi sint. Id ipsam asperiores quo corrupti suscipit ea voluptatem distinctio?  Lorem ipsum dolor sit amet. Qui praesentium eaque ut culpa rerum et laborum cupiditate ut sint illum eos fuga exercitationem et veritatis quasi. Qui illo quasi est inventore rerum est exercitationem earum et assumenda error eos explicabo consequatur sed quod earum! Ad ipsam dolor et commodi quos qui quas ipsam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Qui inventore fugit rem officiis animi in totam natus a perspiciatis consequatur ex assumenda accusantium. Qui corrupti voluptatem id sunt deleniti hic aperiam odio quo beatae nobis! Ut atque similique eos illo excepturi est dolorem exercitationem est sint molestiae est animi numquam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Sit quia explicabo aut earum doloribus a maxime beatae ut maxime labore aut commodi sint. Id ipsam asperiores quo corrupti suscipit ea voluptatem distinctio?  Lorem ipsum dolor sit amet. Qui praesentium eaque ut culpa rerum et laborum cupiditate ut sint illum eos fuga exercitationem et veritatis quasi. Qui illo quasi est inventore rerum est exercitationem earum et assumenda error eos explicabo consequatur sed quod earum! Ad ipsam dolor et commodi quos qui quas ipsam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Qui inventore fugit rem officiis animi in totam natus a perspiciatis consequatur ex assumenda accusantium. Qui corrupti voluptatem id sunt deleniti hic aperiam odio quo beatae nobis! Ut atque similique eos illo excepturi est dolorem exercitationem est sint molestiae est animi numquam. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; color:#005f13;&quot;&gt;Sit quia explicabo aut earum doloribus a maxime beatae ut maxime labore aut commodi sint. Id ipsam asperiores quo corrupti suscipit ea voluptatem distinctio? &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="configs_frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
