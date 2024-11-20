@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDa
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem
-from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config, cadastra_nota
+from connect import conecta_view_tela, conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config, cadastra_nota, deletar_patrimonio
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
@@ -309,10 +309,8 @@ class bag_view(QWidget):
         self.btn_details.hide()
 
 
-        self.btn_del = self.findChild(QPushButton, "del_btn")
-        self.btn_del.installEventFilter(self)
-
-
+        self.btn_del1 = self.findChild(QPushButton, "del_btn")
+        self.btn_del1.installEventFilter(self)
 
         self.frame_view = self.findChild(QFrame, "frame_view")
         self.del_frame = self.findChild(QFrame, "del_frame")
@@ -400,12 +398,12 @@ class bag_view(QWidget):
         self.cad_frame.show()        
 
 
-    def del_item(self, item): #apagar?
+    '''def del_item(self, item): #apagar?
         self.produtos_temporarios.remove(item)
         item.deleteLater()
         self.layout_tb = self.table_item.layout()
         self.layout_tb.removeWidget(item)
-        self.layout_tb.update()
+        self.layout_tb.update()'''
 
 
     def handle_row_click(self, index):
@@ -414,6 +412,7 @@ class bag_view(QWidget):
 
         for column in range(self.table_item.model().columnCount()):
             data = self.table_item.model().index(row, column).data()
+            id_patrimonio = self.table_item.model().index(row, 0).data()
             print(f"{self.table_item.model().horizontalHeaderItem(column).text()}: {data}")
             if self.table_item.model().horizontalHeaderItem(column).text() == 'ID':
                 self.l_t = data
@@ -421,6 +420,9 @@ class bag_view(QWidget):
         self.selected_rows.append(self.table_item.model().index(row, column).data())
         self.btn_details.show()
         self.btn_details.clicked.connect(self.details_screen)
+        print('idptr', id_patrimonio)
+        self.btn_del1.clicked.connect(lambda: deletar_patrimonio(id_patrimonio))
+        
 
     def details_screen(self):
         self.window_details = detail_window(str(self.l_t), str(self.l_t))
@@ -484,8 +486,8 @@ class bag_item_cad(QWidget):
         self.btn_confirm = self.findChild(QPushButton, "cadItens")
         self.btn_confirm.clicked.connect(self.confirm)
 
-        self.btn_del = self.findChild(QPushButton, "del")
-        self.btn_del.clicked.connect(self.deletar_item)
+        self.btn_del2 = self.findChild(QPushButton, "del")
+        self.btn_del2.clicked.connect(self.deletar_item)
 
         self.listagem = {}
         self.id_counter = 0

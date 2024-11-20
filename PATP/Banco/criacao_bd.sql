@@ -11,7 +11,7 @@ create table categorias(
 
 create table info_notas( 
 	idnota integer not null primary key auto_increment,  
-	chave_acesso integer not null unique,  
+	chave_acesso varchar(44) not null unique,  
 	numero integer not null,  
 	serie integer not null,
     idfornecedor integer not null,
@@ -19,8 +19,16 @@ create table info_notas(
 ); 
 
 create table setores_responsaveis (
-	idsetor_responsavel integer not null primary key auto_increment,
+	idsetor integer not null primary key auto_increment,
     nome varchar(30) not null
+);
+
+create table locais(
+	idlocal integer primary key,
+    nome varchar(255),
+    idsetor integer,
+    
+    constraint fk_lcl_setores_responsaveis foreign key (idsetor) references setores_responsaveis (idsetor)
 );
 
 create table situacoes (
@@ -46,47 +54,17 @@ create table patrimonios (
     constraint fk_ptr_situacoes foreign key (idsituacao) references situacoes (idsituacao)
 );
 
-create table estados (
-	idestado integer not null auto_increment primary key,
-    nome varchar(20) not null unique,
-    sigla char(2) not null unique
-);
-
-create table cidades (
-	idcidade integer not null auto_increment primary key,
-    nome varchar(50) not null,
-    idestado integer not null,
-    
-    constraint fk_est_cidades foreign key (idestado) references estados (idestado)
-);
-
-create table enderecos (
-	idendereco integer not null auto_increment primary key,
-    logradouro varchar(30),
-    bairro varchar(40),
-	numero varchar(10),  
-	cep varchar(9),  
-	idcidade integer 
-    
-);
-
 create table fornecedores (
 	idfornecedor integer not null auto_increment primary key,
     nome varchar(50) not null,
-    cnpj varchar(18),
-    idendereco integer,
-    
-    constraint id_fcd_enderecos foreign key (idendereco) references enderecos(idendereco)
+    cnpj varchar(18)
 );
 
 create table pessoas ( 
 	idpessoa integer not null auto_increment primary key,  
 	nome varchar(30) not null,  
 	email varchar(40),  
-	data_nascimento date,  
-	idendereco integer,
-    
-    constraint fk_pes_endereco foreign key (idendereco) references enderecos (idendereco)
+	dt_create date  
 ); 
 
 create table cargos ( 
