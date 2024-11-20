@@ -110,6 +110,19 @@ def conecta_procedure_tela(procedure, parametro):
         
     return modelo
 
+def deletar_patrimonio(idpatrimonio):
+    try:
+        conn = criar_conexao()
+        cursor = conn.cursor()
+        cursor.execute('delete from patrimonios where idpatrimonio = %s', (idpatrimonio,))
+        conn.commit()
+    except Exception as e:
+        print('Erro ao excluir: ', e)        
+    finally:
+        print(f'Patrimônio {idpatrimonio} deletado!')
+        cursor.close()
+        fechar_conexao(conn)
+
 class bank_acess():
     def __init__(self):
         super().__init__()

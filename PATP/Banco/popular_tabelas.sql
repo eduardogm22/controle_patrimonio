@@ -26,33 +26,10 @@ values
 (default, 'Vendas'),
 (default, 'Marketing');
 
-insert into estados
+insert into fornecedores (nome, cnpj)
 values
-(default, 'Rio Grande do Sul', 'RS'),
-(default, 'São Paulo', 'SP'),
-(default, 'Rio de Janeiro', 'RJ'),
-(default, 'Minas Gerais', 'BH'),
-(default, 'Paraná', 'PR')
-;
-
-insert into cidades
-values
-(default, 'Passo Fundo', 1),
-(default, 'São Paulo', 2),
-(default, 'Rio de Janeiro', 3),
-(default, 'Belo Horizonte', 4),
-(default, 'Porto Alegre', 1),
-(default, 'Curitiba', 5);
-
-insert into enderecos (logradouro, bairro, numero, cep, idcidade)
-values
-('Av Rui Barbosa', 'Petrópolis', 103, '99050-120', 1),
-('Av. Brasil Centro', 'Centro', 501, '99025-001', 1);
-
-insert into fornecedores (nome, cnpj, idendereco)
-values
-('Faculdades Ideau', '17.590.477/0001-77', 1),
-('Deltasul', '98.102.924/0001-01', 2);
+('Faculdades Ideau', '17.590.477/0001-77'),
+('Deltasul', '98.102.924/0001-01');
 
 INSERT INTO info_notas (idnota, chave_acesso, numero, serie, idfornecedor, data_aquisicao) VALUES
     (default, '123456', '001', 1, 1, '2023-01-15'),
