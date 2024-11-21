@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\IP\Desktop\PATP\asset_ctrl\templates\interfaces\forn_config.ui'
+# Form implementation generated from reading ui file 'c:\Users\IP\Documents\GitHub\controle_patrimonio\PATP\bckp\asset_ctrl\templates\interfaces\forn_config.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -151,6 +151,10 @@ class Ui_Form(object):
         self.name_line = QtWidgets.QLineEdit(self.frame_4)
         self.name_line.setMinimumSize(QtCore.QSize(0, 24))
         self.name_line.setMaximumSize(QtCore.QSize(16777215, 24))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.name_line.setFont(font)
         self.name_line.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"
@@ -163,6 +167,7 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
+        self.name_line.setAlignment(QtCore.Qt.AlignCenter)
         self.name_line.setObjectName("name_line")
         self.verticalLayout_2.addWidget(self.name_line)
         self.label_6 = QtWidgets.QLabel(self.frame_4)
@@ -171,6 +176,10 @@ class Ui_Form(object):
         self.cnpj_line = QtWidgets.QLineEdit(self.frame_4)
         self.cnpj_line.setMinimumSize(QtCore.QSize(0, 24))
         self.cnpj_line.setMaximumSize(QtCore.QSize(16777215, 24))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.cnpj_line.setFont(font)
         self.cnpj_line.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"
@@ -183,6 +192,7 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
+        self.cnpj_line.setAlignment(QtCore.Qt.AlignCenter)
         self.cnpj_line.setObjectName("cnpj_line")
         self.verticalLayout_2.addWidget(self.cnpj_line)
         self.label_4 = QtWidgets.QLabel(self.frame_4)
@@ -196,10 +206,10 @@ class Ui_Form(object):
         self.frame_9.setObjectName("frame_9")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.frame_9)
         self.verticalLayout_9.setObjectName("verticalLayout_9")
-        self.pushButton_8 = QtWidgets.QPushButton(self.frame_9)
-        self.pushButton_8.setMinimumSize(QtCore.QSize(72, 33))
-        self.pushButton_8.setMaximumSize(QtCore.QSize(72, 33))
-        self.pushButton_8.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.edit_btn = QtWidgets.QPushButton(self.frame_9)
+        self.edit_btn.setMinimumSize(QtCore.QSize(72, 33))
+        self.edit_btn.setMaximumSize(QtCore.QSize(72, 33))
+        self.edit_btn.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 76, 0)\n"
@@ -215,12 +225,12 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_8.setObjectName("pushButton_8")
-        self.verticalLayout_9.addWidget(self.pushButton_8)
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame_9)
-        self.pushButton_2.setMinimumSize(QtCore.QSize(72, 33))
-        self.pushButton_2.setMaximumSize(QtCore.QSize(72, 33))
-        self.pushButton_2.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.edit_btn.setObjectName("edit_btn")
+        self.verticalLayout_9.addWidget(self.edit_btn)
+        self.confirm_btn = QtWidgets.QPushButton(self.frame_9)
+        self.confirm_btn.setMinimumSize(QtCore.QSize(72, 33))
+        self.confirm_btn.setMaximumSize(QtCore.QSize(72, 33))
+        self.confirm_btn.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 76, 0)\n"
@@ -236,11 +246,11 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.verticalLayout_9.addWidget(self.pushButton_2)
-        self.pushButton_3 = QtWidgets.QPushButton(self.frame_9)
-        self.pushButton_3.setMaximumSize(QtCore.QSize(72, 33))
-        self.pushButton_3.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.confirm_btn.setObjectName("confirm_btn")
+        self.verticalLayout_9.addWidget(self.confirm_btn)
+        self.cancel_btn = QtWidgets.QPushButton(self.frame_9)
+        self.cancel_btn.setMaximumSize(QtCore.QSize(72, 33))
+        self.cancel_btn.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 76, 0)\n"
@@ -256,12 +266,12 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.verticalLayout_9.addWidget(self.pushButton_3)
-        self.pushButton = QtWidgets.QPushButton(self.frame_9)
-        self.pushButton.setMinimumSize(QtCore.QSize(72, 33))
-        self.pushButton.setMaximumSize(QtCore.QSize(72, 33))
-        self.pushButton.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.cancel_btn.setObjectName("cancel_btn")
+        self.verticalLayout_9.addWidget(self.cancel_btn)
+        self.del_btn = QtWidgets.QPushButton(self.frame_9)
+        self.del_btn.setMinimumSize(QtCore.QSize(72, 33))
+        self.del_btn.setMaximumSize(QtCore.QSize(72, 33))
+        self.del_btn.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 76, 0)\n"
@@ -277,8 +287,8 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_9.addWidget(self.pushButton)
+        self.del_btn.setObjectName("del_btn")
+        self.verticalLayout_9.addWidget(self.del_btn)
         self.horizontalLayout_4.addWidget(self.frame_9)
         self.horizontalLayout_3.addWidget(self.frame_8)
         self.verticalLayout.addWidget(self.frame_7)
@@ -296,7 +306,7 @@ class Ui_Form(object):
         self.label_5.setText(_translate("Form", "Nome"))
         self.label_6.setText(_translate("Form", "CNPJ"))
         self.label_4.setText(_translate("Form", "Data de Criação:"))
-        self.pushButton_8.setText(_translate("Form", "Editar"))
-        self.pushButton_2.setText(_translate("Form", "Confirmar"))
-        self.pushButton_3.setText(_translate("Form", "Cancelar"))
-        self.pushButton.setText(_translate("Form", "Deletar"))
+        self.edit_btn.setText(_translate("Form", "Editar"))
+        self.confirm_btn.setText(_translate("Form", "Confirmar"))
+        self.cancel_btn.setText(_translate("Form", "Cancelar"))
+        self.del_btn.setText(_translate("Form", "Deletar"))

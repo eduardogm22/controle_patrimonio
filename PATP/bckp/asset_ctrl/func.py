@@ -3,7 +3,7 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
 from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QSizePolicy, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView, QGraphicsScene, QFileDialog, QMessageBox, QTextBrowser, QCheckBox
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal
+from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal, QDate
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem, QFont
 from connect import conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
@@ -13,7 +13,8 @@ import matplotlib.pyplot as plt # type: ignore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas # type: ignore
 from matplotlib.figure import Figure # type: ignore
 import pandas as pd
-from datetime import datetime,timedelta
+import datetime
+from datetime import datetime,timedelta, date
 import os, json
 import openpyxl #type: ignore
 from openpyxl.styles import Font, Alignment #type: ignore
@@ -606,7 +607,8 @@ class bag_edit(QWidget):
         self.n_item.setText(f"Item: {self.id_item}")
         self.n_f = self.findChild(QLineEdit, "chave_acesso")
         self.n_s = self.findChild(QLineEdit, "n_serie")
-        self.n_n = self.findChild(QLineEdit, "n_nota")
+        self.n_p = self.findChild(QLineEdit, "n_patr")
+        self.fornecedor = self.findChild(QLineEdit, "forn")
         self.name_p = self.findChild(QLineEdit, "name_prod")
         self.v_u = self.findChild(QLineEdit, "value_prod")  
         self.c_sit = self.findChild(QComboBox, "c_sit")
@@ -618,10 +620,10 @@ class bag_edit(QWidget):
         self.dt_buy = self.findChild(QDateEdit, "date_buy")
         self.dt_rec = self.findChild(QDateEdit, "date_rec")
         self.del_btn = self.findChild(QPushButton, "btn_del")
-        self.del_btn.clicked.connect(self.deletar_item)
-        
-    def deletar_item(self):
-        print(self.id_item)
+        self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
+        self.confirm_item = self.findChild(QPushButton, "confirm_item")
+
+
 
 
 
@@ -1446,13 +1448,25 @@ class config_cat(QWidget):
         con.close()
         for cat in data:
             self.box_cat.addItem(cat[0])
-                 
+        
 
 class config_forn(QWidget):
     def __init__(self):
         super().__init__()
         self.config_forn = uic.loadUi("templates/interfaces/forn_config.ui",self)
         self.box_forn = self.findChild(QComboBox, "box_forn")
+        self.name_line = self.findChild(QLineEdit, "name_line")
+        self.cnpj_line = self.findChild(QLineEdit, "cnpj_line")     
+        self.confirm_btn = self.findChild(QPushButton, "confirm_btn")
+        self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
+        self.edit_btn = self.findChild(QPushButton, "edit_btn")
+        self.del_btn = self.findChild(QPushButton, "del_btn")
+        self.confirm_btn.hide()
+        self.cancel_btn.hide()
+        self.del_btn.hide()
+        self.name_line.setEnabled(False)
+        self.cnpj_line.setEnabled(False)
+        
         con = criar_conexao()
         cursor = con.cursor()
         cursor.execute("SELECT nome FROM fornecedores")
@@ -1460,6 +1474,38 @@ class config_forn(QWidget):
         con.close()
         for forn in data:
             self.box_forn.addItem(forn[0])
+        self.box_forn.currentIndexChanged.connect(self.print_test)
+
+
+    def print_test(self):
+        print("Teste: {}".format(self.box_forn.currentText()))
+        self.atribui_forn()
+
+    def atribui_forn(self):
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute(f"SELECT nome,cnpj FROM fornecedores WHERE nome = '{self.box_forn.currentText()}'")
+        resultado = cursor.fetchone()
+        print(resultado)
+        cursor.close()
+        fechar_conexao(con)
+        self.insert_data(resultado[0], resultado[1]) 
+
+    def insert_data(self, data_1, data_2):
+        self.name_line.setText(data_1)
+        self.cnpj_line.setText(data_2)
+        self.name_line.setEnabled(False)
+        self.cnpj_line.setEnabled(False)
+
+    def start_new_forn(self):
+        # sub-sessão para criação de um novo fornecedor
+        self.confirm_btn.show()
+        self.cancel_btn.show()
+        self.del_btn.show()
+        self.box_forn.setEnabled(False)
+
+        
+
 class config_local(QWidget):
     def __init__(self):
         super().__init__()

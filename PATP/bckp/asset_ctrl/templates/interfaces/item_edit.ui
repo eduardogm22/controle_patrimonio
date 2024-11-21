@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>973</width>
+    <width>966</width>
     <height>504</height>
    </rect>
   </property>
@@ -230,7 +230,7 @@ border-bottom: 3px solid #057A3A;
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="edtRecebidoPor">
+                <widget class="QLineEdit" name="n_serie">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -302,7 +302,7 @@ border-bottom: 3px solid #057A3A;
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="n_nota">
+                <widget class="QLineEdit" name="forn">
                  <property name="minimumSize">
                   <size>
                    <width>220</width>
@@ -350,7 +350,7 @@ border-bottom: 3px solid #057A3A;
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_2">
+                <widget class="QLineEdit" name="n_patr">
                  <property name="styleSheet">
                   <string notr="true">
 QLineEdit{
@@ -557,7 +557,7 @@ QCalendarWidget QToolButton {
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_15">
                   <item>
-                   <widget class="QPushButton" name="pushButton">
+                   <widget class="QPushButton" name="edit_item">
                     <property name="maximumSize">
                      <size>
                       <width>60</width>
@@ -596,7 +596,7 @@ QPushButton:pressed{
                    </widget>
                   </item>
                   <item>
-                   <widget class="QComboBox" name="comboBox">
+                   <widget class="QComboBox" name="local_item">
                     <property name="styleSheet">
                      <string notr="true">QComboBox{
 background-color : white;
@@ -979,7 +979,7 @@ border:1px solid gray;
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_7">
-               <item>
+               <item alignment="Qt::AlignHCenter">
                 <widget class="QFrame" name="frame_11">
                  <property name="minimumSize">
                   <size>
@@ -1051,34 +1051,6 @@ border-bottom: 3px solid #057A3A;
                     </property>
                    </widget>
                   </item>
-                  <item alignment="Qt::AlignHCenter">
-                   <widget class="QLabel" name="label_11">
-                    <property name="font">
-                     <font>
-                      <family>Roboto</family>
-                      <pointsize>9</pointsize>
-                      <weight>75</weight>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color:rgb(5, 122, 58)</string>
-                    </property>
-                    <property name="text">
-                     <string>Quantidade</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item alignment="Qt::AlignHCenter">
-                   <widget class="QLabel" name="label_4">
-                    <property name="styleSheet">
-                     <string notr="true">color:rgb(5, 122, 58)</string>
-                    </property>
-                    <property name="text">
-                     <string>qnt_total</string>
-                    </property>
-                   </widget>
-                  </item>
                  </layout>
                 </widget>
                </item>
@@ -1099,36 +1071,7 @@ border-bottom: 3px solid #057A3A;
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_7">
-                  <item alignment="Qt::AlignHCenter">
-                   <widget class="QLabel" name="value_r">
-                    <property name="font">
-                     <font>
-                      <family>Roboto</family>
-                      <pointsize>9</pointsize>
-                      <weight>75</weight>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color:rgb(5, 122, 58)</string>
-                    </property>
-                    <property name="text">
-                     <string>Valor Total:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item alignment="Qt::AlignHCenter">
-                   <widget class="QLabel" name="label_13">
-                    <property name="styleSheet">
-                     <string notr="true">color:rgb(5, 122, 58)</string>
-                    </property>
-                    <property name="text">
-                     <string>vl_total</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
+                 <layout class="QVBoxLayout" name="verticalLayout_7"/>
                 </widget>
                </item>
               </layout>
@@ -1247,7 +1190,7 @@ QPushButton:pressed{
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item alignment="Qt::AlignLeft">
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="cancel_btn">
               <property name="minimumSize">
                <size>
                 <width>90</width>
@@ -1307,7 +1250,7 @@ QPushButton:pressed{
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <widget class="QPushButton" name="cadItens">
+             <widget class="QPushButton" name="confirm_item">
               <property name="minimumSize">
                <size>
                 <width>90</width>

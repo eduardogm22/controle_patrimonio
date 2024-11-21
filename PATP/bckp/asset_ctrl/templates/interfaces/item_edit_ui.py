@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(973, 504)
+        Form.resize(966, 504)
         self.verticalLayout_11 = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
         self.frame = QtWidgets.QFrame(Form)
@@ -126,10 +126,10 @@ class Ui_Form(object):
         self.label_6.setStyleSheet("color:rgb(5, 122, 58)")
         self.label_6.setObjectName("label_6")
         self.verticalLayout_10.addWidget(self.label_6)
-        self.edtRecebidoPor = QtWidgets.QLineEdit(self.frame_6)
-        self.edtRecebidoPor.setMinimumSize(QtCore.QSize(0, 24))
-        self.edtRecebidoPor.setMaximumSize(QtCore.QSize(16777215, 24))
-        self.edtRecebidoPor.setStyleSheet("\n"
+        self.n_serie = QtWidgets.QLineEdit(self.frame_6)
+        self.n_serie.setMinimumSize(QtCore.QSize(0, 24))
+        self.n_serie.setMaximumSize(QtCore.QSize(16777215, 24))
+        self.n_serie.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"
 "border-radius: 5px;\n"
@@ -141,8 +141,8 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
-        self.edtRecebidoPor.setObjectName("edtRecebidoPor")
-        self.verticalLayout_10.addWidget(self.edtRecebidoPor)
+        self.n_serie.setObjectName("n_serie")
+        self.verticalLayout_10.addWidget(self.n_serie)
         self.horizontalLayout_3.addWidget(self.frame_6)
         self.frame_7 = QtWidgets.QFrame(self.base_frame)
         self.frame_7.setMinimumSize(QtCore.QSize(240, 0))
@@ -162,10 +162,10 @@ class Ui_Form(object):
         self.label_5.setStyleSheet("color:rgb(5, 122, 58)")
         self.label_5.setObjectName("label_5")
         self.verticalLayout_9.addWidget(self.label_5)
-        self.n_nota = QtWidgets.QLineEdit(self.frame_7)
-        self.n_nota.setMinimumSize(QtCore.QSize(220, 24))
-        self.n_nota.setMaximumSize(QtCore.QSize(220, 24))
-        self.n_nota.setStyleSheet("\n"
+        self.forn = QtWidgets.QLineEdit(self.frame_7)
+        self.forn.setMinimumSize(QtCore.QSize(220, 24))
+        self.forn.setMaximumSize(QtCore.QSize(220, 24))
+        self.forn.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"
 "border-radius: 5px;\n"
@@ -177,8 +177,8 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
-        self.n_nota.setObjectName("n_nota")
-        self.verticalLayout_9.addWidget(self.n_nota)
+        self.forn.setObjectName("forn")
+        self.verticalLayout_9.addWidget(self.forn)
         self.label_16 = QtWidgets.QLabel(self.frame_7)
         font = QtGui.QFont()
         font.setFamily("Roboto")
@@ -189,8 +189,8 @@ class Ui_Form(object):
         self.label_16.setStyleSheet("color:rgb(5, 122, 58)")
         self.label_16.setObjectName("label_16")
         self.verticalLayout_9.addWidget(self.label_16)
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame_7)
-        self.lineEdit_2.setStyleSheet("\n"
+        self.n_patr = QtWidgets.QLineEdit(self.frame_7)
+        self.n_patr.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"
 "border-radius: 5px;\n"
@@ -202,8 +202,8 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.verticalLayout_9.addWidget(self.lineEdit_2)
+        self.n_patr.setObjectName("n_patr")
+        self.verticalLayout_9.addWidget(self.n_patr)
         self.horizontalLayout_3.addWidget(self.frame_7)
         self.frame_13 = QtWidgets.QFrame(self.base_frame)
         self.frame_13.setMinimumSize(QtCore.QSize(150, 0))
@@ -311,9 +311,9 @@ class Ui_Form(object):
         self.frame_19.setObjectName("frame_19")
         self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.frame_19)
         self.verticalLayout_15.setObjectName("verticalLayout_15")
-        self.pushButton = QtWidgets.QPushButton(self.frame_19)
-        self.pushButton.setMaximumSize(QtCore.QSize(60, 16777215))
-        self.pushButton.setStyleSheet("QPushButton { \n"
+        self.edit_item = QtWidgets.QPushButton(self.frame_19)
+        self.edit_item.setMaximumSize(QtCore.QSize(60, 16777215))
+        self.edit_item.setStyleSheet("QPushButton { \n"
 "    background-color: #057A3A;\n"
 "     color:rgb(254, 253, 247);\n"
 "    border-radius:9px;        \n"
@@ -330,21 +330,21 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_15.addWidget(self.pushButton)
+        self.edit_item.setObjectName("edit_item")
+        self.verticalLayout_15.addWidget(self.edit_item)
         self.label_2 = QtWidgets.QLabel(self.frame_19)
         self.label_2.setObjectName("label_2")
         self.verticalLayout_15.addWidget(self.label_2)
-        self.comboBox = QtWidgets.QComboBox(self.frame_19)
-        self.comboBox.setStyleSheet("QComboBox{\n"
+        self.local_item = QtWidgets.QComboBox(self.frame_19)
+        self.local_item.setStyleSheet("QComboBox{\n"
 "background-color : white;\n"
 "border:1px solid gray;\n"
 "}\n"
 "\n"
 "\n"
 "")
-        self.comboBox.setObjectName("comboBox")
-        self.verticalLayout_15.addWidget(self.comboBox)
+        self.local_item.setObjectName("local_item")
+        self.verticalLayout_15.addWidget(self.local_item)
         self.horizontalLayout_9.addWidget(self.frame_19, 0, QtCore.Qt.AlignTop)
         self.horizontalLayout_3.addWidget(self.frame_13)
         self.verticalLayout.addWidget(self.base_frame)
@@ -567,21 +567,7 @@ class Ui_Form(object):
 "")
         self.value_prod.setObjectName("value_prod")
         self.verticalLayout_6.addWidget(self.value_prod)
-        self.label_11 = QtWidgets.QLabel(self.frame_11)
-        font = QtGui.QFont()
-        font.setFamily("Roboto")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_11.setFont(font)
-        self.label_11.setStyleSheet("color:rgb(5, 122, 58)")
-        self.label_11.setObjectName("label_11")
-        self.verticalLayout_6.addWidget(self.label_11, 0, QtCore.Qt.AlignHCenter)
-        self.label_4 = QtWidgets.QLabel(self.frame_11)
-        self.label_4.setStyleSheet("color:rgb(5, 122, 58)")
-        self.label_4.setObjectName("label_4")
-        self.verticalLayout_6.addWidget(self.label_4, 0, QtCore.Qt.AlignHCenter)
-        self.horizontalLayout_7.addWidget(self.frame_11)
+        self.horizontalLayout_7.addWidget(self.frame_11, 0, QtCore.Qt.AlignHCenter)
         self.frame_valor = QtWidgets.QFrame(self.frame_5)
         self.frame_valor.setMaximumSize(QtCore.QSize(100, 16777215))
         self.frame_valor.setStyleSheet("border:none;")
@@ -590,20 +576,6 @@ class Ui_Form(object):
         self.frame_valor.setObjectName("frame_valor")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame_valor)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.value_r = QtWidgets.QLabel(self.frame_valor)
-        font = QtGui.QFont()
-        font.setFamily("Roboto")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setWeight(75)
-        self.value_r.setFont(font)
-        self.value_r.setStyleSheet("color:rgb(5, 122, 58)")
-        self.value_r.setObjectName("value_r")
-        self.verticalLayout_7.addWidget(self.value_r, 0, QtCore.Qt.AlignHCenter)
-        self.label_13 = QtWidgets.QLabel(self.frame_valor)
-        self.label_13.setStyleSheet("color:rgb(5, 122, 58)")
-        self.label_13.setObjectName("label_13")
-        self.verticalLayout_7.addWidget(self.label_13, 0, QtCore.Qt.AlignHCenter)
         self.horizontalLayout_7.addWidget(self.frame_valor)
         self.horizontalLayout.addWidget(self.frame_5)
         self.frame_3 = QtWidgets.QFrame(self.prod_frame)
@@ -661,17 +633,17 @@ class Ui_Form(object):
         self.frame_8.setObjectName("frame_8")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_8)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.pushButton_4 = QtWidgets.QPushButton(self.frame_8)
-        self.pushButton_4.setMinimumSize(QtCore.QSize(90, 36))
-        self.pushButton_4.setMaximumSize(QtCore.QSize(90, 36))
+        self.cancel_btn = QtWidgets.QPushButton(self.frame_8)
+        self.cancel_btn.setMinimumSize(QtCore.QSize(90, 36))
+        self.cancel_btn.setMaximumSize(QtCore.QSize(90, 36))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
-        self.pushButton_4.setFont(font)
-        self.pushButton_4.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton_4.setStyleSheet("\n"
+        self.cancel_btn.setFont(font)
+        self.cancel_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.cancel_btn.setStyleSheet("\n"
 "\n"
 "QPushButton { color: rgb(243, 239, 238);\n"
 "    border-radius:15px;        \n"
@@ -687,8 +659,8 @@ class Ui_Form(object):
 "    background-color: rgb(227, 227, 227);\n"
 " \n"
 "}")
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.verticalLayout_4.addWidget(self.pushButton_4, 0, QtCore.Qt.AlignLeft)
+        self.cancel_btn.setObjectName("cancel_btn")
+        self.verticalLayout_4.addWidget(self.cancel_btn, 0, QtCore.Qt.AlignLeft)
         self.horizontalLayout_6.addWidget(self.frame_8, 0, QtCore.Qt.AlignLeft)
         self.frame_10 = QtWidgets.QFrame(self.frame_9)
         self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -696,17 +668,17 @@ class Ui_Form(object):
         self.frame_10.setObjectName("frame_10")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_10)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.cadItens = QtWidgets.QPushButton(self.frame_10)
-        self.cadItens.setMinimumSize(QtCore.QSize(90, 36))
-        self.cadItens.setMaximumSize(QtCore.QSize(90, 36))
+        self.confirm_item = QtWidgets.QPushButton(self.frame_10)
+        self.confirm_item.setMinimumSize(QtCore.QSize(90, 36))
+        self.confirm_item.setMaximumSize(QtCore.QSize(90, 36))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
-        self.cadItens.setFont(font)
-        self.cadItens.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.cadItens.setStyleSheet("\n"
+        self.confirm_item.setFont(font)
+        self.confirm_item.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.confirm_item.setStyleSheet("\n"
 "\n"
 "QPushButton { color: rgb(243, 239, 238);\n"
 "    border-radius:15px;        \n"
@@ -722,8 +694,8 @@ class Ui_Form(object):
 "    background-color: rgb(227, 227, 227);\n"
 " \n"
 "}")
-        self.cadItens.setObjectName("cadItens")
-        self.verticalLayout_3.addWidget(self.cadItens)
+        self.confirm_item.setObjectName("confirm_item")
+        self.verticalLayout_3.addWidget(self.confirm_item)
         self.horizontalLayout_6.addWidget(self.frame_10, 0, QtCore.Qt.AlignRight)
         self.verticalLayout_2.addWidget(self.frame_9, 0, QtCore.Qt.AlignTop)
         self.verticalLayout_11.addWidget(self.frame)
@@ -743,17 +715,13 @@ class Ui_Form(object):
         self.label_3.setText(_translate("Form", "Data de Aquisição"))
         self.label_12.setText(_translate("Form", "Data de Recebimento"))
         self.date_rec.setDisplayFormat(_translate("Form", "dd/MM/yyyy"))
-        self.pushButton.setText(_translate("Form", "Editar"))
+        self.edit_item.setText(_translate("Form", "Editar"))
         self.label_2.setText(_translate("Form", "Local"))
         self.label_8.setText(_translate("Form", "Nome do Produto"))
         self.label_15.setText(_translate("Form", "Situação"))
         self.label_14.setText(_translate("Form", "Setor Responsável"))
         self.label_9.setText(_translate("Form", "Categoria"))
         self.label_10.setText(_translate("Form", "Valor Unitário:"))
-        self.label_11.setText(_translate("Form", "Quantidade"))
-        self.label_4.setText(_translate("Form", "qnt_total"))
-        self.value_r.setText(_translate("Form", "Valor Total:"))
-        self.label_13.setText(_translate("Form", "vl_total"))
         self.btn_del.setText(_translate("Form", "DELETAR"))
-        self.pushButton_4.setText(_translate("Form", "Cancelar"))
-        self.cadItens.setText(_translate("Form", "CONFIRMAR"))
+        self.cancel_btn.setText(_translate("Form", "Cancelar"))
+        self.confirm_item.setText(_translate("Form", "CONFIRMAR"))
