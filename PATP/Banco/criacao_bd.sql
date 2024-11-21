@@ -24,11 +24,8 @@ create table setores_responsaveis (
 );
 
 create table locais(
-	idlocal integer primary key,
-    nome varchar(255),
-    idsetor integer,
-    
-    constraint fk_lcl_setores_responsaveis foreign key (idsetor) references setores_responsaveis (idsetor)
+	idlocal integer primary key auto_increment,
+    nome varchar(255)
 );
 
 create table situacoes (
@@ -45,12 +42,14 @@ create table patrimonios (
     num_serie varchar(30),
 	idnota integer,
 	idcategoria integer not null,
-    idsetor_responsavel integer not null,
+    idsetor integer not null,
+    idlocal integer not null,
 	idsituacao integer not null,
     
     constraint fk_ptr_info_notas foreign key (idnota) references info_notas (idnota),
     constraint fk_ptr_categorias foreign key (idcategoria) references categorias (idcategoria),
-    constraint fk_ptr_setores_responsaveis foreign key (idsetor_responsavel) references setores_responsaveis (idsetor_responsavel),
+    constraint fk_ptr_setores_responsaveis foreign key (idsetor) references setores_responsaveis (idsetor),
+    constraint fk_ptr_locais foreign key (idlocal) references locais (idlocal),
     constraint fk_ptr_situacoes foreign key (idsituacao) references situacoes (idsituacao)
 );
 
@@ -88,38 +87,20 @@ create table usuarios (
     constraint fk_usr_cargos foreign key (idcargo) references cargos (idcargo)
 ); 
 
--- Criação tabela auditoria para verificar logs
--- drop table patrimonios_audit;
-create table patrimonios_audit (
-    idusuario integer,
-    tipo_alteracao varchar(10),
-    data_alteracao timestamp,
-    idpatrimonio integer not null,
-	nome varchar(100) default null,
-	valor_unitario decimal(10,2) default null,
-    data_recebimento date default null,
-    num_patrimonio varchar(30) default null,
-    num_serie varchar(30) default null,
-	idnota integer default null,
-	idcategoria integer default null,
-    idsetor_responsavel integer default null,
-	idsituacao integer default null   
-);
-
 -- stored procedures
 
 -- procedure que recebe a quantidade e cadastra 1 produto para cada distinto vezes o valor da quantidade
  -- drop procedure cadastra_quantidade;
 delimiter $$
 create procedure cadastra_quantidade (in nome varchar(100), in valor_unitario decimal(10, 2), in data_recebimento date, in idnota integer, in idcategoria integer, 
-in idsetor_responsavel integer, in idsituacao integer, in quantidade integer)
+in idsetor integer, in idlocal integer, in idsituacao integer, in quantidade integer)
 begin
 	declare contador integer default 1;
     while 
 		contador <= quantidade do
-				insert into patrimonios (idpatrimonio, nome, valor_unitario, num_patrimonio, num_serie, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao)
+				insert into patrimonios (idpatrimonio, nome, valor_unitario, num_patrimonio, num_serie, data_recebimento, idnota, idcategoria, idsetor, idlocal, idsituacao)
 				values
-                (default, nome, valor_unitario, null, null, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao);
+                (default, nome, valor_unitario, null, null, data_recebimento, idnota, idcategoria, idsetor, idlocal, idsituacao);
 			set contador = contador + 1;
 	end while;
 end 
@@ -128,7 +109,7 @@ $$ delimiter ;
 -- procedure que faz o cadastro das notas
 -- drop procedure cadastra_nota;
 delimiter $$
-create procedure cadastra_nota(in e_chave_acesso integer, in e_numero integer, in e_serie integer, in e_idfornecedor integer,in e_data_aquisicao date, out s_idnota integer)    
+create procedure cadastra_nota(in e_chave_acesso varchar(44), in e_numero integer, in e_serie integer, in e_idfornecedor integer,in e_data_aquisicao date, out s_idnota integer)    
 begin
 	set @s_idnota = null;
     
@@ -179,7 +160,7 @@ inner join
 left outer join
 	info_notas as nta on ptr.idnota = nta.idnota
 left outer join
-	setores_responsaveis as srp on ptr.idsetor_responsavel = srp.idsetor_responsavel
+	setores_responsaveis as srp on ptr.idsetor = srp.idsetor
 left outer join situacoes as sit on ptr.idsituacao = sit.idsituacao;
 
 -- drop procedure st_pesquisar; descomentar caso fizer alteração
@@ -201,11 +182,30 @@ inner join
 left outer join
 	info_notas as nta on ptr.idnota = nta.idnota
 left outer join
-	setores_responsaveis as srp on ptr.idsetor_responsavel = srp.idsetor_responsavel
+	setores_responsaveis as srp on ptr.idsetor = srp.idsetor
 left outer join situacoes as sit on ptr.idsituacao = sit.idsituacao
 where ptr.nome like concat('%', pesquisado, '%') or cat.nome like concat('%', pesquisado, '%') or srp.nome like concat('%', pesquisado, '%');
 end;
 $$ delimiter ;
+
+-- Criação tabela auditoria para verificar logs
+-- drop table patrimonios_audit;
+create table patrimonios_audit (
+    idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+    idpatrimonio integer not null,
+	nome varchar(100) default null,
+	valor_unitario decimal(10,2) default null,
+    data_recebimento date default null,
+    num_patrimonio varchar(30) default null,
+    num_serie varchar(30) default null,
+	idnota integer default null,
+	idcategoria integer default null,
+    idsetor integer default null,
+    idlocal integer default null,
+	idsituacao integer default null   
+);
 
 -- triggers auditoria
 
@@ -216,6 +216,28 @@ for each row
 begin
 	insert into patrimonios_audit (idusuario, tipo_alteracao, data_alteracao, idpatrimonio)
 	values
-	(@idusuario, 'insert', current_timestamp(), 1);
+	(@idusuario, 'insert', current_timestamp(), new.idpatrimonio);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger patrimonios_trigger_update 
+after update on patrimonios 
+for each row
+begin
+	insert into patrimonios_audit (idusuario, tipo_alteracao, data_alteracao, idpatrimonio, nome, valor_unitario, data_recebimento, num_patrimonio, num_serie, idnota, idcategoria, idsetor, idlocal, idsituacao)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idpatrimonio, old.nome, old.valor_unitario, old.data_recebimento, old.num_patrimonio, old.num_serie, old.idnota, old.idcategoria, old.idsetor, old.idlocal, old.idsituacao);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger patrimonios_trigger_delete
+before delete on patrimonios 
+for each row
+begin
+	insert into patrimonios_audit (idusuario, tipo_alteracao, data_alteracao, idpatrimonio, nome, valor_unitario, data_recebimento, num_patrimonio, num_serie, idnota, idcategoria, idsetor, idlocal, idsituacao)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idpatrimonio, old.nome, old.valor_unitario, old.data_recebimento, old.num_patrimonio, old.num_serie, old.idnota, old.idcategoria, old.idsetor, old.idlocal, old.idsituacao);
 end $$
 delimiter ;

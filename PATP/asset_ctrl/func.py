@@ -576,7 +576,6 @@ class bag_item_cad(QWidget):
         self.selected_rows.append(self.lista_produtos.model().index(row, column).data())
         
     def deletar_item(self):
-        print('deletar')
         if self.selected_row is None:
             print("Nenhuma linha selecionada para deletar.")
             return
@@ -610,7 +609,7 @@ class bag_item_cad(QWidget):
         resultado_cat = cursor.fetchone()
         self.cat_sel_id = resultado_cat[0]
         
-        cursor.execute('select idsetor_responsavel from setores_responsaveis where nome = %s', (self.cbxSetoresResponsaveis.currentText(),))
+        cursor.execute('select idsetor from setores_responsaveis where nome = %s', (self.cbxSetoresResponsaveis.currentText(),))
         resultado_set_resp = cursor.fetchone()
         self.set_resp_sel_id = resultado_set_resp[0]
         
@@ -634,7 +633,7 @@ class bag_item_cad(QWidget):
             
             cursor.execute('set @idusuario = %s', (id_user,))
             
-            cursor.callproc('cadastra_quantidade', [nome, valor_unitario, data_recebimento, nota_sel_id, self.cat_sel_id, self.set_resp_sel_id, self.sit_sel_id, quantidade])
+            cursor.callproc('cadastra_quantidade', [nome, valor_unitario, data_recebimento, nota_sel_id, self.cat_sel_id, self.set_resp_sel_id, 1, self.sit_sel_id, quantidade])
             con.commit()
             print('Produto(s) cadastrado(s) com sucesso!', nome, valor_unitario, data_recebimento, nota_sel_id, self.cat_sel_id, self.set_resp_sel_id, self.sit_sel_id, quantidade)
         except Exception as e:

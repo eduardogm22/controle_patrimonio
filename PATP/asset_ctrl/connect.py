@@ -2,20 +2,23 @@
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 import os, json
+import time
 
+time.sleep(1)
+id_user = ''
 data_user = ''
 data_pass = ''
 data_cargo = 15
-
 if os.path.exists('line/dados.json'):
     print("Arquivo JSON existe.")
     v_j = json.load(open("line/dados.json"))
+    id_user = v_j["idusuario"]
     data_user = v_j["user"]
     data_pass = v_j["password"]
     data_cargo = v_j["cargo"]
-    print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo,'connect')
+    print('ID Usuário', id_user,'Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
 else:
-    print("Arquivo JSON inexistente connect.")
+    print("Arquivo JSON inexistente func.")
 
 
 
@@ -114,6 +117,7 @@ def deletar_patrimonio(idpatrimonio):
     try:
         conn = criar_conexao()
         cursor = conn.cursor()
+        cursor.execute('set @idusuario = %s', (id_user,))
         cursor.execute('delete from patrimonios where idpatrimonio = %s', (idpatrimonio,))
         conn.commit()
     except Exception as e:

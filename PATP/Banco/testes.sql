@@ -1,5 +1,11 @@
+set @idusuario = 1;
 select * from patrimonios;
 select * from patrimonios_audit;
+
+update patrimonios set nome = 'Monitor TLC', valor_unitario = 1000 where idpatrimonio = 11;
+delete from patrimonios_audit where idpatrimonio = 12;
+
+call cadastra_quantidade('Monitor Samsung', 800.00, '2023-01-18', 3, 4, 2, 3, 1, 1);
 
 select * from usuarios;
 
