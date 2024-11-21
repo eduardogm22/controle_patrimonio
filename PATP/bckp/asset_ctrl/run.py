@@ -631,6 +631,9 @@ class interface(QMainWindow):
             self.frame.show()
             if self.btn_home.isVisible() == False:
                 self.btn_home.show()
+                
+        self.cfg_cancel = self.cargo_config.findChild(QPushButton, "btn_cancel")
+        self.cfg_cancel.clicked.connect(self.cfg_cargo_cancel)
         self.cargo = self.config.findChild(QPushButton, "cargo_config")
         self.categoria = self.config.findChild(QPushButton, "cat_config")
         self.fornecedor = self.config.findChild(QPushButton, "fornec_config")
@@ -640,6 +643,9 @@ class interface(QMainWindow):
         self.fornecedor.clicked.connect(self.cfg_forn)
         self.categoria.clicked.connect(self.cfg_cat)
                 
+    def cfg_cargo_cancel(self):
+        self.cfg_cargo()
+
     def cfg_local(self):
         self.local_config = config_local()
         self.frame = self.findChild(QFrame, "userFrame")
@@ -755,8 +761,11 @@ class interface(QMainWindow):
 
     # pagina de ajuda e documentação
     def help_screen(self):
-        help_page= os.path.abspath("asset_ctrl/documentation/helps/index.html")
-        webbrowser.open(f"file://{help_page}")
+        ## para a página ser aberta para testes o caminho em help_page deve ser alterado para o caminho absoluto do arquivo html
+        help_page = "file:///Disco Do PC:/Users/Nome do Usuário/Caminho/PATP/asset_ctrl/documentation/helps/index.html"
+        webbrowser.open(help_page)
+    # faltando função para resgatar informações do dispositivo e vincular como variável para setar o caminho da página de ajuda
+
 
 # contexto
 if __name__ == "__main__":    

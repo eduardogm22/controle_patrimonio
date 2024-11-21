@@ -362,7 +362,7 @@ class bag_view(QWidget):
         for row_idx, row_data in enumerate(self.results_mdl):
             for col_idx, data in enumerate(row_data):
                 item = QStandardItem(str(data))
-                item.setFont(QFont("Roboto", 12))
+                item.setFont(QFont("Roboto", 9))
                 item.setTextAlignment(Qt.AlignCenter)
                 self.modelo.setItem(row_idx, col_idx, item)
         header_item = self.table_item.horizontalHeader()
@@ -465,11 +465,6 @@ class bag_view(QWidget):
         self.body_frame.hide()
         self.edit_frame.show()
 
-    def eventFilter(self, obj, event):
-        pass
-        return super().eventFilter(obj, event)
-    def lista_itens(self):
-        pass
     def bag_cad(self):
         self.cad_itens = bag_item_cad()
         self.cad_frame = self.findChild(QFrame, "frame_edit_2")
@@ -496,11 +491,11 @@ class bag_edit(QWidget):
         self.c_set = self.findChild(QComboBox, "c_setor")
         self.c_item = self.findChild(QComboBox, "cat_item")
         self.local_i = self.findChild(QComboBox, 'local_item')
-        self.del_btn = self.findChild(QPushButton, "del_item")
         self.edit_btn = self.findChild(QPushButton, "edit_item")
         self.return_btn = self.findChild(QPushButton, "return_btn")
         self.dt_buy = self.findChild(QDateEdit, "date_buy")
         self.dt_rec = self.findChild(QDateEdit, "date_rec")
+        self.del_btn = self.findChild(QPushButton, "btn_del")
         self.del_btn.clicked.connect(self.deletar_item)
         
     def deletar_item(self):

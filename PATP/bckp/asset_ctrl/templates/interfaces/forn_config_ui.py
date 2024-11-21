@@ -76,7 +76,6 @@ class Ui_Form(object):
 " ")
         self.box_forn.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLengthWithIcon)
         self.box_forn.setObjectName("box_forn")
-        self.box_forn.addItem("")
         self.verticalLayout_7.addWidget(self.box_forn, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.horizontalLayout.addWidget(self.frame_10, 0, QtCore.Qt.AlignVCenter)
         self.frame_12 = QtWidgets.QFrame(self.frame_6)
@@ -140,7 +139,7 @@ class Ui_Form(object):
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.frame_8)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.frame_4 = QtWidgets.QFrame(self.frame_8)
-        self.frame_4.setStyleSheet("padding-top:15px;")
+        self.frame_4.setStyleSheet("")
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
@@ -189,7 +188,7 @@ class Ui_Form(object):
         self.label_4 = QtWidgets.QLabel(self.frame_4)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_2.addWidget(self.label_4)
-        self.horizontalLayout_4.addWidget(self.frame_4, 0, QtCore.Qt.AlignTop)
+        self.horizontalLayout_4.addWidget(self.frame_4, 0, QtCore.Qt.AlignVCenter)
         self.frame_9 = QtWidgets.QFrame(self.frame_8)
         self.frame_9.setMinimumSize(QtCore.QSize(90, 90))
         self.frame_9.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -290,7 +289,6 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.box_forn.setItemText(0, _translate("Form", "Fornecedores"))
         self.pushButton_7.setText(_translate("Form", "+"))
         self.label.setText(_translate("Form", "Fornecedores cadastrados"))
         self.label_2.setText(_translate("Form", "Último fornecedor cadastrado"))

@@ -331,6 +331,42 @@ border-bottom: 3px solid #057A3A;
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QLabel" name="label_16">
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgb(5, 122, 58)</string>
+                 </property>
+                 <property name="text">
+                  <string>Número do patrimônio:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_2">
+                 <property name="styleSheet">
+                  <string notr="true">
+QLineEdit{
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+
+    border-top-right-radius: 5px;  
+    border-bottom-right-radius: 5px;
+}
+
+</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -477,6 +513,8 @@ QCalendarWidget QToolButton {
                      <font>
                       <family>Roboto</family>
                       <pointsize>9</pointsize>
+                      <weight>50</weight>
+                      <bold>false</bold>
                      </font>
                     </property>
                     <property name="styleSheet">
@@ -518,7 +556,7 @@ QCalendarWidget QToolButton {
                   <enum>QFrame::Raised</enum>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_15">
-                  <item alignment="Qt::AlignRight">
+                  <item>
                    <widget class="QPushButton" name="pushButton">
                     <property name="maximumSize">
                      <size>
@@ -1121,7 +1159,7 @@ border-bottom: 3px solid #057A3A;
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
                <item>
-                <widget class="QPushButton" name="del_item">
+                <widget class="QPushButton" name="btn_del">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>

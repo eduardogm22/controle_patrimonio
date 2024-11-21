@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\IP\Desktop\PATP\asset_ctrl\templates\interfaces\item_edit.ui'
+# Form implementation generated from reading ui file 'c:\Users\IP\Documents\GitHub\controle_patrimonio\PATP\bckp\asset_ctrl\templates\interfaces\item_edit.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -179,6 +179,31 @@ class Ui_Form(object):
 "")
         self.n_nota.setObjectName("n_nota")
         self.verticalLayout_9.addWidget(self.n_nota)
+        self.label_16 = QtWidgets.QLabel(self.frame_7)
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_16.setFont(font)
+        self.label_16.setStyleSheet("color:rgb(5, 122, 58)")
+        self.label_16.setObjectName("label_16")
+        self.verticalLayout_9.addWidget(self.label_16)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame_7)
+        self.lineEdit_2.setStyleSheet("\n"
+"QLineEdit{\n"
+"background-color:white;    \n"
+"border-radius: 5px;\n"
+"border: 1px solid #057A3A;\n"
+"border-bottom: 3px solid #057A3A;\n"
+"\n"
+"    border-top-right-radius: 5px;  \n"
+"    border-bottom-right-radius: 5px;\n"
+"}\n"
+"\n"
+"")
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.verticalLayout_9.addWidget(self.lineEdit_2)
         self.horizontalLayout_3.addWidget(self.frame_7)
         self.frame_13 = QtWidgets.QFrame(self.base_frame)
         self.frame_13.setMinimumSize(QtCore.QSize(150, 0))
@@ -256,6 +281,8 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
         self.date_rec.setFont(font)
         self.date_rec.setStyleSheet("QDateEdit{\n"
 "color:rgb(0, 85, 0);\n"
@@ -304,7 +331,7 @@ class Ui_Form(object):
 " \n"
 "}")
         self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_15.addWidget(self.pushButton, 0, QtCore.Qt.AlignRight)
+        self.verticalLayout_15.addWidget(self.pushButton)
         self.label_2 = QtWidgets.QLabel(self.frame_19)
         self.label_2.setObjectName("label_2")
         self.verticalLayout_15.addWidget(self.label_2)
@@ -588,17 +615,17 @@ class Ui_Form(object):
         self.frame_3.setObjectName("frame_3")
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.frame_3)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.del_item = QtWidgets.QPushButton(self.frame_3)
-        self.del_item.setMinimumSize(QtCore.QSize(0, 0))
-        self.del_item.setMaximumSize(QtCore.QSize(90, 36))
+        self.btn_del = QtWidgets.QPushButton(self.frame_3)
+        self.btn_del.setMinimumSize(QtCore.QSize(0, 0))
+        self.btn_del.setMaximumSize(QtCore.QSize(90, 36))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
-        self.del_item.setFont(font)
-        self.del_item.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.del_item.setStyleSheet("QPushButton { \n"
+        self.btn_del.setFont(font)
+        self.btn_del.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_del.setStyleSheet("QPushButton { \n"
 "    background-color: #057A3A;\n"
 "     color:rgb(254, 253, 247);\n"
 "    border-radius:9px;        \n"
@@ -615,8 +642,8 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.del_item.setObjectName("del_item")
-        self.verticalLayout_8.addWidget(self.del_item)
+        self.btn_del.setObjectName("btn_del")
+        self.verticalLayout_8.addWidget(self.btn_del)
         self.horizontalLayout.addWidget(self.frame_3)
         self.verticalLayout.addWidget(self.prod_frame)
         self.verticalLayout_2.addWidget(self.frame_2, 0, QtCore.Qt.AlignTop)
@@ -712,6 +739,7 @@ class Ui_Form(object):
         self.label_7.setText(_translate("Form", "Nota Fiscal"))
         self.label_6.setText(_translate("Form", "Nº Série"))
         self.label_5.setText(_translate("Form", "Fornecedor"))
+        self.label_16.setText(_translate("Form", "Número do patrimônio:"))
         self.label_3.setText(_translate("Form", "Data de Aquisição"))
         self.label_12.setText(_translate("Form", "Data de Recebimento"))
         self.date_rec.setDisplayFormat(_translate("Form", "dd/MM/yyyy"))
@@ -726,6 +754,6 @@ class Ui_Form(object):
         self.label_4.setText(_translate("Form", "qnt_total"))
         self.value_r.setText(_translate("Form", "Valor Total:"))
         self.label_13.setText(_translate("Form", "vl_total"))
-        self.del_item.setText(_translate("Form", "DELETAR"))
+        self.btn_del.setText(_translate("Form", "DELETAR"))
         self.pushButton_4.setText(_translate("Form", "Cancelar"))
         self.cadItens.setText(_translate("Form", "CONFIRMAR"))

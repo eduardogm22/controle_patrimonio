@@ -131,11 +131,6 @@ align-itens:center;
                  <property name="sizeAdjustPolicy">
                   <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
                  </property>
-                 <item>
-                  <property name="text">
-                   <string>Fornecedores</string>
-                  </property>
-                 </item>
                 </widget>
                </item>
               </layout>
@@ -256,10 +251,10 @@ color:white;</string>
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item alignment="Qt::AlignTop">
+         <item alignment="Qt::AlignVCenter">
           <widget class="QFrame" name="frame_4">
            <property name="styleSheet">
-            <string notr="true">padding-top:15px;</string>
+            <string notr="true"/>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
