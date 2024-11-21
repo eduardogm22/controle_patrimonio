@@ -99,7 +99,7 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
                     <property name="minimumSize">
                      <size>
                       <width>240</width>
-                      <height>33</height>
+                      <height>24</height>
                      </size>
                     </property>
                     <property name="maximumSize">
@@ -134,8 +134,8 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
                   <font>
                    <family>Roboto</family>
                    <pointsize>9</pointsize>
-                   <weight>75</weight>
-                   <bold>true</bold>
+                   <weight>50</weight>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="contextMenuPolicy">
@@ -200,20 +200,20 @@ align-itens:center;
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
+                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
 	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
  }
 
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+QPushButton:hover{background-color:#057A3A;color:white}
 
 QPushButton:pressed{
  padding-left: 5px;
  padding-top:5px;
-	background-color: rgb(227, 227, 227);
+ 
+	background-color: rgb(0, 85, 0);
  
 }</string>
                  </property>
@@ -237,20 +237,20 @@ QPushButton:pressed{
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
+                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
 	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
  }
 
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+QPushButton:hover{background-color:#057A3A;color:white}
 
 QPushButton:pressed{
  padding-left: 5px;
  padding-top:5px;
-	background-color: rgb(227, 227, 227);
+ 
+	background-color: rgb(0, 85, 0);
  
 }</string>
                  </property>
@@ -274,20 +274,20 @@ QPushButton:pressed{
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
+                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
 	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
  }
 
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+QPushButton:hover{background-color:#057A3A;color:white}
 
 QPushButton:pressed{
  padding-left: 5px;
  padding-top:5px;
-	background-color: rgb(227, 227, 227);
+ 
+	background-color: rgb(0, 85, 0);
  
 }</string>
                  </property>
@@ -386,20 +386,20 @@ QPushButton:pressed{
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
+               <string notr="true">QPushButton { color:rgb(254, 253, 247);
 	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
  }
 
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+QPushButton:hover{background-color:#057A3A;color:white}
 
 QPushButton:pressed{
  padding-left: 5px;
  padding-top:5px;
-	background-color: rgb(227, 227, 227);
+ 
+	background-color: rgb(0, 85, 0);
  
 }</string>
               </property>

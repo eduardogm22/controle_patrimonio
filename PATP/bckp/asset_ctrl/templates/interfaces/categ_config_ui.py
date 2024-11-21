@@ -57,7 +57,7 @@ class Ui_Form(object):
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.frame_11)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.lineEdit = QtWidgets.QLineEdit(self.frame_11)
-        self.lineEdit.setMinimumSize(QtCore.QSize(240, 33))
+        self.lineEdit.setMinimumSize(QtCore.QSize(240, 24))
         self.lineEdit.setMaximumSize(QtCore.QSize(240, 24))
         self.lineEdit.setStyleSheet("background-color:white;")
         self.lineEdit.setObjectName("lineEdit")
@@ -69,8 +69,8 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
-        font.setBold(True)
-        font.setWeight(75)
+        font.setBold(False)
+        font.setWeight(50)
         self.box_cat.setFont(font)
         self.box_cat.setContextMenuPolicy(QtCore.Qt.ActionsContextMenu)
         self.box_cat.setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -103,20 +103,20 @@ class Ui_Form(object):
         self.pushButton_5 = QtWidgets.QPushButton(self.frame_12)
         self.pushButton_5.setMinimumSize(QtCore.QSize(71, 33))
         self.pushButton_5.setMaximumSize(QtCore.QSize(70, 40))
-        self.pushButton_5.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.pushButton_5.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
         self.pushButton_5.setObjectName("pushButton_5")
@@ -124,20 +124,20 @@ class Ui_Form(object):
         self.pushButton_6 = QtWidgets.QPushButton(self.frame_12)
         self.pushButton_6.setMinimumSize(QtCore.QSize(71, 33))
         self.pushButton_6.setMaximumSize(QtCore.QSize(70, 40))
-        self.pushButton_6.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.pushButton_6.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
         self.pushButton_6.setObjectName("pushButton_6")
@@ -145,20 +145,20 @@ class Ui_Form(object):
         self.pushButton_7 = QtWidgets.QPushButton(self.frame_12)
         self.pushButton_7.setMinimumSize(QtCore.QSize(71, 33))
         self.pushButton_7.setMaximumSize(QtCore.QSize(70, 33))
-        self.pushButton_7.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.pushButton_7.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
         self.pushButton_7.setObjectName("pushButton_7")
@@ -207,20 +207,20 @@ class Ui_Form(object):
         self.verticalLayout_9.setObjectName("verticalLayout_9")
         self.pushButton_8 = QtWidgets.QPushButton(self.frame_9)
         self.pushButton_8.setMaximumSize(QtCore.QSize(70, 33))
-        self.pushButton_8.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.pushButton_8.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
         self.pushButton_8.setObjectName("pushButton_8")

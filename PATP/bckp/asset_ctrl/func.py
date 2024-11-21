@@ -1,7 +1,7 @@
 # funcionalidades de cada tela que for chamada
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
-from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QSizePolicy, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView, QGraphicsScene, QFileDialog, QMessageBox, QTextBrowser
+from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QSizePolicy, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView, QGraphicsScene, QFileDialog, QMessageBox, QTextBrowser, QCheckBox
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem, QFont
@@ -408,14 +408,20 @@ class bag_view(QWidget):
         self.btn_details.show()
         
     def exibir_detalhes(self):
+        print('Exibir detalhes: ', self.row)
+        modelo_atual = self.table_item.model()
+        item_id = modelo_atual.item(self.row, 0).text()
+        print(f"ID do item selecionado: {item_id}")
+
         """Exibir detalhes do item selecionado."""
-        if hasattr(self, 'selected_row'):
+        if hasattr(self, 'selected_rows'):
             # Recuperar o modelo atualmente exibido
             modelo_atual = self.table_item.model()
+            item_id = modelo_atual.item(self.row, 0).text()
             # Recuperar o ID da primeira coluna (mesmo que esteja oculta)
-            item_id = modelo_atual.item(self.selected_row, 0).text()
             dialog = detail_window(item_id)
             dialog.exec_()
+            print('janela chamada')
 
     def carregar_dados(self, data, modelo):
         for row_idx, row_data in enumerate(data):
@@ -1021,26 +1027,37 @@ class local_info(QWidget):
 class detail_window(QDialog):
     def __init__(self, item_id):
         super().__init__()
+        print('item_id teste instancia', item_id)
         self.item_id = item_id
 
-        self.setWindowFlags(Qt.Popup | Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.Popup| Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)  # Garante que o diálogo será descartado ao fechar
         self.setFixedSize(400, 300)
         self.setStyleSheet("background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 10px;")
 
         layout = QVBoxLayout()
-        con = mysql.connector.connect(**config)
-        cursor = con.cursor()
-        cursor.execute("SELECT * FROM patrimonios WHERE idpatrimonio = %s", (self.item_id,))
-        data = cursor.fetchall()
-        cursor.close()
-        con.close()
 
-        if data:
-            detail_text = "\n".join([f"{col}: {val}" for col, val in zip(["ID", "Nome", "Data Recebimento", "Categoria", "Setor"], data)])
+        try:
+            # Conexão com banco de dados
+            con = mysql.connector.connect(**config)
+            cursor = con.cursor()
+            cursor.execute("SELECT * FROM patrimonios WHERE idpatrimonio = %s", (self.item_id,))
+            data = cursor.fetchall()
+        except mysql.connector.Error as e:
+            print("Erro ao conectar ao banco de dados:", e)
+            data = []
+
+        if not data:
+            print("Nenhum dado foi encontrado na tabela.")
+            detail_text = "Nenhum dado foi encontrado na tabela."
         else:
-            detail_text = (f"Detalhes não encontrados.{item_id}")
-
+            detail_text = ""
+            for row in data:
+                detail_text += f"ID: {row[0]}\n"
+                detail_text += f"Nome: {row[1]}\n"
+                detail_text += f"Valor Unitário: {row[2]}\n"
+                detail_text += f"Data de Recebimento: {row[3]}\n"
+                detail_text += f"Patrimônio: {row[4]}\n"
         label_mensagem = QLabel(detail_text)
         label_mensagem.setWordWrap(True)
         label_mensagem.setAlignment(Qt.AlignTop)
@@ -1054,19 +1071,249 @@ class detail_window(QDialog):
             self.close()
 
 
+
+
 class config_cargo(QWidget):
     def __init__(self):
         super().__init__()
         self.config_cargo = uic.loadUi("templates/interfaces/cargo_config.ui", self)
         self.box_cargo = self.findChild(QComboBox, "box_cargo")
-        con = criar_conexao()
-        cursor = con.cursor()
-        cursor.execute("SELECT nome FROM cargos")
-        data = cursor.fetchall()
-        con.close()
+        self.new_cargo = self.findChild(QLineEdit, "new_cargo")
+        self.btn_confirm = self.findChild(QPushButton, "btn_confirm_edit")
+        self.btn_cancel = self.findChild(QPushButton, "btn_cancel")
+        self.edit_carg = self.findChild(QPushButton, "edit_cargo")
+        self.cancel_edit = self.findChild(QPushButton, "btn_edit_cancel")
+        self.perm_acess = self.findChild(QCheckBox, "acesso_geral")
+        self.perm_reg = self.findChild(QCheckBox, "pode_registrar")
+        self.ctrl_adm = self.findChild(QCheckBox, "controle_adm")
+        self.ctrl_user = self.findChild(QCheckBox, "controle_usuario")
+        self.perm_mod = self.findChild(QCheckBox, "pode_modificar")
+        self.perm_read = self.findChild(QCheckBox, "pode_visualizar")
+        self.btn_confirm_n = self.findChild(QPushButton, "btn_confirm")
+        self.btn_confirm_n.hide()
+        self.new_cargo.hide()
+        self.btn_confirm.hide()
+        self.btn_cancel.hide()
+        self.cancel_edit.hide()
+        self.btn_add = self.findChild(QPushButton, "add_cargo")
+        self.box_cargo.setPlaceholderText("Selecione um cargo")
+        # Conexão com o banco para adicionar valores a combobox
+        self.con = criar_conexao()
+        self.cursor = self.con.cursor()
+        self.cursor.execute("SELECT nome FROM cargos")
+        data = self.cursor.fetchall()
         for cargo in data:
             self.box_cargo.addItem(cargo[0])
-        
+        # Inicialmente, checkboxes desabilitadas
+        self.set_checkboxes_enabled(False)
+
+        # Conecta sinais
+        self.box_cargo.currentIndexChanged.connect(self.update_checkboxes)
+        self.edit_carg.clicked.connect(self.enable_editing)
+        self.btn_confirm.clicked.connect(self.save_changes)
+        self.cancel_edit.clicked.connect(self.cancel_changes)
+
+        # Armazenar os valores originais para restaurar em caso de cancelamento
+        self.original_values = {}
+        self.btn_add.clicked.connect(self.test)
+        self.btn_add.clicked.connect(self.start_new_cargo)
+        self.btn_confirm_n.clicked.connect(self.save_new_cargo)
+        self.btn_cancel.clicked.connect(self.cancel_new_cargo)
+
+    def start_new_cargo(self):
+        # sub-sessão para criação de um novo cargo
+        self.new_cargo.show()
+        self.btn_confirm_n.show()
+        self.btn_cancel.show()
+        self.edit_carg.hide()
+        self.box_cargo.setEnabled(False)
+        self.clear_checkboxes()
+        self.set_checkboxes_enabled(True)
+
+    def cancel_new_cargo(self):
+        """Cancelar o processo de criação de um novo cargo e restaurar o estado inicial."""
+        self.new_cargo.hide()
+        self.btn_confirm_n.hide()
+        self.btn_cancel.hide()
+        self.edit_carg.show()
+        self.box_cargo.setEnabled(True)
+        self.clear_checkboxes()
+        self.set_checkboxes_enabled(False)
+        self.box_cargo.setCurrentIndex(0)
+
+    def save_new_cargo(self):
+        """Salvar o novo cargo no banco de dados."""
+        cargo_name = self.new_cargo.text().strip()
+        if not cargo_name:
+            print("Nome do cargo não pode ser vazio.")
+            return
+
+        # Verifica se o cargo já existe
+        self.cursor.execute("SELECT COUNT(*) FROM cargos WHERE nome = %s", (cargo_name,))
+        if self.cursor.fetchone()[0] > 0:
+            print("Cargo já existe!")
+            return
+
+        # Obtem os valores das permissões do banco em uma tupla
+        data = (
+            int(self.perm_acess.isChecked()),
+            int(self.perm_reg.isChecked()),
+            int(self.ctrl_adm.isChecked()),
+            int(self.ctrl_user.isChecked()),
+            int(self.perm_mod.isChecked()),
+            int(self.perm_read.isChecked()),
+            cargo_name,
+        )
+
+        # Inserir o novo cargo no banco
+        self.cursor.execute("""
+            INSERT INTO cargos 
+            (acesso_geral, pode_registrar, controle_adm, controle_usuario, pode_modificar, pode_visualizar, nome) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """, data)
+        self.con.commit()
+
+        # atualiza a combobox
+        self.box_cargo.addItem(cargo_name)
+
+        # Restaura a interface ao estado inicial
+        self.cancel_new_cargo()    
+
+
+    def test(self):
+        cargo = self.box_cargo.currentText()
+        self.cursor.execute("""SELECT acesso_geral, pode_registrar, controle_adm, controle_usuario, pode_modificar, pode_visualizar FROM cargos WHERE nome = %s""", (cargo,))
+        data = self.cursor.fetchone()
+        print(data)
+
+    def set_checkboxes_enabled(self, enabled):
+        """Habilitar ou desabilitar as checkboxes."""
+        self.perm_acess.setEnabled(enabled)
+        self.perm_reg.setEnabled(enabled)
+        self.ctrl_adm.setEnabled(enabled)
+        self.ctrl_user.setEnabled(enabled)
+        self.perm_mod.setEnabled(enabled)
+        self.perm_read.setEnabled(enabled)
+
+    def update_checkboxes(self):
+        self.clear_checkboxes()  # Garante que as checkbox estejam limpas
+        cargo = self.box_cargo.currentText()
+
+        if not cargo or cargo == "Selecione um cargo":
+            self.set_checkboxes_enabled(False)
+            return
+        # verificação dos dados da combobox no banco para realizar as atribuições dos checkbox
+        try:
+            self.cursor.execute("""
+                SELECT acesso_geral, pode_registrar, controle_adm, controle_usuario, 
+                    pode_modificar, pode_visualizar
+                FROM cargos 
+                WHERE nome = %s
+            """, (cargo,))
+            data = self.cursor.fetchone()
+
+            if data:
+                # debugar os dados brutos recebidos, utilizando print
+                print(f"Dados crus do banco para cargo {cargo}: {data}")
+
+                # Converte os valores de CHAR(1) para inteiros
+                safe_data = [int(value) if value is not None else 0 for value in data]
+
+                # Atualizar as checkboxes com os valores convertidos
+                self.perm_acess.setChecked(bool(safe_data[0]))
+                self.perm_reg.setChecked(bool(safe_data[1]))
+                self.ctrl_adm.setChecked(bool(safe_data[2]))
+                self.ctrl_user.setChecked(bool(safe_data[3]))
+                self.perm_mod.setChecked(bool(safe_data[4]))
+                self.perm_read.setChecked(bool(safe_data[5]))
+
+                # Debug o estado das checkboxes com print
+                print(f"Estados das checkboxes para {cargo}: "
+                    f"perm_acess={self.perm_acess.isChecked()}, "
+                    f"perm_reg={self.perm_reg.isChecked()}, "
+                    f"ctrl_adm={self.ctrl_adm.isChecked()}, "
+                    f"ctrl_user={self.ctrl_user.isChecked()}, "
+                    f"perm_mod={self.perm_mod.isChecked()}, "
+                    f"perm_read={self.perm_read.isChecked()}")
+            else:
+                print(f"Nenhum dado encontrado para o cargo {cargo}")
+                self.set_checkboxes_enabled(False)
+        except Exception as e:
+            print(f"Erro ao buscar dados do cargo: {e}")
+            self.clear_checkboxes()
+            self.set_checkboxes_enabled(False)
+
+
+
+    def clear_checkboxes(self):
+        self.perm_acess.setChecked(False)
+        self.perm_reg.setChecked(False)
+        self.ctrl_adm.setChecked(False)
+        self.ctrl_user.setChecked(False)
+        self.perm_mod.setChecked(False)
+        self.perm_read.setChecked(False)
+
+
+    def enable_editing(self):
+        # Armazenar os valores originais antes de permitir a edição
+        self.original_values = {
+            "acesso_geral": self.perm_acess.isChecked(),
+            "pode_registrar": self.perm_reg.isChecked(),
+            "controle_adm": self.ctrl_adm.isChecked(),
+            "controle_usuario": self.ctrl_user.isChecked(),
+            "pode_modificar": self.perm_mod.isChecked(),
+            "pode_visualizar": self.perm_read.isChecked(),
+        }
+
+        self.set_checkboxes_enabled(True)
+        self.btn_confirm.show()
+        self.cancel_edit.show()
+        self.edit_carg.hide()
+
+
+    def save_changes(self):
+        """Salvar as alterações no banco de dados."""
+        cargo = self.box_cargo.currentText()
+        data = (
+            int(self.perm_acess.isChecked()),
+            int(self.perm_reg.isChecked()),
+            int(self.ctrl_adm.isChecked()),
+            int(self.ctrl_user.isChecked()),
+            int(self.perm_mod.isChecked()),
+            int(self.perm_read.isChecked()),
+            cargo,
+        )
+        self.cursor.execute("""
+            UPDATE cargos 
+            SET acesso_geral = %s, pode_registrar = %s, controle_adm = %s, controle_usuario = %s, pode_modificar = %s, pode_visualizar = %s
+            WHERE nome = %s
+        """, data)
+        self.con.commit()
+        self.set_checkboxes_enabled(False)
+        self.btn_confirm.hide()
+        self.cancel_edit.hide()
+        self.edit_carg.show()
+
+    def cancel_changes(self):
+        """Restaurar os valores originais em caso de cancelamento."""
+        if not self.original_values:
+            print("Nenhum valor original armazenado para restaurar.")
+            return
+
+        # restaura os valores originais
+        self.perm_acess.setChecked(bool(self.original_values.get("acesso_geral", False)))
+        self.perm_reg.setChecked(bool(self.original_values.get("pode_registrar", False)))
+        self.ctrl_adm.setChecked(bool(self.original_values.get("controle_adm", False)))
+        self.ctrl_user.setChecked(bool(self.original_values.get("controle_usuario", False)))
+        self.perm_mod.setChecked(bool(self.original_values.get("pode_modificar", False)))
+        self.perm_read.setChecked(bool(self.original_values.get("pode_visualizar", False)))
+
+        # retorna para o layout normal da sessão
+        self.set_checkboxes_enabled(False)
+        self.btn_confirm.hide()
+        self.cancel_edit.hide()
+        self.edit_carg.show()
+
 class config_cat(QWidget):
     def __init__(self):
         super().__init__()
@@ -1084,7 +1331,7 @@ class config_cat(QWidget):
 class config_forn(QWidget):
     def __init__(self):
         super().__init__()
-        self.config_forn = uic.loadUi("templates/interfaces/forn_config.ui", self)
+        self.config_forn = uic.loadUi("templates/interfaces/forn_config.ui",self)
         self.box_forn = self.findChild(QComboBox, "box_forn")
         con = criar_conexao()
         cursor = con.cursor()

@@ -27,6 +27,9 @@ class Ui_Form(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.frame_2 = QtWidgets.QFrame(self.frame_7)
         self.frame_2.setMaximumSize(QtCore.QSize(450, 16777215))
+        self.frame_2.setStyleSheet("border-radius:10px;\n"
+"background-color: #057A3A;\n"
+"border-bottom: 2px solid rgb(108, 108, 108);")
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
@@ -34,9 +37,7 @@ class Ui_Form(object):
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.frame_6 = QtWidgets.QFrame(self.frame_2)
         self.frame_6.setMaximumSize(QtCore.QSize(450, 16777215))
-        self.frame_6.setStyleSheet("border-radius:10px;\n"
-"background-color: #057A3A;\n"
-"border-bottom: 2px solid rgb(108, 108, 108);")
+        self.frame_6.setStyleSheet("border:none;")
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
@@ -57,12 +58,13 @@ class Ui_Form(object):
         self.frame_11.setObjectName("frame_11")
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.frame_11)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.lineEdit = QtWidgets.QLineEdit(self.frame_11)
-        self.lineEdit.setMinimumSize(QtCore.QSize(240, 33))
-        self.lineEdit.setMaximumSize(QtCore.QSize(240, 24))
-        self.lineEdit.setStyleSheet("background-color:white;")
-        self.lineEdit.setObjectName("lineEdit")
-        self.verticalLayout_8.addWidget(self.lineEdit)
+        self.new_cargo = QtWidgets.QLineEdit(self.frame_11)
+        self.new_cargo.setMinimumSize(QtCore.QSize(240, 24))
+        self.new_cargo.setMaximumSize(QtCore.QSize(240, 24))
+        self.new_cargo.setStyleSheet("background-color:white;\n"
+"border-radius:6px")
+        self.new_cargo.setObjectName("new_cargo")
+        self.verticalLayout_8.addWidget(self.new_cargo)
         self.verticalLayout_7.addWidget(self.frame_11, 0, QtCore.Qt.AlignHCenter)
         self.box_cargo = QtWidgets.QComboBox(self.frame_10)
         self.box_cargo.setMinimumSize(QtCore.QSize(240, 24))
@@ -89,7 +91,6 @@ class Ui_Form(object):
 " ")
         self.box_cargo.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLengthWithIcon)
         self.box_cargo.setObjectName("box_cargo")
-        self.box_cargo.addItem("")
         self.verticalLayout_7.addWidget(self.box_cargo, 0, QtCore.Qt.AlignHCenter)
         self.horizontalLayout_2.addWidget(self.frame_10)
         self.frame_12 = QtWidgets.QFrame(self.frame_6)
@@ -99,84 +100,91 @@ class Ui_Form(object):
         self.frame_12.setObjectName("frame_12")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.frame_12)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.pushButton_5 = QtWidgets.QPushButton(self.frame_12)
-        self.pushButton_5.setMinimumSize(QtCore.QSize(71, 33))
-        self.pushButton_5.setMaximumSize(QtCore.QSize(70, 40))
-        self.pushButton_5.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.btn_confirm = QtWidgets.QPushButton(self.frame_12)
+        self.btn_confirm.setMinimumSize(QtCore.QSize(71, 33))
+        self.btn_confirm.setMaximumSize(QtCore.QSize(70, 40))
+        self.btn_confirm.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.verticalLayout_6.addWidget(self.pushButton_5)
-        self.pushButton_6 = QtWidgets.QPushButton(self.frame_12)
-        self.pushButton_6.setMinimumSize(QtCore.QSize(71, 33))
-        self.pushButton_6.setMaximumSize(QtCore.QSize(70, 40))
-        self.pushButton_6.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.btn_confirm.setObjectName("btn_confirm")
+        self.verticalLayout_6.addWidget(self.btn_confirm)
+        self.btn_cancel = QtWidgets.QPushButton(self.frame_12)
+        self.btn_cancel.setMinimumSize(QtCore.QSize(71, 33))
+        self.btn_cancel.setMaximumSize(QtCore.QSize(70, 40))
+        self.btn_cancel.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.verticalLayout_6.addWidget(self.pushButton_6)
-        self.pushButton_7 = QtWidgets.QPushButton(self.frame_12)
-        self.pushButton_7.setMinimumSize(QtCore.QSize(71, 33))
-        self.pushButton_7.setMaximumSize(QtCore.QSize(70, 33))
-        self.pushButton_7.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.btn_cancel.setObjectName("btn_cancel")
+        self.verticalLayout_6.addWidget(self.btn_cancel)
+        self.add_cargo = QtWidgets.QPushButton(self.frame_12)
+        self.add_cargo.setMinimumSize(QtCore.QSize(71, 33))
+        self.add_cargo.setMaximumSize(QtCore.QSize(70, 33))
+        self.add_cargo.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.verticalLayout_6.addWidget(self.pushButton_7)
+        self.add_cargo.setObjectName("add_cargo")
+        self.verticalLayout_6.addWidget(self.add_cargo)
         self.horizontalLayout_2.addWidget(self.frame_12)
         self.verticalLayout_4.addWidget(self.frame_6)
         self.frame_5 = QtWidgets.QFrame(self.frame_2)
+        self.frame_5.setStyleSheet("border:none;")
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_5)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.label = QtWidgets.QLabel(self.frame_5)
+        self.label.setStyleSheet("border:none;\n"
+"color:white;")
         self.label.setObjectName("label")
         self.verticalLayout_3.addWidget(self.label)
         self.label_2 = QtWidgets.QLabel(self.frame_5)
+        self.label_2.setStyleSheet("border:none;\n"
+"color:white;")
         self.label_2.setObjectName("label_2")
         self.verticalLayout_3.addWidget(self.label_2)
         self.label_3 = QtWidgets.QLabel(self.frame_5)
+        self.label_3.setStyleSheet("border:none;\n"
+"color:white;")
         self.label_3.setObjectName("label_3")
         self.verticalLayout_3.addWidget(self.label_3)
         self.verticalLayout_4.addWidget(self.frame_5)
@@ -193,14 +201,14 @@ class Ui_Form(object):
         self.frame_4.setObjectName("frame_4")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame_4)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.checkBox_5 = QtWidgets.QCheckBox(self.frame_4)
+        self.acesso_geral = QtWidgets.QCheckBox(self.frame_4)
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
         font.setBold(False)
         font.setWeight(50)
-        self.checkBox_5.setFont(font)
-        self.checkBox_5.setStyleSheet(" QCheckBox {\n"
+        self.acesso_geral.setFont(font)
+        self.acesso_geral.setStyleSheet(" QCheckBox {\n"
 "    spacing: 5px; /* Espaçamento entre o checkbox e o texto */\n"
 "    color: rgb(0, 85, 0); /* Cor do texto */\n"
 "}\n"
@@ -224,13 +232,13 @@ class Ui_Form(object):
 "      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */\n"
 "border: 2px solid rgb(0, 85, 0); \n"
 "}")
-        self.checkBox_5.setObjectName("checkBox_5")
-        self.verticalLayout_2.addWidget(self.checkBox_5)
-        self.checkBox = QtWidgets.QCheckBox(self.frame_4)
+        self.acesso_geral.setObjectName("acesso_geral")
+        self.verticalLayout_2.addWidget(self.acesso_geral)
+        self.pode_registrar = QtWidgets.QCheckBox(self.frame_4)
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        self.checkBox.setFont(font)
-        self.checkBox.setStyleSheet(" QCheckBox {\n"
+        self.pode_registrar.setFont(font)
+        self.pode_registrar.setStyleSheet(" QCheckBox {\n"
 "    spacing: 5px; /* Espaçamento entre o checkbox e o texto */\n"
 "    color: rgb(0, 85, 0); /* Cor do texto */\n"
 "}\n"
@@ -254,13 +262,13 @@ class Ui_Form(object):
 "      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */\n"
 "border: 2px solid rgb(0, 85, 0); \n"
 "}")
-        self.checkBox.setObjectName("checkBox")
-        self.verticalLayout_2.addWidget(self.checkBox)
-        self.checkBox_2 = QtWidgets.QCheckBox(self.frame_4)
+        self.pode_registrar.setObjectName("pode_registrar")
+        self.verticalLayout_2.addWidget(self.pode_registrar)
+        self.controle_adm = QtWidgets.QCheckBox(self.frame_4)
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        self.checkBox_2.setFont(font)
-        self.checkBox_2.setStyleSheet(" QCheckBox {\n"
+        self.controle_adm.setFont(font)
+        self.controle_adm.setStyleSheet(" QCheckBox {\n"
 "    spacing: 5px; /* Espaçamento entre o checkbox e o texto */\n"
 "    color: rgb(0, 85, 0); /* Cor do texto */\n"
 "}\n"
@@ -284,13 +292,13 @@ class Ui_Form(object):
 "      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */\n"
 "border: 2px solid rgb(0, 85, 0); \n"
 "}")
-        self.checkBox_2.setObjectName("checkBox_2")
-        self.verticalLayout_2.addWidget(self.checkBox_2)
-        self.checkBox_3 = QtWidgets.QCheckBox(self.frame_4)
+        self.controle_adm.setObjectName("controle_adm")
+        self.verticalLayout_2.addWidget(self.controle_adm)
+        self.controle_usuario = QtWidgets.QCheckBox(self.frame_4)
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        self.checkBox_3.setFont(font)
-        self.checkBox_3.setStyleSheet(" QCheckBox {\n"
+        self.controle_usuario.setFont(font)
+        self.controle_usuario.setStyleSheet(" QCheckBox {\n"
 "    spacing: 5px; /* Espaçamento entre o checkbox e o texto */\n"
 "    color: rgb(0, 85, 0); /* Cor do texto */\n"
 "}\n"
@@ -314,13 +322,13 @@ class Ui_Form(object):
 "      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */\n"
 "border: 2px solid rgb(0, 85, 0); \n"
 "}")
-        self.checkBox_3.setObjectName("checkBox_3")
-        self.verticalLayout_2.addWidget(self.checkBox_3)
-        self.checkBox_4 = QtWidgets.QCheckBox(self.frame_4)
+        self.controle_usuario.setObjectName("controle_usuario")
+        self.verticalLayout_2.addWidget(self.controle_usuario)
+        self.pode_modificar = QtWidgets.QCheckBox(self.frame_4)
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        self.checkBox_4.setFont(font)
-        self.checkBox_4.setStyleSheet(" QCheckBox {\n"
+        self.pode_modificar.setFont(font)
+        self.pode_modificar.setStyleSheet(" QCheckBox {\n"
 "    spacing: 5px; /* Espaçamento entre o checkbox e o texto */\n"
 "    color: rgb(0, 85, 0); /* Cor do texto */\n"
 "}\n"
@@ -344,13 +352,13 @@ class Ui_Form(object):
 "      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */\n"
 "border: 2px solid rgb(0, 85, 0); \n"
 "}")
-        self.checkBox_4.setObjectName("checkBox_4")
-        self.verticalLayout_2.addWidget(self.checkBox_4)
-        self.checkBox_6 = QtWidgets.QCheckBox(self.frame_4)
+        self.pode_modificar.setObjectName("pode_modificar")
+        self.verticalLayout_2.addWidget(self.pode_modificar)
+        self.pode_visualizar = QtWidgets.QCheckBox(self.frame_4)
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        self.checkBox_6.setFont(font)
-        self.checkBox_6.setStyleSheet(" QCheckBox {\n"
+        self.pode_visualizar.setFont(font)
+        self.pode_visualizar.setStyleSheet(" QCheckBox {\n"
 "    spacing: 5px; /* Espaçamento entre o checkbox e o texto */\n"
 "    color: rgb(0, 85, 0); /* Cor do texto */\n"
 "}\n"
@@ -374,8 +382,8 @@ class Ui_Form(object):
 "      background-color: rgb(97, 166, 99); /* Cor de fundo padrão */\n"
 "border: 2px solid rgb(0, 85, 0); \n"
 "}")
-        self.checkBox_6.setObjectName("checkBox_6")
-        self.verticalLayout_2.addWidget(self.checkBox_6)
+        self.pode_visualizar.setObjectName("pode_visualizar")
+        self.verticalLayout_2.addWidget(self.pode_visualizar)
         self.horizontalLayout_4.addWidget(self.frame_4)
         self.frame_9 = QtWidgets.QFrame(self.frame_8)
         self.frame_9.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -391,26 +399,26 @@ class Ui_Form(object):
         self.frame_3.setObjectName("frame_3")
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.frame_3)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
-        self.pushButton = QtWidgets.QPushButton(self.frame_3)
-        self.pushButton.setMaximumSize(QtCore.QSize(70, 33))
-        self.pushButton.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.edit_cargo = QtWidgets.QPushButton(self.frame_3)
+        self.edit_cargo.setMaximumSize(QtCore.QSize(70, 33))
+        self.edit_cargo.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_10.addWidget(self.pushButton)
+        self.edit_cargo.setObjectName("edit_cargo")
+        self.verticalLayout_10.addWidget(self.edit_cargo)
         self.verticalLayout_9.addWidget(self.frame_3, 0, QtCore.Qt.AlignRight|QtCore.Qt.AlignTop)
         self.frame = QtWidgets.QFrame(self.frame_9)
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -418,46 +426,46 @@ class Ui_Form(object):
         self.frame.setObjectName("frame")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.pushButton_8 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_8.setMaximumSize(QtCore.QSize(70, 33))
-        self.pushButton_8.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.btn_confirm_edit = QtWidgets.QPushButton(self.frame)
+        self.btn_confirm_edit.setMaximumSize(QtCore.QSize(70, 33))
+        self.btn_confirm_edit.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_8.setObjectName("pushButton_8")
-        self.verticalLayout_5.addWidget(self.pushButton_8)
-        self.pushButton_9 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_9.setMaximumSize(QtCore.QSize(70, 33))
-        self.pushButton_9.setStyleSheet("\n"
-"\n"
-"QPushButton { color: rgb(243, 239, 238);\n"
+        self.btn_confirm_edit.setObjectName("btn_confirm_edit")
+        self.verticalLayout_5.addWidget(self.btn_confirm_edit)
+        self.btn_edit_cancel = QtWidgets.QPushButton(self.frame)
+        self.btn_edit_cancel.setMaximumSize(QtCore.QSize(70, 33))
+        self.btn_edit_cancel.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
-"    border: 4px solid #00BF63;\n"
-"    background-color:#00BF63;\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
 " padding-left: 5px;\n"
 " padding-top:5px;\n"
-"    background-color: rgb(227, 227, 227);\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_9.setObjectName("pushButton_9")
-        self.verticalLayout_5.addWidget(self.pushButton_9)
+        self.btn_edit_cancel.setObjectName("btn_edit_cancel")
+        self.verticalLayout_5.addWidget(self.btn_edit_cancel)
         self.verticalLayout_9.addWidget(self.frame)
         self.horizontalLayout_4.addWidget(self.frame_9)
         self.horizontalLayout_3.addWidget(self.frame_8)
@@ -469,19 +477,18 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.box_cargo.setItemText(0, _translate("Form", "cargo"))
-        self.pushButton_5.setText(_translate("Form", "Cofirmar"))
-        self.pushButton_6.setText(_translate("Form", "Cancelar"))
-        self.pushButton_7.setText(_translate("Form", "+"))
+        self.btn_confirm.setText(_translate("Form", "Cofirmar"))
+        self.btn_cancel.setText(_translate("Form", "Cancelar"))
+        self.add_cargo.setText(_translate("Form", "+"))
         self.label.setText(_translate("Form", "Usuários com o cargo ____ : "))
         self.label_2.setText(_translate("Form", "Quantidade de cargos cadastrados:"))
         self.label_3.setText(_translate("Form", "Última modificação:"))
-        self.checkBox_5.setText(_translate("Form", "Acesso Geral"))
-        self.checkBox.setText(_translate("Form", "Permissão de Registro"))
-        self.checkBox_2.setText(_translate("Form", "Controle Administrativo"))
-        self.checkBox_3.setText(_translate("Form", "Controle de Usuários"))
-        self.checkBox_4.setText(_translate("Form", "Permissão de Modificação"))
-        self.checkBox_6.setText(_translate("Form", "Permissão de Visualização"))
-        self.pushButton.setText(_translate("Form", "Editar"))
-        self.pushButton_8.setText(_translate("Form", "Confirmar"))
-        self.pushButton_9.setText(_translate("Form", "Cancelar"))
+        self.acesso_geral.setText(_translate("Form", "Acesso Geral"))
+        self.pode_registrar.setText(_translate("Form", "Permissão de Registro"))
+        self.controle_adm.setText(_translate("Form", "Controle Administrativo"))
+        self.controle_usuario.setText(_translate("Form", "Controle de Usuários"))
+        self.pode_modificar.setText(_translate("Form", "Permissão de Modificação"))
+        self.pode_visualizar.setText(_translate("Form", "Permissão de Visualização"))
+        self.edit_cargo.setText(_translate("Form", "Editar"))
+        self.btn_confirm_edit.setText(_translate("Form", "Confirmar"))
+        self.btn_edit_cancel.setText(_translate("Form", "Cancelar"))

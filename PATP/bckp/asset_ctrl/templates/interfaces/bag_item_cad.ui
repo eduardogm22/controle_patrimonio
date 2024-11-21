@@ -214,6 +214,9 @@ border-bottom: 3px solid #057A3A;
 
 </string>
                  </property>
+                 <property name="maxLength">
+                  <number>44</number>
+                 </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
                  </property>

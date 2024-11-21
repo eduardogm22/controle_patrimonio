@@ -4,7 +4,7 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtSql import QSqlDatabase, QSqlQueryModel
 from datetime import datetime
 import os, json
-
+data_id = ''
 data_user = ''
 data_pass = ''
 data_cargo = 15
@@ -12,14 +12,13 @@ data_cargo = 15
 if os.path.exists('line/dados.json'):
     print("Arquivo JSON existe.")
     v_j = json.load(open("line/dados.json"))
+    data_id = v_j["idusuario"]
     data_user = v_j["user"]
     data_pass = v_j["password"]
     data_cargo = v_j["cargo"]
-    print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo,'connect')
+    print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo,'connect', 'ID teste:', data_id)
 else:
     print("Arquivo JSON inexistente connect.")
-
-
 
 config = {
         'host': 'localhost',
@@ -36,6 +35,9 @@ config_acess = {
         'password': ''
         }
  
+
+
+
 def criar_conexao():
     return mysql.connector.connect(**config)
 
@@ -105,7 +107,7 @@ def registrar_log(setor, tipo_modificacao, descricao, id_usuario):
         hora_modificacao = agora.time()
 
         query = '''
-        INSERT INTO logs (setor, tipo_modificacao, hora_modificacao, data_modificacao, descricao, id_usuario)
+        INSERT INTO patrimonios_audit (setor, tipo_modificacao, hora_modificacao, data_modificacao, descricao, id_usuario)
         VALUES (%s, %s, %s, %s, %s, %s)
         '''
         valores = (setor, tipo_modificacao, hora_modificacao, data_modificacao, descricao, id_usuario)
@@ -119,5 +121,4 @@ def registrar_log(setor, tipo_modificacao, descricao, id_usuario):
     finally:
         cursor.close()
         con.close()
-
 

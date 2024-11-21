@@ -300,36 +300,74 @@ class interface(QMainWindow):
             self.btn_logs.hide()
         else:
             pass
-
-
-    def update_boxs(self):
-        self.update_box1()
-        self.update_box2()
-        self.update_box3()
-        self.update_box4()
         
-    def update_box1(self):
-        con = criar_conexao()
-        cursor = con.cursor()
-        cursor.execute('select count(*) from patrimonios')
-        data_prod = cursor.fetchall()
-        self.text_item.setText('Quantidade: '+str(data_prod[0][0]))
-        con.close()
 
-    def update_box2(self):
-        pass
+    def update_tb_h(self):
+        conn = mysql.connector.connect(**config) # argumentos do dicionário config...
+        cursor = conn.cursor()
+        cursor.execute("select p.nome as patrimonio_nome,p.data_recebimento,c.nome as categoria_nome,s.nome as situacao_nome from patrimonios p left join categorias c ON p.idcategoria = c.idcategoria left join situacoes s on p.idsituacao = s.idsituacao;")
+        results = cursor.fetchall()
 
-    def update_box3(self):
-        pass
+         # Criar o modelo para o QTableView
+        model = QStandardItemModel(len(results), 3)  # (número de linhas, número de colunas)
 
-    def update_box4(self):
+        for row_idx, row_data in enumerate(results):
+            for col_idx, data in enumerate(row_data):
+                item = QStandardItem(str(data))
+                item.setFont(QFont("Roboto", 9))
+                item.setTextAlignment(Qt.AlignCenter)
+                model.setHorizontalHeaderLabels(['ID', 'Usuario', 'Email'])
+                model.setItem(row_idx, col_idx, item)
+
+
+        header = self.table_view.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.Stretch)
+        header.setStretchLastSection(True)
+        self.table_view.setModel(model)
+        self.table_view.setGridStyle(Qt.NoPen)
+        #self.table_view.setHorizontalHeader(None)
+        self.table_view.setAlternatingRowColors(True)
+        self.table_view.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+        self.table_view.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.table_view.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        
+        conn.close()
+
+
+    def update_home(self):
+        self.update_box_ptr()
+        self.update_box_item()
+        self.update_box_local()
+        self.update_box_logs()
+        self.update_tb_h
+        
+    def update_box_ptr(self):
         con = criar_conexao()
         cursor = con.cursor()
         cursor.execute('select sum(valor_unitario) from patrimonios')
         data_vp = cursor.fetchall()
-        self.text_vp.setText('R$: '+str(data_vp[0][0]))
+        if data_vp[0][0] == 0 or data_vp[0][0] == None:
+            self.text_vp.setText('Quantidade: 0')
+        else:
+            self.text_vp.setText('Quantidade: '+str(data_vp[0][0]))
         con.close()
 
+    def update_box_item(self):
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute('select count(*) from patrimonios')
+        data_prod = cursor.fetchall()
+        if data_prod[0][0] == 0 or data_prod[0][0] == None:
+            self.text_item.setText('Quantidade: 0')
+        else:
+            self.text_item.setText('Quantidade: '+str(data_prod[0][0]))
+        con.close()
+
+    def update_box_local(self):
+        print('faltando att box local')
+
+    def update_box_logs(self):
+        print('faltando att box logs')
 
     def handle_row_click(self, index):
         row = index.row()
@@ -481,6 +519,9 @@ class interface(QMainWindow):
         self.clear_frame()
         self.h_frame.show()
         self.btn_home.hide()
+        self.update_home()
+
+    
 
     # Chamada para tela do usuário
     def menu_info_user(self):
