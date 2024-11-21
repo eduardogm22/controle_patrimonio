@@ -97,7 +97,7 @@ def conecta_procedure_tela(procedure, parametro):
 
 
 # função para registrar (onde ocorreu, tipo de alteração, descrição de alteração, quem fez)
-def registrar_log(setor, tipo_modificacao, descricao, id_usuario):
+'''def registrar_log(setor, tipo_modificacao, descricao, id_usuario):
     try:
         con = config_acess
         cursor = con.cursor()
@@ -106,10 +106,10 @@ def registrar_log(setor, tipo_modificacao, descricao, id_usuario):
         data_modificacao = agora.date()
         hora_modificacao = agora.time()
 
-        query = '''
+        query = 3apóstrofos
         INSERT INTO patrimonios_audit (setor, tipo_modificacao, hora_modificacao, data_modificacao, descricao, id_usuario)
         VALUES (%s, %s, %s, %s, %s, %s)
-        '''
+        3apóstrofos
         valores = (setor, tipo_modificacao, hora_modificacao, data_modificacao, descricao, id_usuario)
 
         cursor.execute(query, valores)
@@ -120,5 +120,5 @@ def registrar_log(setor, tipo_modificacao, descricao, id_usuario):
         print(f"Erro ao registrar o log: {e}")
     finally:
         cursor.close()
-        con.close()
+        con.close()'''
 

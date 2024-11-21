@@ -1,6 +1,6 @@
-drop database cadastro;
-create database if not exists cadastro;
-use cadastro;
+-- drop database cadastro;
+create database if not exists asset_ctrl;
+use asset_ctrl;
 
 -- criando as tabelas 
 
@@ -43,7 +43,7 @@ create table patrimonios (
 	idnota integer,
 	idcategoria integer not null,
     idsetor integer not null,
-    idlocal integer not null,
+    idlocal integer,
 	idsituacao integer not null,
     
     constraint fk_ptr_info_notas foreign key (idnota) references info_notas (idnota),

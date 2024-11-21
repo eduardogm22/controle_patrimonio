@@ -356,7 +356,7 @@ class bag_view(QWidget):
         self.table_item = self.findChild(QTableView, "table_bag")
         con = mysql.connector.connect(**config)
         cursor = con.cursor()
-        cursor.execute("select idpatrimonio,p.nome as patrimonio_nome,p.data_recebimento,c.nome as categoria_nome,s.nome as setor_nome from patrimonios p left join categorias c ON p.idcategoria = c.idcategoria left join setores_responsaveis s ON p.idsetor_responsavel = s.idsetor_responsavel")
+        cursor.execute("select idpatrimonio,p.nome as patrimonio_nome,p.data_recebimento,c.nome as categoria_nome,s.nome as setor_nome from patrimonios p left join categorias c ON p.idcategoria = c.idcategoria left join setores_responsaveis s ON p.idsetor = s.idsetor")
         self.results_mdl = cursor.fetchall()
         self.modelo = QStandardItemModel(len(self.results_mdl), 5)
         for row_idx, row_data in enumerate(self.results_mdl):
@@ -800,7 +800,7 @@ class bag_item_cad(QWidget):
                     #id do setor responsável
                     setor_nome = self.setor_item.currentText()
                     print(f"Buscando ID do setor responsável para '{setor_nome}'...")
-                    cursor.execute('SELECT idsetor_responsavel FROM setores_responsaveis WHERE nome = %s', (setor_nome,))
+                    cursor.execute('SELECT idsetor FROM setores_responsaveis WHERE nome = %s', (setor_nome,))
                     resultado_setor = cursor.fetchone()
                     if resultado_setor is None:
                         raise ValueError(f"Setor '{setor_nome}' não encontrado no banco de dados.")
@@ -818,8 +818,9 @@ class bag_item_cad(QWidget):
                     serie_patrimonio = ''
                     # Insere cada unidade do produto individualmente pela quantidade resgatada do item
                     for _ in range(quantidade):
+                        cursor.execute('set @idusuario = %s', (id_user,))
                         cursor.execute('''
-                            INSERT INTO patrimonios (nome, valor_unitario, data_recebimento, idnota, idcategoria, idsetor_responsavel, idsituacao, num_serie)
+                            INSERT INTO patrimonios (nome, valor_unitario, data_recebimento, idnota, idcategoria, idsetor, idsituacao, num_serie)
                             VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                         ''', (nome, valor_unitario, self.data_aquisicao_temp, id_nota, id_categoria, id_setor_responsavel, id_situacao, serie_patrimonio))
                     print(f"Item {item_id} inserido com sucesso.")
@@ -873,7 +874,7 @@ class items_view(QWidget):
         INNER JOIN 
             situacoes AS sit ON ptr.idsituacao = sit.idsituacao
         INNER JOIN 
-            setores_responsaveis AS srp ON ptr.idsetor_responsavel = srp.idsetor_responsavel;
+            setores_responsaveis AS srp ON ptr.idsetor = srp.idsetor;
         """
         cursor.execute(query)
         results = cursor.fetchall()
