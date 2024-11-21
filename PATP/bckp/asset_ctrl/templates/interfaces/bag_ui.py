@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\IP\Desktop\PATP\asset_ctrl\templates\interfaces\bag.ui'
+# Form implementation generated from reading ui file 'c:\Users\IP\Documents\GitHub\controle_patrimonio\PATP\bckp\asset_ctrl\templates\interfaces\bag.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -49,10 +49,10 @@ class Ui_Form(object):
         self.frame_menu.setObjectName("frame_menu")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.frame_menu)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame_menu)
-        self.pushButton_2.setMinimumSize(QtCore.QSize(90, 45))
-        self.pushButton_2.setMaximumSize(QtCore.QSize(90, 45))
-        self.pushButton_2.setStyleSheet("\n"
+        self.item_btn = QtWidgets.QPushButton(self.frame_menu)
+        self.item_btn.setMinimumSize(QtCore.QSize(90, 45))
+        self.item_btn.setMaximumSize(QtCore.QSize(90, 45))
+        self.item_btn.setStyleSheet("\n"
 "\n"
 "QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
@@ -70,8 +70,8 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout_4.addWidget(self.pushButton_2)
+        self.item_btn.setObjectName("item_btn")
+        self.horizontalLayout_4.addWidget(self.item_btn)
         self.pushButton_3 = QtWidgets.QPushButton(self.frame_menu)
         self.pushButton_3.setMinimumSize(QtCore.QSize(90, 45))
         self.pushButton_3.setMaximumSize(QtCore.QSize(90, 45))
@@ -332,9 +332,9 @@ class Ui_Form(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></body></html>"))
-        self.pushButton_2.setText(_translate("Form", "PushButton"))
-        self.pushButton_3.setText(_translate("Form", "PushButton"))
-        self.pushButton.setText(_translate("Form", "PushButton"))
+        self.item_btn.setText(_translate("Form", "prod_btn"))
+        self.pushButton_3.setText(_translate("Form", "local_btn"))
+        self.pushButton.setText(_translate("Form", "ptr_btn"))
         self.regItem.setText(_translate("Form", "Registrar"))
         self.line_search.setPlaceholderText(_translate("Form", "Pesquisar"))
         self.edit_btn.setText(_translate("Form", "Editar"))

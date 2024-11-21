@@ -291,11 +291,133 @@ class user_menu(QWidget):
         print('Teste')
 
 class user_info(QWidget):
-    def __init__(self):
+    def __init__(self, user_id):
         super().__init__()
         self.user_info = uic.loadUi("templates/interfaces/user_info.ui", self)
+        self.btn_foto = self.findChild(QPushButton, "btn_foto")
+        self.btn_edit = self.findChild(QPushButton, "btn_edit")
+        self.btn_view = self.findChild(QPushButton, "view_pass")
+        self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
+        self.confirm_btn = self.findChild(QPushButton, "confirm_btn")
+        self.user_line = self.findChild(QLineEdit, "user_line")
+        self.pass_line_info = self.findChild(QLineEdit, "pass_line_info")
+        self.name_user_info = self.findChild(QLineEdit, "name_user_info")
+        self.email_user_info = self.findChild(QLineEdit, "email_user_info")
+        self.cargo_box = self.findChild(QComboBox, "cargo_box")
+        self.btn_foto.hide()
+        self.btn_view.hide()
+        self.cancel_btn.hide()
+        self.confirm_btn.hide()
+        self.set_fields_enabled(False)
+        self.cargo_box.setEnabled(False)
+        self.pass_line_info.setEchoMode(QLineEdit.Password)
+        self.user_id = user_id
+        self.original_data = {}
+        self.load_user_data()
+        self.btn_edit.clicked.connect(self.enable_edit_mode)
+        self.cancel_btn.clicked.connect(self.cancel_changes)
+        self.confirm_btn.clicked.connect(self.confirm_changes)
+        self.btn_view.clicked.connect(self.toggle_password_view)
 
+    def set_fields_enabled(self, enabled):
+        self.user_line.setEnabled(enabled)
+        self.pass_line_info.setEnabled(enabled)
+        self.name_user_info.setEnabled(enabled)
+        self.email_user_info.setEnabled(enabled)
 
+    def load_user_data(self):
+        con = criar_conexao()
+        cursor = con.cursor()
+
+        try:
+            cursor.execute("""
+                SELECT u.usuario, u.senha, p.nome, p.email, c.nome AS cargo
+                FROM usuarios u
+                JOIN pessoas p ON u.idpessoa = p.idpessoa
+                JOIN cargos c ON u.idcargo = c.idcargo
+                WHERE u.idpessoa = %s
+            """, (self.user_id,))
+            data = cursor.fetchone()
+
+            if data:
+                self.user_line.setText(data[0])
+                self.pass_line_info.setText(data[1])
+                self.name_user_info.setText(data[2])
+                self.email_user_info.setText(data[3])
+                self.cargo_box.addItem(data[4])
+                self.original_data = {
+                    "usuario": data[0],
+                    "senha": data[1],
+                    "nome": data[2],
+                    "email": data[3],
+                    "cargo": data[4],
+                }
+        except Exception as e:
+            print(f"Erro ao carregar dados do usuário: {e}")
+        finally:
+            con.close()
+
+    def enable_edit_mode(self):
+        self.set_fields_enabled(True)
+        self.btn_foto.show()
+        self.btn_view.show()
+        self.cancel_btn.show()
+        self.confirm_btn.show()
+        self.btn_edit.hide()
+
+    def cancel_changes(self):
+        self.user_line.setText(self.original_data["usuario"])
+        self.pass_line_info.setText(self.original_data["senha"])
+        self.name_user_info.setText(self.original_data["nome"])
+        self.email_user_info.setText(self.original_data["email"])
+        self.set_fields_enabled(False)
+        self.btn_foto.hide()
+        self.btn_view.hide()
+        self.cancel_btn.hide()
+        self.confirm_btn.hide()
+        self.btn_edit.show()
+
+    def confirm_changes(self):
+        usuario = self.user_line.text()
+        senha = self.pass_line_info.text()
+        nome = self.name_user_info.text()
+        email = self.email_user_info.text()
+
+        con = criar_conexao()
+        cursor = con.cursor()
+
+        try:
+            cursor.execute("""
+                UPDATE usuarios 
+                SET usuario = %s, senha = %s
+                WHERE idpessoa = %s
+            """, (usuario, senha, self.user_id))
+
+            cursor.execute("""
+                UPDATE pessoas 
+                SET nome = %s, email = %s 
+                WHERE idpessoa = %s
+            """, (nome, email, self.user_id))
+
+            con.commit()
+            self.original_data.update({
+                "usuario": usuario,
+                "senha": senha,
+                "nome": nome,
+                "email": email,
+            })
+            self.cancel_changes()
+        except Exception as e:
+            print(f"Erro ao atualizar dados do usuário: {e}")
+        finally:
+            con.close()
+
+    def toggle_password_view(self):
+
+        if self.pass_line_info.echoMode() == QLineEdit.Password:
+            self.pass_line_info.setEchoMode(QLineEdit.Normal)
+        else:
+            self.pass_line_info.setEchoMode(QLineEdit.Password)
 
 
 class bag_view(QWidget):
@@ -356,7 +478,7 @@ class bag_view(QWidget):
         self.table_item = self.findChild(QTableView, "table_bag")
         con = mysql.connector.connect(**config)
         cursor = con.cursor()
-        cursor.execute("select idpatrimonio,p.nome as patrimonio_nome,p.data_recebimento,c.nome as categoria_nome,s.nome as setor_nome from patrimonios p left join categorias c ON p.idcategoria = c.idcategoria left join setores_responsaveis s ON p.idsetor = s.idsetor")
+        cursor.execute("select idpatrimonio,p.nome as patrimonio_nome,p.data_recebimento,c.nome as categoria_nome,s.nome as setor_nome from patrimonios p left join categorias c ON p.idcategoria = c.idcategoria left join setores_responsaveis s ON p.idsetor = s.idsetor order by p.idpatrimonio desc;")
         self.results_mdl = cursor.fetchall()
         self.modelo = QStandardItemModel(len(self.results_mdl), 5)
         for row_idx, row_data in enumerate(self.results_mdl):
@@ -427,7 +549,7 @@ class bag_view(QWidget):
         for row_idx, row_data in enumerate(data):
             for col_idx, cell_data in enumerate(row_data):
                 item = QStandardItem(str(cell_data))
-                item.setFont(QFont("Roboto", 12))
+                item.setFont(QFont("Roboto", 9))
                 item.setTextAlignment(Qt.AlignCenter)
                 modelo.setItem(row_idx, col_idx, item)
         self.table_item.horizontalHeader().setVisible(False)
@@ -441,7 +563,7 @@ class bag_view(QWidget):
             if any(texto in str(cell).lower() for cell in row):
                 items = [QStandardItem(str(cell)) for cell in row]
                 for item in items:
-                    item.setFont(QFont("Roboto", 12))
+                    item.setFont(QFont("Roboto", 9))
                     item.setTextAlignment(Qt.AlignCenter)
                 modelo_filtrado.appendRow(items)
 
@@ -687,6 +809,7 @@ class bag_item_cad(QWidget):
         self.n_serie.clear()
         self.date_buy.setDate(datetime.now())
         self.date_rec.setDate(datetime.now())
+        self.rec_por.clear()
         self.atualizar_tabela()
 
     def atualizar_tabela(self):
@@ -835,6 +958,7 @@ class bag_item_cad(QWidget):
         finally:
             cursor.close()
             fechar_conexao(con)
+            self.clear_u()
 
 
         

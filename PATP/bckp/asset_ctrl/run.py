@@ -9,13 +9,14 @@ from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem, QFont
 import mysql.connector # type: ignore
 import os, json
 import webbrowser
-
+id_user = ''
 data_user = ''
 data_pass = ''
 data_cargo = 15
 if os.path.exists('line/dados.json'):
     print("Arquivo JSON existe.")
     v_j = json.load(open("line/dados.json"))
+    id_user = v_j["idusuario"]
     data_user = v_j["user"]
     data_pass = v_j["password"]
     data_cargo = v_j["cargo"]
@@ -154,11 +155,11 @@ class interface(QMainWindow):
         self.shadow_menu.setBlurRadius(9)   
         self.shadow_menu.setColor(QtGui.QColor(0, 0, 0, 128))   
 
-        # BANCO TESTE
+
         self.table_view = self.findChild(QTableView, "tableView")
         conn = mysql.connector.connect(**config) # argumentos do dicionário config...
         cursor = conn.cursor()
-        cursor.execute("select p.nome as patrimonio_nome,p.data_recebimento,c.nome as categoria_nome,s.nome as situacao_nome from patrimonios p left join categorias c ON p.idcategoria = c.idcategoria left join situacoes s on p.idsituacao = s.idsituacao;")
+        cursor.execute("select p.nome as patrimonio_nome,p.data_recebimento,c.nome as categoria_nome,s.nome as situacao_nome from patrimonios p left join categorias c ON p.idcategoria = c.idcategoria left join situacoes s on p.idsituacao = s.idsituacao order by p.idpatrimonio desc;")
         results = cursor.fetchall()
 
          # Criar o modelo para o QTableView
@@ -298,6 +299,7 @@ class interface(QMainWindow):
         if data_cargo == 4 or data_cargo == 3:
             self.btn_users_menu.hide()
             self.btn_logs.hide()
+            self.frame_card2.hide()
         else:
             pass
         
@@ -347,9 +349,9 @@ class interface(QMainWindow):
         cursor.execute('select sum(valor_unitario) from patrimonios')
         data_vp = cursor.fetchall()
         if data_vp[0][0] == 0 or data_vp[0][0] == None:
-            self.text_vp.setText('Quantidade: 0')
+            self.text_vp.setText('R$: 0')
         else:
-            self.text_vp.setText('Quantidade: '+str(data_vp[0][0]))
+            self.text_vp.setText('R$: '+str(data_vp[0][0]))
         con.close()
 
     def update_box_item(self):
@@ -527,7 +529,7 @@ class interface(QMainWindow):
     def menu_info_user(self):
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")
-        self.user_info = user_info()
+        self.user_info = user_info(id_user)
         self.clear_frame()
         self.frame.layout().addWidget(self.user_info)
         if self.user_info in self.frame.findChildren(QWidget):
@@ -562,6 +564,8 @@ class interface(QMainWindow):
             self.frame.show()
             if self.btn_home.isVisible() == False:
                 self.btn_home.show()
+        self.btn_item = self.bag.findChild(QPushButton, "item_btn")
+        self.btn_item.clicked.connect(self.item_view)
 
 
 

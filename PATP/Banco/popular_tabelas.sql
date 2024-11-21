@@ -55,15 +55,19 @@ values
 
 insert into pessoas
 values
-(default, 'Eduardo Grosselli de Mello', 'edu_grosselli@hotmail.com', '2024-11-20'),
-(default, 'Emilly Levandoscki', 'emylevandoscki@gmail.com', '2024-11-20'),
-(default, 'Luan da Luz', 'luanluz@gmail.com', '2024-11-20');
+(default, 'user teste', 'email@gmail.com', '2024-11-20'),
+(default,'Administrador', 'administrador@gmail.com', '2024-11-20'),
+(default,'Supervisor', 'supervisor@gmail.com', '2024-11-20'),
+(default,'Funcionario Registrador', 'funcionario_reg@gmail.com', '2024-11-20'),
+(default,'Funcionario Leitor','funcionario_lei@gmail.com','2024-11-20');
 
 insert into usuarios
 values
-(1, 'eduardogm', '1234', 1),
-(2, 'emillylv', 1234, 1),
-(3, 'luanlz', 1234, 1); 
+(default,'admin', '1', 1), -- usuário para logar e gerar testes
+(default,'Administrador', '123', 1),
+(default,'Supervisor', '123', 2),
+(default,'Funcionario_R', '123', 3),
+(default,'Funcionario_L', '123', 4);
    
 INSERT INTO patrimonios (nome, valor_unitario, data_recebimento, num_patrimonio, num_serie, idnota, idcategoria, idsetor, idlocal, idsituacao)
 VALUES

@@ -129,6 +129,12 @@ border-bottom:0</string>
                 <height>27</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">
 QLineEdit{
@@ -145,6 +151,9 @@ border-bottom: 3px solid #057A3A;
               </property>
               <property name="text">
                <string>Usuário</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -177,7 +186,7 @@ border-bottom:0</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_5">
                <item>
-                <widget class="QPushButton" name="pushButton_3">
+                <widget class="QPushButton" name="btn_edit">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -228,7 +237,7 @@ border-bottom:0</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_3">
                <item>
-                <widget class="QPushButton" name="pushButton_2">
+                <widget class="QPushButton" name="btn_foto">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -357,6 +366,12 @@ border-bottom:0</string>
                 <height>27</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">
 QLineEdit{
@@ -374,6 +389,9 @@ border-bottom: 3px solid #057A3A;
               <property name="text">
                <string>Senha</string>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
              </widget>
             </item>
             <item>
@@ -389,6 +407,12 @@ border-bottom: 3px solid #057A3A;
                 <width>16777215</width>
                 <height>27</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">
@@ -407,6 +431,9 @@ border-bottom: 3px solid #057A3A;
               <property name="text">
                <string>Nome</string>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
              </widget>
             </item>
             <item>
@@ -422,6 +449,12 @@ border-bottom: 3px solid #057A3A;
                 <width>16777215</width>
                 <height>27</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">
@@ -439,6 +472,47 @@ border-bottom: 3px solid #057A3A;
               </property>
               <property name="text">
                <string>Email</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignTop">
+          <widget class="QFrame" name="frame">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_12">
+            <item>
+             <widget class="QPushButton" name="view_pass">
+              <property name="styleSheet">
+               <string notr="true">QPushButton { 
+	background-color: #057A3A;
+ 	color:rgb(254, 253, 247);
+	border-radius:9px;		
+	border: 1px solid rgb(255, 255, 255);
+	padding:8px
+ }
+
+QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
+
+QPushButton:pressed{
+ padding-left: 2px;
+ padding-top:2px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+              </property>
+              <property name="text">
+               <string>View_Pass</string>
               </property>
              </widget>
             </item>
@@ -490,7 +564,7 @@ border-bottom:0</string>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboBox">
+             <widget class="QComboBox" name="cargo_box">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -503,6 +577,12 @@ border-bottom:0</string>
                 <height>27</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QComboBox{background-color:white;
 border-radius: 15px;
@@ -512,11 +592,6 @@ border-bottom: 1px solid rgb(91, 91, 91)}
 
  </string>
               </property>
-              <item>
-               <property name="text">
-                <string>Cargo</string>
-               </property>
-              </item>
              </widget>
             </item>
            </layout>
@@ -594,7 +669,7 @@ border-bottom: 1px solid rgb(91, 91, 91)}
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_4">
                <item alignment="Qt::AlignTop">
-                <widget class="QPushButton" name="pushButton_5">
+                <widget class="QPushButton" name="cancel_btn">
                  <property name="minimumSize">
                   <size>
                    <width>90</width>
@@ -634,7 +709,7 @@ QPushButton:pressed{
                 </widget>
                </item>
                <item alignment="Qt::AlignTop">
-                <widget class="QPushButton" name="pushButton_6">
+                <widget class="QPushButton" name="confirm_btn">
                  <property name="minimumSize">
                   <size>
                    <width>90</width>

@@ -1,4 +1,4 @@
--- drop database cadastro;
+
 create database if not exists asset_ctrl;
 use asset_ctrl;
 
@@ -78,7 +78,7 @@ create table cargos (
 );
 
 create table usuarios (
-	idpessoa integer not null primary key,
+	idpessoa integer not null primary key auto_increment,
 	usuario varchar(30) not null unique,  
 	senha varchar(20) not null,
 	idcargo integer not null,

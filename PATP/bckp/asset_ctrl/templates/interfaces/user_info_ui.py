@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\IP\Desktop\PATP\asset_ctrl\templates\interfaces\user_info.ui'
+# Form implementation generated from reading ui file 'c:\Users\IP\Documents\GitHub\controle_patrimonio\PATP\bckp\asset_ctrl\templates\interfaces\user_info.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -64,6 +64,10 @@ class Ui_Form(object):
         self.user_line = QtWidgets.QLineEdit(self.frame_2)
         self.user_line.setMinimumSize(QtCore.QSize(300, 27))
         self.user_line.setMaximumSize(QtCore.QSize(300, 27))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.user_line.setFont(font)
         self.user_line.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"
@@ -76,6 +80,7 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
+        self.user_line.setAlignment(QtCore.Qt.AlignCenter)
         self.user_line.setObjectName("user_line")
         self.verticalLayout_6.addWidget(self.user_line, 0, QtCore.Qt.AlignBottom)
         self.horizontalLayout.addWidget(self.frame_2)
@@ -94,10 +99,10 @@ class Ui_Form(object):
         self.frame_9.setObjectName("frame_9")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frame_9)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.pushButton_3 = QtWidgets.QPushButton(self.frame_9)
-        self.pushButton_3.setMinimumSize(QtCore.QSize(0, 33))
-        self.pushButton_3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton_3.setStyleSheet("QPushButton { \n"
+        self.btn_edit = QtWidgets.QPushButton(self.frame_9)
+        self.btn_edit.setMinimumSize(QtCore.QSize(0, 33))
+        self.btn_edit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_edit.setStyleSheet("QPushButton { \n"
 "    background-color: #057A3A;\n"
 "     color:rgb(254, 253, 247);\n"
 "    border-radius:9px;        \n"
@@ -114,8 +119,8 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.verticalLayout_5.addWidget(self.pushButton_3)
+        self.btn_edit.setObjectName("btn_edit")
+        self.verticalLayout_5.addWidget(self.btn_edit)
         self.horizontalLayout_3.addWidget(self.frame_9, 0, QtCore.Qt.AlignBottom)
         self.frame_10 = QtWidgets.QFrame(self.frame_3)
         self.frame_10.setStyleSheet("background-color: 0;\n"
@@ -125,10 +130,10 @@ class Ui_Form(object):
         self.frame_10.setObjectName("frame_10")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_10)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame_10)
-        self.pushButton_2.setMinimumSize(QtCore.QSize(0, 33))
-        self.pushButton_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton_2.setStyleSheet("QPushButton { \n"
+        self.btn_foto = QtWidgets.QPushButton(self.frame_10)
+        self.btn_foto.setMinimumSize(QtCore.QSize(0, 33))
+        self.btn_foto.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_foto.setStyleSheet("QPushButton { \n"
 "    background-color: #057A3A;\n"
 "     color:rgb(254, 253, 247);\n"
 "    border-radius:9px;        \n"
@@ -145,8 +150,8 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.verticalLayout_3.addWidget(self.pushButton_2)
+        self.btn_foto.setObjectName("btn_foto")
+        self.verticalLayout_3.addWidget(self.btn_foto)
         self.horizontalLayout_3.addWidget(self.frame_10, 0, QtCore.Qt.AlignTop)
         self.frame_11 = QtWidgets.QFrame(self.frame_3)
         self.frame_11.setStyleSheet("background-color: 0;\n"
@@ -187,6 +192,10 @@ class Ui_Form(object):
         self.pass_line_info = QtWidgets.QLineEdit(self.frame_7)
         self.pass_line_info.setMinimumSize(QtCore.QSize(0, 27))
         self.pass_line_info.setMaximumSize(QtCore.QSize(16777215, 27))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.pass_line_info.setFont(font)
         self.pass_line_info.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"
@@ -199,11 +208,16 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
+        self.pass_line_info.setAlignment(QtCore.Qt.AlignCenter)
         self.pass_line_info.setObjectName("pass_line_info")
         self.verticalLayout_7.addWidget(self.pass_line_info)
         self.name_user_info = QtWidgets.QLineEdit(self.frame_7)
         self.name_user_info.setMinimumSize(QtCore.QSize(0, 27))
         self.name_user_info.setMaximumSize(QtCore.QSize(16777215, 27))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.name_user_info.setFont(font)
         self.name_user_info.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"
@@ -216,11 +230,16 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
+        self.name_user_info.setAlignment(QtCore.Qt.AlignCenter)
         self.name_user_info.setObjectName("name_user_info")
         self.verticalLayout_7.addWidget(self.name_user_info)
         self.email_user_info = QtWidgets.QLineEdit(self.frame_7)
         self.email_user_info.setMinimumSize(QtCore.QSize(0, 27))
         self.email_user_info.setMaximumSize(QtCore.QSize(16777215, 27))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.email_user_info.setFont(font)
         self.email_user_info.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"
@@ -233,9 +252,37 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
+        self.email_user_info.setAlignment(QtCore.Qt.AlignCenter)
         self.email_user_info.setObjectName("email_user_info")
         self.verticalLayout_7.addWidget(self.email_user_info)
         self.horizontalLayout_2.addWidget(self.frame_7)
+        self.frame = QtWidgets.QFrame(self.frame_4)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.frame)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.view_pass = QtWidgets.QPushButton(self.frame)
+        self.view_pass.setStyleSheet("QPushButton { \n"
+"    background-color: #057A3A;\n"
+"     color:rgb(254, 253, 247);\n"
+"    border-radius:9px;        \n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    padding:8px\n"
+" }\n"
+"\n"
+"QPushButton:hover{background-color:rgb(85, 170, 127);color:white}\n"
+"\n"
+"QPushButton:pressed{\n"
+" padding-left: 2px;\n"
+" padding-top:2px;\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
+" \n"
+"}")
+        self.view_pass.setObjectName("view_pass")
+        self.verticalLayout_12.addWidget(self.view_pass)
+        self.horizontalLayout_2.addWidget(self.frame, 0, QtCore.Qt.AlignTop)
         self.frame_8 = QtWidgets.QFrame(self.frame_4)
         self.frame_8.setMinimumSize(QtCore.QSize(300, 0))
         self.frame_8.setMaximumSize(QtCore.QSize(300, 16777215))
@@ -251,19 +298,22 @@ class Ui_Form(object):
         self.label_2.setMaximumSize(QtCore.QSize(16777215, 25))
         self.label_2.setObjectName("label_2")
         self.verticalLayout_8.addWidget(self.label_2, 0, QtCore.Qt.AlignHCenter)
-        self.comboBox = QtWidgets.QComboBox(self.frame_8)
-        self.comboBox.setMinimumSize(QtCore.QSize(0, 27))
-        self.comboBox.setMaximumSize(QtCore.QSize(16777215, 27))
-        self.comboBox.setStyleSheet("QComboBox{background-color:white;\n"
+        self.cargo_box = QtWidgets.QComboBox(self.frame_8)
+        self.cargo_box.setMinimumSize(QtCore.QSize(0, 27))
+        self.cargo_box.setMaximumSize(QtCore.QSize(16777215, 27))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.cargo_box.setFont(font)
+        self.cargo_box.setStyleSheet("QComboBox{background-color:white;\n"
 "border-radius: 15px;\n"
 "border-radius: 5px;\n"
 "border-bottom: 1px solid rgb(91, 91, 91)}\n"
 "\n"
 "\n"
 " ")
-        self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.verticalLayout_8.addWidget(self.comboBox)
+        self.cargo_box.setObjectName("cargo_box")
+        self.verticalLayout_8.addWidget(self.cargo_box)
         self.horizontalLayout_2.addWidget(self.frame_8, 0, QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.verticalLayout_2.addWidget(self.frame_4)
         self.frame_5 = QtWidgets.QFrame(self.frame_info)
@@ -300,11 +350,11 @@ class Ui_Form(object):
         self.frame_15.setObjectName("frame_15")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.frame_15)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.pushButton_5 = QtWidgets.QPushButton(self.frame_15)
-        self.pushButton_5.setMinimumSize(QtCore.QSize(90, 40))
-        self.pushButton_5.setMaximumSize(QtCore.QSize(90, 50))
-        self.pushButton_5.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton_5.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.cancel_btn = QtWidgets.QPushButton(self.frame_15)
+        self.cancel_btn.setMinimumSize(QtCore.QSize(90, 40))
+        self.cancel_btn.setMaximumSize(QtCore.QSize(90, 50))
+        self.cancel_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.cancel_btn.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 4px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 85, 0);\n"
@@ -320,13 +370,13 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.horizontalLayout_4.addWidget(self.pushButton_5, 0, QtCore.Qt.AlignTop)
-        self.pushButton_6 = QtWidgets.QPushButton(self.frame_15)
-        self.pushButton_6.setMinimumSize(QtCore.QSize(90, 40))
-        self.pushButton_6.setMaximumSize(QtCore.QSize(90, 50))
-        self.pushButton_6.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton_6.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.cancel_btn.setObjectName("cancel_btn")
+        self.horizontalLayout_4.addWidget(self.cancel_btn, 0, QtCore.Qt.AlignTop)
+        self.confirm_btn = QtWidgets.QPushButton(self.frame_15)
+        self.confirm_btn.setMinimumSize(QtCore.QSize(90, 40))
+        self.confirm_btn.setMaximumSize(QtCore.QSize(90, 50))
+        self.confirm_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.confirm_btn.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 4px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 85, 0);\n"
@@ -342,8 +392,8 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.horizontalLayout_4.addWidget(self.pushButton_6, 0, QtCore.Qt.AlignTop)
+        self.confirm_btn.setObjectName("confirm_btn")
+        self.horizontalLayout_4.addWidget(self.confirm_btn, 0, QtCore.Qt.AlignTop)
         self.horizontalLayout_5.addWidget(self.frame_15, 0, QtCore.Qt.AlignLeft)
         self.verticalLayout_10.addWidget(self.frame_12)
         self.frame_13 = QtWidgets.QFrame(self.frame_5)
@@ -364,15 +414,15 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.label.setText(_translate("Form", "user_info"))
         self.user_line.setText(_translate("Form", "Usuário"))
-        self.pushButton_3.setText(_translate("Form", "btn_edit"))
-        self.pushButton_2.setText(_translate("Form", "btn_foto"))
+        self.btn_edit.setText(_translate("Form", "btn_edit"))
+        self.btn_foto.setText(_translate("Form", "btn_foto"))
         self.pushButton.setText(_translate("Form", "FOTO"))
         self.pass_line_info.setText(_translate("Form", "Senha"))
         self.name_user_info.setText(_translate("Form", "Nome"))
         self.email_user_info.setText(_translate("Form", "Email"))
+        self.view_pass.setText(_translate("Form", "View_Pass"))
         self.label_2.setText(_translate("Form", "TextLabel"))
-        self.comboBox.setItemText(0, _translate("Form", "Cargo"))
         self.label_3.setText(_translate("Form", "Data ultima alteração"))
         self.label_4.setText(_translate("Form", "Quem alterou."))
-        self.pushButton_5.setText(_translate("Form", "cancel_btn"))
-        self.pushButton_6.setText(_translate("Form", "confirm_btn"))
+        self.cancel_btn.setText(_translate("Form", "cancel_btn"))
+        self.confirm_btn.setText(_translate("Form", "confirm_btn"))
