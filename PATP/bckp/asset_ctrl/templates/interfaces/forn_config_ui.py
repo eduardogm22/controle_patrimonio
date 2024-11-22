@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(914, 378)
+        Form.resize(864, 378)
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
         self.frame_7 = QtWidgets.QFrame(Form)
@@ -43,6 +43,13 @@ class Ui_Form(object):
         self.frame_6.setObjectName("frame_6")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame_6)
         self.horizontalLayout.setObjectName("horizontalLayout")
+        self.lbl_text = QtWidgets.QLabel(self.frame_6)
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.lbl_text.setFont(font)
+        self.lbl_text.setStyleSheet("color:white;")
+        self.lbl_text.setObjectName("lbl_text")
+        self.horizontalLayout.addWidget(self.lbl_text)
         self.frame_10 = QtWidgets.QFrame(self.frame_6)
         self.frame_10.setStyleSheet("border:0;\n"
 "background-color:transparent;")
@@ -85,10 +92,10 @@ class Ui_Form(object):
         self.frame_12.setObjectName("frame_12")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.frame_12)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.pushButton_7 = QtWidgets.QPushButton(self.frame_12)
-        self.pushButton_7.setMinimumSize(QtCore.QSize(71, 33))
-        self.pushButton_7.setMaximumSize(QtCore.QSize(70, 33))
-        self.pushButton_7.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.add_forn = QtWidgets.QPushButton(self.frame_12)
+        self.add_forn.setMinimumSize(QtCore.QSize(71, 33))
+        self.add_forn.setMaximumSize(QtCore.QSize(70, 33))
+        self.add_forn.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 76, 0)\n"
@@ -104,8 +111,8 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.verticalLayout_6.addWidget(self.pushButton_7)
+        self.add_forn.setObjectName("add_forn")
+        self.verticalLayout_6.addWidget(self.add_forn)
         self.horizontalLayout.addWidget(self.frame_12)
         self.verticalLayout_4.addWidget(self.frame_6, 0, QtCore.Qt.AlignHCenter)
         self.frame_5 = QtWidgets.QFrame(self.frame_2)
@@ -149,8 +156,8 @@ class Ui_Form(object):
         self.label_5.setObjectName("label_5")
         self.verticalLayout_2.addWidget(self.label_5)
         self.name_line = QtWidgets.QLineEdit(self.frame_4)
-        self.name_line.setMinimumSize(QtCore.QSize(0, 24))
-        self.name_line.setMaximumSize(QtCore.QSize(16777215, 24))
+        self.name_line.setMinimumSize(QtCore.QSize(240, 24))
+        self.name_line.setMaximumSize(QtCore.QSize(240, 24))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
@@ -174,8 +181,8 @@ class Ui_Form(object):
         self.label_6.setObjectName("label_6")
         self.verticalLayout_2.addWidget(self.label_6)
         self.cnpj_line = QtWidgets.QLineEdit(self.frame_4)
-        self.cnpj_line.setMinimumSize(QtCore.QSize(0, 24))
-        self.cnpj_line.setMaximumSize(QtCore.QSize(16777215, 24))
+        self.cnpj_line.setMinimumSize(QtCore.QSize(240, 24))
+        self.cnpj_line.setMaximumSize(QtCore.QSize(240, 24))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
@@ -198,7 +205,7 @@ class Ui_Form(object):
         self.label_4 = QtWidgets.QLabel(self.frame_4)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_2.addWidget(self.label_4)
-        self.horizontalLayout_4.addWidget(self.frame_4, 0, QtCore.Qt.AlignVCenter)
+        self.horizontalLayout_4.addWidget(self.frame_4, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.frame_9 = QtWidgets.QFrame(self.frame_8)
         self.frame_9.setMinimumSize(QtCore.QSize(90, 90))
         self.frame_9.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -299,7 +306,8 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.pushButton_7.setText(_translate("Form", "+"))
+        self.lbl_text.setText(_translate("Form", "TextLabel"))
+        self.add_forn.setText(_translate("Form", "+"))
         self.label.setText(_translate("Form", "Fornecedores cadastrados"))
         self.label_2.setText(_translate("Form", "Último fornecedor cadastrado"))
         self.label_3.setText(_translate("Form", "Última modificação:"))
