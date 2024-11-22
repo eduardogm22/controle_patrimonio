@@ -618,7 +618,57 @@ class bag_edit(QWidget):
         self.dt_buy = self.findChild(QDateEdit, "date_buy")
         self.dt_rec = self.findChild(QDateEdit, "date_rec")
         self.del_btn = self.findChild(QPushButton, "btn_del")
+        self.num_ptr = self.findChild(QLineEdit, "edtNumPtr")
         self.del_btn.clicked.connect(self.deletar_item)
+        
+        conn = criar_conexao()
+        cursor = conn.cursor()
+        try:
+            
+            cursor.execute('select nome from categorias order by nome')
+            resultado = cursor.fetchall()
+            for dados in resultado:
+                self.c_item.addItem(dados[0])
+                
+            cursor.execute('select nome from setores_responsaveis order by nome')
+            resultado_set_resp = cursor.fetchall()
+            for dados in resultado_set_resp:
+                self.c_set.addItem(dados[0])
+                
+            cursor.execute('select nome from situacoes order by nome')
+            resultado_situacoes = cursor.fetchall()
+            for dados in resultado_situacoes:
+                self.c_sit.addItem(dados[0])
+                
+            cursor.execute('select nome from locais order by nome')
+            resultado_locais = cursor.fetchall()
+            for dados in resultado_locais:
+                self.local_i.addItem(dados[0])
+            
+            cursor.callproc('st_select_editar', [id_item])
+
+            for result in cursor.stored_results():
+                resultados = result.fetchall()
+                for resultado in resultados:
+                    print(resultado)
+        except Exception as e:
+            print('erro', e)
+            
+        self.n_f.setText(resultado[0])
+        self.n_n.setText(resultado[1])
+        self.n_s.setText(resultado[2])
+        self.num_ptr.setText(str(resultado[3]))
+        self.dt_buy.setDate(resultado[4])
+        self.dt_rec.setDate(resultado[5])
+        self.local_i.setCurrentText(resultado[6])
+        self.name_p.setText(resultado[7])
+        self.v_u.setText(str(resultado[8]))
+        self.c_sit.setCurrentText(resultado[9])
+        self.c_set.setCurrentText(resultado[10])
+        self.c_item.setCurrentText(resultado[11])
+        
+        cursor.close()
+        fechar_conexao(conn)
         
     def deletar_item(self):
         print(self.id_item)

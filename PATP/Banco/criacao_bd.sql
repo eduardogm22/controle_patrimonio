@@ -131,6 +131,37 @@ $$ delimiter ;
 
 -- views 
 
+call st_select_editar (11);
+
+drop procedure st_select_editar;
+
+delimiter $$
+create procedure st_select_editar (in idpatrimonio_in integer)
+begin
+select 
+	nts.chave_acesso, 
+	fcd.nome, 
+    ptr.num_serie, 
+    ptr.num_patrimonio, 
+    nts.data_aquisicao,
+    ptr.data_recebimento, 
+    ptr.idlocal, 
+    ptr.nome, 
+    ptr.valor_unitario, 
+    ptr.idsituacao, 
+    ptr.idsetor, 
+    ptr.idcategoria 
+from 
+	patrimonios as ptr
+inner join
+	info_notas as nts on ptr.idnota = nts.idnota
+inner join
+	fornecedores as fcd on nts.idfornecedor = fcd.idfornecedor
+where 
+	idpatrimonio = idpatrimonio_in;
+end;
+$$ delimiter;
+
 -- drop view usuario_nome_view; -- descomentar caso fizer alteração
 create view usuario_nome_view as
 SELECT 
