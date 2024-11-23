@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDa
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal, QDate
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem, QFont
-from connect import conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
@@ -20,6 +19,7 @@ import openpyxl #type: ignore
 from openpyxl.styles import Font, Alignment #type: ignore
 from PyQt5.QtSql import QSqlQueryModel
 import traceback
+from connect import criar_conexao, fechar_conexao, update_editar_ptr, infos_popular_combobox, deletar_ptr,config_acess, config
 
 id_user = ''
 data_user = ''
@@ -35,6 +35,20 @@ if os.path.exists('line/dados.json'):
     print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
 else:
     print("Arquivo JSON inexistente func.")
+    
+def bag_screen(self):
+        self.frame = self.findChild(QFrame, "userFrame")
+        self.h_frame = self.findChild(QFrame, "homeFrame")
+        self.bag = bag_view()
+        self.clear_frame()
+        self.frame.layout().addWidget(self.bag)
+        if self.bag in self.frame.findChildren(QWidget):
+            self.h_frame.hide()
+            self.frame.show()
+            if self.btn_home.isVisible() == False:
+                self.btn_home.show()
+        self.btn_item = self.bag.findChild(QPushButton, "item_btn")
+        self.btn_item.clicked.connect(self.item_view)
 
 # icones svg
 QResource.registerResource("feather/resource.qrc")
@@ -622,46 +636,18 @@ class bag_edit(QWidget):
         self.del_btn = self.findChild(QPushButton, "btn_del")
         self.num_ptr = self.findChild(QLineEdit, "edtNumPtr")
         self.confirm_item = self.findChild(QPushButton, "confirm_item")
-        
         self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
-
-        conn = criar_conexao()
-        cursor = conn.cursor()
-        try:
-            
-            cursor.execute('select nome from categorias order by nome')
-            resultado = cursor.fetchall()
-            for dados in resultado:
-                self.c_item.addItem(dados[0])
+        
+        def retornar_anterior(self):
+            pass
+        
+        #adicionando os dados do patrimonio selecionado quando abre a tela
+        resultado = infos_popular_combobox(self, self.id_item)
                 
-            cursor.execute('select nome from setores_responsaveis order by nome')
-            resultado_set_resp = cursor.fetchall()
-            for dados in resultado_set_resp:
-                self.c_set.addItem(dados[0])
-                
-            cursor.execute('select nome from situacoes order by nome')
-            resultado_situacoes = cursor.fetchall()
-            for dados in resultado_situacoes:
-                self.c_sit.addItem(dados[0])
-                
-            cursor.execute('select nome from locais order by nome')
-            resultado_locais = cursor.fetchall()
-            for dados in resultado_locais:
-                self.local_i.addItem(dados[0])
-            
-            cursor.callproc('st_select_editar', [id_item])
-
-            for result in cursor.stored_results():
-                resultados = result.fetchall()
-                for resultado in resultados:
-                    print(resultado)
-        except Exception as e:
-            print('erro', e)
-            
         self.n_f.setText(resultado[0])
-        self.n_n.setText(resultado[1])
+        self.fornecedor.setText(resultado[1])
         self.n_s.setText(resultado[2])
-        self.num_ptr.setText(str(resultado[3]))
+        self.n_p.setText(str(resultado[3]))
         self.dt_buy.setDate(resultado[4])
         self.dt_rec.setDate(resultado[5])
         self.local_i.setCurrentText(resultado[6])
@@ -671,13 +657,29 @@ class bag_edit(QWidget):
         self.c_set.setCurrentText(resultado[10])
         self.c_item.setCurrentText(resultado[11])
         
-        cursor.close()
-        fechar_conexao(conn)
+        #atualizando os valores no banco de dados (update) ao clicar em confirmar
+        try: 
+            self.confirm_item.clicked.connect(lambda: 
+                update_editar_ptr(
+                    self.name_p.text(), 
+                    self.v_u.text(), 
+                    self.n_s.text(), 
+                    self.n_p.text(), 
+                    self.dt_rec.date().toString("yyyy-MM-dd"), 
+                    self.local_i.currentText(), 
+                    self.c_sit.currentText(), 
+                    self.c_set.currentText(), 
+                    self.c_item.currentText(), 
+                    self.id_item))
+        finally:    
+            self.confirm_item.clicked.connect(lambda: retornar_anterior(self))
         
-
-
-
-
+        
+        #deletando o patrimonio selecionado ao clicar em deletar
+        try:
+            self.del_btn.clicked.connect(lambda: deletar_ptr(self.id_item))
+        finally:
+            self.del_btn.clicked.connect(lambda: retornar_anterior(self))
 class bag_item_cad(QWidget):
     def __init__(self):
         super().__init__()
