@@ -594,7 +594,7 @@ class bag_view(QWidget):
     def bag_edit(self):
         modelo = self.table_item.model()
         item_id = modelo.item(self.row, 0).text()
-        self.edit_itens = bag_edit(item_id)
+        self.edit_itens = bag_edit(item_id, self)
         self.edit_frame = self.findChild(QFrame, "frame_edit_2")
         self.body_frame = self.findChild(QFrame, "frame_2")
         self.edit_frame.layout().addWidget(self.edit_itens)
@@ -613,7 +613,7 @@ class bag_view(QWidget):
 
 
 class bag_edit(QWidget):
-    def __init__(self, id_item):
+    def __init__(self, id_item, interface):
         super().__init__()
         self.edit = uic.loadUi("templates/interfaces/item_edit.ui", self)
         self.id_item = id_item
@@ -639,8 +639,14 @@ class bag_edit(QWidget):
         self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
         
         def retornar_anterior(self):
-            pass
-        
+            self.retornaranterior = retornar_anterior()
+            self.retornaranterior.configRequested.connect(self.interface.config_screen)
+            self.edit_frame = self.findChild(QFrame, "frame")
+            self.body_frame = self.findChild(QFrame, "frame_2")
+            self.edit_frame.layout().addWidget(self.retornaranterior)
+            self.edit_frame.hide()
+            self.body_frame.show()
+            
         #adicionando os dados do patrimonio selecionado quando abre a tela
         resultado = infos_popular_combobox(self, self.id_item)
                 
@@ -672,8 +678,7 @@ class bag_edit(QWidget):
                     self.c_item.currentText(), 
                     self.id_item))
         finally:    
-            self.confirm_item.clicked.connect(lambda: retornar_anterior(self))
-        
+            self.confirm_item.clicked.connect(lambda: retornar_anterior(self))       
         
         #deletando o patrimonio selecionado ao clicar em deletar
         try:
