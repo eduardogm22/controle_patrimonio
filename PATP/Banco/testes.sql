@@ -1,7 +1,8 @@
-set @idusuario = 1;
+call st_select_editar (8);
 select * from patrimonios;
+select * from info_notas;
 select * from patrimonios_audit;
-
+select * from locais;
 update patrimonios set nome = 'Monitor TLC', valor_unitario = 1000 where idpatrimonio = 11;
 delete from patrimonios_audit where idpatrimonio = 12;
 

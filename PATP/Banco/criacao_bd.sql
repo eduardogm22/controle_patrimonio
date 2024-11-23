@@ -131,32 +131,38 @@ $$ delimiter ;
 
 -- views 
 
-call st_select_editar (11);
-
-drop procedure st_select_editar;
+-- drop procedure st_select_editar;
 
 delimiter $$
 create procedure st_select_editar (in idpatrimonio_in integer)
 begin
 select 
 	nts.chave_acesso, 
-	fcd.nome, 
+	fcd.nome as "Fornecedor", 
     ptr.num_serie, 
     ptr.num_patrimonio, 
     nts.data_aquisicao,
     ptr.data_recebimento, 
-    ptr.idlocal, 
+    lcl.nome as "local", 
     ptr.nome, 
     ptr.valor_unitario, 
-    ptr.idsituacao, 
-    ptr.idsetor, 
-    ptr.idcategoria 
+    sit.nome as "situação", 
+    srp.nome as "setor", 
+    ctr.nome as "categoria"
 from 
 	patrimonios as ptr
-inner join
+left outer join
 	info_notas as nts on ptr.idnota = nts.idnota
-inner join
+left outer join
 	fornecedores as fcd on nts.idfornecedor = fcd.idfornecedor
+left outer join
+	situacoes as sit on ptr.idsituacao = sit.idsituacao
+left outer join
+	setores_responsaveis as srp on ptr.idsetor = srp.idsetor
+left outer join
+	categorias as ctr on ptr.idcategoria = ctr.idcategoria
+left outer join
+	locais as lcl on ptr.idlocal = lcl.idlocal
 where 
 	idpatrimonio = idpatrimonio_in;
 end;
