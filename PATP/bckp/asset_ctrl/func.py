@@ -3,7 +3,7 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QFrame,QWidget, QLabel, QGraphicsDropShadowEffect, QAbstractItemView
 from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDateEdit, QFocusFrame, QScrollArea, QVBoxLayout, QSpinBox, QTableView, QSizePolicy, QHeaderView,QDialog, QListView, QListWidget, QGraphicsView, QGraphicsScene, QFileDialog, QMessageBox, QTextBrowser, QCheckBox
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal
+from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal, QDate
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem, QFont
 from connect import conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
@@ -13,7 +13,8 @@ import matplotlib.pyplot as plt # type: ignore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas # type: ignore
 from matplotlib.figure import Figure # type: ignore
 import pandas as pd
-from datetime import datetime,timedelta
+import datetime
+from datetime import datetime,timedelta, date
 import os, json
 import openpyxl #type: ignore
 from openpyxl.styles import Font, Alignment #type: ignore
@@ -606,7 +607,8 @@ class bag_edit(QWidget):
         self.n_item.setText(f"Item: {self.id_item}")
         self.n_f = self.findChild(QLineEdit, "chave_acesso")
         self.n_s = self.findChild(QLineEdit, "n_serie")
-        self.n_n = self.findChild(QLineEdit, "n_nota")
+        self.n_p = self.findChild(QLineEdit, "n_patr")
+        self.fornecedor = self.findChild(QLineEdit, "forn")
         self.name_p = self.findChild(QLineEdit, "name_prod")
         self.v_u = self.findChild(QLineEdit, "value_prod")  
         self.c_sit = self.findChild(QComboBox, "c_sit")
@@ -619,8 +621,10 @@ class bag_edit(QWidget):
         self.dt_rec = self.findChild(QDateEdit, "date_rec")
         self.del_btn = self.findChild(QPushButton, "btn_del")
         self.num_ptr = self.findChild(QLineEdit, "edtNumPtr")
-        self.del_btn.clicked.connect(self.deletar_item)
+        self.confirm_item = self.findChild(QPushButton, "confirm_item")
         
+        self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
+
         conn = criar_conexao()
         cursor = conn.cursor()
         try:
@@ -670,8 +674,7 @@ class bag_edit(QWidget):
         cursor.close()
         fechar_conexao(conn)
         
-    def deletar_item(self):
-        print(self.id_item)
+
 
 
 
@@ -1260,6 +1263,7 @@ class config_cargo(QWidget):
         self.perm_mod = self.findChild(QCheckBox, "pode_modificar")
         self.perm_read = self.findChild(QCheckBox, "pode_visualizar")
         self.btn_confirm_n = self.findChild(QPushButton, "btn_confirm")
+        self.edit_carg.setVisible(False)
         self.btn_confirm_n.hide()
         self.new_cargo.hide()
         self.btn_confirm.hide()
@@ -1292,6 +1296,8 @@ class config_cargo(QWidget):
 
     def start_new_cargo(self):
         # sub-sessão para criação de um novo cargo
+        self.btn_add.setVisible(False)
+        self.box_cargo.setVisible(False)
         self.new_cargo.show()
         self.btn_confirm_n.show()
         self.btn_cancel.show()
@@ -1304,12 +1310,13 @@ class config_cargo(QWidget):
         """Cancelar o processo de criação de um novo cargo e restaurar o estado inicial."""
         self.new_cargo.hide()
         self.btn_confirm_n.hide()
-        self.btn_cancel.hide()
         self.edit_carg.show()
         self.box_cargo.setEnabled(True)
+        self.box_cargo.setVisible(True)
         self.clear_checkboxes()
         self.set_checkboxes_enabled(False)
         self.box_cargo.setCurrentIndex(0)
+        self.btn_add.setVisible(True)
 
     def save_new_cargo(self):
         """Salvar o novo cargo no banco de dados."""
@@ -1358,6 +1365,7 @@ class config_cargo(QWidget):
 
     def set_checkboxes_enabled(self, enabled):
         """Habilitar ou desabilitar as checkboxes."""
+
         self.perm_acess.setEnabled(enabled)
         self.perm_reg.setEnabled(enabled)
         self.ctrl_adm.setEnabled(enabled)
@@ -1368,7 +1376,7 @@ class config_cargo(QWidget):
     def update_checkboxes(self):
         self.clear_checkboxes()  # Garante que as checkbox estejam limpas
         cargo = self.box_cargo.currentText()
-
+        self.edit_carg.setVisible(True)
         if not cargo or cargo == "Selecione um cargo":
             self.set_checkboxes_enabled(False)
             return
@@ -1426,6 +1434,7 @@ class config_cargo(QWidget):
 
     def enable_editing(self):
         # Armazenar os valores originais antes de permitir a edição
+        self.btn_add.setVisible(False)
         self.original_values = {
             "acesso_geral": self.perm_acess.isChecked(),
             "pode_registrar": self.perm_reg.isChecked(),
@@ -1463,7 +1472,8 @@ class config_cargo(QWidget):
         self.btn_confirm.hide()
         self.cancel_edit.hide()
         self.edit_carg.show()
-
+        self.box_cargo.setCurrentIndex(0)
+        self.btn_add.setVisible(True)
     def cancel_changes(self):
         """Restaurar os valores originais em caso de cancelamento."""
         if not self.original_values:
@@ -1496,20 +1506,168 @@ class config_cat(QWidget):
         con.close()
         for cat in data:
             self.box_cat.addItem(cat[0])
-                 
-
+        
 class config_forn(QWidget):
     def __init__(self):
         super().__init__()
-        self.config_forn = uic.loadUi("templates/interfaces/forn_config.ui",self)
+        self.config_forn = uic.loadUi("templates/interfaces/forn_config.ui", self)
         self.box_forn = self.findChild(QComboBox, "box_forn")
-        con = criar_conexao()
+        self.name_line = self.findChild(QLineEdit, "name_line")
+        self.cnpj_line = self.findChild(QLineEdit, "cnpj_line")
+        self.confirm_btn = self.findChild(QPushButton, "confirm_btn")
+        self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
+        self.edit_btn = self.findChild(QPushButton, "edit_btn")
+        self.del_btn = self.findChild(QPushButton, "del_btn")
+        self.add_btn = self.findChild(QPushButton, "add_forn")
+        self.frame_forn = self.findChild(QFrame, "frame_4")
+        self.txt_lbl = self.findChild(QLabel, "lbl_text")
+        self.txt_lbl.hide()
+
+        # Inicialização do estado da interface
+        self.confirm_btn.hide()
+        self.cancel_btn.hide()
+        self.del_btn.hide()
+        self.edit_btn.hide()
+        self.name_line.setEnabled(False)
+        self.cnpj_line.setEnabled(False)
+
+        self.load_fornecedores()
+
+        # Conectando os sinais
+        self.box_forn.currentIndexChanged.connect(self.atribui_forn)
+        self.edit_btn.clicked.connect(self.enable_edit)
+        self.cancel_btn.clicked.connect(self.cancel_edit)
+        self.confirm_btn.clicked.connect(self.confirm_changes)
+        self.del_btn.clicked.connect(self.delete_forn)
+        self.add_btn.clicked.connect(self.add_new_forn)
+
+    def load_fornecedores(self):
+        # atualiza a lista de fornecedores na combobox
+        con = mysql.connector.connect(**config)
         cursor = con.cursor()
         cursor.execute("SELECT nome FROM fornecedores")
         data = cursor.fetchall()
         con.close()
+        self.box_forn.clear()
         for forn in data:
             self.box_forn.addItem(forn[0])
+
+    def atribui_forn(self):
+        self.edit_btn.show()
+        # Busca os dados do fornecedor selecionado
+        con = mysql.connector.connect(**config)
+        cursor = con.cursor()
+        cursor.execute("SELECT nome, cnpj FROM fornecedores WHERE nome = %s", (self.box_forn.currentText(),))
+        resultado = cursor.fetchone()
+        con.close()
+        if resultado:
+            self.name_line.setText(resultado[0])
+            self.cnpj_line.setText(resultado[1])
+        else:
+            self.name_line.clear()
+            self.cnpj_line.clear()
+
+    def enable_edit(self):
+       # edição de fornecedor
+        self.edit_btn.setEnabled(False)
+        self.edit_btn.setVisible(False)
+        self.add_btn.setEnabled(False)
+        self.add_btn.setVisible(False)
+        self.confirm_btn.show()
+        self.cancel_btn.show()
+        self.del_btn.show()
+        self.name_line.setEnabled(True)
+        self.cnpj_line.setEnabled(True)
+        self.box_forn.setEnabled(False)
+
+    def cancel_edit(self):
+        #cancela a edição e retorna ao estado inicial
+        self.edit_btn.setEnabled(True)
+        self.edit_btn.setVisible(True)
+        self.add_btn.setEnabled(True)
+        self.add_btn.setVisible(True)
+        self.confirm_btn.hide()
+        self.cancel_btn.hide()
+        self.del_btn.hide()
+        self.name_line.setEnabled(False)
+        self.cnpj_line.setEnabled(False)
+        self.box_forn.setVisible(True)
+        self.atribui_forn()  # Recarrega os dados originais
+
+    def confirm_changes(self):
+        con = mysql.connector.connect(**config)
+        cursor = con.cursor()
+        try:
+            cursor.execute(
+                "UPDATE fornecedores SET nome = %s, cnpj = %s WHERE nome = %s",
+                (self.name_line.text(), self.cnpj_line.text(), self.box_forn.currentText())
+            )
+            con.commit()
+        finally:
+            con.close()
+        self.cancel_edit()
+        self.load_fornecedores()
+
+    def delete_forn(self):
+        con = mysql.connector.connect(**config)
+        cursor = con.cursor()
+        try:
+            cursor.execute(
+                """
+                SELECT COUNT(*) FROM info_notas 
+                WHERE idfornecedor = (SELECT idfornecedor FROM fornecedores WHERE nome = %s)
+                """,
+                (self.box_forn.currentText(),)
+            )
+            vinculos = cursor.fetchone()[0]
+            if vinculos > 0:
+                QMessageBox.warning(self, "Erro", "Não é possível deletar o fornecedor, pois ele possui notas fiscais vinculadas.")
+            else:
+                cursor.execute(
+                    "DELETE FROM fornecedores WHERE nome = %s",
+                    (self.box_forn.currentText(),)
+                )
+                con.commit()
+                QMessageBox.information(self, "Sucesso", "Fornecedor deletado com sucesso.")
+                self.cancel_edit()
+                self.load_fornecedores()
+        finally:
+            con.close()
+
+    def add_new_forn(self):
+        self.box_forn.setVisible(False) 
+        self.name_line.clear()
+        self.cnpj_line.clear()
+        self.name_line.setEnabled(True)
+        self.cnpj_line.setEnabled(True)
+        self.add_btn.setVisible(False) 
+        self.edit_btn.setEnabled(False)
+        self.edit_btn.setVisible(False)
+        self.confirm_btn.show()
+        self.cancel_btn.show()
+        self.del_btn.hide()
+
+        def confirm_add():
+            con = mysql.connector.connect(**config)
+            cursor = con.cursor()
+            try:
+                cursor.execute("INSERT INTO fornecedores (nome, cnpj) VALUES (%s, %s)",(self.name_line.text(), self.cnpj_line.text()))
+                con.commit()
+                QMessageBox.information(self, "Sucesso", "Novo fornecedor adicionado com sucesso.")
+            finally:
+                con.close()
+            self.cancel_edit()  # Retorna ao estado inicial
+            self.box_forn.setVisible(True)
+            self.add_btn.setVisible(True)
+            self.load_fornecedores()
+
+        # Substitui o comportamento padrão do botão Confirmar
+        self.confirm_btn.clicked.disconnect()
+        self.confirm_btn.clicked.connect(confirm_add)
+
+
+        
+
 class config_local(QWidget):
     def __init__(self):
         super().__init__()

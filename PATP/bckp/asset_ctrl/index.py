@@ -75,5 +75,3 @@ app = QApplication(sys.argv)
 i = login_inicial()
 i.show()
 sys.exit(app.exec_())  
-
-
