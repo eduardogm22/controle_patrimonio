@@ -209,6 +209,9 @@ border-bottom: 3px solid #057A3A;
 
 </string>
                  </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -328,6 +331,9 @@ border-bottom: 3px solid #057A3A;
 }
 
 </string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -459,6 +465,9 @@ QCalendarWidget QToolButton {
 }
 
 </string>
+                    </property>
+                    <property name="readOnly">
+                     <bool>true</bool>
                     </property>
                     <property name="displayFormat">
                      <string notr="true">dd/MM/yyyy</string>
