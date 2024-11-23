@@ -1,4 +1,4 @@
-
+drop database asset_ctrl;
 create database if not exists asset_ctrl;
 use asset_ctrl;
 
@@ -131,34 +131,40 @@ $$ delimiter ;
 
 -- views 
 
-call st_select_editar (11);
-
-drop procedure st_select_editar;
+-- drop procedure st_select_editar;
 
 delimiter $$
 create procedure st_select_editar (in idpatrimonio_in integer)
 begin
 select 
 	nts.chave_acesso, 
-	fcd.nome, 
+	fcd.nome as "fornecedor", 
     ptr.num_serie, 
     ptr.num_patrimonio, 
     nts.data_aquisicao,
     ptr.data_recebimento, 
-    ptr.idlocal, 
-    ptr.nome, 
+    lcl.nome as "local", 
+    ptr.nome as "patrimonio", 
     ptr.valor_unitario, 
-    ptr.idsituacao, 
-    ptr.idsetor, 
-    ptr.idcategoria 
+    sit.nome as "situacao", 
+    srp.nome as "setor", 
+    cat.nome as "categoria" 
 from 
 	patrimonios as ptr
-inner join
+left outer join
 	info_notas as nts on ptr.idnota = nts.idnota
-inner join
+left outer join
 	fornecedores as fcd on nts.idfornecedor = fcd.idfornecedor
+left outer join
+	locais as lcl on ptr.idlocal = lcl.idlocal
+left outer join
+	situacoes as sit on ptr.idsituacao = sit.idsituacao
+left outer join
+	setores_responsaveis as srp on ptr.idsetor = srp.idsetor
+left outer join
+	categorias as cat on ptr.idcategoria = cat.idcategoria
 where 
-	idpatrimonio = idpatrimonio_in;
+	idpatrimonio = 1;
 end;
 $$ delimiter;
 
@@ -220,6 +226,7 @@ end;
 $$ delimiter ;
 
 -- Criação tabela auditoria para verificar logs
+
 -- drop table patrimonios_audit;
 create table patrimonios_audit (
     idusuario integer,
@@ -238,6 +245,91 @@ create table patrimonios_audit (
 	idsituacao integer default null   
 );
 
+/*
+create table categorias_audit(
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+    idcategoria integer,
+    nome varchar(30) default null
+);
+
+create table info_notas_audit(
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idnota integer,  
+	chave_acesso varchar(44) default null,  
+	numero integer default null,  
+	serie integer default null,
+    idfornecedor integer default null,
+	data_aquisicao date default null
+); 
+
+create table setores_responsaveis (
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idsetor integer ,
+    nome varchar(30) default null
+);
+
+create table locais(
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idlocal integer ,
+    nome varchar(255) default null
+);
+
+create table situacoes (
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idsituacao integer ,
+    nome varchar(30) default null
+);
+
+create table fornecedores (
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idfornecedor integer,
+    nome varchar(50) default null,
+    cnpj varchar(18) default null
+);
+
+create table pessoas ( 
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idpessoa integer,  
+	nome varchar(30) default null,  
+	email varchar(40) default null,  
+	dt_create date  default null
+); parei aquii
+
+create table cargos ( 
+	idcargo int primary key auto_increment,  
+	nome varchar(30) not null,  
+	acesso_geral char(1) not null,  
+	pode_registrar char(1) not null,  
+	controle_adm char(1) not null,  
+	controle_usuario char(1) not null,  
+	pode_modificar char(1) not null,  
+	pode_visualizar char(1) not null  
+);
+
+create table usuarios (
+	idpessoa integer not null primary key auto_increment,
+	usuario varchar(30) not null unique,  
+	senha varchar(20) not null,
+	idcargo integer not null,
+    
+    constraint fk_usr_pessoas foreign key (idpessoa) references pessoas (idpessoa),
+    constraint fk_usr_cargos foreign key (idcargo) references cargos (idcargo)
+);
+*/
 -- triggers auditoria
 
 delimiter $$

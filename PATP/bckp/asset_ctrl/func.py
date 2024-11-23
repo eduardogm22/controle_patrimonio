@@ -615,6 +615,7 @@ class bag_view(QWidget):
 class bag_edit(QWidget):
     def __init__(self, id_item, interface):
         super().__init__()
+        interface = interface
         self.edit = uic.loadUi("templates/interfaces/item_edit.ui", self)
         self.id_item = id_item
         self.n_item = self.findChild(QLabel, "label")
@@ -638,14 +639,6 @@ class bag_edit(QWidget):
         self.confirm_item = self.findChild(QPushButton, "confirm_item")
         self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
         
-        def retornar_anterior(self):
-            self.retornaranterior = retornar_anterior()
-            self.retornaranterior.configRequested.connect(self.interface.config_screen)
-            self.edit_frame = self.findChild(QFrame, "frame")
-            self.body_frame = self.findChild(QFrame, "frame_2")
-            self.edit_frame.layout().addWidget(self.retornaranterior)
-            self.edit_frame.hide()
-            self.body_frame.show()
             
         #adicionando os dados do patrimonio selecionado quando abre a tela
         resultado = infos_popular_combobox(self, self.id_item)
@@ -685,6 +678,16 @@ class bag_edit(QWidget):
             self.del_btn.clicked.connect(lambda: deletar_ptr(self.id_item))
         finally:
             self.del_btn.clicked.connect(lambda: retornar_anterior(self))
+    
+        def retornar_anterior(self):
+            pass #está em errada, arrumando
+            '''self.retornaranterior = retornar_anterior()
+            self.retornaranterior.configRequested.connect(self.interface.config_screen)
+            self.edit_frame = self.findChild(QFrame, "frame")
+            self.body_frame = self.findChild(QFrame, "frame_2")
+            self.edit_frame.layout().addWidget(self.retornaranterior)
+            self.edit_frame.hide()
+            self.body_frame.show()'''
 class bag_item_cad(QWidget):
     def __init__(self):
         super().__init__()
