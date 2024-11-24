@@ -144,7 +144,16 @@ class Ui_Form(object):
         self.frame_3.setObjectName("frame_3")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.frame_3)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.listView = QtWidgets.QListView(self.frame_3)
+        self.frame_7 = QtWidgets.QFrame(self.frame_3)
+        self.frame_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_7.setObjectName("frame_7")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_7)
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.textBrowser = QtWidgets.QTextBrowser(self.frame_7)
+        self.textBrowser.setObjectName("textBrowser")
+        self.verticalLayout_4.addWidget(self.textBrowser)
+        self.listView = QtWidgets.QListView(self.frame_7)
         self.listView.setMinimumSize(QtCore.QSize(0, 90))
         self.listView.setMaximumSize(QtCore.QSize(16777215, 5000))
         self.listView.setStyleSheet("background-color:white;    \n"
@@ -153,8 +162,18 @@ class Ui_Form(object):
 "\n"
 "")
         self.listView.setObjectName("listView")
-        self.horizontalLayout_3.addWidget(self.listView)
-        self.listView_2 = QtWidgets.QListView(self.frame_3)
+        self.verticalLayout_4.addWidget(self.listView)
+        self.horizontalLayout_3.addWidget(self.frame_7)
+        self.frame_8 = QtWidgets.QFrame(self.frame_3)
+        self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_8.setObjectName("frame_8")
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frame_8)
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.label = QtWidgets.QLabel(self.frame_8)
+        self.label.setObjectName("label")
+        self.verticalLayout_5.addWidget(self.label)
+        self.listView_2 = QtWidgets.QListView(self.frame_8)
         self.listView_2.setMinimumSize(QtCore.QSize(150, 0))
         self.listView_2.setMaximumSize(QtCore.QSize(150, 200))
         self.listView_2.setStyleSheet("background-color:white;    \n"
@@ -163,7 +182,8 @@ class Ui_Form(object):
 "\n"
 "")
         self.listView_2.setObjectName("listView_2")
-        self.horizontalLayout_3.addWidget(self.listView_2)
+        self.verticalLayout_5.addWidget(self.listView_2)
+        self.horizontalLayout_3.addWidget(self.frame_8, 0, QtCore.Qt.AlignHCenter)
         self.frame_6 = QtWidgets.QFrame(self.frame_3)
         self.frame_6.setStyleSheet("\n"
 "    border-bottom-right-radius: 15px;\n"
@@ -210,4 +230,10 @@ class Ui_Form(object):
         self.pushButton_2.setText(_translate("Form", "logs_view"))
         self.pushButton_3.setText(_translate("Form", "patrim_view"))
         self.pushButton_4.setText(_translate("Form", "rlt_cat"))
+        self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></body></html>"))
+        self.label.setText(_translate("Form", "TextLabel"))
         self.category.setText(_translate("Form", "new_cat"))

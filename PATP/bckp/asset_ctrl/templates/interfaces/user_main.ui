@@ -18,6 +18,17 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="QFrame" name="new_User">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_7"/>
+    </widget>
+   </item>
+   <item>
     <widget class="QFrame" name="userFrame">
      <property name="font">
       <font>

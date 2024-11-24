@@ -92,59 +92,7 @@ border-radius: 15px;</string>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QPushButton" name="btnReturn">
-           <property name="minimumSize">
-            <size>
-             <width>45</width>
-             <height>45</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>45</width>
-             <height>45</height>
-            </size>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton { 
-	background-color: #057A3A;
- 	color:rgb(254, 253, 247);
-	border-radius:9px;		
-	border: 1px solid rgb(255, 255, 255);
-	padding:8px
- }
-
-QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
-
-QPushButton:pressed{
- padding-left: 2px;
- padding-top:2px;
- 
-	background-color: rgb(0, 85, 0);
- 
-}</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../../../../feather/resource.qrc">
-             <normaloff>:/icons/corner-up-left.svg</normaloff>:/icons/corner-up-left.svg</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>27</width>
-             <height>27</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <layout class="QHBoxLayout" name="horizontalLayout_5"/>
        </widget>
       </item>
      </layout>
@@ -303,6 +251,9 @@ border-bottom: 3px solid #057A3A;
 }
 
 </string>
+              </property>
+              <property name="echoMode">
+               <enum>QLineEdit::Password</enum>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>

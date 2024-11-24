@@ -47,16 +47,16 @@ class Ui_Form(object):
         self.frame_4.setObjectName("frame_4")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.frame_4)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.pushButton = QtWidgets.QPushButton(self.frame_4)
-        self.pushButton.setMinimumSize(QtCore.QSize(90, 36))
-        self.pushButton.setMaximumSize(QtCore.QSize(90, 36))
+        self.item_btn = QtWidgets.QPushButton(self.frame_4)
+        self.item_btn.setMinimumSize(QtCore.QSize(90, 36))
+        self.item_btn.setMaximumSize(QtCore.QSize(90, 36))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.item_btn.setFont(font)
+        self.item_btn.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 76, 0)\n"
@@ -72,8 +72,8 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_5.addWidget(self.pushButton)
+        self.item_btn.setObjectName("item_btn")
+        self.horizontalLayout_5.addWidget(self.item_btn)
         self.rlt_btn = QtWidgets.QPushButton(self.frame_4)
         self.rlt_btn.setMinimumSize(QtCore.QSize(90, 36))
         self.rlt_btn.setMaximumSize(QtCore.QSize(90, 36))
@@ -231,56 +231,69 @@ class Ui_Form(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame_6)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.frame_5 = QtWidgets.QFrame(self.frame_6)
+        self.frame_5.setStyleSheet("border-radius:9px;")
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frame_5)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.list_patr = QtWidgets.QTableView(self.frame_5)
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        self.list_patr.setFont(font)
         self.list_patr.setStyleSheet("background-color:white;    \n"
-"border:3px solid #057A3A;\n"
-"border-radius:10px\n"
-"\n"
-"")
+"text-align:center;")
         self.list_patr.setObjectName("list_patr")
         self.verticalLayout_5.addWidget(self.list_patr)
         self.horizontalLayout.addWidget(self.frame_5)
         self.frame_7 = QtWidgets.QFrame(self.frame_6)
+        self.frame_7.setStyleSheet("border-radius:9px;")
         self.frame_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_7.setObjectName("frame_7")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_7)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.label_2 = QtWidgets.QLabel(self.frame_7)
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("color:#057A3A;")
         self.label_2.setObjectName("label_2")
         self.verticalLayout_4.addWidget(self.label_2)
-        self.tableView = QtWidgets.QTableView(self.frame_7)
-        self.tableView.setStyleSheet("background-color:white;    \n"
-"border:3px solid #057A3A;\n"
-"border-radius:10px\n"
+        self.vl_ctg = QtWidgets.QTableView(self.frame_7)
+        self.vl_ctg.setStyleSheet("background-color:white;    \n"
 "\n"
 "")
-        self.tableView.setObjectName("tableView")
-        self.verticalLayout_4.addWidget(self.tableView)
+        self.vl_ctg.setObjectName("vl_ctg")
+        self.verticalLayout_4.addWidget(self.vl_ctg)
         self.label_3 = QtWidgets.QLabel(self.frame_7)
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet("color:#057A3A;")
         self.label_3.setObjectName("label_3")
         self.verticalLayout_4.addWidget(self.label_3)
-        self.tableView_2 = QtWidgets.QTableView(self.frame_7)
-        self.tableView_2.setStyleSheet("background-color:white;    \n"
-"border:3px solid #057A3A;\n"
-"border-radius:10px\n"
+        self.vl_setor = QtWidgets.QTableView(self.frame_7)
+        self.vl_setor.setStyleSheet("background-color:white;    \n"
+"\n"
 "\n"
 "")
-        self.tableView_2.setObjectName("tableView_2")
-        self.verticalLayout_4.addWidget(self.tableView_2)
+        self.vl_setor.setObjectName("vl_setor")
+        self.verticalLayout_4.addWidget(self.vl_setor)
         self.horizontalLayout.addWidget(self.frame_7)
         self.verticalLayout_2.addWidget(self.frame_6)
-        self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setObjectName("label_4")
-        self.verticalLayout_2.addWidget(self.label_4)
-        self.label_5 = QtWidgets.QLabel(self.frame)
-        self.label_5.setObjectName("label_5")
-        self.verticalLayout_2.addWidget(self.label_5)
+        self.vl_total = QtWidgets.QLabel(self.frame)
+        self.vl_total.setObjectName("vl_total")
+        self.verticalLayout_2.addWidget(self.vl_total)
+        self.vl_ptr = QtWidgets.QLabel(self.frame)
+        self.vl_ptr.setObjectName("vl_ptr")
+        self.verticalLayout_2.addWidget(self.vl_ptr)
         self.verticalLayout.addWidget(self.frame)
 
         self.retranslateUi(Form)
@@ -294,7 +307,7 @@ class Ui_Form(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">LOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSA</span></p></body></html>"))
-        self.pushButton.setText(_translate("Form", "Produtos"))
+        self.item_btn.setText(_translate("Form", "Produtos"))
         self.rlt_btn.setText(_translate("Form", "Relatório"))
         self.label_6.setText(_translate("Form", "    Data Inicial                            Data final"))
         self.dt_inicial.setDisplayFormat(_translate("Form", "dd/MM/yyyy"))
@@ -302,5 +315,5 @@ class Ui_Form(object):
         self.filter_dt.setText(_translate("Form", "Filtrar"))
         self.label_2.setText(_translate("Form", "Valores por categoria"))
         self.label_3.setText(_translate("Form", "Valores por setores"))
-        self.label_4.setText(_translate("Form", "TextLabel"))
-        self.label_5.setText(_translate("Form", "TextLabel"))
+        self.vl_total.setText(_translate("Form", "TextLabel"))
+        self.vl_ptr.setText(_translate("Form", "TextLabel"))

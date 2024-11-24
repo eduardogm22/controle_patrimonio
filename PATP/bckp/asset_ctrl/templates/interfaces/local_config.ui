@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
+    <width>939</width>
     <height>378</height>
    </rect>
   </property>
@@ -50,7 +50,7 @@
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
+         <item alignment="Qt::AlignVCenter">
           <widget class="QFrame" name="frame_6">
            <property name="maximumSize">
             <size>
@@ -70,10 +70,11 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
+            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
              <widget class="QFrame" name="frame_10">
               <property name="styleSheet">
-               <string notr="true">border:0;</string>
+               <string notr="true">border:0;
+background-color:transparent;</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -82,40 +83,6 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_7">
-               <item alignment="Qt::AlignHCenter">
-                <widget class="QFrame" name="frame_11">
-                 <property name="styleSheet">
-                  <string notr="true">border:0;</string>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_8">
-                  <item>
-                   <widget class="QLineEdit" name="lineEdit">
-                    <property name="minimumSize">
-                     <size>
-                      <width>240</width>
-                      <height>33</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>240</width>
-                      <height>24</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">background-color:white;</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
                <item alignment="Qt::AlignHCenter">
                 <widget class="QComboBox" name="box_local">
                  <property name="minimumSize">
@@ -133,7 +100,7 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
                  <property name="font">
                   <font>
                    <family>Roboto</family>
-                   <pointsize>15</pointsize>
+                   <pointsize>12</pointsize>
                   </font>
                  </property>
                  <property name="contextMenuPolicy">
@@ -171,7 +138,7 @@ align-itens:center;
               </layout>
              </widget>
             </item>
-            <item>
+            <item alignment="Qt::AlignVCenter">
              <widget class="QFrame" name="frame_12">
               <property name="styleSheet">
                <string notr="true">border:0;</string>
@@ -184,81 +151,7 @@ align-itens:center;
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
-                <widget class="QPushButton" name="pushButton_5">
-                 <property name="minimumSize">
-                  <size>
-                   <width>71</width>
-                   <height>33</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>70</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
-	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
- }
-
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
-
-QPushButton:pressed{
- padding-left: 5px;
- padding-top:5px;
-	background-color: rgb(227, 227, 227);
- 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>Confirmar</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_6">
-                 <property name="minimumSize">
-                  <size>
-                   <width>71</width>
-                   <height>33</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>70</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
-	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
- }
-
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
-
-QPushButton:pressed{
- padding-left: 5px;
- padding-top:5px;
-	background-color: rgb(227, 227, 227);
- 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>Cancelar</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_7">
+                <widget class="QPushButton" name="add_btn">
                  <property name="minimumSize">
                   <size>
                    <width>71</width>
@@ -272,25 +165,25 @@ QPushButton:pressed{
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
+                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
 	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
  }
 
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+QPushButton:hover{background-color:#057A3A;color:white}
 
 QPushButton:pressed{
  padding-left: 5px;
  padding-top:5px;
-	background-color: rgb(227, 227, 227);
+ 
+	background-color: rgb(0, 85, 0);
  
 }</string>
                  </property>
                  <property name="text">
-                  <string>Editar</string>
+                  <string>+</string>
                  </property>
                 </widget>
                </item>
@@ -302,6 +195,9 @@ QPushButton:pressed{
          </item>
          <item>
           <widget class="QFrame" name="frame_5">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 85, 0);</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -310,23 +206,15 @@ QPushButton:pressed{
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Quantidade de locais cadastrados</string>
+             <widget class="QLabel" name="label_4">
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+               </font>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_2">
               <property name="text">
-               <string>Quantidade de produtos no local</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>Última modificação:</string>
+               <string>Quantidades de itens neste local</string>
               </property>
              </widget>
             </item>
@@ -345,17 +233,116 @@ QPushButton:pressed{
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QFrame" name="frame_4">
+         <item alignment="Qt::AlignTop">
+          <widget class="QFrame" name="frame">
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+           <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
-             <widget class="QListView" name="listView"/>
+             <widget class="QFrame" name="frame_3">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_4">
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(0, 85, 0);
+</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Nome do local:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="local_line">
+                 <property name="minimumSize">
+                  <size>
+                   <width>240</width>
+                   <height>24</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>240</width>
+                   <height>24</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+QLineEdit{
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+
+    border-top-right-radius: 5px;  
+    border-bottom-right-radius: 5px;
+}
+
+</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item alignment="Qt::AlignHCenter">
+             <widget class="QLabel" name="lbl_qntd">
+              <property name="font">
+               <font>
+                <family>Roboto</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(0, 85, 0);</string>
+              </property>
+              <property name="text">
+               <string>Quantidade de locais cadastrados:</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -376,33 +363,150 @@ QPushButton:pressed{
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="confirm_btn">
+              <property name="minimumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
-                <width>70</width>
+                <width>71</width>
                 <height>33</height>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">
-
-QPushButton { color: rgb(243, 239, 238);
+               <string notr="true">QPushButton { color:rgb(254, 253, 247);
 	border-radius:15px;		
-	border: 4px solid #00BF63;
-	background-color:#00BF63;
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
  }
 
-QPushButton:hover{background-color:rgb(255, 240, 238);color:#00BF63}
+QPushButton:hover{background-color:#057A3A;color:white}
 
 QPushButton:pressed{
  padding-left: 5px;
  padding-top:5px;
-	background-color: rgb(227, 227, 227);
+ 
+	background-color: rgb(0, 85, 0);
  
 }</string>
               </property>
               <property name="text">
-               <string>+</string>
+               <string>Confirmar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="cancel_btn">
+              <property name="minimumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+              </property>
+              <property name="text">
+               <string>Cancelar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="del_btn">
+              <property name="minimumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+              </property>
+              <property name="text">
+               <string>Deletar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="edit_btn">
+              <property name="minimumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+              </property>
+              <property name="text">
+               <string>Editar</string>
               </property>
              </widget>
             </item>

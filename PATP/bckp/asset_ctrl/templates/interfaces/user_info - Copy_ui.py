@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\IP\Documents\GitHub\controle_patrimonio\PATP\bckp\asset_ctrl\templates\interfaces\user_edit.ui'
+# Form implementation generated from reading ui file 'c:\Users\IP\Documents\GitHub\controle_patrimonio\PATP\bckp\asset_ctrl\templates\interfaces\user_info - Copy.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(896, 642)
+        Form.resize(896, 644)
         Form.setStyleSheet("background-color : rgb(255, 248, 248);\n"
 "\n"
 "background-color:qradialgradient(spread:pad, cx:0.525, cy:0, radius:0.711, fx:0.550202, fy:0.709842, stop:0.641791 rgba(7, 153, 73, 255), stop:0.965174 rgba(7, 153, 73, 255), stop:1 rgba(255, 255, 255, 255));\n"
@@ -57,23 +57,16 @@ class Ui_Form(object):
         self.label = QtWidgets.QLabel(self.frame_2)
         self.label.setMinimumSize(QtCore.QSize(0, 60))
         self.label.setMaximumSize(QtCore.QSize(16777215, 90))
-        font = QtGui.QFont()
-        font.setFamily("Roboto")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label.setFont(font)
         self.label.setStyleSheet("background-color: 0;\n"
 "border-bottom:0")
-        self.label.setText("")
         self.label.setObjectName("label")
         self.verticalLayout_6.addWidget(self.label)
         self.user_line = QtWidgets.QLineEdit(self.frame_2)
-        self.user_line.setMinimumSize(QtCore.QSize(300, 36))
-        self.user_line.setMaximumSize(QtCore.QSize(300, 36))
+        self.user_line.setMinimumSize(QtCore.QSize(300, 27))
+        self.user_line.setMaximumSize(QtCore.QSize(300, 27))
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        font.setPointSize(12)
+        font.setPointSize(9)
         self.user_line.setFont(font)
         self.user_line.setStyleSheet("\n"
 "QLineEdit{\n"
@@ -87,7 +80,6 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
-        self.user_line.setText("")
         self.user_line.setAlignment(QtCore.Qt.AlignCenter)
         self.user_line.setObjectName("user_line")
         self.verticalLayout_6.addWidget(self.user_line, 0, QtCore.Qt.AlignBottom)
@@ -197,15 +189,12 @@ class Ui_Form(object):
         self.frame_7.setObjectName("frame_7")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame_7)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.label_7 = QtWidgets.QLabel(self.frame_7)
-        self.label_7.setObjectName("label_7")
-        self.verticalLayout_7.addWidget(self.label_7)
         self.pass_line_info = QtWidgets.QLineEdit(self.frame_7)
-        self.pass_line_info.setMinimumSize(QtCore.QSize(0, 36))
-        self.pass_line_info.setMaximumSize(QtCore.QSize(300, 36))
+        self.pass_line_info.setMinimumSize(QtCore.QSize(0, 27))
+        self.pass_line_info.setMaximumSize(QtCore.QSize(16777215, 27))
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        font.setPointSize(12)
+        font.setPointSize(9)
         self.pass_line_info.setFont(font)
         self.pass_line_info.setStyleSheet("\n"
 "QLineEdit{\n"
@@ -219,19 +208,15 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
-        self.pass_line_info.setText("")
         self.pass_line_info.setAlignment(QtCore.Qt.AlignCenter)
         self.pass_line_info.setObjectName("pass_line_info")
         self.verticalLayout_7.addWidget(self.pass_line_info)
-        self.label_6 = QtWidgets.QLabel(self.frame_7)
-        self.label_6.setObjectName("label_6")
-        self.verticalLayout_7.addWidget(self.label_6)
         self.name_user_info = QtWidgets.QLineEdit(self.frame_7)
-        self.name_user_info.setMinimumSize(QtCore.QSize(0, 36))
-        self.name_user_info.setMaximumSize(QtCore.QSize(300, 36))
+        self.name_user_info.setMinimumSize(QtCore.QSize(0, 27))
+        self.name_user_info.setMaximumSize(QtCore.QSize(16777215, 27))
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        font.setPointSize(12)
+        font.setPointSize(9)
         self.name_user_info.setFont(font)
         self.name_user_info.setStyleSheet("\n"
 "QLineEdit{\n"
@@ -245,19 +230,15 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
-        self.name_user_info.setText("")
         self.name_user_info.setAlignment(QtCore.Qt.AlignCenter)
         self.name_user_info.setObjectName("name_user_info")
         self.verticalLayout_7.addWidget(self.name_user_info)
-        self.label_5 = QtWidgets.QLabel(self.frame_7)
-        self.label_5.setObjectName("label_5")
-        self.verticalLayout_7.addWidget(self.label_5)
         self.email_user_info = QtWidgets.QLineEdit(self.frame_7)
-        self.email_user_info.setMinimumSize(QtCore.QSize(0, 36))
-        self.email_user_info.setMaximumSize(QtCore.QSize(300, 36))
+        self.email_user_info.setMinimumSize(QtCore.QSize(0, 27))
+        self.email_user_info.setMaximumSize(QtCore.QSize(16777215, 27))
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        font.setPointSize(12)
+        font.setPointSize(9)
         self.email_user_info.setFont(font)
         self.email_user_info.setStyleSheet("\n"
 "QLineEdit{\n"
@@ -271,7 +252,6 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
-        self.email_user_info.setText("")
         self.email_user_info.setAlignment(QtCore.Qt.AlignCenter)
         self.email_user_info.setObjectName("email_user_info")
         self.verticalLayout_7.addWidget(self.email_user_info)
@@ -302,7 +282,7 @@ class Ui_Form(object):
 "}")
         self.view_pass.setObjectName("view_pass")
         self.verticalLayout_12.addWidget(self.view_pass)
-        self.horizontalLayout_2.addWidget(self.frame, 0, QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.horizontalLayout_2.addWidget(self.frame, 0, QtCore.Qt.AlignTop)
         self.frame_8 = QtWidgets.QFrame(self.frame_4)
         self.frame_8.setMinimumSize(QtCore.QSize(300, 0))
         self.frame_8.setMaximumSize(QtCore.QSize(300, 16777215))
@@ -316,21 +296,14 @@ class Ui_Form(object):
         self.label_2 = QtWidgets.QLabel(self.frame_8)
         self.label_2.setMinimumSize(QtCore.QSize(0, 25))
         self.label_2.setMaximumSize(QtCore.QSize(16777215, 25))
-        font = QtGui.QFont()
-        font.setFamily("Roboto")
-        font.setPointSize(15)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_2.setFont(font)
-        self.label_2.setStyleSheet("color:rgb(0, 85, 0);")
         self.label_2.setObjectName("label_2")
         self.verticalLayout_8.addWidget(self.label_2, 0, QtCore.Qt.AlignHCenter)
         self.cargo_box = QtWidgets.QComboBox(self.frame_8)
-        self.cargo_box.setMinimumSize(QtCore.QSize(0, 36))
-        self.cargo_box.setMaximumSize(QtCore.QSize(210, 36))
+        self.cargo_box.setMinimumSize(QtCore.QSize(0, 27))
+        self.cargo_box.setMaximumSize(QtCore.QSize(16777215, 27))
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        font.setPointSize(12)
+        font.setPointSize(9)
         self.cargo_box.setFont(font)
         self.cargo_box.setStyleSheet("QComboBox{background-color:white;\n"
 "border-radius: 15px;\n"
@@ -439,15 +412,17 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.btn_edit.setText(_translate("Form", "Editar"))
+        self.label.setText(_translate("Form", "user_info"))
+        self.user_line.setText(_translate("Form", "Usuário"))
+        self.btn_edit.setText(_translate("Form", "btn_edit"))
         self.btn_foto.setText(_translate("Form", "btn_foto"))
         self.pushButton.setText(_translate("Form", "FOTO"))
-        self.label_7.setText(_translate("Form", "Senha:"))
-        self.label_6.setText(_translate("Form", "Nome:"))
-        self.label_5.setText(_translate("Form", "Email"))
+        self.pass_line_info.setText(_translate("Form", "Senha"))
+        self.name_user_info.setText(_translate("Form", "Nome"))
+        self.email_user_info.setText(_translate("Form", "Email"))
         self.view_pass.setText(_translate("Form", "View_Pass"))
-        self.label_2.setText(_translate("Form", "CARGO"))
+        self.label_2.setText(_translate("Form", "TextLabel"))
         self.label_3.setText(_translate("Form", "Data ultima alteração"))
         self.label_4.setText(_translate("Form", "Quem alterou."))
-        self.cancel_btn.setText(_translate("Form", "Cancelar"))
-        self.confirm_btn.setText(_translate("Form", "Confirmar"))
+        self.cancel_btn.setText(_translate("Form", "cancel_btn"))
+        self.confirm_btn.setText(_translate("Form", "confirm_btn"))

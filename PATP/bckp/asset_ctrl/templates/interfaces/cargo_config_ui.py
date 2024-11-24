@@ -61,6 +61,12 @@ class Ui_Form(object):
         self.new_cargo = QtWidgets.QLineEdit(self.frame_11)
         self.new_cargo.setMinimumSize(QtCore.QSize(240, 24))
         self.new_cargo.setMaximumSize(QtCore.QSize(240, 24))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.new_cargo.setFont(font)
         self.new_cargo.setStyleSheet("background-color:white;\n"
 "border-radius:6px")
         self.new_cargo.setObjectName("new_cargo")

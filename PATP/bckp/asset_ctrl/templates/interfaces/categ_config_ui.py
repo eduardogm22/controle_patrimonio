@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(783, 378)
+        Form.resize(884, 378)
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
         self.frame_7 = QtWidgets.QFrame(Form)
@@ -49,20 +49,6 @@ class Ui_Form(object):
         self.frame_10.setObjectName("frame_10")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame_10)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.frame_11 = QtWidgets.QFrame(self.frame_10)
-        self.frame_11.setStyleSheet("border:0;")
-        self.frame_11.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_11.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_11.setObjectName("frame_11")
-        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.frame_11)
-        self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.lineEdit = QtWidgets.QLineEdit(self.frame_11)
-        self.lineEdit.setMinimumSize(QtCore.QSize(240, 24))
-        self.lineEdit.setMaximumSize(QtCore.QSize(240, 24))
-        self.lineEdit.setStyleSheet("background-color:white;")
-        self.lineEdit.setObjectName("lineEdit")
-        self.verticalLayout_8.addWidget(self.lineEdit)
-        self.verticalLayout_7.addWidget(self.frame_11, 0, QtCore.Qt.AlignHCenter)
         self.box_cat = QtWidgets.QComboBox(self.frame_10)
         self.box_cat.setMinimumSize(QtCore.QSize(240, 24))
         self.box_cat.setMaximumSize(QtCore.QSize(240, 24))
@@ -90,7 +76,6 @@ class Ui_Form(object):
 " ")
         self.box_cat.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLengthWithIcon)
         self.box_cat.setObjectName("box_cat")
-        self.box_cat.addItem("")
         self.verticalLayout_7.addWidget(self.box_cat, 0, QtCore.Qt.AlignHCenter)
         self.horizontalLayout_2.addWidget(self.frame_10)
         self.frame_12 = QtWidgets.QFrame(self.frame_6)
@@ -100,10 +85,10 @@ class Ui_Form(object):
         self.frame_12.setObjectName("frame_12")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.frame_12)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.pushButton_5 = QtWidgets.QPushButton(self.frame_12)
-        self.pushButton_5.setMinimumSize(QtCore.QSize(71, 33))
-        self.pushButton_5.setMaximumSize(QtCore.QSize(70, 40))
-        self.pushButton_5.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.btn_add = QtWidgets.QPushButton(self.frame_12)
+        self.btn_add.setMinimumSize(QtCore.QSize(70, 33))
+        self.btn_add.setMaximumSize(QtCore.QSize(70, 33))
+        self.btn_add.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 76, 0)\n"
@@ -119,50 +104,8 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.verticalLayout_6.addWidget(self.pushButton_5)
-        self.pushButton_6 = QtWidgets.QPushButton(self.frame_12)
-        self.pushButton_6.setMinimumSize(QtCore.QSize(71, 33))
-        self.pushButton_6.setMaximumSize(QtCore.QSize(70, 40))
-        self.pushButton_6.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
-"    border-radius:15px;        \n"
-"    border: 1px solid rgb(255, 255, 255);\n"
-"    background-color: rgb(0, 76, 0)\n"
-"\n"
-" }\n"
-"\n"
-"QPushButton:hover{background-color:#057A3A;color:white}\n"
-"\n"
-"QPushButton:pressed{\n"
-" padding-left: 5px;\n"
-" padding-top:5px;\n"
-" \n"
-"    background-color: rgb(0, 85, 0);\n"
-" \n"
-"}")
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.verticalLayout_6.addWidget(self.pushButton_6)
-        self.pushButton_7 = QtWidgets.QPushButton(self.frame_12)
-        self.pushButton_7.setMinimumSize(QtCore.QSize(71, 33))
-        self.pushButton_7.setMaximumSize(QtCore.QSize(70, 33))
-        self.pushButton_7.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
-"    border-radius:15px;        \n"
-"    border: 1px solid rgb(255, 255, 255);\n"
-"    background-color: rgb(0, 76, 0)\n"
-"\n"
-" }\n"
-"\n"
-"QPushButton:hover{background-color:#057A3A;color:white}\n"
-"\n"
-"QPushButton:pressed{\n"
-" padding-left: 5px;\n"
-" padding-top:5px;\n"
-" \n"
-"    background-color: rgb(0, 85, 0);\n"
-" \n"
-"}")
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.verticalLayout_6.addWidget(self.pushButton_7)
+        self.btn_add.setObjectName("btn_add")
+        self.verticalLayout_6.addWidget(self.btn_add)
         self.horizontalLayout_2.addWidget(self.frame_12)
         self.verticalLayout_4.addWidget(self.frame_6)
         self.frame_5 = QtWidgets.QFrame(self.frame_2)
@@ -171,15 +114,9 @@ class Ui_Form(object):
         self.frame_5.setObjectName("frame_5")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_5)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label = QtWidgets.QLabel(self.frame_5)
-        self.label.setObjectName("label")
-        self.verticalLayout_3.addWidget(self.label)
         self.label_2 = QtWidgets.QLabel(self.frame_5)
         self.label_2.setObjectName("label_2")
         self.verticalLayout_3.addWidget(self.label_2)
-        self.label_3 = QtWidgets.QLabel(self.frame_5)
-        self.label_3.setObjectName("label_3")
-        self.verticalLayout_3.addWidget(self.label_3)
         self.verticalLayout_4.addWidget(self.frame_5)
         self.horizontalLayout_3.addWidget(self.frame_2)
         self.frame_8 = QtWidgets.QFrame(self.frame_7)
@@ -194,10 +131,30 @@ class Ui_Form(object):
         self.frame_4.setObjectName("frame_4")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame_4)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.listView = QtWidgets.QListView(self.frame_4)
-        self.listView.setObjectName("listView")
-        self.verticalLayout_2.addWidget(self.listView)
-        self.horizontalLayout_4.addWidget(self.frame_4)
+        self.label_3 = QtWidgets.QLabel(self.frame_4)
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout_2.addWidget(self.label_3)
+        self.line_cat = QtWidgets.QLineEdit(self.frame_4)
+        self.line_cat.setMinimumSize(QtCore.QSize(240, 24))
+        self.line_cat.setMaximumSize(QtCore.QSize(240, 24))
+        self.line_cat.setStyleSheet("\n"
+"QLineEdit{\n"
+"background-color:white;    \n"
+"border-radius: 5px;\n"
+"border: 1px solid #057A3A;\n"
+"border-bottom: 3px solid #057A3A;\n"
+"\n"
+"    border-top-right-radius: 5px;  \n"
+"    border-bottom-right-radius: 5px;\n"
+"}\n"
+"\n"
+"")
+        self.line_cat.setObjectName("line_cat")
+        self.verticalLayout_2.addWidget(self.line_cat)
+        self.lbl_qntd = QtWidgets.QLabel(self.frame_4)
+        self.lbl_qntd.setObjectName("lbl_qntd")
+        self.verticalLayout_2.addWidget(self.lbl_qntd)
+        self.horizontalLayout_4.addWidget(self.frame_4, 0, QtCore.Qt.AlignTop)
         self.frame_9 = QtWidgets.QFrame(self.frame_8)
         self.frame_9.setMinimumSize(QtCore.QSize(90, 90))
         self.frame_9.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -205,9 +162,10 @@ class Ui_Form(object):
         self.frame_9.setObjectName("frame_9")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.frame_9)
         self.verticalLayout_9.setObjectName("verticalLayout_9")
-        self.pushButton_8 = QtWidgets.QPushButton(self.frame_9)
-        self.pushButton_8.setMaximumSize(QtCore.QSize(70, 33))
-        self.pushButton_8.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+        self.btn_cancel = QtWidgets.QPushButton(self.frame_9)
+        self.btn_cancel.setMinimumSize(QtCore.QSize(71, 33))
+        self.btn_cancel.setMaximumSize(QtCore.QSize(70, 40))
+        self.btn_cancel.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
 "    background-color: rgb(0, 76, 0)\n"
@@ -223,8 +181,50 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        self.pushButton_8.setObjectName("pushButton_8")
-        self.verticalLayout_9.addWidget(self.pushButton_8)
+        self.btn_cancel.setObjectName("btn_cancel")
+        self.verticalLayout_9.addWidget(self.btn_cancel)
+        self.btn_confirm = QtWidgets.QPushButton(self.frame_9)
+        self.btn_confirm.setMinimumSize(QtCore.QSize(71, 33))
+        self.btn_confirm.setMaximumSize(QtCore.QSize(70, 40))
+        self.btn_confirm.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+"    border-radius:15px;        \n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
+" }\n"
+"\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
+"\n"
+"QPushButton:pressed{\n"
+" padding-left: 5px;\n"
+" padding-top:5px;\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
+" \n"
+"}")
+        self.btn_confirm.setObjectName("btn_confirm")
+        self.verticalLayout_9.addWidget(self.btn_confirm)
+        self.btn_edit = QtWidgets.QPushButton(self.frame_9)
+        self.btn_edit.setMinimumSize(QtCore.QSize(71, 33))
+        self.btn_edit.setMaximumSize(QtCore.QSize(70, 33))
+        self.btn_edit.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+"    border-radius:15px;        \n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
+" }\n"
+"\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
+"\n"
+"QPushButton:pressed{\n"
+" padding-left: 5px;\n"
+" padding-top:5px;\n"
+" \n"
+"    background-color: rgb(0, 85, 0);\n"
+" \n"
+"}")
+        self.btn_edit.setObjectName("btn_edit")
+        self.verticalLayout_9.addWidget(self.btn_edit)
         self.horizontalLayout_4.addWidget(self.frame_9)
         self.horizontalLayout_3.addWidget(self.frame_8)
         self.verticalLayout.addWidget(self.frame_7)
@@ -235,11 +235,10 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.box_cat.setItemText(0, _translate("Form", "Categorias"))
-        self.pushButton_5.setText(_translate("Form", "Confirmar"))
-        self.pushButton_6.setText(_translate("Form", "Cancelar"))
-        self.pushButton_7.setText(_translate("Form", "Editar"))
-        self.label.setText(_translate("Form", "Produtos vinculados a categoria:"))
+        self.btn_add.setText(_translate("Form", "+"))
         self.label_2.setText(_translate("Form", "Categorias cadastradas:"))
-        self.label_3.setText(_translate("Form", "Última modificação:"))
-        self.pushButton_8.setText(_translate("Form", "+"))
+        self.label_3.setText(_translate("Form", "Nome da categoria:"))
+        self.lbl_qntd.setText(_translate("Form", "Produtos vinculados a categoria:"))
+        self.btn_cancel.setText(_translate("Form", "Cancelar"))
+        self.btn_confirm.setText(_translate("Form", "Confirmar"))
+        self.btn_edit.setText(_translate("Form", "Editar"))

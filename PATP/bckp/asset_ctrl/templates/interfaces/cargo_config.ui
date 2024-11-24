@@ -112,6 +112,14 @@ background-color:transparent;</string>
                       <height>24</height>
                      </size>
                     </property>
+                    <property name="font">
+                     <font>
+                      <family>Roboto</family>
+                      <pointsize>9</pointsize>
+                      <weight>50</weight>
+                      <bold>false</bold>
+                     </font>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">background-color:white;
 border-radius:6px</string>

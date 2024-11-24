@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>896</width>
-    <height>642</height>
+    <height>644</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -106,20 +106,12 @@ border-bottom:0</string>
                 <height>90</height>
                </size>
               </property>
-              <property name="font">
-               <font>
-                <family>Roboto</family>
-                <pointsize>12</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
               <property name="styleSheet">
                <string notr="true">background-color: 0;
 border-bottom:0</string>
               </property>
               <property name="text">
-               <string/>
+               <string>user_info</string>
               </property>
              </widget>
             </item>
@@ -128,19 +120,19 @@ border-bottom:0</string>
               <property name="minimumSize">
                <size>
                 <width>300</width>
-                <height>36</height>
+                <height>27</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>300</width>
-                <height>36</height>
+                <height>27</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>9</pointsize>
                </font>
               </property>
               <property name="styleSheet">
@@ -158,7 +150,7 @@ border-bottom: 3px solid #057A3A;
 </string>
               </property>
               <property name="text">
-               <string/>
+               <string>Usuário</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -224,7 +216,7 @@ QPushButton:pressed{
 }</string>
                  </property>
                  <property name="text">
-                  <string>Editar</string>
+                  <string>btn_edit</string>
                  </property>
                 </widget>
                </item>
@@ -361,30 +353,23 @@ border-bottom:0</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>Senha:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QLineEdit" name="pass_line_info">
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>36</height>
+                <height>27</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>300</width>
-                <height>36</height>
+                <width>16777215</width>
+                <height>27</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>9</pointsize>
                </font>
               </property>
               <property name="styleSheet">
@@ -402,17 +387,10 @@ border-bottom: 3px solid #057A3A;
 </string>
               </property>
               <property name="text">
-               <string/>
+               <string>Senha</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_6">
-              <property name="text">
-               <string>Nome:</string>
               </property>
              </widget>
             </item>
@@ -421,19 +399,19 @@ border-bottom: 3px solid #057A3A;
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>36</height>
+                <height>27</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>300</width>
-                <height>36</height>
+                <width>16777215</width>
+                <height>27</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>9</pointsize>
                </font>
               </property>
               <property name="styleSheet">
@@ -451,17 +429,10 @@ border-bottom: 3px solid #057A3A;
 </string>
               </property>
               <property name="text">
-               <string/>
+               <string>Nome</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>Email</string>
               </property>
              </widget>
             </item>
@@ -470,19 +441,19 @@ border-bottom: 3px solid #057A3A;
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>36</height>
+                <height>27</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>300</width>
-                <height>36</height>
+                <width>16777215</width>
+                <height>27</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>9</pointsize>
                </font>
               </property>
               <property name="styleSheet">
@@ -500,7 +471,7 @@ border-bottom: 3px solid #057A3A;
 </string>
               </property>
               <property name="text">
-               <string/>
+               <string>Email</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -510,7 +481,7 @@ border-bottom: 3px solid #057A3A;
            </layout>
           </widget>
          </item>
-         <item alignment="Qt::AlignLeft|Qt::AlignTop">
+         <item alignment="Qt::AlignTop">
           <widget class="QFrame" name="frame">
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -587,19 +558,8 @@ border-bottom:0</string>
                 <height>25</height>
                </size>
               </property>
-              <property name="font">
-               <font>
-                <family>Roboto</family>
-                <pointsize>15</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color:rgb(0, 85, 0);</string>
-              </property>
               <property name="text">
-               <string>CARGO</string>
+               <string>TextLabel</string>
               </property>
              </widget>
             </item>
@@ -608,19 +568,19 @@ border-bottom:0</string>
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>36</height>
+                <height>27</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>210</width>
-                <height>36</height>
+                <width>16777215</width>
+                <height>27</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Roboto</family>
-                <pointsize>12</pointsize>
+                <pointsize>9</pointsize>
                </font>
               </property>
               <property name="styleSheet">
@@ -744,7 +704,7 @@ QPushButton:pressed{
 }</string>
                  </property>
                  <property name="text">
-                  <string>Cancelar</string>
+                  <string>cancel_btn</string>
                  </property>
                 </widget>
                </item>
@@ -784,7 +744,7 @@ QPushButton:pressed{
 }</string>
                  </property>
                  <property name="text">
-                  <string>Confirmar</string>
+                  <string>confirm_btn</string>
                  </property>
                 </widget>
                </item>

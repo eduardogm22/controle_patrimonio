@@ -267,13 +267,7 @@ QPushButton:pressed{
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
-                <widget class="QListView" name="listView_2">
-                 <property name="maximumSize">
-                  <size>
-                   <width>600</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
+                <widget class="QTableView" name="local_items">
                  <property name="styleSheet">
                   <string notr="true">background-color:white;	
 border:3px solid #057A3A;
@@ -324,7 +318,7 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
                 </widget>
                </item>
                <item>
-                <widget class="QListView" name="listView">
+                <widget class="QTableView" name="itens_nlocal">
                  <property name="styleSheet">
                   <string notr="true">background-color:white;	
 border:3px solid #057A3A;
@@ -377,50 +371,7 @@ border-radius:10px
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_3">
                <item>
-                <widget class="QListView" name="listView_3">
-                 <property name="minimumSize">
-                  <size>
-                   <width>150</width>
-                   <height>360</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>300</width>
-                   <height>360</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color:white;	
-border:3px solid #057A3A;
-border-radius:10px
-
-</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QListView" name="listView_4">
-                 <property name="minimumSize">
-                  <size>
-                   <width>150</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>300</width>
-                   <height>150</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color:white;	
-border:3px solid #057A3A;
-border-radius:10px
-
-</string>
-                 </property>
-                </widget>
+                <widget class="QTextBrowser" name="textBrowser"/>
                </item>
               </layout>
              </widget>

@@ -19,6 +19,8 @@ import openpyxl #type: ignore
 from openpyxl.styles import Font, Alignment #type: ignore
 from PyQt5.QtSql import QSqlQueryModel
 import traceback
+from PyQt5.QtWidgets import QApplication, QTableView, QMainWindow, QVBoxLayout, QWidget, QHeaderView
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from connect import criar_conexao, fechar_conexao, update_editar_ptr, infos_popular_combobox, deletar_ptr,config_acess, config
 
 id_user = ''
@@ -89,7 +91,6 @@ class user_menu(QWidget):
 
         self.frame_user = self.findChild(QFrame, "info_user")
 
-        self.btn_search.clicked.connect(self.search)
         self.btn_cad.clicked.connect(self.register)
         self.btn_info.clicked.connect(self.info)
         
@@ -144,106 +145,43 @@ class user_menu(QWidget):
         header.setStretchLastSection(True)
         self.table_user.setModel(model_u)
         self.table_user.setGridStyle(Qt.NoPen)
-        #self.table_view.setHorizontalHeader(None)
+        self.table_user.verticalHeader().setVisible(False)
+        self.table_user.horizontalHeader().setVisible(False)
+        self.table_user.resizeColumnsToContents()
         self.table_user.setAlternatingRowColors(True)
         self.table_user.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
         self.table_user.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table_user.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.table_user.clicked.connect(self.handle_row_click)
+        select_table = self.table_user.selectionModel()
+        select_table.selectionChanged.connect(self.handle_selection_change)
+    
+
+    # confirmação do index clickado
+    def handle_row_click(self, index):
+        self.row = index.row()
+        modelo = self.table_user.model()
+        item_id = modelo.item(self.row, 0).text()
+        print(f"Dados da linha {self.row}: {item_id}")
+        self.btn_info.setEnabled(True)
+        self.btn_info.show()
+    # seleção
+    def handle_selection_change(self, selected, deselected):
+        if self.table_user.selectionModel().hasSelection():
+            self.btn_info.setEnabled(True)
+            self.btn_info.setVisible(True)
+        else:
+            self.btn_info.setEnabled(False)
+            self.btn_info.setVisible(False)
             
     def register(self):
-        self.c_frame = self.findChild(QFrame, "createFrame")
+        self.n_frame = self.findChild(QFrame, "new_User")
         self.u_frame = self.findChild(QFrame, "userFrame")
-        self.user_create = uic.loadUi("templates/interfaces/user_create.ui")
-        self.c_frame.layout().addWidget(self.user_create)
-        self.btn_clear = self.findChild(QPushButton, "btnClear")
-        self.btn_clear.clicked.connect(self.clear)
-        self.btn_confirm = self.findChild(QPushButton, "btnConfirm")
-        self.btn_confirm.clicked.connect(self.create_user)
-        self.frame_bot = self.findChild(QFrame, "frame_bottom")
-        self.frame_body = self.findChild(QFrame, "frame_body")  
-        self.cargo_box = self.findChild(QComboBox, "cargoBox")
-        self.cargo_box.setStyleSheet("QComboBox#cargoBox{border: 1px solid #000000;} QComboBox#cargoBox::drop-down{border: 1px solid #000000; border-radius:9px;}")
-        
-        self.user_edit_line = self.findChild(QLineEdit, "userEdit")
-        self.name_edit_line = self.findChild(QLineEdit, "nameEdit")
-        self.pass_edit_line = self.findChild(QLineEdit, "passEdit")
-        self.email_edit_line = self.findChild(QLineEdit, "emailEdit")
-
-        self.frame_btns = self.findChild(QFrame, "frame_btns")
-        self.frame_back = self.findChild(QFrame, "frame_back")
-
-        
-        self.shadow_details = QGraphicsDropShadowEffect() 
-        self.shadow_details.setOffset(0, 0)
-        self.shadow_details.setBlurRadius(9)
-        self.shadow_details.setColor(QtGui.QColor(0, 0, 0, 128))
-    
-        self.shadow_f1 = QGraphicsDropShadowEffect() 
-        self.shadow_f1.setOffset(0, 0)
-        self.shadow_f1.setBlurRadius(9)
-        self.shadow_f1.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_f2 = QGraphicsDropShadowEffect() 
-        self.shadow_f2.setOffset(0, 0)
-        self.shadow_f2.setBlurRadius(9)
-        self.shadow_f2.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_f3 = QGraphicsDropShadowEffect() 
-        self.shadow_f3.setOffset(0, 0)
-        self.shadow_f3.setBlurRadius(9)
-        self.shadow_f3.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_f4 = QGraphicsDropShadowEffect() 
-        self.shadow_f4.setOffset(0, 0)
-        self.shadow_f4.setBlurRadius(9)
-        self.shadow_f4.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_f5 = QGraphicsDropShadowEffect() 
-        self.shadow_f5.setOffset(0, 0)
-        self.shadow_f5.setBlurRadius(9)
-        self.shadow_f5.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_f6 = QGraphicsDropShadowEffect() 
-        self.shadow_f6.setOffset(0, 0)
-        self.shadow_f6.setBlurRadius(9)
-        self.shadow_f6.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_f7 = QGraphicsDropShadowEffect() 
-        self.shadow_f7.setOffset(0, 0)
-        self.shadow_f7.setBlurRadius(9)
-        self.shadow_f7.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.user_edit_line.setGraphicsEffect(self.shadow_f1)
-        self.name_edit_line.setGraphicsEffect(self.shadow_f2)
-        self.pass_edit_line.setGraphicsEffect(self.shadow_f3)
-        self.email_edit_line.setGraphicsEffect(self.shadow_f4)
-        self.cargo_box.setGraphicsEffect(self.shadow_f5)
-        self.frame_btns.setGraphicsEffect(self.shadow_f6)
-        self.frame_back.setGraphicsEffect(self.shadow_f7)
-
-        self.frame_bot.setGraphicsEffect(self.shadow_details)
-        self.cargo_box.setStyleSheet("QComboBox#cargoBox{text-align: center;}")
+        self.user_create = new_user()
+        self.n_frame.layout().addWidget(self.user_create)
         self.u_frame.hide()
-        self.c_frame.show()
-        con_cargo = mysql.connector.connect(**config)
-        cursor2 = con_cargo.cursor()
-        query = "SELECT nome FROM cargos"
-        cursor2.execute(query)
-        dados = cursor2.fetchall()
-        for dado in dados:
-            self.cargo_box.addItem(dado[0])
-        self.u_frame.hide()
-        self.c_frame.show()
-        con_cargo.close()
+        self.n_frame.show()
     
-    def create_user(self):
-        user = self.user_edit_line.text()
-        name = self.name_edit_line.text()
-        passw = self.pass_edit_line.text()
-        email = self.email_edit_line.text()
-        cargo = self.cargo_box.currentText()
-        # faltando lógica para verificar se usuário já existe no banco com o mesmo nome.
-        print(user,name,passw,email,cargo)
     
     def eventFilter(self, obj, event):
 
@@ -268,28 +206,19 @@ class user_menu(QWidget):
         return super().eventFilter(obj, event)
     
 
-    def delete(self):
-        print('Delete')
     
-    def edit(self):
-        print('Edit')
     
     def info(self):
-        print('Info')
-    
-    def search(self):
-        print('Search')
+        modelo = self.table_user.model()
+        u_select = modelo.item(self.row, 0).text()
+        self.user_edit = edit_user(u_select)
+        self.c_frame = self.findChild(QFrame, "createFrame")
+        self.u_frame = self.findChild(QFrame, "userFrame")
+        self.c_frame.layout().addWidget(self.user_edit)
+        self.u_frame.hide()
+        self.c_frame.show()
         
-    def clear(self):
-        self.user_edit_line = self.findChild(QLineEdit, "userEdit")
-        self.name_edit_line = self.findChild(QLineEdit, "nameEdit")
-        self.pass_edit_line = self.findChild(QLineEdit, "passEdit")
-        self.email_edit_line = self.findChild(QLineEdit, "emailEdit")
-        self.user_edit_line.clear() 
-        self.name_edit_line.clear()
-        self.pass_edit_line.clear()
-        self.email_edit_line.clear()
-        print('Teste')
+        
 
 class user_info(QWidget):
     def __init__(self, user_id):
@@ -522,6 +451,18 @@ class bag_view(QWidget):
         self.btn_details.clicked.connect(self.exibir_detalhes)
         self.search_line.textChanged.connect(self.filtrar_dados)
         
+        self.edit_btn.setEnabled(False)
+        self.edit_btn.setVisible(False)
+        select_table = self.table_item.selectionModel()
+        select_table.selectionChanged.connect(self.handle_selection_change)
+        
+    def handle_selection_change(self, selected, deselected):
+        if self.table_item.selectionModel().hasSelection():
+            self.edit_btn.setEnabled(True)
+            self.edit_btn.setVisible(True)
+        else:
+            self.edit_btn.setEnabled(False)
+            self.edit_btn.setVisible(False)
 
     def handle_row_click(self, index):
         self.row = index.row()
@@ -1021,77 +962,119 @@ class bag_item_cad(QWidget):
             self.clear_u()
 
 
-        
 class items_view(QWidget):
     def __init__(self, interface):
         super().__init__()
         self.interface = interface
         self.item_view = uic.loadUi("templates/interfaces/item_view.ui", self)
-        self.btn_categ = self.findChild(QPushButton, "cat_item_btn")
-        self.btn_categ.clicked.connect(self.categ_view)
         self.tb_item = self.findChild(QTableView, "tb_item")
         self.ct_view = self.findChild(QTableView, "ct_view")
-        self.list_itens = self.findChild(QListView, "list_itens")
         self.load_items()
 
     def load_items(self):
-        # Conectar ao banco de dados usando o dicionário config
-        conn = mysql.connector.connect(**config)  # Dicionário config já definido
+        # Conectar ao banco de dados
+        conn = mysql.connector.connect(**config)  # Substituir pelo seu dicionário de configuração
         cursor = conn.cursor()
 
-        # Executar a consulta para buscar os dados
-        query = """
+        # Consulta para a tabela tb_item
+        tb_item_query = """
         SELECT 
             ptr.nome AS Produto,
             cat.nome AS Categoria,
-            sit.nome AS Situação,
-            srp.nome AS Setor_Responsável
+            sit.nome AS Situação
         FROM 
             patrimonios AS ptr
         INNER JOIN 
             categorias AS cat ON ptr.idcategoria = cat.idcategoria
         INNER JOIN 
-            situacoes AS sit ON ptr.idsituacao = sit.idsituacao
-        INNER JOIN 
-            setores_responsaveis AS srp ON ptr.idsetor = srp.idsetor;
+            situacoes AS sit ON ptr.idsituacao = sit.idsituacao;
         """
-        cursor.execute(query)
-        results = cursor.fetchall()
 
-        # Configurar o modelo
-        model = QStandardItemModel(len(results), 4)  # (linhas, colunas)
-        model.setHorizontalHeaderLabels(['Produto', 'Categoria', 'Situação', 'Setor Responsável'])
+        # Consulta para a tabela ct_view (quantidade de produtos por categoria)
+        ct_view_query = """
+        SELECT 
+            cat.nome AS Categoria,
+            COUNT(ptr.idpatrimonio) AS Quantidade
+        FROM 
+            categorias AS cat
+        LEFT JOIN 
+            patrimonios AS ptr ON cat.idcategoria = ptr.idcategoria
+        GROUP BY 
+            cat.nome
+        ORDER BY 
+            cat.nome;
+        """
 
-        # Preencher o modelo com os dados do banco
-        for row_idx, row_data in enumerate(results):
-            for col_idx, data in enumerate(row_data):
-                item = QStandardItem(str(data))
-                item.setFont(QFont("Roboto", 9))
-                item.setTextAlignment(Qt.AlignCenter)
-                model.setItem(row_idx, col_idx, item)
+        # Executar e preencher tb_item
+        cursor.execute(tb_item_query)
+        tb_item_results = cursor.fetchall()
+        self.setup_table(self.tb_item, tb_item_results, ['Produto', 'Categoria', 'Situação'])
 
-        # Definir o modelo no QTableView
-        self.tb_item.setModel(model)
-        self.tb_item.resizeColumnsToContents()
-        self.tb_item.setAlternatingRowColors(True)
-        self.tb_item.horizontalHeader().setStretchLastSection(True)
-        self.tb_item.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
-        self.tb_item.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.tb_item.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.tb_item.setGridStyle(Qt.NoPen)
+        # Executar e preencher ct_view
+        cursor.execute(ct_view_query)
+        ct_view_results = cursor.fetchall()
+        self.setup_table(self.ct_view, ct_view_results, ['Categoria', 'Quantidade'])
+
         # Fechar o cursor e a conexão
         cursor.close()
         conn.close()
 
+    def setup_table(self, table_view, data, headers):
+        """Configura o QTableView com os dados fornecidos."""
+        # Criar o modelo
+        model = QStandardItemModel(len(data), len(headers))
+        model.setHorizontalHeaderLabels(headers)
 
-    def categ_view(self):
-        self.categview = categ_view()
-        self.categview.configRequested.connect(self.interface.config_screen)
-        self.frame_v1 = self.findChild(QFrame, "body_item")
-        self.frame_v2 = self.findChild(QFrame, "frame_view2")
-        self.frame_v2.layout().addWidget(self.categview)
-        self.frame_v2.show()
-        self.frame_v1.hide()
+        # Preencher o modelo com os dados
+        for row_idx, row_data in enumerate(data):
+            for col_idx, cell_data in enumerate(row_data):
+                item = QStandardItem(str(cell_data))
+                item.setFont(QFont("Roboto", 9))
+                item.setTextAlignment(Qt.AlignCenter)
+                model.setItem(row_idx, col_idx, item)
+
+        # Configurar o QTableView
+        table_view.setModel(model)
+        table_view.resizeColumnsToContents()
+        table_view.setAlternatingRowColors(True)
+        table_view.setStyleSheet(
+            "alternate-background-color: #F0F0F0; background-color: #FFFFFF;"
+        )
+        table_view.setEditTriggers(QAbstractItemView.NoEditTriggers)  # Desabilitar edição
+        table_view.setSelectionMode(QAbstractItemView.NoSelection)  # Desabilitar seleção
+        table_view.horizontalHeader().setStretchLastSection(True)
+        table_view.verticalHeader().setVisible(False)  # Ocultar cabeçalho vertical
+
+
+    def setup_table(self, table_view, data, headers):
+        """Configura o QTableView com os dados fornecidos."""
+        # Criar o modelo
+        model = QStandardItemModel(len(data), len(headers))
+        model.setHorizontalHeaderLabels(headers)
+
+        # Preencher o modelo com os dados
+        for row_idx, row_data in enumerate(data):
+            for col_idx, cell_data in enumerate(row_data):
+                item = QStandardItem(str(cell_data))
+                item.setFont(QFont("Roboto", 9))
+                item.setTextAlignment(Qt.AlignCenter)
+                model.setItem(row_idx, col_idx, item)
+
+        # Configurar o QTableView
+        table_view.setModel(model)
+        table_view.resizeColumnsToContents()
+        table_view.setAlternatingRowColors(True)
+        table_view.setStyleSheet(
+            "alternate-background-color: #F0F0F0; background-color: #FFFFFF;"
+        )
+        table_view.setEditTriggers(QAbstractItemView.NoEditTriggers)  # Desabilitar edição
+        table_view.setSelectionMode(QAbstractItemView.NoSelection)  # Desabilitar seleção
+        table_view.horizontalHeader().setStretchLastSection(True)
+        table_view.verticalHeader().setVisible(False)  # Ocultar cabeçalho vertical
+
+
+
+
         
 class categ_view(QWidget):   
     configRequested = pyqtSignal()
@@ -1123,12 +1106,48 @@ class patr_view(QWidget):
         super().__init__()
         self.patr_view = uic.loadUi("templates/interfaces/patr_view.ui", self)
         self.list_ptr = self.findChild(QTableView, "list_patr")
+        self.vl_ctg = self.findChild(QTableView, "vl_ctg")
+        self.vl_setor = self.findChild(QTableView, "vl_setor")
         self.grap_view = self.findChild(QGraphicsView, "grap_view")
         self.date_i = self.findChild(QDateEdit, "dt_inicial")
         self.date_f = self.findChild(QDateEdit, "dt_final")
         self.btn_filter = self.findChild(QPushButton, "filter_dt")
         self.btn_rlt = self.findChild(QPushButton, "rlt_btn")
+        self.lbl_total = self.findChild(QLabel, "vl_total")
+        self.lbl_patr = self.findChild(QLabel, "vl_ptr")
+        self.frame_header = self.findChild(QFrame, "frame_2")
+
+        self.shadow_frame1 = QGraphicsDropShadowEffect() 
+        self.shadow_frame1.setOffset(0, 0)  # posição da sombra
+        self.shadow_frame1.setBlurRadius(9)  # tamanho da sombra
+        self.shadow_frame1.setColor(QtGui.QColor(0, 100, 0, 128))
+
+        self.shadow_frame2 = QGraphicsDropShadowEffect() 
+        self.shadow_frame2.setOffset(0, 0)  # posição da sombra
+        self.shadow_frame2.setBlurRadius(9)  # tamanho da sombra
+        self.shadow_frame2.setColor(QtGui.QColor(0, 100, 0, 128))
+
+        self.shadow_frame3 = QGraphicsDropShadowEffect() 
+        self.shadow_frame3.setOffset(0, 0)  # posição da sombra
+        self.shadow_frame3.setBlurRadius(9)  # tamanho da sombra
+        self.shadow_frame3.setColor(QtGui.QColor(0, 100, 0, 128))
+
+        self.shadow_frame4 = QGraphicsDropShadowEffect() 
+        self.shadow_frame4.setOffset(0, 0)  # posição da sombra
+        self.shadow_frame4.setBlurRadius(9)  # tamanho da sombra
+        self.shadow_frame4.setColor(QtGui.QColor(0, 100, 0, 128))
+        
+        self.list_ptr.setGraphicsEffect(self.shadow_frame1)
+        self.vl_ctg.setGraphicsEffect(self.shadow_frame2)
+        self.vl_setor.setGraphicsEffect(self.shadow_frame3)
+        self.frame_header.setGraphicsEffect(self.shadow_frame4)
+
         self.set_default_dates()
+        self.btn_filter.clicked.connect(self.filter_data)
+        self.btn_rlt.clicked.connect(self.rlt_patrimonio)
+        self.filter_data()
+
+
 
     def set_default_dates(self):
         today = datetime.now()
@@ -1136,49 +1155,203 @@ class patr_view(QWidget):
         self.date_i.setDate(three_years_ago)
         self.date_f.setDate(today)
 
-
-
-    def rlt_patrimonio(self):
+    def filter_data(self):
+        """Filtra e carrega os dados para as tabelas."""
         d_i = self.date_i.date().toString("yyyy-MM-dd")
         d_f = self.date_f.date().toString("yyyy-MM-dd")
 
-        con = criar_conexao()
-        cursor = con.cursor()
-        cursor.execute("""
-            SELECT nome, valor_unitario, num_patrimonio, data_recebimento 
-            FROM patrimonios
-            WHERE data_recebimento BETWEEN %s AND %s
-        """, (d_i, d_f))
-        data = cursor.fetchall()
+        try:
+            con = criar_conexao()
+            cursor = con.cursor(dictionary=True)
 
-        workbook = openpyxl.Workbook()
-        worksheet = workbook.active
-        worksheet.title = "Relatório de Patrimônio"
+            # Query para a tabela de patrimônio
+            cursor.execute("""
+                SELECT 
+                    p.nome, 
+                    p.valor_unitario, 
+                    p.data_recebimento, 
+                    p.num_patrimonio
+                FROM patrimonios p
+                WHERE p.data_recebimento BETWEEN %s AND %s
+            """, (d_i, d_f))
+            patrimonios = cursor.fetchall()
 
-        bold_font = Font(bold=True)
-        centered_alignment = Alignment(horizontal='center', vertical='center')
+            if patrimonios:
+                self.load_table_data(self.list_ptr, patrimonios)
+            else:
+                self.list_ptr.setModel(None)
+                QMessageBox.information(self, "Aviso", "Nenhum item encontrado no intervalo de datas.")
 
-        worksheet['A1'] = 'Nome'
-        worksheet['B1'] = 'Valor Unitário'
-        worksheet['C1'] = 'Número de Patrimônio'
-        worksheet['D1'] = 'Data de Recebimento'
-        for col in range(1, 5):
-            worksheet.cell(row=1, column=col).font = bold_font
-            worksheet.cell(row=1, column=col).alignment = centered_alignment
+            # Query para valores por categoria
+            cursor.execute("""
+                SELECT 
+                    c.nome AS categoria, 
+                    SUM(p.valor_unitario) AS total_valor
+                FROM categorias c
+                JOIN patrimonios p ON p.idcategoria = c.idcategoria
+                WHERE p.data_recebimento BETWEEN %s AND %s
+                GROUP BY c.nome
+            """, (d_i, d_f))
+            categorias = cursor.fetchall()
 
-        row = 2
-        for nome, valor_unitario, num_patrimonio, data_recebimento in data:
-            worksheet.cell(row=row, column=1, value=nome)
-            worksheet.cell(row=row, column=2, value=valor_unitario)
-            worksheet.cell(row=row, column=3, value=num_patrimonio)
-            worksheet.cell(row=row, column=4, value=data_recebimento)
-            row += 1
+            self.load_table_data(self.vl_ctg, categorias)
 
-        # Salvar o arquivo
+            # Query para valores por setor
+            cursor.execute("""
+                SELECT 
+                    sr.nome AS setor, 
+                    SUM(p.valor_unitario) AS total_valor
+                FROM setores_responsaveis sr
+                JOIN patrimonios p ON p.idsetor = sr.idsetor
+                WHERE p.data_recebimento BETWEEN %s AND %s
+                GROUP BY sr.nome
+            """, (d_i, d_f))
+            setores = cursor.fetchall()
+
+            self.load_table_data(self.vl_setor, setores)
+
+            # Calcular valores totais
+            cursor.execute("""
+                SELECT 
+                    SUM(valor_unitario) AS total, 
+                    SUM(CASE WHEN num_patrimonio IS NOT NULL THEN valor_unitario ELSE 0 END) AS total_patrimonio
+                FROM patrimonios
+                WHERE data_recebimento BETWEEN %s AND %s
+            """, (d_i, d_f))
+            totais = cursor.fetchone()
+
+            self.lbl_total.setText(f"R$ {totais['total']:.2f}")
+            self.lbl_patr.setText(f"R$ {totais['total_patrimonio']:.2f}")
+
+        except Exception as e:
+            QMessageBox.critical(self, "Valores vazios", f"Ocorreu um erro ao realizar a busca, nenhum item existe no intervalo de datas: {e}")
+        finally:
+            con.close()
+
+
+    def load_table_data(self, table, data):
+        """Carrega os dados em uma tabela QTableView e ajusta automaticamente, centralizando o texto."""
+        model = QStandardItemModel()
+        if not data:
+            # Caso não tenha dados, insira uma mensagem
+            model.setHorizontalHeaderLabels(["Aviso"])
+            model.appendRow([QStandardItem("Nenhum item encontrado.")])
+            table.setModel(model)
+            return
+
+        # Definir cabeçalhos com base nas chaves do dicionário
+        headers = data[0].keys()
+        model.setHorizontalHeaderLabels(headers)
+
+        # Preencher os dados
+        for row in data:
+            items = []
+            for value in row.values():
+                item = QStandardItem(str(value))
+                item.setTextAlignment(Qt.AlignCenter)  # Centralizar o texto
+                items.append(item)
+            model.appendRow(items)
+
+        # Aplicar o modelo na tabela
+        table.setModel(model)
+
+        # Ajustar tamanho das colunas de forma responsiva ao tamanho da tabela
+        header = table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.Stretch)
+
+        # Remover cabeçalhos horizontal e vertical
+        table.horizontalHeader().setVisible(False)
+        table.verticalHeader().setVisible(False)
+
+        # Aplicar estilos
+        table.setAlternatingRowColors(True)  # Habilitar cores alternadas
+        table.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+
+        # Ajustar tamanho das linhas
+        table.resizeRowsToContents()
+
+
+    def rlt_patrimonio(self):
+        """Gera o relatório em Excel."""
+        d_i = self.date_i.date().toString("yyyy-MM-dd")
+        d_f = self.date_f.date().toString("yyyy-MM-dd")
+
         file_path, _ = QFileDialog.getSaveFileName(self, "Salvar Relatório", os.path.expanduser("~"), "Arquivos Excel (*.xlsx)")
-        if file_path:
+        if not file_path:
+            return
+
+        try:
+            con = criar_conexao()
+            cursor = con.cursor(dictionary=True)
+
+            workbook = openpyxl.Workbook()
+
+            # Adicionar dados de patrimônio
+            cursor.execute("""
+                SELECT 
+                    p.nome AS nome_patrimonio, 
+                    p.valor_unitario, 
+                    p.num_patrimonio, 
+                    p.data_recebimento
+                FROM patrimonios p
+                WHERE p.data_recebimento BETWEEN %s AND %s
+            """, (d_i, d_f))
+            patrimonios = cursor.fetchall()
+
+            patr_sheet = workbook.active
+            patr_sheet.title = "Patrimônios"
+            self.add_sheet_data(patr_sheet, patrimonios)
+
+            # Adicionar dados de categorias
+            cursor.execute("""
+                SELECT 
+                    c.nome AS categoria, 
+                    SUM(p.valor_unitario) AS total_valor
+                FROM categorias c
+                JOIN patrimonios p ON p.idcategoria = c.idcategoria
+                WHERE p.data_recebimento BETWEEN %s AND %s
+                GROUP BY c.nome
+            """, (d_i, d_f))
+            categorias = cursor.fetchall()
+
+            cat_sheet = workbook.create_sheet("Categorias")
+            self.add_sheet_data(cat_sheet, categorias)
+
+            # Adicionar dados de setores
+            cursor.execute("""
+                SELECT 
+                    sr.nome AS setor, 
+                    SUM(p.valor_unitario) AS total_valor
+                FROM setores_responsaveis sr
+                JOIN patrimonios p ON p.idsetor = sr.idsetor
+                WHERE p.data_recebimento BETWEEN %s AND %s
+                GROUP BY sr.nome
+            """, (d_i, d_f))
+            setores = cursor.fetchall()
+
+            setor_sheet = workbook.create_sheet("Setores")
+            self.add_sheet_data(setor_sheet, setores)
+
+            # Salvar o arquivo Excel
             workbook.save(file_path)
             QMessageBox.information(self, "Relatório Gerado", f"O relatório foi salvo em: {file_path}")
+
+        except Exception as e:
+            QMessageBox.critical(self, "Erro", f"Ocorreu um erro: {e}")
+        finally:
+            con.close()
+
+
+    def add_sheet_data(self, sheet, data):
+        """Adiciona dados a uma planilha do Excel."""
+        if data:
+            headers = list(data[0].keys())
+            sheet.append(headers)
+
+            for row in data:
+                sheet.append(list(row.values()))
+        else:
+            sheet.append(["Nenhum dado encontrado."])
 
 class logs_view(QWidget):
     def __init__(self):
@@ -1198,6 +1371,107 @@ class local_info(QWidget):
     def __init__(self):
         super().__init__()
         self.local_info = uic.loadUi("templates/interfaces/local_info.ui", self)
+        self.local_items = self.findChild(QTableView, 'local_items')
+        self.local_noitems = self.findChild(QTableView, 'itens_nlocal')
+
+        # Carregar os dados ao inicializar a tela
+        self.load_local_data()
+
+    def load_local_data(self):
+        """Carrega os dados das tabelas `local_items` e `itens_nlocal`."""
+        # Conectar ao banco de dados
+        try:
+            conn = mysql.connector.connect(**config)  # Configuração do banco
+            cursor = conn.cursor()
+
+            # Consulta para itens com locais e setores vinculados
+            local_items_query = """
+            SELECT 
+                p.nome AS Item,
+                l.nome AS Local,
+                sr.nome AS Setor
+            FROM 
+                patrimonios p
+            INNER JOIN 
+                locais l ON p.idlocal = l.idlocal
+            INNER JOIN 
+                setores_responsaveis sr ON p.idsetor = sr.idsetor;
+            """
+
+            # Consulta para itens sem locais vinculados
+            no_local_items_query = """SELECT p.nome AS Item, c.nome AS Categoria FROM patrimonios p INNER JOIN categorias c ON p.idcategoria = c.idcategoria WHERE p.idlocal IS NULL;"""
+            # Executar consultas
+            cursor.execute(local_items_query)
+            local_items_results = cursor.fetchall()
+
+            cursor.execute(no_local_items_query)
+            no_local_items_results = cursor.fetchall()
+
+            # Configurar tabelas com os dados
+            self.setup_table(
+                self.local_items,
+                local_items_results,
+                ['Item', 'Local', 'Setor'],
+                empty_message="Sem dados para apresentar na tabela 'Itens com Local e Setor'."
+            )
+            self.setup_table(
+                self.local_noitems,
+                no_local_items_results,
+                ['Item', 'Categoria'],
+                empty_message="Sem dados para apresentar na tabela 'Itens sem Local'."
+            )
+        except Exception as e:
+            QMessageBox.critical(self, "Erro", f"Ocorreu um erro ao carregar os dados: {e}")
+        finally:
+            # Fechar conexão com o banco de dados
+            if 'cursor' in locals():
+                cursor.close()
+            if 'conn' in locals():
+                conn.close()
+
+    def setup_table(self, table_view, data, headers, empty_message):
+        """Configura uma QTableView com dados ou exibe uma mensagem em caso de ausência."""
+        if not table_view:  # Verifica se o objeto da tabela é válido
+            QMessageBox.critical(self, "Erro", "Tabela não encontrada na interface.")
+            return
+
+        # Cria o modelo com o número de linhas/colunas
+        model = QStandardItemModel(len(data) if data else 1, len(headers))
+        model.setHorizontalHeaderLabels(headers)
+
+        if not data:  # Sem dados
+            for col_idx, header in enumerate(headers):
+                item = QStandardItem(empty_message if col_idx == 0 else "")
+                item.setFont(QFont("Roboto", 9, QFont.StyleItalic))
+                item.setTextAlignment(Qt.AlignCenter)
+                model.setItem(0, col_idx, item)
+        else:  # Preenche os dados
+            for row_idx, row_data in enumerate(data):
+                for col_idx, cell_data in enumerate(row_data):
+                    item = QStandardItem(str(cell_data))
+                    item.setFont(QFont("Roboto", 9))
+                    item.setTextAlignment(Qt.AlignCenter)
+                    model.setItem(row_idx, col_idx, item)
+
+        # Configurar o QTableView
+        table_view.setModel(model)
+        table_view.setAlternatingRowColors(True)
+        table_view.setStyleSheet(
+            "alternate-background-color: #F0F0F0; background-color: #FFFFFF;"
+        )
+        table_view.setEditTriggers(QAbstractItemView.NoEditTriggers)  # Desabilitar edição
+        table_view.setSelectionMode(QAbstractItemView.NoSelection)  # Desabilitar seleção
+        table_view.verticalHeader().setVisible(False)  # Ocultar cabeçalho vertical
+
+        # Configurar o cabeçalho horizontal
+        header = table_view.horizontalHeader()
+        header.setStretchLastSection(True)  # Última coluna expansível
+        header.setSectionsMovable(False)  # Fixar cabeçalho
+        header.setSectionsClickable(False)  # Desativar clique no cabeçalho
+        header.setSectionResizeMode(QHeaderView.Fixed)  # Tamanhos fixos
+        table_view.resizeColumnsToContents()  # Ajustar colunas ao conteúdo inicial
+
+        
         
 class detail_window(QDialog):
     def __init__(self, item_id):
@@ -1495,20 +1769,166 @@ class config_cargo(QWidget):
         self.btn_confirm.hide()
         self.cancel_edit.hide()
         self.edit_carg.show()
+        
 
 class config_cat(QWidget):
     def __init__(self):
         super().__init__()
         self.config_cat = uic.loadUi("templates/interfaces/categ_config.ui", self)
+
+        # Widgets
         self.box_cat = self.findChild(QComboBox, "box_cat")
+        self.btn_confirm = self.findChild(QPushButton, "btn_confirm")
+        self.btn_add = self.findChild(QPushButton, "btn_add")
+        self.btn_cancel = self.findChild(QPushButton, "btn_cancel")
+        self.btn_edit = self.findChild(QPushButton, "btn_edit")
+        self.line_cat = self.findChild(QLineEdit, "line_cat")
+        self.lbl_qntd = self.findChild(QLabel, "lbl_qntd")
+
+        # Estado atual (edição ou adição)
+        self.current_mode = None  # None, "edit", ou "add"
+
+        # Inicializar estado
+        self.initialize_state()
+
+        # Carregar categorias no comboBox
+        self.load_categories()
+
+        # Conectar eventos
+        self.box_cat.currentIndexChanged.connect(self.handle_category_selection)
+        self.btn_edit.clicked.connect(self.enable_edit_mode)
+        self.btn_add.clicked.connect(self.add_category_mode)
+        self.btn_confirm.clicked.connect(self.confirm_action)
+        self.btn_cancel.clicked.connect(self.cancel_action)
+
+    def initialize_state(self):
+        """Define o estado inicial da interface."""
+        self.line_cat.setEnabled(False)
+        self.btn_confirm.setEnabled(False)
+        self.btn_edit.setEnabled(False)
+        self.btn_add.setEnabled(True)
+        self.btn_cancel.setEnabled(False)
+        self.btn_edit.setVisible(False)
+        self.btn_cancel.setVisible(False)
+        self.btn_confirm.setVisible(False)
+        self.line_cat.clear()
+        self.lbl_qntd.clear()
+        self.current_mode = None
+
+    def load_categories(self):
+        """Carrega as categorias do banco para o comboBox."""
         con = criar_conexao()
         cursor = con.cursor()
         cursor.execute("SELECT nome FROM categorias")
-        data = cursor.fetchall()
+        categories = cursor.fetchall()
         con.close()
-        for cat in data:
-            self.box_cat.addItem(cat[0])
-        
+
+        self.box_cat.clear()
+        self.box_cat.addItem("Selecione uma categoria")
+        for category in categories:
+            self.box_cat.addItem(category[0])
+
+    def handle_category_selection(self):
+        """Atualiza a interface com base na categoria selecionada."""
+        selected_index = self.box_cat.currentIndex()
+        if selected_index == 0:  # Índice 0 é o placeholder
+            self.initialize_state()
+            return
+
+        selected_category = self.box_cat.currentText()
+        con = criar_conexao()
+        cursor = con.cursor(dictionary=True)
+
+        try:
+            # Obter dados da categoria selecionada
+            cursor.execute("SELECT idcategoria, nome FROM categorias WHERE nome = %s", (selected_category,))
+            category_data = cursor.fetchone()
+
+            if not category_data:
+                QMessageBox.warning(self, "Erro", "Categoria não encontrada no banco de dados!")
+                self.initialize_state()
+                return
+
+            # Obter a quantidade de itens vinculados
+            cursor.execute("SELECT COUNT(*) AS qtd FROM patrimonios WHERE idcategoria = %s", (category_data["idcategoria"],))
+            item_count = cursor.fetchone()["qtd"]
+
+            # Atualizar interface
+            self.line_cat.setText(category_data["nome"])
+            self.lbl_qntd.setText(str(item_count))
+            self.line_cat.setEnabled(False)
+            self.btn_edit.setEnabled(True)
+            self.btn_confirm.setEnabled(False)
+            self.btn_cancel.setEnabled(False)
+            self.btn_edit.setVisible(True)
+            self.btn_cancel.setVisible(False)
+            self.btn_confirm.setVisible(False)
+            self.btn_add.setEnabled(True)
+            self.btn_add.setVisible(True)
+        except Exception as e:
+            QMessageBox.critical(self, "Erro", f"Ocorreu um erro: {e}")
+        finally:
+            con.close()
+
+    def enable_edit_mode(self):
+        """Ativa o modo de edição."""
+        self.line_cat.setEnabled(True)
+        self.btn_edit.setEnabled(False)
+        self.btn_add.setEnabled(False)
+        self.btn_confirm.setEnabled(True)
+        self.btn_cancel.setEnabled(True)
+        self.btn_confirm.setVisible(True)
+        self.btn_cancel.setVisible(True)
+        self.btn_edit.setVisible(False)
+        self.current_mode = "edit"  # Define o modo como edição
+
+    def add_category_mode(self):
+        """Ativa o modo de adição de categoria."""
+        self.line_cat.setEnabled(True)
+        self.line_cat.clear()
+        self.lbl_qntd.clear()
+        self.btn_add.setEnabled(False)
+        self.btn_edit.setEnabled(False)
+        self.btn_confirm.setEnabled(True)
+        self.btn_cancel.setEnabled(True)
+        self.btn_confirm.setVisible(True)
+        self.btn_cancel.setVisible(True)
+        self.btn_edit.setVisible(False)
+        self.current_mode = "add"  # Define o modo como adição
+
+    def confirm_action(self):
+        """Confirma a ação (edição ou adição)."""
+        new_category_name = self.line_cat.text().strip()
+
+        if not new_category_name:
+            QMessageBox.warning(self, "Aviso", "O nome da categoria não pode ser vazio!")
+            return
+
+        con = criar_conexao()
+        cursor = con.cursor()
+
+        try:
+            if self.current_mode == "edit":  # Edição
+                current_category_name = self.box_cat.currentText()
+                cursor.execute("UPDATE categorias SET nome = %s WHERE nome = %s", (new_category_name, current_category_name))
+            elif self.current_mode == "add":  # Adição
+                cursor.execute("INSERT INTO categorias (nome) VALUES (%s)", (new_category_name,))
+
+            con.commit()
+            QMessageBox.information(self, "Sucesso", "Ação realizada com sucesso!")
+            self.load_categories()
+        except Exception as e:
+            QMessageBox.critical(self, "Erro", f"Ocorreu um erro: {e}")
+        finally:
+            con.close()
+
+        self.initialize_state()
+
+    def cancel_action(self):
+        """Cancela a ação e reseta o estado inicial."""
+        self.initialize_state()
+
+
 class config_forn(QWidget):
     def __init__(self):
         super().__init__()
@@ -1524,7 +1944,7 @@ class config_forn(QWidget):
         self.frame_forn = self.findChild(QFrame, "frame_4")
         self.txt_lbl = self.findChild(QLabel, "lbl_text")
         self.txt_lbl.hide()
-
+        self.box_forn.setPlaceholderText("Selecione um fornecedor")
         # Inicialização do estado da interface
         self.confirm_btn.hide()
         self.cancel_btn.hide()
@@ -1675,10 +2095,387 @@ class config_local(QWidget):
         super().__init__()
         self.config_local = uic.loadUi("templates/interfaces/local_config.ui", self)
         self.box_local = self.findChild(QComboBox, "box_local")
+        self.btn_edit = self.findChild(QPushButton, "edit_btn")
+        self.btn_add = self.findChild(QPushButton, "add_btn")
+        self.btn_cancel = self.findChild(QPushButton, "cancel_btn")
+        self.btn_del = self.findChild(QPushButton, "del_btn")
+        self.btn_confirm = self.findChild(QPushButton, "confirm_btn")
+        self.local_line = self.findChild(QLineEdit, "local_line")
+        self.lbl_qntd = self.findChild(QLabel, "lbl_qntd")
+
+        # Configuração inicial
+        self.local_line.setEnabled(False)
+        self.disable_all_buttons()
+        self.load_combobox()
+
+        # Conectar sinais
+        self.box_local.currentIndexChanged.connect(self.update_local_data)
+        self.btn_edit.clicked.connect(self.enable_edit_mode)
+        self.btn_add.clicked.connect(self.enable_add_mode)
+        self.btn_cancel.clicked.connect(self.cancel_changes)
+        self.btn_confirm.clicked.connect(self.confirm_changes)
+
+    def disable_all_buttons(self):
+        """Desabilita todos os botões exceto os básicos."""
+        self.btn_edit.setEnabled(False)
+        self.btn_add.setEnabled(True)
+        self.btn_cancel.setEnabled(False)
+        self.btn_del.setEnabled(False)
+        self.btn_confirm.setEnabled(False)
+        self.btn_edit.setVisible(False)
+        self.btn_cancel.setVisible(False)
+        self.btn_add.setVisible(True)
+        self.btn_confirm.setVisible(False)
+        self.btn_del.setVisible(False)
+    def load_combobox(self):
+        """Carrega os locais na QComboBox."""
+        self.box_local.clear()
         con = criar_conexao()
         cursor = con.cursor()
         cursor.execute("SELECT nome FROM locais")
-        data = cursor.fetchall()
+        locais = cursor.fetchall()
         con.close()
-        for local in data:
+
+        self.box_local.addItem("Selecione um local")
+        for local in locais:
             self.box_local.addItem(local[0])
+
+    def update_local_data(self):
+        """Atualiza os dados ao selecionar um local na combo-box."""
+        local_selecionado = self.box_local.currentText()
+        if local_selecionado == "Selecione um local":
+            self.local_line.clear()
+            self.lbl_qntd.clear()
+            self.disable_all_buttons()
+            return
+
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute("SELECT idlocal, nome FROM locais WHERE nome = %s", (local_selecionado,))
+        local_data = cursor.fetchone()
+
+        if not local_data:
+            # Caso o local não seja encontrado
+            QMessageBox.warning(self, "Banco atualizado", "Novo local adicionado a caixa de seleção.")
+            self.local_line.clear()
+            self.lbl_qntd.clear()
+            self.disable_all_buttons()
+            con.close()
+            return
+
+        # Obter a quantidade de itens vinculados ao local
+        cursor.execute("SELECT COUNT(*) FROM patrimonios WHERE idlocal = %s", (local_data[0],))
+        quantidade = cursor.fetchone()[0]
+        con.close()
+
+        # Preencher campos
+        self.local_line.setText(local_data[1])
+        self.lbl_qntd.setText(str(quantidade))
+
+        # Atualizar botões
+        self.local_line.setEnabled(False)
+        self.btn_edit.setEnabled(True)
+        self.btn_del.setEnabled(True)
+        self.btn_cancel.setEnabled(False)
+        self.btn_confirm.setEnabled(False)
+        self.btn_edit.setVisible(True)
+
+
+    def enable_edit_mode(self):
+        """Habilita o modo de edição."""
+        self.local_line.setEnabled(True)
+        self.btn_edit.setEnabled(False)
+        self.btn_add.setEnabled(False)
+        self.btn_confirm.setEnabled(True)
+        self.btn_cancel.setEnabled(True)
+        self.btn_confirm.setVisible(True)
+        self.btn_cancel.setVisible(True)
+        self.btn_edit.setVisible(False)
+        
+
+    def enable_add_mode(self):
+        """Habilita o modo de adição de um novo local."""
+        self.local_line.clear()
+        self.local_line.setEnabled(True)
+        self.btn_edit.setEnabled(False)
+        self.btn_add.setEnabled(False)
+        self.btn_del.setEnabled(False)
+        self.btn_confirm.setEnabled(True)
+        self.btn_cancel.setEnabled(True)
+        self.btn_confirm.setVisible(True)
+        self.btn_cancel.setVisible(True)
+        self.btn_edit.setVisible(False)
+
+    def cancel_changes(self):
+        """Cancela alterações e retorna ao estado inicial."""
+        self.update_local_data()  # Recarregar dados do local selecionado
+        self.local_line.setEnabled(False)
+        self.btn_edit.setEnabled(True)
+        self.btn_add.setEnabled(True)
+        self.btn_confirm.setEnabled(False)
+        self.btn_cancel.setEnabled(False)
+        self.btn_cancel.setVisible(False)
+        self.btn_confirm.setVisible(False)
+        self.btn_edit.setVisible(True)
+
+    def confirm_changes(self):
+        """Confirma alterações ou adição de um novo local."""
+        novo_nome = self.local_line.text().strip()
+        if not novo_nome:
+            QMessageBox.warning(self, "Atenção", "O nome do local não pode estar vazio.")
+            return
+
+        local_selecionado = self.box_local.currentText()
+
+        con = criar_conexao()
+        cursor = con.cursor()
+
+        try:
+            if local_selecionado == "Selecione um local":
+                # Adicionar novo local
+                cursor.execute("INSERT INTO locais (nome) VALUES (%s)", (novo_nome,))
+            else:
+                # Editar local existente
+                cursor.execute("UPDATE locais SET nome = %s WHERE nome = %s", (novo_nome, local_selecionado))
+
+            con.commit()
+            QMessageBox.information(self, "Sucesso", "Alteração confirmada!")
+            self.load_combobox()
+        except Exception as e:
+            con.rollback()
+            QMessageBox.critical(self, "Erro", f"Falha ao salvar alterações: {e}")
+        finally:
+            con.close()
+
+        self.cancel_changes()
+
+class edit_user(QWidget):
+    def __init__(self, user_edit):
+        super().__init__()
+        self.user_edit = user_edit  # Agora representa o nome do usuário
+        self.user_info = uic.loadUi("templates/interfaces/user_edit.ui", self)
+        self.btn_foto = self.findChild(QPushButton, "btn_foto")
+        self.btn_edit = self.findChild(QPushButton, "btn_edit")
+        self.btn_view = self.findChild(QPushButton, "view_pass")
+        self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
+        self.confirm_btn = self.findChild(QPushButton, "confirm_btn")
+        self.user_line = self.findChild(QLineEdit, "user_line")
+        self.pass_line_info = self.findChild(QLineEdit, "pass_line_info")
+        self.name_user_info = self.findChild(QLineEdit, "name_user_info")
+        self.email_user_info = self.findChild(QLineEdit, "email_user_info")
+        self.cargo_box = self.findChild(QComboBox, "cargo_box")
+        self.lbl_user = self.findChild(QLabel, "label")
+        self.lbl_user.setText(self.user_edit)
+        self.btn_foto.hide()
+        self.btn_view.hide()
+        self.cancel_btn.hide()
+        self.confirm_btn.hide()
+        self.set_fields_enabled(False)
+        self.cargo_box.setEnabled(False)
+        self.pass_line_info.setEchoMode(QLineEdit.Password)
+        self.original_data = {}
+        self.load_user_data()
+        self.btn_edit.clicked.connect(self.enable_edit_mode)
+        self.cancel_btn.clicked.connect(self.cancel_changes)
+        self.confirm_btn.clicked.connect(self.confirm_changes)
+        self.btn_view.clicked.connect(self.toggle_password_view)
+
+    def set_fields_enabled(self, enabled):
+        self.user_line.setEnabled(enabled)
+        self.pass_line_info.setEnabled(enabled)
+        self.name_user_info.setEnabled(enabled)
+        self.email_user_info.setEnabled(enabled)
+
+    def load_user_data(self):
+        """Carrega os dados do usuário com base no nome do usuário."""
+        con = criar_conexao()
+        cursor = con.cursor()
+
+        try:
+            # Ajusta a consulta para buscar pelo nome do usuário
+            cursor.execute("""
+                SELECT u.usuario, u.senha, p.nome, p.email, c.nome AS cargo
+                FROM usuarios u
+                JOIN pessoas p ON u.idpessoa = p.idpessoa
+                JOIN cargos c ON u.idcargo = c.idcargo
+                WHERE u.usuario = %s
+            """, (self.user_edit,))
+            data = cursor.fetchone()
+
+            if data:
+                self.user_line.setText(data[0])
+                self.pass_line_info.setText(data[1])
+                self.name_user_info.setText(data[2])
+                self.email_user_info.setText(data[3])
+                self.cargo_box.addItem(data[4])
+                self.original_data = {
+                    "usuario": data[0],
+                    "senha": data[1],
+                    "nome": data[2],
+                    "email": data[3],
+                    "cargo": data[4],
+                }
+            else:
+                QMessageBox.warning(self, "Aviso", "Usuário não encontrado no banco de dados.")
+        except Exception as e:
+            print(f"Erro ao carregar dados do usuário: {e}")
+        finally:
+            con.close()
+
+    def enable_edit_mode(self):
+        self.set_fields_enabled(True)
+        self.btn_foto.show()
+        self.btn_view.show()
+        self.cancel_btn.show()
+        self.confirm_btn.show()
+        self.btn_edit.hide()
+
+    def cancel_changes(self):
+        self.user_line.setText(self.original_data["usuario"])
+        self.pass_line_info.setText(self.original_data["senha"])
+        self.name_user_info.setText(self.original_data["nome"])
+        self.email_user_info.setText(self.original_data["email"])
+        self.set_fields_enabled(False)
+        self.btn_foto.hide()
+        self.btn_view.hide()
+        self.cancel_btn.hide()
+        self.confirm_btn.hide()
+        self.btn_edit.show()
+
+    def confirm_changes(self):
+        usuario = self.user_line.text()
+        senha = self.pass_line_info.text()
+        nome = self.name_user_info.text()
+        email = self.email_user_info.text()
+
+        con = criar_conexao()
+        cursor = con.cursor()
+
+        try:
+            # Atualizar os dados com base no nome do usuário
+            cursor.execute("""
+                UPDATE usuarios 
+                SET usuario = %s, senha = %s
+                WHERE usuario = %s
+            """, (usuario, senha, self.user_edit))
+
+            cursor.execute("""
+                UPDATE pessoas 
+                SET nome = %s, email = %s 
+                WHERE idpessoa = (
+                    SELECT idpessoa FROM usuarios WHERE usuario = %s
+                )
+            """, (nome, email, self.user_edit))
+
+            con.commit()
+            self.original_data.update({
+                "usuario": usuario,
+                "senha": senha,
+                "nome": nome,
+                "email": email,
+            })
+            self.cancel_changes()
+        except Exception as e:
+            print(f"Erro ao atualizar dados do usuário: {e}")
+        finally:
+            con.close()
+
+    def toggle_password_view(self):
+        if self.pass_line_info.echoMode() == QLineEdit.Password:
+            self.pass_line_info.setEchoMode(QLineEdit.Normal)
+        else:
+            self.pass_line_info.setEchoMode(QLineEdit.Password)
+
+class new_user(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.user_create = uic.loadUi("templates/interfaces/user_create.ui", self)
+        self.cargo_box = self.findChild(QComboBox, "cargoBox")
+        self.user_edit_line = self.findChild(QLineEdit, "userEdit")
+        self.name_edit_line = self.findChild(QLineEdit, "nameEdit")
+        self.pass_edit_line = self.findChild(QLineEdit, "passEdit")
+        self.email_edit_line = self.findChild(QLineEdit, "emailEdit")
+        self.btn_clear = self.findChild(QPushButton, "btnClear")
+        self.btn_confirm = self.findChild(QPushButton, "btnConfirm")
+
+        self.cargo_att()
+        self.btn_clear.clicked.connect(self.clear)
+        self.btn_confirm.clicked.connect(self.create_user)
+
+    def cargo_att(self):
+        """Popula o ComboBox com os cargos disponíveis no banco."""
+        con_cargo = mysql.connector.connect(**config)
+        cursor2 = con_cargo.cursor()
+        try:
+            query = "SELECT nome FROM cargos"
+            cursor2.execute(query)
+            dados = cursor2.fetchall()
+            for dado in dados:
+                self.cargo_box.addItem(dado[0])
+        except Exception as e:
+            print(f"Erro ao carregar cargos: {e}")
+        finally:
+            con_cargo.close()
+
+    def create_user(self):
+        """Cria um novo usuário nas tabelas pessoas e usuarios."""
+        user = self.user_edit_line.text()
+        name = self.name_edit_line.text()
+        passw = self.pass_edit_line.text()
+        email = self.email_edit_line.text()
+        cargo = self.cargo_box.currentText()
+
+        if not user or not name or not passw or not email:
+            print("Preencha todos os campos.")
+            return
+
+        con = mysql.connector.connect(**config)
+        cursor = con.cursor()
+
+        try:
+            # Verifica se o nome de usuário já existe
+            cursor.execute("SELECT COUNT(*) FROM usuarios WHERE usuario = %s", (user,))
+            if cursor.fetchone()[0] > 0:
+                print("Nome de usuário já existe.")
+                return
+
+            # Obtém o ID do cargo selecionado
+            cursor.execute("SELECT idcargo FROM cargos WHERE nome = %s", (cargo,))
+            cargo_id = cursor.fetchone()
+            if not cargo_id:
+                print("Cargo inválido.")
+                return
+
+            cargo_id = cargo_id[0]
+
+            # Insere os dados na tabela pessoas
+            dt_create = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            cursor.execute(
+                "INSERT INTO pessoas (nome, email, dt_create) VALUES (%s, %s, %s)",
+                (name, email, dt_create),
+            )
+            pessoa_id = cursor.lastrowid
+
+            # Insere os dados na tabela usuarios
+            cursor.execute(
+                "INSERT INTO usuarios (idpessoa, usuario, senha, idcargo) VALUES (%s, %s, %s, %s)",
+                (pessoa_id, user, passw, cargo_id),
+            )
+
+            con.commit()
+            print("Usuário criado com sucesso.")
+            self.clear()
+
+        except Exception as e:
+            print(f"Erro ao criar usuário: {e}")
+            con.rollback()
+        finally:
+            con.close()
+
+    def clear(self):
+        """Limpa os campos de entrada."""
+        self.user_edit_line.clear()
+        self.name_edit_line.clear()
+        self.pass_edit_line.clear()
+        self.email_edit_line.clear()
+        print("Campos limpos.")

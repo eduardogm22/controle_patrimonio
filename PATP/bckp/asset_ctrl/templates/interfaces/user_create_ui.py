@@ -57,34 +57,6 @@ class Ui_Form(object):
         self.frame_back.setObjectName("frame_back")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.frame_back)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.btnReturn = QtWidgets.QPushButton(self.frame_back)
-        self.btnReturn.setMinimumSize(QtCore.QSize(45, 45))
-        self.btnReturn.setMaximumSize(QtCore.QSize(45, 45))
-        self.btnReturn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btnReturn.setStyleSheet("QPushButton { \n"
-"    background-color: #057A3A;\n"
-"     color:rgb(254, 253, 247);\n"
-"    border-radius:9px;        \n"
-"    border: 1px solid rgb(255, 255, 255);\n"
-"    padding:8px\n"
-" }\n"
-"\n"
-"QPushButton:hover{background-color:rgb(85, 170, 127);color:white}\n"
-"\n"
-"QPushButton:pressed{\n"
-" padding-left: 2px;\n"
-" padding-top:2px;\n"
-" \n"
-"    background-color: rgb(0, 85, 0);\n"
-" \n"
-"}")
-        self.btnReturn.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/corner-up-left.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnReturn.setIcon(icon)
-        self.btnReturn.setIconSize(QtCore.QSize(27, 27))
-        self.btnReturn.setObjectName("btnReturn")
-        self.horizontalLayout_5.addWidget(self.btnReturn)
         self.horizontalLayout_2.addWidget(self.frame_back, 0, QtCore.Qt.AlignRight)
         self.verticalLayout.addWidget(self.hUserCreate)
         self.frame_2 = QtWidgets.QFrame(Form)
@@ -177,6 +149,7 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "")
+        self.passEdit.setEchoMode(QtWidgets.QLineEdit.Password)
         self.passEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.passEdit.setObjectName("passEdit")
         self.verticalLayout_6.addWidget(self.passEdit)

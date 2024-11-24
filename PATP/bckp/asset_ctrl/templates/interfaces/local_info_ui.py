@@ -162,15 +162,14 @@ class Ui_Form(object):
         self.frame_9.setObjectName("frame_9")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_9)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.listView_2 = QtWidgets.QListView(self.frame_9)
-        self.listView_2.setMaximumSize(QtCore.QSize(600, 16777215))
-        self.listView_2.setStyleSheet("background-color:white;    \n"
+        self.local_items = QtWidgets.QTableView(self.frame_9)
+        self.local_items.setStyleSheet("background-color:white;    \n"
 "border:3px solid #057A3A;\n"
 "border-radius:10px\n"
 "\n"
 "")
-        self.listView_2.setObjectName("listView_2")
-        self.verticalLayout_4.addWidget(self.listView_2)
+        self.local_items.setObjectName("local_items")
+        self.verticalLayout_4.addWidget(self.local_items)
         self.verticalLayout_6.addWidget(self.frame_9)
         self.frame_8 = QtWidgets.QFrame(self.frame_4)
         self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -193,14 +192,14 @@ class Ui_Form(object):
 "border-bottom: 2px solid rgb(108, 108, 108);")
         self.label.setObjectName("label")
         self.verticalLayout_5.addWidget(self.label)
-        self.listView = QtWidgets.QListView(self.frame_8)
-        self.listView.setStyleSheet("background-color:white;    \n"
+        self.itens_nlocal = QtWidgets.QTableView(self.frame_8)
+        self.itens_nlocal.setStyleSheet("background-color:white;    \n"
 "border:3px solid #057A3A;\n"
 "border-radius:10px\n"
 "\n"
 "")
-        self.listView.setObjectName("listView")
-        self.verticalLayout_5.addWidget(self.listView)
+        self.itens_nlocal.setObjectName("itens_nlocal")
+        self.verticalLayout_5.addWidget(self.itens_nlocal)
         self.verticalLayout_6.addWidget(self.frame_8)
         self.horizontalLayout.addWidget(self.frame_4)
         self.frame_5 = QtWidgets.QFrame(self.frame_3)
@@ -218,26 +217,9 @@ class Ui_Form(object):
         self.frame_10.setObjectName("frame_10")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_10)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.listView_3 = QtWidgets.QListView(self.frame_10)
-        self.listView_3.setMinimumSize(QtCore.QSize(150, 360))
-        self.listView_3.setMaximumSize(QtCore.QSize(300, 360))
-        self.listView_3.setStyleSheet("background-color:white;    \n"
-"border:3px solid #057A3A;\n"
-"border-radius:10px\n"
-"\n"
-"")
-        self.listView_3.setObjectName("listView_3")
-        self.verticalLayout_3.addWidget(self.listView_3)
-        self.listView_4 = QtWidgets.QListView(self.frame_10)
-        self.listView_4.setMinimumSize(QtCore.QSize(150, 0))
-        self.listView_4.setMaximumSize(QtCore.QSize(300, 150))
-        self.listView_4.setStyleSheet("background-color:white;    \n"
-"border:3px solid #057A3A;\n"
-"border-radius:10px\n"
-"\n"
-"")
-        self.listView_4.setObjectName("listView_4")
-        self.verticalLayout_3.addWidget(self.listView_4)
+        self.textBrowser = QtWidgets.QTextBrowser(self.frame_10)
+        self.textBrowser.setObjectName("textBrowser")
+        self.verticalLayout_3.addWidget(self.textBrowser)
         self.verticalLayout_7.addWidget(self.frame_10, 0, QtCore.Qt.AlignTop)
         self.horizontalLayout.addWidget(self.frame_5, 0, QtCore.Qt.AlignVCenter)
         self.verticalLayout.addWidget(self.frame_3)

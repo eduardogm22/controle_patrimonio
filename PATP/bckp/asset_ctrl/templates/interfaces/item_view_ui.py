@@ -140,28 +140,6 @@ class Ui_Form(object):
 "}")
         self.pushButton_3.setObjectName("pushButton_3")
         self.verticalLayout_4.addWidget(self.pushButton_3)
-        self.cat_item_btn = QtWidgets.QPushButton(self.frame_4)
-        self.cat_item_btn.setMinimumSize(QtCore.QSize(90, 36))
-        self.cat_item_btn.setMaximumSize(QtCore.QSize(90, 36))
-        self.cat_item_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.cat_item_btn.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
-"    border-radius:15px;        \n"
-"    border: 1px solid rgb(255, 255, 255);\n"
-"    background-color: rgb(0, 76, 0)\n"
-"\n"
-" }\n"
-"\n"
-"QPushButton:hover{background-color:#057A3A;color:white}\n"
-"\n"
-"QPushButton:pressed{\n"
-" padding-left: 5px;\n"
-" padding-top:5px;\n"
-" \n"
-"    background-color: rgb(0, 85, 0);\n"
-" \n"
-"}")
-        self.cat_item_btn.setObjectName("cat_item_btn")
-        self.verticalLayout_4.addWidget(self.cat_item_btn)
         self.horizontalLayout.addWidget(self.frame_4, 0, QtCore.Qt.AlignRight|QtCore.Qt.AlignBottom)
         self.verticalLayout_2.addWidget(self.frame)
         self.frame_2 = QtWidgets.QFrame(self.frame_3)
@@ -190,12 +168,18 @@ class Ui_Form(object):
         self.frame_6 = QtWidgets.QFrame(self.frame_2)
         self.frame_6.setMinimumSize(QtCore.QSize(210, 0))
         self.frame_6.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.frame_6.setStyleSheet("margin:6px;")
+        self.frame_6.setStyleSheet("")
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.frame_6)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.textBrowser_2 = QtWidgets.QTextBrowser(self.frame_6)
+        self.textBrowser_2.setObjectName("textBrowser_2")
+        self.verticalLayout_6.addWidget(self.textBrowser_2)
+        self.label = QtWidgets.QLabel(self.frame_6)
+        self.label.setObjectName("label")
+        self.verticalLayout_6.addWidget(self.label)
         self.ct_view = QtWidgets.QTableView(self.frame_6)
         self.ct_view.setStyleSheet("background-color:white;    \n"
 "border:3px solid #057A3A;\n"
@@ -204,19 +188,6 @@ class Ui_Form(object):
 "")
         self.ct_view.setObjectName("ct_view")
         self.verticalLayout_6.addWidget(self.ct_view)
-        self.list_itens = QtWidgets.QListView(self.frame_6)
-        self.list_itens.setMinimumSize(QtCore.QSize(0, 90))
-        self.list_itens.setMaximumSize(QtCore.QSize(16777215, 90))
-        self.list_itens.setStyleSheet("background-color:white;    \n"
-"border:3px solid #057A3A;\n"
-"border-radius:10px\n"
-"\n"
-"")
-        self.list_itens.setObjectName("list_itens")
-        self.verticalLayout_6.addWidget(self.list_itens)
-        self.label = QtWidgets.QLabel(self.frame_6)
-        self.label.setObjectName("label")
-        self.verticalLayout_6.addWidget(self.label)
         self.horizontalLayout_2.addWidget(self.frame_6)
         self.verticalLayout_2.addWidget(self.frame_2)
         self.verticalLayout_3.addWidget(self.frame_3)
@@ -231,5 +202,4 @@ class Ui_Form(object):
         self.pushButton.setText(_translate("Form", "Itens"))
         self.pushButton_2.setText(_translate("Form", "Patrimônio"))
         self.pushButton_3.setText(_translate("Form", "Relatório"))
-        self.cat_item_btn.setText(_translate("Form", "Categorias"))
         self.label.setText(_translate("Form", "TextLabel"))

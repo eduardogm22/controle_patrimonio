@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>783</width>
+    <width>884</width>
     <height>378</height>
    </rect>
   </property>
@@ -83,40 +83,6 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item alignment="Qt::AlignHCenter">
-                <widget class="QFrame" name="frame_11">
-                 <property name="styleSheet">
-                  <string notr="true">border:0;</string>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_8">
-                  <item>
-                   <widget class="QLineEdit" name="lineEdit">
-                    <property name="minimumSize">
-                     <size>
-                      <width>240</width>
-                      <height>24</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>240</width>
-                      <height>24</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">background-color:white;</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item alignment="Qt::AlignHCenter">
                 <widget class="QComboBox" name="box_cat">
                  <property name="minimumSize">
                   <size>
@@ -163,11 +129,6 @@ align-itens:center;
                  <property name="sizeAdjustPolicy">
                   <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
                  </property>
-                 <item>
-                  <property name="text">
-                   <string>Categorias</string>
-                  </property>
-                 </item>
                 </widget>
                </item>
               </layout>
@@ -186,84 +147,10 @@ align-itens:center;
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
-                <widget class="QPushButton" name="pushButton_5">
+                <widget class="QPushButton" name="btn_add">
                  <property name="minimumSize">
-                  <size>
-                   <width>71</width>
-                   <height>33</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
                   <size>
                    <width>70</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
-	border-radius:15px;		
-	border: 1px solid rgb(255, 255, 255);
-	background-color: rgb(0, 76, 0)
-
- }
-
-QPushButton:hover{background-color:#057A3A;color:white}
-
-QPushButton:pressed{
- padding-left: 5px;
- padding-top:5px;
- 
-	background-color: rgb(0, 85, 0);
- 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>Confirmar</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_6">
-                 <property name="minimumSize">
-                  <size>
-                   <width>71</width>
-                   <height>33</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>70</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QPushButton { color:rgb(254, 253, 247);
-	border-radius:15px;		
-	border: 1px solid rgb(255, 255, 255);
-	background-color: rgb(0, 76, 0)
-
- }
-
-QPushButton:hover{background-color:#057A3A;color:white}
-
-QPushButton:pressed{
- padding-left: 5px;
- padding-top:5px;
- 
-	background-color: rgb(0, 85, 0);
- 
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>Cancelar</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_7">
-                 <property name="minimumSize">
-                  <size>
-                   <width>71</width>
                    <height>33</height>
                   </size>
                  </property>
@@ -292,7 +179,7 @@ QPushButton:pressed{
 }</string>
                  </property>
                  <property name="text">
-                  <string>Editar</string>
+                  <string>+</string>
                  </property>
                 </widget>
                </item>
@@ -312,23 +199,9 @@ QPushButton:pressed{
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Produtos vinculados a categoria:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QLabel" name="label_2">
               <property name="text">
                <string>Categorias cadastradas:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>Última modificação:</string>
               </property>
              </widget>
             </item>
@@ -347,7 +220,7 @@ QPushButton:pressed{
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
+         <item alignment="Qt::AlignTop">
           <widget class="QFrame" name="frame_4">
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -357,7 +230,48 @@ QPushButton:pressed{
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QListView" name="listView"/>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Nome da categoria:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="line_cat">
+              <property name="minimumSize">
+               <size>
+                <width>240</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>240</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+QLineEdit{
+background-color:white;	
+border-radius: 5px;
+border: 1px solid #057A3A;
+border-bottom: 3px solid #057A3A;
+
+    border-top-right-radius: 5px;  
+    border-bottom-right-radius: 5px;
+}
+
+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_qntd">
+              <property name="text">
+               <string>Produtos vinculados a categoria:</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -378,7 +292,87 @@ QPushButton:pressed{
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="btn_cancel">
+              <property name="minimumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>70</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+              </property>
+              <property name="text">
+               <string>Cancelar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_confirm">
+              <property name="minimumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>70</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton { color:rgb(254, 253, 247);
+	border-radius:15px;		
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(0, 76, 0)
+
+ }
+
+QPushButton:hover{background-color:#057A3A;color:white}
+
+QPushButton:pressed{
+ padding-left: 5px;
+ padding-top:5px;
+ 
+	background-color: rgb(0, 85, 0);
+ 
+}</string>
+              </property>
+              <property name="text">
+               <string>Confirmar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_edit">
+              <property name="minimumSize">
+               <size>
+                <width>71</width>
+                <height>33</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -404,7 +398,7 @@ QPushButton:pressed{
 }</string>
               </property>
               <property name="text">
-               <string>+</string>
+               <string>Editar</string>
               </property>
              </widget>
             </item>
