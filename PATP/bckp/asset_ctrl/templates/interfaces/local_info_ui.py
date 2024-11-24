@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\IP\Desktop\PATP\asset_ctrl\templates\interfaces\local_info.ui'
+# Form implementation generated from reading ui file 'c:\Users\IP\Documents\GitHub\controle_patrimonio\PATP\bckp\asset_ctrl\templates\interfaces\local_info.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
