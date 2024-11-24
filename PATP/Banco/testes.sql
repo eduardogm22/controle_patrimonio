@@ -3,10 +3,69 @@ select * from patrimonios_audit;
 select * from situacoes;
 call st_select_editar(2);
 
-
+select * from categorias_audit;
+insert into categorias
+values
+(default, 'Teste2');
+update categorias set nome = 'testando' where idcategoria = 10;
 update patrimonios set idsituacao = '3' where idpatrimonio = 11;
+delete from categorias where idcategoria = 13;
 
-delete from patrimonios_audit where idpatrimonio = 12;
+select * from info_notas_audit;
+insert into info_notas
+values
+(default, '43191234567890123456789012345678901234567890', 111, 11, 1, current_date());
+update info_notas set chave_acesso = '111111111' where idnota = 6;
+delete from info_notas where idnota = 6;
+
+select * from setores_responsaveis_audit;
+insert into setores_responsaveis
+values
+(default, 'teste2');
+update setores_responsaveis set nome = 'testando' where idsetor = 8;
+delete from setores_responsaveis where idsetor = 8;
+
+select * from locais_audit;
+insert into locais
+values
+(default, 'Teste2');
+update locais set nome = 'testando' where idlocal = 5;
+delete from locais where idlocal = 6;
+
+select * from situacoes_audit;
+insert into situacoes
+values
+(default, 'Teste2');
+update situacoes set nome = 'testando' where idsituacao = 4;
+delete from situacoes where idsituacao = 5;
+
+select * from fornecedores_audit;
+insert into fornecedores
+values
+(default, 'Teste2', '12345678901234');
+update fornecedores set nome = 'testando' where idfornecedor = 3;
+delete from fornecedores where idfornecedor = 3;
+
+select * from pessoas_audit;
+insert into pessoas
+values
+(default, 'Teste2', 'teste@teste.com', current_date());
+update pessoas set nome = 'testando' where idpessoa = 4;
+delete from pessoas where idpessoa = 6;
+
+select * from cargos_audit;
+insert into cargos
+values
+(default, 'Teste2', 1, 1, 1, 1, 1, 1);
+update cargos set nome = 'testando' where idcargo = 5;
+delete from cargos where idcargo = 5;
+
+select * from usuarios_audit;
+insert into usuarios
+values
+(1, 'Teste2', 'senha', 1);
+update usuarios set usuario = 'testando' where idpessoa = 1;
+delete from usuarios where idpessoa = 1;
 
 call cadastra_quantidade('Monitor Samsung', 800.00, '2023-01-18', 3, 4, 2, 3, 1, 1);
 
