@@ -2,6 +2,7 @@
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtSql import QSqlDatabase, QSqlQueryModel
+from PyQt5.QtWidgets import QMessageBox, QInputDialog
 from datetime import datetime
 import os, json
 data_id = ''
@@ -93,53 +94,72 @@ def conecta_procedure_tela(procedure, parametro):
     return modelo
 
 def update_editar_ptr(nome_ptr, valor_unitario, num_serie, num_patrimonio, data_recebimento, local, situacao, setor, categoria, idptr):
-            conn = criar_conexao()
-            cursor = conn.cursor()
-            
-            cursor.execute('select idlocal from locais where nome = %s', (local,))
-            resultado_local = cursor.fetchone()
-            local_sel_id = resultado_local[0]
-            
-            cursor.execute('select idsituacao from situacoes where nome = %s', (situacao,))
-            resultado_sit = cursor.fetchone()
-            sit_sel_id = resultado_sit[0]
-            
-            cursor.execute('select idsetor from setores_responsaveis where nome = %s', (setor,))
-            resultado_set = cursor.fetchone()
-            set_sel_id = resultado_set[0]
-            
-            cursor.execute('select idcategoria from categorias where nome = %s', (categoria,))
-            resultado_cat = cursor.fetchone()
-            cat_sel_id = resultado_cat[0]
-
-            cursor.execute('''
-                update patrimonios
-                set
-                    nome = %s,
-                    valor_unitario = %s,
-                    num_serie = %s,
-                    num_patrimonio = %s,
-                    data_recebimento = %s,
-                    idlocal = %s,
-                    idsituacao = %s,
-                    idsetor = %s,
-                    idcategoria = %s
-                where idpatrimonio = %s
-            ''',
-                    (nome_ptr,
-                    valor_unitario,
-                    num_serie,
-                    num_patrimonio,
-                    data_recebimento,
-                    local_sel_id,
-                    sit_sel_id,
-                    set_sel_id,
-                    cat_sel_id,
-                    idptr)
+    try:    
+        conn = criar_conexao()
+        cursor = conn.cursor()
+        
+        resposta = QMessageBox.question(
+            None,
+            "Confirmação",
+            "Deseja realmente editar este item?",
+            QMessageBox.Yes | QMessageBox.No
             )
-            conn.commit()
-            cursor.close()
-            fechar_conexao(conn)
+
+        if resposta == QMessageBox.No:
+            return  
+        
+        cursor.execute('select idlocal from locais where nome = %s', (local,))
+        resultado_local = cursor.fetchone()
+        local_sel_id = resultado_local[0]
+        
+        cursor.execute('select idsituacao from situacoes where nome = %s', (situacao,))
+        resultado_sit = cursor.fetchone()
+        sit_sel_id = resultado_sit[0]
+        
+        cursor.execute('select idsetor from setores_responsaveis where nome = %s', (setor,))
+        resultado_set = cursor.fetchone()
+        set_sel_id = resultado_set[0]
+        
+        cursor.execute('select idcategoria from categorias where nome = %s', (categoria,))
+        resultado_cat = cursor.fetchone()
+        cat_sel_id = resultado_cat[0]
+
+        cursor.execute('set @idusuario = %s', (data_id,))
+        cursor.execute('''
+            update patrimonios
+            set
+                nome = %s,
+                valor_unitario = %s,
+                num_serie = %s,
+                num_patrimonio = %s,
+                data_recebimento = %s,
+                idlocal = %s,
+                idsituacao = %s,
+                idsetor = %s,
+                idcategoria = %s
+            where idpatrimonio = %s
+        ''',
+                (nome_ptr,
+                valor_unitario,
+                num_serie,
+                num_patrimonio,
+                data_recebimento,
+                local_sel_id,
+                sit_sel_id,
+                set_sel_id,
+                cat_sel_id,
+                idptr)
+        )
+    except Exception as e:
+        QMessageBox.critical(
+            None,
+            "Erro",
+            f"Ocorreu um erro ao editar o patrimônio:\n{e}"
+        )
+    finally:    
+        conn.commit()
+        cursor.close()
+        fechar_conexao(conn)
 
 def infos_popular_combobox(self, id_item):
             try:
@@ -180,17 +200,59 @@ def infos_popular_combobox(self, id_item):
            
             return resultado 
 
-def deletar_ptr(id_item):
-            try:
-                conn = criar_conexao()
-                cursor = conn.cursor()
-                cursor.execute('delete from patrimonios where idpatrimonio = %s', (id_item,))
-            except Exception as e:
-                print('Erro ao excluir:', e)
-            finally:
-                conn.commit()
-                cursor.close()
-                fechar_conexao(conn)
+def deletar_ptr(id_item): 
+    try:
+        conn = criar_conexao()
+        cursor = conn.cursor()
+        resposta = QMessageBox.question(
+        None,
+        "Confirmação",
+        "Deseja realmente excluir este item?",
+        QMessageBox.Yes | QMessageBox.No
+    )
+
+        if resposta == QMessageBox.No:
+            return  
+
+        senha, ok = QInputDialog.getText(
+            None, 
+            "Confirmação de Senha",
+            "Digite sua senha para confirmar a exclusão:"
+        )
+
+        if not ok:  
+            return
+
+        cursor.execute("SELECT senha FROM usuarios WHERE usuario = %s", (data_user,))
+        senha_correta = cursor.fetchone()
+
+        if senha_correta and senha == senha_correta[0]:
+            cursor.execute('set @idusuario = %s', (data_id,))
+            cursor.execute('delete from patrimonios where idpatrimonio = %s', (id_item,))
+            conn.commit()
+
+            QMessageBox.information(
+                None,
+                "Sucesso",
+                "Item excluído com sucesso!"
+            )
+        else:
+            QMessageBox.critical(
+                None,
+                "Erro",
+                "Senha incorreta. A exclusão foi cancelada."
+            )
+    except Exception as e:
+        QMessageBox.critical(
+            None,
+            "Erro",
+            f"Ocorreu um erro ao excluir o item:\n{e}"
+)
+        
+    finally:
+        conn.commit()
+        cursor.close()
+        fechar_conexao(conn)
 
 # função para registrar (onde ocorreu, tipo de alteração, descrição de alteração, quem fez)
 '''def registrar_log(setor, tipo_modificacao, descricao, id_usuario):

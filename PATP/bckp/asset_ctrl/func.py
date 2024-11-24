@@ -579,15 +579,23 @@ class bag_view(QWidget):
             pass
         
     def bag_edit(self):
-        modelo = self.table_item.model()
-        item_id = modelo.item(self.row, 0).text()
-        self.edit_itens = bag_edit(item_id, self.interface)
-        self.edit_frame = self.findChild(QFrame, "frame_edit_2")
-        self.body_frame = self.findChild(QFrame, "frame_2")
-        self.edit_frame.layout().addWidget(self.edit_itens)
-        self.btn_teste = self.findChild(QPushButton, "test")
-        self.body_frame.hide()
-        self.edit_frame.show()
+        try:
+            modelo = self.table_item.model()
+            item_id = modelo.item(self.row, 0).text()
+            self.edit_itens = bag_edit(item_id, self.interface)
+            self.edit_frame = self.findChild(QFrame, "frame_edit_2")
+            self.body_frame = self.findChild(QFrame, "frame_2")
+            self.edit_frame.layout().addWidget(self.edit_itens)
+            self.btn_teste = self.findChild(QPushButton, "test")
+            self.body_frame.hide()
+            self.edit_frame.show()
+        except Exception as e:
+            print(e)
+            QMessageBox.warning(
+            self,
+            "Aviso",
+            "Selecione uma linha antes de continuar!"
+        )
 
     def bag_cad(self):
         self.cad_itens = bag_item_cad()

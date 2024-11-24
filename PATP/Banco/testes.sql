@@ -1,6 +1,7 @@
 select * from patrimonios where idpatrimonio = 2 order by nome;
 select * from patrimonios_audit;
 select * from situacoes;
+SELECT senha FROM usuarios WHERE idusuario = 1;
 call st_select_editar(2);
 
 select * from categorias_audit;
