@@ -1,3 +1,10 @@
+window.addEventListener("scroll", function(){
+    let header = document.querySelector('#header')
+    header.classList.toggle('rolagem', window.scrollY > 0)
+})
+
+
+
 class MenuBars {
     constructor(menuBar, navList, navLinks) {
         this.menuBar = document.querySelector(menuBar);
