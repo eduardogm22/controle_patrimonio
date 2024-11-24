@@ -84,7 +84,8 @@ class user_menu(QWidget):
         self.btn_info.setIcon(info_svg)
         self.info_frame = self.findChild(QFrame, "infoFrame")
         self.btn_info.installEventFilter(self)
-        
+        self.btn_info.setVisible(False)        
+
         self.table_user = self.findChild(QTableView, "l_user")
         self.table_logs = self.findChild(QTableView, "logsReg")
         self.search_line = self.findChild(QLineEdit, "search_input")
@@ -99,40 +100,29 @@ class user_menu(QWidget):
         self.shadow_user1.setBlurRadius(9)
         self.shadow_user1.setColor(QtGui.QColor(0, 0, 0, 128))
 
-        self.shadow_user2 = QGraphicsDropShadowEffect() 
-        self.shadow_user2.setOffset(0, 0)
-        self.shadow_user2.setBlurRadius(9)
-        self.shadow_user2.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_user3 = QGraphicsDropShadowEffect() 
-        self.shadow_user3.setOffset(0, 0)
-        self.shadow_user3.setBlurRadius(9)
-        self.shadow_user3.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_user4 = QGraphicsDropShadowEffect() 
-        self.shadow_user4.setOffset(0, 0)
-        self.shadow_user4.setBlurRadius(9)
-        self.shadow_user4.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_user5 = QGraphicsDropShadowEffect() 
-        self.shadow_user5.setOffset(0, 0)
-        self.shadow_user5.setBlurRadius(9)
-        self.shadow_user5.setColor(QtGui.QColor(0, 0, 0, 128))
-
-        self.shadow_user6 = QGraphicsDropShadowEffect() 
-        self.shadow_user6.setOffset(0, 0)
-        self.shadow_user6.setBlurRadius(9)
-        self.shadow_user6.setColor(QtGui.QColor(0, 0, 0, 128))
+        # Reutilizando as configurações de sombra (redução de redundância)
+        for i in range(2, 7):
+            shadow = QGraphicsDropShadowEffect()
+            shadow.setOffset(0, 0)
+            shadow.setBlurRadius(9)
+            shadow.setColor(QtGui.QColor(0, 0, 0, 128))
+            setattr(self, f"shadow_user{i}", shadow)
 
         self.head_frame = self.findChild(QFrame, "header_user_frame")
 
         con_u = mysql.connector.connect(**config_acess)
         cursor_u = con_u.cursor()
-        print(type(cursor_u))
-        cursor_u.execute("""select u.usuario, c.nome AS cargo_nome, p.nome AS pessoa_nome, p.dt_create from usuarios u join cargos c on u.idcargo = c.idcargo join pessoas p on u.idpessoa = p.idpessoa where u.idpessoa = p.idpessoa;""")
+
+        # Configuração da tabela de usuários
+        cursor_u.execute("""
+            SELECT u.usuario, c.nome AS cargo_nome, p.nome AS pessoa_nome, p.dt_create
+            FROM usuarios u
+            JOIN cargos c ON u.idcargo = c.idcargo
+            JOIN pessoas p ON u.idpessoa = p.idpessoa;
+        """)
         self.results_u = cursor_u.fetchall()
-         # Criar o modelo para o QTableView
-        model_u = QStandardItemModel(len(self.results_u), 4)  # (número de linhas, número de colunas)
+        model_u = QStandardItemModel(len(self.results_u), 4)
+        model_u.setHorizontalHeaderLabels(["Usuário", "Cargo", "Nome", "Data de Criação"])
 
         for row_idx, row_data in enumerate(self.results_u):
             for col_idx, data in enumerate(row_data):
@@ -140,13 +130,14 @@ class user_menu(QWidget):
                 item.setFont(QFont("Roboto", 9))
                 item.setTextAlignment(Qt.AlignCenter)
                 model_u.setItem(row_idx, col_idx, item)
+
         header = self.table_user.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.Stretch)
         header.setStretchLastSection(True)
         self.table_user.setModel(model_u)
         self.table_user.setGridStyle(Qt.NoPen)
         self.table_user.verticalHeader().setVisible(False)
-        self.table_user.horizontalHeader().setVisible(False)
+        self.table_user.horizontalHeader().setVisible(True)  # Cabeçalho fixo
         self.table_user.resizeColumnsToContents()
         self.table_user.setAlternatingRowColors(True)
         self.table_user.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
@@ -155,8 +146,41 @@ class user_menu(QWidget):
         self.table_user.clicked.connect(self.handle_row_click)
         select_table = self.table_user.selectionModel()
         select_table.selectionChanged.connect(self.handle_selection_change)
-    
 
+        # Configuração da tabela logsReg
+        cursor_u.execute("""
+            SELECT c.nome AS cargo_nome, COUNT(u.idpessoa) AS quantidade_usuarios
+            FROM usuarios u
+            JOIN cargos c ON u.idcargo = c.idcargo
+            GROUP BY c.nome
+            ORDER BY quantidade_usuarios DESC;
+        """)
+        self.results_logs = cursor_u.fetchall()
+        model_logs = QStandardItemModel(len(self.results_logs), 2)
+        model_logs.setHorizontalHeaderLabels(["Cargo", "Quantidade de Usuários"])
+
+        for row_idx, row_data in enumerate(self.results_logs):
+            for col_idx, data in enumerate(row_data):
+                item = QStandardItem(str(data))
+                item.setFont(QFont("Roboto", 9))
+                item.setTextAlignment(Qt.AlignCenter)
+                model_logs.setItem(row_idx, col_idx, item)
+
+        header_logs = self.table_logs.horizontalHeader()
+        header_logs.setSectionResizeMode(QHeaderView.Stretch)
+        header_logs.setStretchLastSection(True)
+        self.table_logs.setModel(model_logs)
+        self.table_logs.setGridStyle(Qt.NoPen)
+        self.table_logs.verticalHeader().setVisible(False)
+        self.table_logs.horizontalHeader().setVisible(True)  # Cabeçalho fixo
+        self.table_logs.resizeColumnsToContents()
+        self.table_logs.setAlternatingRowColors(True)
+        self.table_logs.setStyleSheet("alternate-background-color: #F0F0F0; background-color: #FFFFFF;")
+        self.table_logs.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.table_logs.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+    # Restante das funções (handle_row_click, handle_selection_change, register, eventFilter, info)
+    # Mantidas conforme o código original
     # confirmação do index clickado
     def handle_row_click(self, index):
         self.row = index.row()
@@ -165,6 +189,7 @@ class user_menu(QWidget):
         print(f"Dados da linha {self.row}: {item_id}")
         self.btn_info.setEnabled(True)
         self.btn_info.show()
+        self.btn_info.setVisible(True)
     # seleção
     def handle_selection_change(self, selected, deselected):
         if self.table_user.selectionModel().hasSelection():
@@ -205,9 +230,6 @@ class user_menu(QWidget):
 
         return super().eventFilter(obj, event)
     
-
-    
-    
     def info(self):
         modelo = self.table_user.model()
         u_select = modelo.item(self.row, 0).text()
@@ -217,7 +239,6 @@ class user_menu(QWidget):
         self.c_frame.layout().addWidget(self.user_edit)
         self.u_frame.hide()
         self.c_frame.show()
-        
         
 
 class user_info(QWidget):
