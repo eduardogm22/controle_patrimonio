@@ -36,20 +36,6 @@ if os.path.exists('line/dados.json'):
 else:
     print("Arquivo JSON inexistente func.")
     
-def bag_screen(self):
-        self.frame = self.findChild(QFrame, "userFrame")
-        self.h_frame = self.findChild(QFrame, "homeFrame")
-        self.bag = bag_view()
-        self.clear_frame()
-        self.frame.layout().addWidget(self.bag)
-        if self.bag in self.frame.findChildren(QWidget):
-            self.h_frame.hide()
-            self.frame.show()
-            if self.btn_home.isVisible() == False:
-                self.btn_home.show()
-        self.btn_item = self.bag.findChild(QPushButton, "item_btn")
-        self.btn_item.clicked.connect(self.item_view)
-
 # icones svg
 QResource.registerResource("feather/resource.qrc")
 home_svg = QIcon("feather/home.svg")
@@ -436,8 +422,9 @@ class user_info(QWidget):
 
 
 class bag_view(QWidget):
-    def __init__(self):
+    def __init__(self, interface):
         super().__init__()
+        self.interface = interface
         self.bag_screen = uic.loadUi("templates/interfaces/bag.ui", self)
         self.produtos = []
         self.produtos_temporarios = []
@@ -594,7 +581,7 @@ class bag_view(QWidget):
     def bag_edit(self):
         modelo = self.table_item.model()
         item_id = modelo.item(self.row, 0).text()
-        self.edit_itens = bag_edit(item_id, self)
+        self.edit_itens = bag_edit(item_id, self.interface)
         self.edit_frame = self.findChild(QFrame, "frame_edit_2")
         self.body_frame = self.findChild(QFrame, "frame_2")
         self.edit_frame.layout().addWidget(self.edit_itens)
@@ -609,13 +596,12 @@ class bag_view(QWidget):
         self.cad_frame.layout().addWidget(self.cad_itens)
         self.btn_teste = self.findChild(QPushButton, "test")
         self.body_frame.hide()
-        self.cad_frame.show()       
+        self.cad_frame.show()     
 
-
-class bag_edit(QWidget):
+class bag_edit(QWidget): 
     def __init__(self, id_item, interface):
         super().__init__()
-        interface = interface
+        self.interface = interface
         self.edit = uic.loadUi("templates/interfaces/item_edit.ui", self)
         self.id_item = id_item
         self.n_item = self.findChild(QLabel, "label")
@@ -657,37 +643,40 @@ class bag_edit(QWidget):
         self.c_item.setCurrentText(resultado[11])
         
         #atualizando os valores no banco de dados (update) ao clicar em confirmar
-        try: 
-            self.confirm_item.clicked.connect(lambda: 
-                update_editar_ptr(
-                    self.name_p.text(), 
-                    self.v_u.text(), 
-                    self.n_s.text(), 
-                    self.n_p.text(), 
-                    self.dt_rec.date().toString("yyyy-MM-dd"), 
-                    self.local_i.currentText(), 
-                    self.c_sit.currentText(), 
-                    self.c_set.currentText(), 
-                    self.c_item.currentText(), 
-                    self.id_item))
-        finally:    
-            self.confirm_item.clicked.connect(lambda: retornar_anterior(self))       
+        self.confirm_item.clicked.connect(lambda: 
+            update_editar_ptr(
+                self.name_p.text(), 
+                self.v_u.text(), 
+                self.n_s.text(), 
+                self.n_p.text(), 
+                self.dt_rec.date().toString("yyyy-MM-dd"), 
+                self.local_i.currentText(), 
+                self.c_sit.currentText(), 
+                self.c_set.currentText(), 
+                self.c_item.currentText(), 
+                self.id_item))
+           
+        self.confirm_item.clicked.connect(lambda: self.interface.bag_screen())       
         
         #deletando o patrimonio selecionado ao clicar em deletar
-        try:
-            self.del_btn.clicked.connect(lambda: deletar_ptr(self.id_item))
-        finally:
-            self.del_btn.clicked.connect(lambda: retornar_anterior(self))
+        self.del_btn.clicked.connect(lambda: deletar_ptr(self.id_item))
+
+        self.del_btn.clicked.connect(lambda: self.interface.bag_screen())
+
+        #voltar à tela inicial ao clicar em voltar ou cancelar
+        self.cancel_btn.clicked.connect(lambda: self.interface.bag_screen())
+        self.return_btn.clicked.connect(lambda: self.interface.bag_screen())
+        
+    def bag_view(self):
+        self.interface.bag_screen()
+        self.tela_anterior = bag_view()
+        self.tela_anterior.configRequested.connect(self.interface.config_screen)
+        self.edit_frame = self.findChild(QFrame, "frame")
+        self.body_frame = self.findChild(QFrame, "frame_2")
+        self.edit_frame.layout().addWidget(self.tela_anterior)
+        self.edit_frame.hide()
+        self.body_frame.show()
     
-        def retornar_anterior(self):
-            pass #está em errada, arrumando
-            '''self.retornaranterior = retornar_anterior()
-            self.retornaranterior.configRequested.connect(self.interface.config_screen)
-            self.edit_frame = self.findChild(QFrame, "frame")
-            self.body_frame = self.findChild(QFrame, "frame_2")
-            self.edit_frame.layout().addWidget(self.retornaranterior)
-            self.edit_frame.hide()
-            self.body_frame.show()'''
 class bag_item_cad(QWidget):
     def __init__(self):
         super().__init__()
@@ -1096,8 +1085,6 @@ class items_view(QWidget):
         self.frame_v2.show()
         self.frame_v1.hide()
         
-
-
 class categ_view(QWidget):   
     configRequested = pyqtSignal()
     def __init__(self):
@@ -1107,9 +1094,6 @@ class categ_view(QWidget):
         self.btn_config.clicked.connect(self.on_config_click)
     def on_config_click(self):
         self.configRequested.emit()
-
-
-
 
 class rel_view(QWidget):
     def __init__(self):

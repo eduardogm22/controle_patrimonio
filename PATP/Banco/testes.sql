@@ -1,7 +1,8 @@
-select * from patrimonios;
+select * from patrimonios where idpatrimonio = 2 order by nome;
 select * from patrimonios_audit;
 select * from situacoes;
-call st_select_editar(1);
+call st_select_editar(2);
+
 
 update patrimonios set idsituacao = '3' where idpatrimonio = 11;
 

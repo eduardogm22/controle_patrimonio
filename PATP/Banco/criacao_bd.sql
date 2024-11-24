@@ -164,7 +164,7 @@ left outer join
 left outer join
 	categorias as cat on ptr.idcategoria = cat.idcategoria
 where 
-	idpatrimonio = 1;
+	idpatrimonio = idpatrimonio_in;
 end;
 $$ delimiter;
 
