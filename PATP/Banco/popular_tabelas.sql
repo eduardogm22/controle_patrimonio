@@ -16,7 +16,7 @@ values
 (default, 'Ativo'),
 (default, 'Inativo');
 
-insert into setores_responsaveis
+insert into setores_responsaveis (idsetor, nome)
 values
 (default, 'Laboratório'),
 (default, 'TI'),
@@ -63,11 +63,11 @@ values
 
 insert into usuarios
 values
-(default,'admin', '1', 1), -- usuário para logar e gerar testes
-(default,'Administrador', '123', 1),
-(default,'Supervisor', '123', 2),
-(default,'Funcionario_R', '123', 3),
-(default,'Funcionario_L', '123', 4);
+(1,'admin', '1', 1), -- usuário para logar e gerar testes
+(2,'Administrador', '123', 1),
+(3,'Supervisor', '123', 2),
+(4,'Funcionario_R', '123', 3),
+(5,'Funcionario_L', '123', 4);
    
 INSERT INTO patrimonios (nome, valor_unitario, data_recebimento, num_patrimonio, num_serie, idnota, idcategoria, idsetor, idlocal, idsituacao)
 VALUES

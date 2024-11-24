@@ -556,7 +556,7 @@ class interface(QMainWindow):
     def bag_screen(self):
         self.frame = self.findChild(QFrame, "userFrame")
         self.h_frame = self.findChild(QFrame, "homeFrame")
-        self.bag = bag_view()
+        self.bag = bag_view(self)
         self.clear_frame()
         self.frame.layout().addWidget(self.bag)
         if self.bag in self.frame.findChildren(QWidget):

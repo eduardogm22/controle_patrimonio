@@ -1,4 +1,4 @@
-
+drop database asset_ctrl;
 create database if not exists asset_ctrl;
 use asset_ctrl;
 
@@ -18,7 +18,7 @@ create table info_notas(
 	data_aquisicao date not null
 ); 
 
-create table setores_responsaveis (
+create  table setores_responsaveis (
 	idsetor integer not null primary key auto_increment,
     nome varchar(30) not null
 );
@@ -78,7 +78,7 @@ create table cargos (
 );
 
 create table usuarios (
-	idpessoa integer not null primary key auto_increment,
+	idpessoa integer not null,
 	usuario varchar(30) not null unique,  
 	senha varchar(20) not null,
 	idcargo integer not null,
@@ -131,32 +131,38 @@ $$ delimiter ;
 
 -- views 
 
-call st_select_editar (11);
-
-drop procedure st_select_editar;
+-- drop procedure st_select_editar;
 
 delimiter $$
 create procedure st_select_editar (in idpatrimonio_in integer)
 begin
 select 
 	nts.chave_acesso, 
-	fcd.nome, 
+	fcd.nome as "fornecedor", 
     ptr.num_serie, 
     ptr.num_patrimonio, 
     nts.data_aquisicao,
     ptr.data_recebimento, 
-    ptr.idlocal, 
-    ptr.nome, 
+    lcl.nome as "local", 
+    ptr.nome as "patrimonio", 
     ptr.valor_unitario, 
-    ptr.idsituacao, 
-    ptr.idsetor, 
-    ptr.idcategoria 
+    sit.nome as "situacao", 
+    srp.nome as "setor", 
+    cat.nome as "categoria" 
 from 
 	patrimonios as ptr
-inner join
+left outer join
 	info_notas as nts on ptr.idnota = nts.idnota
-inner join
+left outer join
 	fornecedores as fcd on nts.idfornecedor = fcd.idfornecedor
+left outer join
+	locais as lcl on ptr.idlocal = lcl.idlocal
+left outer join
+	situacoes as sit on ptr.idsituacao = sit.idsituacao
+left outer join
+	setores_responsaveis as srp on ptr.idsetor = srp.idsetor
+left outer join
+	categorias as cat on ptr.idcategoria = cat.idcategoria
 where 
 	idpatrimonio = idpatrimonio_in;
 end;
@@ -220,6 +226,7 @@ end;
 $$ delimiter ;
 
 -- Criação tabela auditoria para verificar logs
+
 -- drop table patrimonios_audit;
 create table patrimonios_audit (
     idusuario integer,
@@ -238,8 +245,97 @@ create table patrimonios_audit (
 	idsituacao integer default null   
 );
 
+
+create table categorias_audit(
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+    idcategoria integer,
+    nome varchar(30) default null
+);
+
+create table info_notas_audit(
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idnota integer,  
+	chave_acesso varchar(44) default null,  
+	numero integer default null,  
+	serie integer default null,
+    idfornecedor integer default null,
+	data_aquisicao date default null
+); 
+
+create table setores_responsaveis_audit (
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idsetor integer ,
+    nome varchar(30) default null
+);
+
+create table locais_audit(
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idlocal integer ,
+    nome varchar(255) default null
+);
+
+create table situacoes_audit (
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idsituacao integer ,
+    nome varchar(30) default null
+);
+
+create table fornecedores_audit (
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idfornecedor integer,
+    nome varchar(50) default null,
+    cnpj varchar(18) default null
+);
+
+create table pessoas_audit ( 
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idpessoa integer,  
+	nome varchar(30) default null,  
+	email varchar(40) default null,  
+	dt_create date  default null
+);
+
+create table cargos_audit ( 
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idcargo integer,  
+	nome varchar(30) default null,  
+	acesso_geral char(1) default null,  
+	pode_registrar char(1) default null,  
+	controle_adm char(1) default null,  
+	controle_usuario char(1) default null,  
+	pode_modificar char(1) default null,  
+	pode_visualizar char(1) default null  
+);
+
+create table usuarios_audit (
+	idusuario integer,
+    tipo_alteracao varchar(10),
+    data_alteracao timestamp,
+	idpessoa integer,
+	usuario varchar(30) default null unique,  
+	senha varchar(20) default null,
+	idcargo integer default null
+);
+
 -- triggers auditoria
 
+-- patrimonios
 delimiter $$
 create trigger patrimonios_trigger_insert 
 after insert on patrimonios 
@@ -270,5 +366,312 @@ begin
 	insert into patrimonios_audit (idusuario, tipo_alteracao, data_alteracao, idpatrimonio, nome, valor_unitario, data_recebimento, num_patrimonio, num_serie, idnota, idcategoria, idsetor, idlocal, idsituacao)
 	values
 	(@idusuario, 'delete', current_timestamp(), old.idpatrimonio, old.nome, old.valor_unitario, old.data_recebimento, old.num_patrimonio, old.num_serie, old.idnota, old.idcategoria, old.idsetor, old.idlocal, old.idsituacao);
+end $$
+delimiter ;
+
+-- categorias
+
+delimiter $$
+create trigger categorias_trigger_insert 
+after insert on categorias
+for each row
+begin
+	insert into categorias_audit (idusuario, tipo_alteracao, data_alteracao, idcategoria)
+	values
+	(@idusuario, 'insert', current_timestamp(), new.idcategoria);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger categorias_trigger_update 
+after update on categorias 
+for each row
+begin
+	insert into categorias_audit (idusuario, tipo_alteracao, data_alteracao, idcategoria, nome)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idcategoria, old.nome);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger categorias_trigger_delete
+before delete on categorias
+for each row
+begin
+	insert into categorias_audit (idusuario, tipo_alteracao, data_alteracao, idcategoria, nome)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idcategoria, old.nome);
+end $$
+delimiter ;
+
+-- info notas
+delimiter $$
+create trigger info_notas_trigger_insert 
+after insert on info_notas
+for each row
+begin
+	insert into info_notas_audit (idusuario, tipo_alteracao, data_alteracao, idnota)
+	values
+	(@idusuario, 'insert', current_timestamp(), new.idnota);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger info_notas_trigger_update 
+after update on info_notas 
+for each row
+begin
+	insert into info_notas_audit (idusuario, tipo_alteracao, data_alteracao, idnota, chave_acesso, numero, serie, idfornecedor, data_aquisicao)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idnota, old.chave_acesso, old.numero, old.serie, old.idfornecedor, old.data_aquisicao);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger info_notas_trigger_delete
+before delete on info_notas
+for each row
+begin
+	insert into info_notas_audit (idusuario, tipo_alteracao, data_alteracao, idnota, chave_acesso, numero, serie, idfornecedor, data_aquisicao)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idnota, old.chave_acesso, old.numero, old.serie, old.idfornecedor, old.data_aquisicao);
+end $$
+delimiter ;
+
+-- setores responsaveis drop trigger setores_responsaveis_trigger_insert 
+delimiter $$
+create trigger setores_responsaveis_trigger_insert 
+after insert on setores_responsaveis
+for each row
+begin
+	insert into setores_responsaveis_audit (idusuario, tipo_alteracao, data_alteracao, idsetor)
+	values
+	(@idusuario, 'insert', current_timestamp(), new.idsetor);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger setores_responsaveis_trigger_update 
+after update on setores_responsaveis 
+for each row
+begin
+	insert into setores_responsaveis_audit (idusuario, tipo_alteracao, data_alteracao, idsetor, nome)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idsetor, old.nome);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger setores_responsaveis_trigger_delete
+before delete on setores_responsaveis
+for each row
+begin
+	insert into setores_responsaveis_audit (idusuario, tipo_alteracao, data_alteracao, idsetor, nome)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idsetor, old.nome);
+end $$
+delimiter ;
+
+-- locais
+delimiter $$
+create trigger locais_trigger_insert 
+after insert on locais
+for each row
+begin
+	insert into locais_audit (idusuario, tipo_alteracao, data_alteracao, idlocal, nome)
+	values
+	(@idusuario, 'insert', current_timestamp(), new.idlocal, new.nome);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger locais_trigger_update 
+after update on locais
+for each row
+begin
+	insert into locais_audit (idusuario, tipo_alteracao, data_alteracao, idlocal, nome)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idlocal, old.nome);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger locais_trigger_delete
+before delete on locais
+for each row
+begin
+	insert into locais_audit (idusuario, tipo_alteracao, data_alteracao, idlocal, nome)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idlocal, old.nome);
+end $$
+delimiter ;
+
+-- situacoes
+delimiter $$
+create trigger situacoes_trigger_insert 
+after insert on situacoes
+for each row
+begin
+	insert into situacoes_audit (idusuario, tipo_alteracao, data_alteracao, idsituacao)
+	values
+	(@idusuario, 'insert', current_timestamp(), new.idsituacao);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger situacoes_trigger_update 
+after update on situacoes
+for each row
+begin
+	insert into situacoes_audit (idusuario, tipo_alteracao, data_alteracao, idsituacao, nome)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idsituacao, old.nome);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger situacoes_trigger_delete
+before delete on situacoes
+for each row
+begin
+	insert into situacoes_audit (idusuario, tipo_alteracao, data_alteracao, idsituacao, nome)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idsituacao, old.nome);
+end $$
+delimiter ;
+
+-- fornecedores
+delimiter $$
+create trigger fornecedores_trigger_insert 
+after insert on fornecedores
+for each row
+begin
+	insert into fornecedores_audit (idusuario, tipo_alteracao, data_alteracao, idfornecedor)
+	values
+	(@idusuario, 'insert', current_timestamp(), new.idfornecedor);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger fornecedores_trigger_update 
+after update on fornecedores 
+for each row
+begin
+	insert into fornecedores_audit (idusuario, tipo_alteracao, data_alteracao, idfornecedor, nome, cnpj)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idfornecedor, old.nome, old.cnpj);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger fornecedores_trigger_delete
+before delete on fornecedores
+for each row
+begin
+	insert into fornecedores_audit (idusuario, tipo_alteracao, data_alteracao, idfornecedor, nome, cnpj)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idfornecedor, old.nome, old.cnpj);
+end $$
+delimiter ;
+
+-- pessoas
+delimiter $$
+create trigger pessoas_trigger_insert 
+after insert on pessoas
+for each row
+begin
+	insert into pessoas_audit (idusuario, tipo_alteracao, data_alteracao, idpessoa)
+	values
+	(@idusuario, 'insert', current_timestamp(), new.idpessoa);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger pessoas_trigger_update 
+after update on pessoas 
+for each row
+begin
+	insert into pessoas_audit (idusuario, tipo_alteracao, data_alteracao, idpessoa, nome, email, dt_create)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idpessoa, old.nome, old.email, old.dt_create);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger pessoas_trigger_delete
+before delete on pessoas
+for each row
+begin
+	insert into pessoas_audit (idusuario, tipo_alteracao, data_alteracao, idpessoa, nome, email, dt_create)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idpessoa, old.nome, old.email, old.dt_create);
+end $$
+delimiter ;
+
+-- cargos
+delimiter $$
+create trigger cargos_trigger_insert 
+after insert on cargos
+for each row
+begin
+	insert into cargos_audit (idusuario, tipo_alteracao, data_alteracao, idcargo)
+	values
+	(@idusuario, 'insert', current_timestamp(), new.idcargo);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger cargos_trigger_update 
+after update on cargos
+for each row
+begin
+	insert into cargos_audit (idusuario, tipo_alteracao, data_alteracao, idcargo, nome, acesso_geral, pode_registrar, controle_adm, controle_usuario, pode_modificar, pode_visualizar)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idcargo, old.nome, old.acesso_geral, old.pode_registrar, old.controle_adm, old.controle_usuario, old.pode_modificar, old.pode_visualizar);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger cargos_trigger_delete
+before delete on cargos
+for each row
+begin
+	insert into cargos_audit (idusuario, tipo_alteracao, data_alteracao, idcargo, nome, acesso_geral, pode_registrar, controle_adm, controle_usuario, pode_modificar, pode_visualizar)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idcargo, old.nome, old.acesso_geral, old.pode_registrar, old.controle_adm, old.controle_usuario, old.pode_modificar, old.pode_visualizar);
+end $$
+delimiter ;
+
+-- usuarios
+delimiter $$
+create trigger usuarios_trigger_insert 
+after insert on usuarios
+for each row
+begin
+	insert into usuarios_audit (idusuario, tipo_alteracao, data_alteracao, idpessoa)
+	values
+	(@idusuario, 'insert', current_timestamp(), new.idpessoa);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger usuarios_trigger_update 
+after update on usuarios 
+for each row
+begin
+	insert into usuarios_audit (idusuario, tipo_alteracao, data_alteracao, idpessoa, usuario, senha, idcargo)
+	values
+	(@idusuario, 'update', current_timestamp(), old.idpessoa, old.usuario, old.senha, old.idcargo);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger usuarios_trigger_delete
+before delete on usuarios
+for each row
+begin
+	insert into usuarios_audit (idusuario, tipo_alteracao, data_alteracao, idpessoa, usuario, senha, idcargo)
+	values
+	(@idusuario, 'delete', current_timestamp(), old.idpessoa, old.usuario, old.senha, old.idcargo);
 end $$
 delimiter ;

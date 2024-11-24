@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import QWidget,QPushButton,QFrame,QLineEdit, QComboBox, QDa
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QResource , QTimer, QLocale, QSortFilterProxyModel, pyqtSignal, QDate
 from PyQt5.QtGui import QIcon, QFocusEvent,QDoubleValidator, QStandardItemModel, QStandardItem, QFont
-from connect import conecta_procedure_tela, criar_conexao, fechar_conexao, config_acess, config
 import mysql.connector # type: ignore
 from PyQt5.QtGui import QDoubleValidator, QKeyEvent
 from PyQt5.QtCore import Qt
@@ -20,6 +19,7 @@ import openpyxl #type: ignore
 from openpyxl.styles import Font, Alignment #type: ignore
 from PyQt5.QtSql import QSqlQueryModel
 import traceback
+from connect import criar_conexao, fechar_conexao, update_editar_ptr, infos_popular_combobox, deletar_ptr,config_acess, config
 
 id_user = ''
 data_user = ''
@@ -35,7 +35,7 @@ if os.path.exists('line/dados.json'):
     print('Usuário:', data_user, 'Senha:', data_pass, 'Cargo:', data_cargo ,'func')
 else:
     print("Arquivo JSON inexistente func.")
-
+    
 # icones svg
 QResource.registerResource("feather/resource.qrc")
 home_svg = QIcon("feather/home.svg")
@@ -422,8 +422,9 @@ class user_info(QWidget):
 
 
 class bag_view(QWidget):
-    def __init__(self):
+    def __init__(self, interface):
         super().__init__()
+        self.interface = interface
         self.bag_screen = uic.loadUi("templates/interfaces/bag.ui", self)
         self.produtos = []
         self.produtos_temporarios = []
@@ -580,7 +581,7 @@ class bag_view(QWidget):
     def bag_edit(self):
         modelo = self.table_item.model()
         item_id = modelo.item(self.row, 0).text()
-        self.edit_itens = bag_edit(item_id)
+        self.edit_itens = bag_edit(item_id, self.interface)
         self.edit_frame = self.findChild(QFrame, "frame_edit_2")
         self.body_frame = self.findChild(QFrame, "frame_2")
         self.edit_frame.layout().addWidget(self.edit_itens)
@@ -595,12 +596,12 @@ class bag_view(QWidget):
         self.cad_frame.layout().addWidget(self.cad_itens)
         self.btn_teste = self.findChild(QPushButton, "test")
         self.body_frame.hide()
-        self.cad_frame.show()       
+        self.cad_frame.show()     
 
-
-class bag_edit(QWidget):
-    def __init__(self, id_item):
+class bag_edit(QWidget): 
+    def __init__(self, id_item, interface):
         super().__init__()
+        self.interface = interface
         self.edit = uic.loadUi("templates/interfaces/item_edit.ui", self)
         self.id_item = id_item
         self.n_item = self.findChild(QLabel, "label")
@@ -622,46 +623,16 @@ class bag_edit(QWidget):
         self.del_btn = self.findChild(QPushButton, "btn_del")
         self.num_ptr = self.findChild(QLineEdit, "edtNumPtr")
         self.confirm_item = self.findChild(QPushButton, "confirm_item")
-        
         self.cancel_btn = self.findChild(QPushButton, "cancel_btn")
-
-        conn = criar_conexao()
-        cursor = conn.cursor()
-        try:
+        
             
-            cursor.execute('select nome from categorias order by nome')
-            resultado = cursor.fetchall()
-            for dados in resultado:
-                self.c_item.addItem(dados[0])
+        #adicionando os dados do patrimonio selecionado quando abre a tela
+        resultado = infos_popular_combobox(self, self.id_item)
                 
-            cursor.execute('select nome from setores_responsaveis order by nome')
-            resultado_set_resp = cursor.fetchall()
-            for dados in resultado_set_resp:
-                self.c_set.addItem(dados[0])
-                
-            cursor.execute('select nome from situacoes order by nome')
-            resultado_situacoes = cursor.fetchall()
-            for dados in resultado_situacoes:
-                self.c_sit.addItem(dados[0])
-                
-            cursor.execute('select nome from locais order by nome')
-            resultado_locais = cursor.fetchall()
-            for dados in resultado_locais:
-                self.local_i.addItem(dados[0])
-            
-            cursor.callproc('st_select_editar', [id_item])
-
-            for result in cursor.stored_results():
-                resultados = result.fetchall()
-                for resultado in resultados:
-                    print(resultado)
-        except Exception as e:
-            print('erro', e)
-            
         self.n_f.setText(resultado[0])
-        self.n_n.setText(resultado[1])
+        self.fornecedor.setText(resultado[1])
         self.n_s.setText(resultado[2])
-        self.num_ptr.setText(str(resultado[3]))
+        self.n_p.setText(str(resultado[3]))
         self.dt_buy.setDate(resultado[4])
         self.dt_rec.setDate(resultado[5])
         self.local_i.setCurrentText(resultado[6])
@@ -671,13 +642,41 @@ class bag_edit(QWidget):
         self.c_set.setCurrentText(resultado[10])
         self.c_item.setCurrentText(resultado[11])
         
-        cursor.close()
-        fechar_conexao(conn)
+        #atualizando os valores no banco de dados (update) ao clicar em confirmar
+        self.confirm_item.clicked.connect(lambda: 
+            update_editar_ptr(
+                self.name_p.text(), 
+                self.v_u.text(), 
+                self.n_s.text(), 
+                self.n_p.text(), 
+                self.dt_rec.date().toString("yyyy-MM-dd"), 
+                self.local_i.currentText(), 
+                self.c_sit.currentText(), 
+                self.c_set.currentText(), 
+                self.c_item.currentText(), 
+                self.id_item))
+           
+        self.confirm_item.clicked.connect(lambda: self.interface.bag_screen())       
         
+        #deletando o patrimonio selecionado ao clicar em deletar
+        self.del_btn.clicked.connect(lambda: deletar_ptr(self.id_item))
 
+        self.del_btn.clicked.connect(lambda: self.interface.bag_screen())
 
-
-
+        #voltar à tela inicial ao clicar em voltar ou cancelar
+        self.cancel_btn.clicked.connect(lambda: self.interface.bag_screen())
+        self.return_btn.clicked.connect(lambda: self.interface.bag_screen())
+        
+    def bag_view(self):
+        self.interface.bag_screen()
+        self.tela_anterior = bag_view()
+        self.tela_anterior.configRequested.connect(self.interface.config_screen)
+        self.edit_frame = self.findChild(QFrame, "frame")
+        self.body_frame = self.findChild(QFrame, "frame_2")
+        self.edit_frame.layout().addWidget(self.tela_anterior)
+        self.edit_frame.hide()
+        self.body_frame.show()
+    
 class bag_item_cad(QWidget):
     def __init__(self):
         super().__init__()
@@ -1086,8 +1085,6 @@ class items_view(QWidget):
         self.frame_v2.show()
         self.frame_v1.hide()
         
-
-
 class categ_view(QWidget):   
     configRequested = pyqtSignal()
     def __init__(self):
@@ -1097,9 +1094,6 @@ class categ_view(QWidget):
         self.btn_config.clicked.connect(self.on_config_click)
     def on_config_click(self):
         self.configRequested.emit()
-
-
-
 
 class rel_view(QWidget):
     def __init__(self):
