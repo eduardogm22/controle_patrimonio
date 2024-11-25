@@ -62,7 +62,7 @@ class interface(QMainWindow):
         self.btn_rel.setIcon(file_text_svg)
         self.btn_rel.installEventFilter(self)     
         self.btn_rel.clicked.connect(self.rel_screen)  
-
+    
         self.btn_users = self.findChild(QPushButton, "usersBtn")
         self.btn_users.setIcon(users_svg)
         self.btn_users.installEventFilter(self)        
@@ -292,7 +292,7 @@ class interface(QMainWindow):
         self.table_view.clicked.connect(self.handle_row_click)
         self.selected_rows = []
         self.cargo_verificador()
-        
+        self.update_home()
         self.show()
 
     def cargo_verificador(self):
@@ -366,7 +366,15 @@ class interface(QMainWindow):
         con.close()
 
     def update_box_local(self):
-        print('faltando att box local')
+        con = criar_conexao()
+        cursor = con.cursor()
+        cursor.execute('select count(*) from locais')
+        data_local = cursor.fetchall()
+        if data_local[0][0] == 0 or data_local[0][0] == None:
+            self.text_local.setText('Locais: 0')
+        else:
+            self.text_local.setText('Locais : '+str(data_local[0][0]))
+        con.close()
 
     def update_box_logs(self):
         print('faltando att box logs')

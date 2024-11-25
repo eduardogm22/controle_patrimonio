@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(950, 732)
+        Form.resize(950, 737)
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
         self.frame_edit_2 = QtWidgets.QFrame(Form)
@@ -37,13 +37,14 @@ class Ui_Form(object):
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.cad_frame)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.f_text = QtWidgets.QTextBrowser(self.cad_frame)
-        self.f_text.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.f_text.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.f_text.setStyleSheet("background-color:transparent;")
         self.f_text.setObjectName("f_text")
-        self.verticalLayout_6.addWidget(self.f_text, 0, QtCore.Qt.AlignBottom)
+        self.verticalLayout_6.addWidget(self.f_text)
         self.verticalLayout_9.addWidget(self.cad_frame)
         self.frame_menu = QtWidgets.QFrame(self.frame_2)
-        self.frame_menu.setMinimumSize(QtCore.QSize(0, 60))
-        self.frame_menu.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.frame_menu.setMinimumSize(QtCore.QSize(0, 54))
+        self.frame_menu.setMaximumSize(QtCore.QSize(16777215, 54))
         self.frame_menu.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_menu.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_menu.setObjectName("frame_menu")
@@ -118,7 +119,7 @@ class Ui_Form(object):
 "}")
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_4.addWidget(self.pushButton)
-        self.verticalLayout_9.addWidget(self.frame_menu)
+        self.verticalLayout_9.addWidget(self.frame_menu, 0, QtCore.Qt.AlignVCenter)
         self.body_frame = QtWidgets.QFrame(self.frame_2)
         self.body_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.body_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -127,27 +128,27 @@ class Ui_Form(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.central_frame = QtWidgets.QFrame(self.body_frame)
         self.central_frame.setMinimumSize(QtCore.QSize(0, 0))
-        self.central_frame.setMaximumSize(QtCore.QSize(16777215, 900))
+        self.central_frame.setMaximumSize(QtCore.QSize(16777215, 810))
         self.central_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.central_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.central_frame.setObjectName("central_frame")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.central_frame)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.frame_search = QtWidgets.QFrame(self.central_frame)
-        self.frame_search.setMinimumSize(QtCore.QSize(0, 90))
-        self.frame_search.setMaximumSize(QtCore.QSize(16777215, 90))
+        self.frame_search.setMinimumSize(QtCore.QSize(0, 60))
+        self.frame_search.setMaximumSize(QtCore.QSize(16777215, 60))
         self.frame_search.setStyleSheet("border-radius:5px;\n"
 "border:5px solid #057A3A;\n"
 "background-color: #057A3A;\n"
-"border-bottom: 2px solid rgb(108, 108, 108);")
+"")
         self.frame_search.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_search.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_search.setObjectName("frame_search")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.frame_search)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.regItem = QtWidgets.QPushButton(self.frame_search)
-        self.regItem.setMinimumSize(QtCore.QSize(90, 45))
-        self.regItem.setMaximumSize(QtCore.QSize(90, 45))
+        self.regItem.setMinimumSize(QtCore.QSize(90, 36))
+        self.regItem.setMaximumSize(QtCore.QSize(90, 36))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
@@ -160,7 +161,7 @@ class Ui_Form(object):
 "QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
-"    background-color: rgb(0, 76, 0)\n"
+"    background-color: rgb(0, 76, 0);\n"
 "\n"
 " }\n"
 "\n"
@@ -174,7 +175,7 @@ class Ui_Form(object):
 " \n"
 "}")
         self.regItem.setObjectName("regItem")
-        self.horizontalLayout_3.addWidget(self.regItem)
+        self.horizontalLayout_3.addWidget(self.regItem, 0, QtCore.Qt.AlignTop)
         self.line_search = QtWidgets.QLineEdit(self.frame_search)
         self.line_search.setMinimumSize(QtCore.QSize(90, 33))
         self.line_search.setMaximumSize(QtCore.QSize(400, 33))
@@ -194,7 +195,7 @@ class Ui_Form(object):
         self.line_search.setAlignment(QtCore.Qt.AlignCenter)
         self.line_search.setObjectName("line_search")
         self.horizontalLayout_3.addWidget(self.line_search)
-        self.verticalLayout_2.addWidget(self.frame_search)
+        self.verticalLayout_2.addWidget(self.frame_search, 0, QtCore.Qt.AlignVCenter)
         self.frame_view = QtWidgets.QFrame(self.central_frame)
         self.frame_view.setMinimumSize(QtCore.QSize(0, 0))
         self.frame_view.setMaximumSize(QtCore.QSize(16777215, 16777215))
@@ -245,8 +246,8 @@ class Ui_Form(object):
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame_edit)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.edit_btn = QtWidgets.QPushButton(self.frame_edit)
-        self.edit_btn.setMinimumSize(QtCore.QSize(90, 45))
-        self.edit_btn.setMaximumSize(QtCore.QSize(90, 45))
+        self.edit_btn.setMinimumSize(QtCore.QSize(90, 36))
+        self.edit_btn.setMaximumSize(QtCore.QSize(90, 36))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
@@ -286,8 +287,8 @@ class Ui_Form(object):
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.frame_detail)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.details_btn = QtWidgets.QPushButton(self.frame_detail)
-        self.details_btn.setMinimumSize(QtCore.QSize(90, 45))
-        self.details_btn.setMaximumSize(QtCore.QSize(90, 45))
+        self.details_btn.setMinimumSize(QtCore.QSize(90, 36))
+        self.details_btn.setMaximumSize(QtCore.QSize(90, 36))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
@@ -331,7 +332,8 @@ class Ui_Form(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></body></html>"))
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#004c00;\">Gerenciamento de Itens:</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#004c00;\">Esta tela permite realizar as principais ações para gerenciar itens de forma prática e direta, nela são exibidos os itens com as principais informações organizadas, sendo possível selecionar e interagir com os dados diretamente. Algumas funções podem ser restritas a cargos específicos para maior controle.</span></p></body></html>"))
         self.item_btn.setText(_translate("Form", "prod_btn"))
         self.pushButton_3.setText(_translate("Form", "local_btn"))
         self.pushButton.setText(_translate("Form", "ptr_btn"))

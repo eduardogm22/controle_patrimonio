@@ -54,62 +54,6 @@
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item alignment="Qt::AlignHCenter">
-          <widget class="QFrame" name="frame">
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
-            <item alignment="Qt::AlignVCenter">
-             <widget class="QLineEdit" name="search_input">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>360</width>
-                <height>33</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>360</width>
-                <height>33</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Roboto</family>
-                <pointsize>12</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLineEdit{
-color:black;
-background-color:white;
-border: 1px solid rgb(199, 199, 199);
-border-radius: 10px;
-border-bottom: 3px solid rgb(91, 91, 91)
-}
-
-</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <property name="placeholderText">
-               <string>Pesquisa</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
          <item alignment="Qt::AlignLeft">
           <widget class="QFrame" name="search_frame">
            <property name="frameShape">
@@ -118,69 +62,7 @@ border-bottom: 3px solid rgb(91, 91, 91)
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item>
-             <widget class="QPushButton" name="btnSearch">
-              <property name="minimumSize">
-               <size>
-                <width>120</width>
-                <height>45</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>120</width>
-                <height>45</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="contextMenuPolicy">
-               <enum>Qt::NoContextMenu</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton { 
-	background-color: #057A3A;
- 	color:rgb(254, 253, 247);
-	border-radius:9px;		
-	padding:8px
- }
-
-QPushButton:hover{background-color:rgb(85, 170, 127);color:white}
-
-QPushButton:pressed{
- padding-left: 2px;
- padding-top:2px;
- 
-	background-color: rgb(0, 85, 0);
- 
-}</string>
-              </property>
-              <property name="text">
-               <string>Buscar</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/icons/search.svg</normaloff>:/icons/search.svg</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>27</width>
-                <height>27</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <layout class="QVBoxLayout" name="verticalLayout_4"/>
           </widget>
          </item>
          <item>

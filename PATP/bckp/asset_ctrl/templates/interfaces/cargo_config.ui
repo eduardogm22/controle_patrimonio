@@ -319,41 +319,7 @@ QPushButton:pressed{
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="styleSheet">
-               <string notr="true">border:none;
-color:white;</string>
-              </property>
-              <property name="text">
-               <string>Usuários com o cargo ____ : </string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_2">
-              <property name="styleSheet">
-               <string notr="true">border:none;
-color:white;</string>
-              </property>
-              <property name="text">
-               <string>Quantidade de cargos cadastrados:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="styleSheet">
-               <string notr="true">border:none;
-color:white;</string>
-              </property>
-              <property name="text">
-               <string>Última modificação:</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <layout class="QVBoxLayout" name="verticalLayout_3"/>
           </widget>
          </item>
         </layout>

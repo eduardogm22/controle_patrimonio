@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(880, 568)
+        Form.resize(880, 686)
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
         self.frame = QtWidgets.QFrame(Form)
@@ -24,6 +24,7 @@ class Ui_Form(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.textBrowser = QtWidgets.QTextBrowser(self.frame)
+        self.textBrowser.setStyleSheet("background-color:transparent;")
         self.textBrowser.setObjectName("textBrowser")
         self.verticalLayout_2.addWidget(self.textBrowser)
         self.frame_2 = QtWidgets.QFrame(self.frame)
@@ -289,9 +290,21 @@ class Ui_Form(object):
         self.horizontalLayout.addWidget(self.frame_7)
         self.verticalLayout_2.addWidget(self.frame_6)
         self.vl_total = QtWidgets.QLabel(self.frame)
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.vl_total.setFont(font)
         self.vl_total.setObjectName("vl_total")
         self.verticalLayout_2.addWidget(self.vl_total)
         self.vl_ptr = QtWidgets.QLabel(self.frame)
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.vl_ptr.setFont(font)
         self.vl_ptr.setObjectName("vl_ptr")
         self.verticalLayout_2.addWidget(self.vl_ptr)
         self.verticalLayout.addWidget(self.frame)
@@ -306,7 +319,11 @@ class Ui_Form(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">LOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSALOREM WAEPFJWAOIGHAWIOGHWEIHFGKLASJGHKWAEJGKASDGSA</span></p></body></html>"))
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#004c00;\">Esta interface foi projetada para facilitar a gestão de dados patrimoniais, permitindo o acompanhamento de informações detalhadas por categoria, setor e patrimônio individual. A funcionalidade inclui:</span></p>\n"
+"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" font-size:9pt; font-weight:600; color:#004c00;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Filtragem por Data: Selecione intervalos de datas para visualizar e analisar os dados correspondentes.</li>\n"
+"<li style=\" font-size:9pt; font-weight:600; color:#004c00;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Visualização de Dados: Tabelas dinâmicas apresentam os patrimônios registrados, valores agrupados por categoria e setor.</li>\n"
+"<li style=\" font-size:9pt; font-weight:600; color:#004c00;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Geração de Relatórios: Exporte os dados para arquivos Excel, garantindo praticidade na geração de documentos.</li></ul>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#004c00;\">Explore as funcionalidades para obter uma visão abrangente e detalhada de seus patrimônios de forma organizada e eficiente.</span></p></body></html>"))
         self.item_btn.setText(_translate("Form", "Produtos"))
         self.rlt_btn.setText(_translate("Form", "Relatório"))
         self.label_6.setText(_translate("Form", "    Data Inicial                            Data final"))

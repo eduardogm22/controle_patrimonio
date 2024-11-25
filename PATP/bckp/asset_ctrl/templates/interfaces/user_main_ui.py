@@ -41,72 +41,12 @@ class Ui_Form(object):
         self.header_user_frame.setObjectName("header_user_frame")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.header_user_frame)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.frame = QtWidgets.QFrame(self.header_user_frame)
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frame)
-        self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.search_input = QtWidgets.QLineEdit(self.frame)
-        self.search_input.setEnabled(True)
-        self.search_input.setMinimumSize(QtCore.QSize(360, 33))
-        self.search_input.setMaximumSize(QtCore.QSize(360, 33))
-        font = QtGui.QFont()
-        font.setFamily("Roboto")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.search_input.setFont(font)
-        self.search_input.setStyleSheet("QLineEdit{\n"
-"color:black;\n"
-"background-color:white;\n"
-"border: 1px solid rgb(199, 199, 199);\n"
-"border-radius: 10px;\n"
-"border-bottom: 3px solid rgb(91, 91, 91)\n"
-"}\n"
-"\n"
-"")
-        self.search_input.setAlignment(QtCore.Qt.AlignCenter)
-        self.search_input.setObjectName("search_input")
-        self.verticalLayout_5.addWidget(self.search_input, 0, QtCore.Qt.AlignVCenter)
-        self.horizontalLayout_3.addWidget(self.frame, 0, QtCore.Qt.AlignHCenter)
         self.search_frame = QtWidgets.QFrame(self.header_user_frame)
         self.search_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.search_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.search_frame.setObjectName("search_frame")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.search_frame)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.btnSearch = QtWidgets.QPushButton(self.search_frame)
-        self.btnSearch.setMinimumSize(QtCore.QSize(120, 45))
-        self.btnSearch.setMaximumSize(QtCore.QSize(120, 45))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.btnSearch.setFont(font)
-        self.btnSearch.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btnSearch.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.btnSearch.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
-        self.btnSearch.setStyleSheet("QPushButton { \n"
-"    background-color: #057A3A;\n"
-"     color:rgb(254, 253, 247);\n"
-"    border-radius:9px;        \n"
-"    padding:8px\n"
-" }\n"
-"\n"
-"QPushButton:hover{background-color:rgb(85, 170, 127);color:white}\n"
-"\n"
-"QPushButton:pressed{\n"
-" padding-left: 2px;\n"
-" padding-top:2px;\n"
-" \n"
-"    background-color: rgb(0, 85, 0);\n"
-" \n"
-"}")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/search.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnSearch.setIcon(icon)
-        self.btnSearch.setIconSize(QtCore.QSize(27, 27))
-        self.btnSearch.setObjectName("btnSearch")
-        self.verticalLayout_4.addWidget(self.btnSearch)
         self.horizontalLayout_3.addWidget(self.search_frame, 0, QtCore.Qt.AlignLeft)
         self.infoFrame = QtWidgets.QFrame(self.header_user_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -142,9 +82,9 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/icons/info.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnDetails.setIcon(icon1)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/info.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btnDetails.setIcon(icon)
         self.btnDetails.setIconSize(QtCore.QSize(27, 27))
         self.btnDetails.setObjectName("btnDetails")
         self.horizontalLayout_7.addWidget(self.btnDetails)
@@ -184,9 +124,9 @@ class Ui_Form(object):
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
 "}")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/icons/user-plus.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnCad.setIcon(icon2)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/icons/user-plus.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btnCad.setIcon(icon1)
         self.btnCad.setIconSize(QtCore.QSize(27, 27))
         self.btnCad.setObjectName("btnCad")
         self.horizontalLayout_8.addWidget(self.btnCad)
@@ -285,8 +225,6 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.search_input.setPlaceholderText(_translate("Form", "Pesquisa"))
-        self.btnSearch.setText(_translate("Form", "Buscar"))
         self.btnDetails.setText(_translate("Form", "Detalhes"))
         self.btnCad.setText(_translate("Form", "Cadastrar"))
         self.label.setText(_translate("Form", "Usuários cadastrados"))

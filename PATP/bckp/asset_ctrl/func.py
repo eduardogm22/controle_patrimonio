@@ -70,10 +70,7 @@ class user_menu(QWidget):
     def __init__(self):
         super().__init__()
         self.user_main = uic.loadUi("templates/interfaces/user_main.ui", self)
-        self.btn_search = self.findChild(QPushButton,"btnSearch")
-        self.btn_search.setIcon(search_svg)
-        self.search_frame = self.findChild(QFrame, "search_frame")
-        self.btn_search.installEventFilter(self)        
+       
         
         self.btn_cad = self.findChild(QPushButton, "btnCad")
         self.btn_cad.setIcon(user_plus_svg)
@@ -88,7 +85,6 @@ class user_menu(QWidget):
 
         self.table_user = self.findChild(QTableView, "l_user")
         self.table_logs = self.findChild(QTableView, "logsReg")
-        self.search_line = self.findChild(QLineEdit, "search_input")
 
         self.frame_user = self.findChild(QFrame, "info_user")
 
@@ -210,13 +206,7 @@ class user_menu(QWidget):
     
     def eventFilter(self, obj, event):
 
-        if obj == self.btn_search:
-            if event.type() == QtCore.QEvent.Enter:
-                self.search_frame.setStyleSheet("QPushButton#btnSearch{border:2px solid #666666;border-radius:15px;}")
-            elif event.type() == QtCore.QEvent.Leave:
-                self.search_frame.setStyleSheet("QPushButton#btnSearch{border: 0px solid transparent;}")
-
-        elif obj == self.btn_cad:
+        if obj == self.btn_cad:
             if event.type() == QtCore.QEvent.Enter:
                 self.cad_frame.setStyleSheet("QPushButton#btnCad{border:2px solid #666666;border-radius:15px;}")
             elif event.type() == QtCore.QEvent.Leave:
@@ -1241,8 +1231,8 @@ class patr_view(QWidget):
             """, (d_i, d_f))
             totais = cursor.fetchone()
 
-            self.lbl_total.setText(f"R$ {totais['total']:.2f}")
-            self.lbl_patr.setText(f"R$ {totais['total_patrimonio']:.2f}")
+            self.lbl_total.setText(f"Valor total dos produtos registrados: R$ {totais['total']:.2f}")
+            self.lbl_patr.setText(f"Valor total dos patrimônios: R$ {totais['total_patrimonio']:.2f}")
 
         except Exception as e:
             QMessageBox.critical(self, "Valores vazios", f"Ocorreu um erro ao realizar a busca, nenhum item existe no intervalo de datas: {e}")

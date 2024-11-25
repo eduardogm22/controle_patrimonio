@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>950</width>
-    <height>732</height>
+    <height>737</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,38 +43,42 @@
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_6">
-         <item alignment="Qt::AlignBottom">
+         <item>
           <widget class="QTextBrowser" name="f_text">
            <property name="maximumSize">
             <size>
              <width>16777215</width>
-             <height>60</height>
+             <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color:transparent;</string>
            </property>
            <property name="html">
             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#004c00;&quot;&gt;Gerenciamento de Itens:&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#004c00;&quot;&gt;Esta tela permite realizar as principais ações para gerenciar itens de forma prática e direta, nela são exibidos os itens com as principais informações organizadas, sendo possível selecionar e interagir com os dados diretamente. Algumas funções podem ser restritas a cargos específicos para maior controle.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
       </item>
-      <item>
+      <item alignment="Qt::AlignVCenter">
        <widget class="QFrame" name="frame_menu">
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>60</height>
+          <height>54</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>60</height>
+          <height>54</height>
          </size>
         </property>
         <property name="frameShape">
@@ -224,7 +228,7 @@ QPushButton:pressed{
            <property name="maximumSize">
             <size>
              <width>16777215</width>
-             <height>900</height>
+             <height>810</height>
             </size>
            </property>
            <property name="frameShape">
@@ -234,25 +238,25 @@ QPushButton:pressed{
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
-            <item>
+            <item alignment="Qt::AlignVCenter">
              <widget class="QFrame" name="frame_search">
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>90</height>
+                <height>60</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>90</height>
+                <height>60</height>
                </size>
               </property>
               <property name="styleSheet">
                <string notr="true">border-radius:5px;
 border:5px solid #057A3A;
 background-color: #057A3A;
-border-bottom: 2px solid rgb(108, 108, 108);</string>
+</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -261,18 +265,18 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <item>
+               <item alignment="Qt::AlignTop">
                 <widget class="QPushButton" name="regItem">
                  <property name="minimumSize">
                   <size>
                    <width>90</width>
-                   <height>45</height>
+                   <height>36</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
                    <width>90</width>
-                   <height>45</height>
+                   <height>36</height>
                   </size>
                  </property>
                  <property name="font">
@@ -292,7 +296,7 @@ border-bottom: 2px solid rgb(108, 108, 108);</string>
 QPushButton { color:rgb(254, 253, 247);
 	border-radius:15px;		
 	border: 1px solid rgb(255, 255, 255);
-	background-color: rgb(0, 76, 0)
+	background-color: rgb(0, 76, 0);
 
  }
 
@@ -484,13 +488,13 @@ background-color: #057A3A;</string>
                     <property name="minimumSize">
                      <size>
                       <width>90</width>
-                      <height>45</height>
+                      <height>36</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
                       <width>90</width>
-                      <height>45</height>
+                      <height>36</height>
                      </size>
                     </property>
                     <property name="font">
@@ -562,13 +566,13 @@ border-bottom:none</string>
                     <property name="minimumSize">
                      <size>
                       <width>90</width>
-                      <height>45</height>
+                      <height>36</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
                       <width>90</width>
-                      <height>45</height>
+                      <height>36</height>
                      </size>
                     </property>
                     <property name="font">

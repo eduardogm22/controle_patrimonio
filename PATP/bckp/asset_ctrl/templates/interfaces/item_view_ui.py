@@ -202,4 +202,15 @@ class Ui_Form(object):
         self.pushButton.setText(_translate("Form", "Itens"))
         self.pushButton_2.setText(_translate("Form", "Patrimônio"))
         self.pushButton_3.setText(_translate("Form", "Relatório"))
+        self.textBrowser_2.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#004c00;\">Gerenciamento de Itens:</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#004c00;\">Esta tela permite realizar as principais ações para gerenciar itens de forma prática e direta.</span></p>\n"
+"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" font-size:9pt; font-weight:600; color:#004c00;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Cadastrar Itens: Clique em &quot;Registrar&quot; para adicionar novos itens ao sistema.</li>\n"
+"<li style=\" font-size:9pt; font-weight:600; color:#004c00;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Buscar Itens: Use o campo de busca para localizar itens rapidamente. Digite uma palavra-chave e veja os resultados atualizados na tabela.</li>\n"
+"<li style=\" font-size:9pt; font-weight:600; color:#004c00;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Editar Itens: Selecione um item na tabela e clique em &quot;Editar&quot; para modificar as informações.</li>\n"
+"<li style=\" font-size:9pt; font-weight:600; color:#004c00;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Visualizar Detalhes: Clique em &quot;Detalhes&quot; após selecionar um item para ver informações.</li></ul>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#004c00;\">A tabela exibe os itens com as principais informações organizadas, sendo possível selecionar e interagir com os dados diretamente. Algumas funções podem ser restritas a cargos específicos para maior controle.</span></p></body></html>"))
         self.label.setText(_translate("Form", "TextLabel"))
