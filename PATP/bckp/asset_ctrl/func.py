@@ -328,6 +328,8 @@ class user_info(QWidget):
         cursor = con.cursor()
 
         try:
+            print('usuario que alterou =', id_user)
+            cursor.execute('set @idusuario = %s', (1,))
             cursor.execute("""
                 UPDATE usuarios 
                 SET usuario = %s, senha = %s
@@ -1630,6 +1632,7 @@ class config_cargo(QWidget):
         )
 
         # Inserir o novo cargo no banco
+        self.cursor.execute('set @idusuario = %s', (id_user,))
         self.cursor.execute("""
             INSERT INTO cargos 
             (acesso_geral, pode_registrar, controle_adm, controle_usuario, pode_modificar, pode_visualizar, nome) 
@@ -1749,6 +1752,7 @@ class config_cargo(QWidget):
             int(self.perm_read.isChecked()),
             cargo,
         )
+        self.cursor.execute('set @idusuario = %s', (id_user,))
         self.cursor.execute("""
             UPDATE cargos 
             SET acesso_geral = %s, pode_registrar = %s, controle_adm = %s, controle_usuario = %s, pode_modificar = %s, pode_visualizar = %s
@@ -1921,8 +1925,10 @@ class config_cat(QWidget):
         try:
             if self.current_mode == "edit":  # Edição
                 current_category_name = self.box_cat.currentText()
+                cursor.execute('set @idusuario = %s', (id_user,))
                 cursor.execute("UPDATE categorias SET nome = %s WHERE nome = %s", (new_category_name, current_category_name))
             elif self.current_mode == "add":  # Adição
+                cursor.execute('set @idusuario = %s', (id_user,))
                 cursor.execute("INSERT INTO categorias (nome) VALUES (%s)", (new_category_name,))
 
             con.commit()
@@ -2031,6 +2037,7 @@ class config_forn(QWidget):
         con = mysql.connector.connect(**config)
         cursor = con.cursor()
         try:
+            cursor.execute('set @idusuario = %s', (id_user,))
             cursor.execute(
                 "UPDATE fornecedores SET nome = %s, cnpj = %s WHERE nome = %s",
                 (self.name_line.text(), self.cnpj_line.text(), self.box_forn.currentText())
@@ -2084,6 +2091,7 @@ class config_forn(QWidget):
             con = mysql.connector.connect(**config)
             cursor = con.cursor()
             try:
+                cursor.execute('set @idusuario = %s', (id_user,))
                 cursor.execute("INSERT INTO fornecedores (nome, cnpj) VALUES (%s, %s)",(self.name_line.text(), self.cnpj_line.text()))
                 con.commit()
                 QMessageBox.information(self, "Sucesso", "Novo fornecedor adicionado com sucesso.")
@@ -2244,9 +2252,11 @@ class config_local(QWidget):
         try:
             if local_selecionado == "Selecione um local":
                 # Adicionar novo local
+                cursor.execute('set @idusuario = %s', (id_user,))
                 cursor.execute("INSERT INTO locais (nome) VALUES (%s)", (novo_nome,))
             else:
                 # Editar local existente
+                cursor.execute('set @idusuario = %s', (id_user,))
                 cursor.execute("UPDATE locais SET nome = %s WHERE nome = %s", (novo_nome, local_selecionado))
 
             con.commit()
@@ -2486,6 +2496,7 @@ class new_user(QWidget):
 
             # Insere os dados na tabela pessoas
             dt_create = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            cursor.execute('set @idusuario = %s', (id_user,))
             cursor.execute(
                 "INSERT INTO pessoas (nome, email, dt_create) VALUES (%s, %s, %s)",
                 (name, email, dt_create),

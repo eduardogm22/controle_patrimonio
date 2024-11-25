@@ -25,7 +25,7 @@ create  table setores_responsaveis (
 
 create table locais(
 	idlocal integer primary key auto_increment,
-    nome varchar(255)
+    nome varchar(255) unique
 );
 
 create table situacoes (
@@ -109,7 +109,7 @@ $$ delimiter ;
 -- procedure que faz o cadastro das notas
 -- drop procedure cadastra_nota;
 delimiter $$
-create procedure cadastra_nota(in e_chave_acesso varchar(44), in e_numero integer, in e_serie integer, in e_idfornecedor integer,in e_data_aquisicao date, out s_idnota integer)    
+create procedure cadastra_nota(in e_chave_acesso varchar(44), in e_numero integer, in e_serie integer, in e_idfornecedor integer,in e_data_aquisicao date, out erro integer, out s_idnota integer)    
 begin
 	set @s_idnota = null;
     
@@ -328,7 +328,7 @@ create table usuarios_audit (
     tipo_alteracao varchar(10),
     data_alteracao timestamp,
 	idpessoa integer,
-	usuario varchar(30) default null unique,  
+	usuario varchar(30) default null,  
 	senha varchar(20) default null,
 	idcargo integer default null
 );
@@ -478,9 +478,9 @@ create trigger locais_trigger_insert
 after insert on locais
 for each row
 begin
-	insert into locais_audit (idusuario, tipo_alteracao, data_alteracao, idlocal, nome)
+	insert into locais_audit (idusuario, tipo_alteracao, data_alteracao, idlocal)
 	values
-	(@idusuario, 'insert', current_timestamp(), new.idlocal, new.nome);
+	(@idusuario, 'insert', current_timestamp(), new.idlocal);
 end $$
 delimiter ;
 

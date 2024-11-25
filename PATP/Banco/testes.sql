@@ -3,6 +3,10 @@ select * from patrimonios_audit;
 select * from situacoes;
 SELECT senha FROM usuarios WHERE idusuario = 1;
 call st_select_editar(2);
+set @idusuario = 1;
+UPDATE pessoas 
+                SET nome = 'eduardo', email = 'teste' 
+                WHERE idpessoa = 6;
 
 select * from categorias_audit;
 insert into categorias
@@ -61,6 +65,7 @@ values
 update cargos set nome = 'testando' where idcargo = 5;
 delete from cargos where idcargo = 5;
 
+select * from pessoas_audit;
 select * from usuarios_audit;
 insert into usuarios
 values
