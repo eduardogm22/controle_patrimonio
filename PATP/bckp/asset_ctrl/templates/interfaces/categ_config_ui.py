@@ -137,6 +137,10 @@ class Ui_Form(object):
         self.line_cat = QtWidgets.QLineEdit(self.frame_4)
         self.line_cat.setMinimumSize(QtCore.QSize(240, 24))
         self.line_cat.setMaximumSize(QtCore.QSize(240, 24))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(12)
+        self.line_cat.setFont(font)
         self.line_cat.setStyleSheet("\n"
 "QLineEdit{\n"
 "background-color:white;    \n"

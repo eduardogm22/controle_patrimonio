@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(995, 555)
+        Form.resize(1072, 555)
         Form.setStyleSheet("")
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -41,6 +41,13 @@ class Ui_Form(object):
         self.header_user_frame.setObjectName("header_user_frame")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.header_user_frame)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.frame = QtWidgets.QFrame(self.header_user_frame)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frame)
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.horizontalLayout_3.addWidget(self.frame)
         self.search_frame = QtWidgets.QFrame(self.header_user_frame)
         self.search_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.search_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -63,21 +70,24 @@ class Ui_Form(object):
         self.btnDetails.setMinimumSize(QtCore.QSize(120, 45))
         self.btnDetails.setMaximumSize(QtCore.QSize(120, 45))
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
         self.btnDetails.setFont(font)
         self.btnDetails.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btnDetails.setStyleSheet("QPushButton { \n"
-"    background-color: #057A3A;\n"
-"     color:rgb(254, 253, 247);\n"
-"    border-radius:9px;        \n"
-"    padding:8px\n"
+        self.btnDetails.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+"    border-radius:15px;        \n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(85, 170, 127);color:white}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
-" padding-left: 2px;\n"
-" padding-top:2px;\n"
+" padding-left: 5px;\n"
+" padding-top:5px;\n"
 " \n"
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
@@ -105,21 +115,22 @@ class Ui_Form(object):
         self.btnCad.setMinimumSize(QtCore.QSize(120, 45))
         self.btnCad.setMaximumSize(QtCore.QSize(120, 45))
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setFamily("Roboto")
+        font.setPointSize(9)
         self.btnCad.setFont(font)
         self.btnCad.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btnCad.setStyleSheet("QPushButton { \n"
-"    background-color: #057A3A;\n"
-"     color:rgb(254, 253, 247);\n"
-"    border-radius:9px;        \n"
-"    padding:8px\n"
+        self.btnCad.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
+"    border-radius:15px;        \n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"    background-color: rgb(0, 76, 0)\n"
+"\n"
 " }\n"
 "\n"
-"QPushButton:hover{background-color:rgb(85, 170, 127);color:white}\n"
+"QPushButton:hover{background-color:#057A3A;color:white}\n"
 "\n"
 "QPushButton:pressed{\n"
-" padding-left: 2px;\n"
-" padding-top:2px;\n"
+" padding-left: 5px;\n"
+" padding-top:5px;\n"
 " \n"
 "    background-color: rgb(0, 85, 0);\n"
 " \n"
@@ -133,19 +144,19 @@ class Ui_Form(object):
         self.horizontalLayout_3.addWidget(self.cadFrame)
         self.verticalLayout_2.addWidget(self.header_user_frame)
         self.text_Frames = QtWidgets.QFrame(self.userFrame)
-        self.text_Frames.setMinimumSize(QtCore.QSize(600, 30))
-        self.text_Frames.setMaximumSize(QtCore.QSize(600, 45))
+        self.text_Frames.setMinimumSize(QtCore.QSize(600, 36))
+        self.text_Frames.setMaximumSize(QtCore.QSize(600, 36))
         self.text_Frames.setStyleSheet("background-color: #057A3A;\n"
 "    border-top-right-radius: 15px;  \n"
 "    border-bottom-right-radius: 15px;")
         self.text_Frames.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.text_Frames.setFrameShadow(QtWidgets.QFrame.Raised)
         self.text_Frames.setObjectName("text_Frames")
-        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.text_Frames)
-        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.text_Frames)
+        self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.label = QtWidgets.QLabel(self.text_Frames)
         self.label.setMinimumSize(QtCore.QSize(300, 30))
-        self.label.setMaximumSize(QtCore.QSize(300, 45))
+        self.label.setMaximumSize(QtCore.QSize(300, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
@@ -154,8 +165,8 @@ class Ui_Form(object):
         self.label.setFont(font)
         self.label.setStyleSheet("color:rgb(255, 255, 255)")
         self.label.setObjectName("label")
-        self.horizontalLayout_5.addWidget(self.label, 0, QtCore.Qt.AlignLeft)
-        self.verticalLayout_2.addWidget(self.text_Frames, 0, QtCore.Qt.AlignLeft)
+        self.verticalLayout_8.addWidget(self.label, 0, QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.verticalLayout_2.addWidget(self.text_Frames, 0, QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.info_user = QtWidgets.QFrame(self.userFrame)
         self.info_user.setMinimumSize(QtCore.QSize(0, 0))
         self.info_user.setStyleSheet("border-radius:9px;")
@@ -186,7 +197,7 @@ class Ui_Form(object):
         font.setBold(False)
         font.setWeight(50)
         self.textBrowser.setFont(font)
-        self.textBrowser.setStyleSheet("background-color:white;")
+        self.textBrowser.setStyleSheet("background-color:transparent;")
         self.textBrowser.setObjectName("textBrowser")
         self.verticalLayout_6.addWidget(self.textBrowser)
         self.label_3 = QtWidgets.QLabel(self.frame_2)
@@ -232,6 +243,9 @@ class Ui_Form(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Roboto\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; font-weight:600;\">Lorem ipsum odor amet, consectetuer adipiscing elit. Aliquet elementum ad ridiculus parturient elit, praesent elit. Blandit lorem quam; nisl venenatis vivamus mus faucibus dapibus integer. Vulputate interdum per facilisis taciti viverra faucibus fringilla? Auctor hendrerit pellentesque sed arcu eros odio egestas lectus. Lacus felis felis bibendum etiam luctus quisque quam at et. Elementum facilisi libero senectus cras donec in. Tempus pharetra finibus nibh nec pulvinar. Finibus taciti tellus urna laoreet habitasse lacinia justo tempus.</span></p></body></html>"))
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; font-weight:600; color:#004c00;\">Esta sessão é responsável pelo gerenciamento de usuários e cadastro dos mesmos.</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; font-weight:600; color:#004c00;\"><br />Os usuários nessa tela são apresentados por ordem de cadastro, sendo o primeiro ao último cadastrados, na tabela é possível visualizar a data de criação do usuário, esta tela possuí interação onde é possível modificar e alterar dados de determinado usuário ao selecionar seu nome na tabela.</span></p>\n"
+"<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-size:9pt; font-weight:600; color:#004c00;\"><br /></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; font-weight:600; color:#004c00;\">A tabela abaixo apresenta a quantidade de usuários por cargo para facilitar o reconhecimento sobre a quantidade de cadastros com determinados niveis hierarquicos.</span></p></body></html>"))
         self.label_3.setText(_translate("Form", "Quantidade de usuários por cargo:"))
 import resource01_rc

@@ -205,6 +205,12 @@ align-itens:center;
                    <height>40</height>
                   </size>
                  </property>
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton { color:rgb(254, 253, 247);
 	border-radius:15px;		
@@ -242,6 +248,12 @@ QPushButton:pressed{
                    <height>40</height>
                   </size>
                  </property>
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton { color:rgb(254, 253, 247);
 	border-radius:15px;		
@@ -278,6 +290,13 @@ QPushButton:pressed{
                    <width>70</width>
                    <height>33</height>
                   </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton { color:rgb(254, 253, 247);
@@ -612,8 +631,14 @@ border: 2px solid rgb(0, 85, 0);
                  <property name="maximumSize">
                   <size>
                    <width>70</width>
-                   <height>33</height>
+                   <height>40</height>
                   </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                  </font>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton { color:rgb(254, 253, 247);
@@ -655,8 +680,14 @@ QPushButton:pressed{
                  <property name="maximumSize">
                   <size>
                    <width>70</width>
-                   <height>33</height>
+                   <height>40</height>
                   </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                  </font>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton { color:rgb(254, 253, 247);
@@ -686,8 +717,14 @@ QPushButton:pressed{
                  <property name="maximumSize">
                   <size>
                    <width>70</width>
-                   <height>33</height>
+                   <height>40</height>
                   </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Roboto</family>
+                   <pointsize>9</pointsize>
+                  </font>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton { color:rgb(254, 253, 247);

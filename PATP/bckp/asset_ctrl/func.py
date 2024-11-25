@@ -2282,10 +2282,10 @@ class edit_user(QWidget):
         self.cancel_btn.hide()
         self.confirm_btn.hide()
         self.set_fields_enabled(False)
-        self.cargo_box.setEnabled(False)
         self.pass_line_info.setEchoMode(QLineEdit.Password)
         self.original_data = {}
         self.load_user_data()
+        self.load_cargos()  # Carregar cargos
         self.btn_edit.clicked.connect(self.enable_edit_mode)
         self.cancel_btn.clicked.connect(self.cancel_changes)
         self.confirm_btn.clicked.connect(self.confirm_changes)
@@ -2296,6 +2296,7 @@ class edit_user(QWidget):
         self.pass_line_info.setEnabled(enabled)
         self.name_user_info.setEnabled(enabled)
         self.email_user_info.setEnabled(enabled)
+        self.cargo_box.setEnabled(enabled)  # Habilitar a edição do cargo
 
     def load_user_data(self):
         """Carrega os dados do usuário com base no nome do usuário."""
@@ -2305,7 +2306,7 @@ class edit_user(QWidget):
         try:
             # Ajusta a consulta para buscar pelo nome do usuário
             cursor.execute("""
-                SELECT u.usuario, u.senha, p.nome, p.email, c.nome AS cargo
+                SELECT u.usuario, u.senha, p.nome, p.email, c.nome AS cargo, u.idcargo
                 FROM usuarios u
                 JOIN pessoas p ON u.idpessoa = p.idpessoa
                 JOIN cargos c ON u.idcargo = c.idcargo
@@ -2318,18 +2319,36 @@ class edit_user(QWidget):
                 self.pass_line_info.setText(data[1])
                 self.name_user_info.setText(data[2])
                 self.email_user_info.setText(data[3])
-                self.cargo_box.addItem(data[4])
+                self.cargo_box.setCurrentText(data[4])  # Preencher o ComboBox com o cargo
                 self.original_data = {
                     "usuario": data[0],
                     "senha": data[1],
                     "nome": data[2],
                     "email": data[3],
                     "cargo": data[4],
+                    "idcargo": data[5],  # Armazenar o ID do cargo
                 }
             else:
                 QMessageBox.warning(self, "Aviso", "Usuário não encontrado no banco de dados.")
         except Exception as e:
             print(f"Erro ao carregar dados do usuário: {e}")
+        finally:
+            con.close()
+
+    def load_cargos(self):
+        """Carrega os cargos disponíveis para o ComboBox."""
+        con = criar_conexao()
+        cursor = con.cursor()
+
+        try:
+            cursor.execute("SELECT nome FROM cargos")
+            cargos = cursor.fetchall()
+
+            # Adicionar cargos ao ComboBox
+            for cargo in cargos:
+                self.cargo_box.addItem(cargo[0])
+        except Exception as e:
+            print(f"Erro ao carregar cargos: {e}")
         finally:
             con.close()
 
@@ -2346,6 +2365,7 @@ class edit_user(QWidget):
         self.pass_line_info.setText(self.original_data["senha"])
         self.name_user_info.setText(self.original_data["nome"])
         self.email_user_info.setText(self.original_data["email"])
+        self.cargo_box.setCurrentText(self.original_data["cargo"])  # Reverter o cargo
         self.set_fields_enabled(False)
         self.btn_foto.hide()
         self.btn_view.hide()
@@ -2358,17 +2378,20 @@ class edit_user(QWidget):
         senha = self.pass_line_info.text()
         nome = self.name_user_info.text()
         email = self.email_user_info.text()
+        cargo = self.cargo_box.currentText()  # Obter o cargo selecionado
 
         con = criar_conexao()
         cursor = con.cursor()
 
         try:
-            # Atualizar os dados com base no nome do usuário
+            # Atualizar os dados do usuário
             cursor.execute("""
                 UPDATE usuarios 
-                SET usuario = %s, senha = %s
+                SET usuario = %s, senha = %s, idcargo = (
+                    SELECT idcargo FROM cargos WHERE nome = %s
+                )
                 WHERE usuario = %s
-            """, (usuario, senha, self.user_edit))
+            """, (usuario, senha, cargo, self.user_edit))
 
             cursor.execute("""
                 UPDATE pessoas 
@@ -2384,6 +2407,7 @@ class edit_user(QWidget):
                 "senha": senha,
                 "nome": nome,
                 "email": email,
+                "cargo": cargo,
             })
             self.cancel_changes()
         except Exception as e:
@@ -2396,6 +2420,7 @@ class edit_user(QWidget):
             self.pass_line_info.setEchoMode(QLineEdit.Normal)
         else:
             self.pass_line_info.setEchoMode(QLineEdit.Password)
+
 
 class new_user(QWidget):
     def __init__(self):

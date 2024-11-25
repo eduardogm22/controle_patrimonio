@@ -62,7 +62,8 @@ class interface(QMainWindow):
         self.btn_rel.setIcon(file_text_svg)
         self.btn_rel.installEventFilter(self)     
         self.btn_rel.clicked.connect(self.rel_screen)  
-    
+
+
         self.btn_users = self.findChild(QPushButton, "usersBtn")
         self.btn_users.setIcon(users_svg)
         self.btn_users.installEventFilter(self)        
@@ -292,6 +293,8 @@ class interface(QMainWindow):
         self.table_view.clicked.connect(self.handle_row_click)
         self.selected_rows = []
         self.cargo_verificador()
+        self.btn_rel.setVisible(False)
+        self.btn_rel.setEnabled(False)
         self.update_home()
         self.show()
 

@@ -214,3 +214,4 @@ class Ui_Form(object):
 "<li style=\" font-size:9pt; font-weight:600; color:#004c00;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Visualizar Detalhes: Clique em &quot;Detalhes&quot; após selecionar um item para ver informações.</li></ul>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#004c00;\">A tabela exibe os itens com as principais informações organizadas, sendo possível selecionar e interagir com os dados diretamente. Algumas funções podem ser restritas a cargos específicos para maior controle.</span></p></body></html>"))
         self.label.setText(_translate("Form", "TextLabel"))
+import recurses_rc

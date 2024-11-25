@@ -109,6 +109,10 @@ class Ui_Form(object):
         self.btn_confirm = QtWidgets.QPushButton(self.frame_12)
         self.btn_confirm.setMinimumSize(QtCore.QSize(71, 33))
         self.btn_confirm.setMaximumSize(QtCore.QSize(70, 40))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.btn_confirm.setFont(font)
         self.btn_confirm.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
@@ -130,6 +134,10 @@ class Ui_Form(object):
         self.btn_cancel = QtWidgets.QPushButton(self.frame_12)
         self.btn_cancel.setMinimumSize(QtCore.QSize(71, 33))
         self.btn_cancel.setMaximumSize(QtCore.QSize(70, 40))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.btn_cancel.setFont(font)
         self.btn_cancel.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
@@ -151,6 +159,11 @@ class Ui_Form(object):
         self.add_cargo = QtWidgets.QPushButton(self.frame_12)
         self.add_cargo.setMinimumSize(QtCore.QSize(71, 33))
         self.add_cargo.setMaximumSize(QtCore.QSize(70, 33))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.add_cargo.setFont(font)
         self.add_cargo.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
@@ -391,7 +404,11 @@ class Ui_Form(object):
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.frame_3)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.edit_cargo = QtWidgets.QPushButton(self.frame_3)
-        self.edit_cargo.setMaximumSize(QtCore.QSize(70, 33))
+        self.edit_cargo.setMaximumSize(QtCore.QSize(70, 40))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.edit_cargo.setFont(font)
         self.edit_cargo.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
@@ -418,7 +435,11 @@ class Ui_Form(object):
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.btn_confirm_edit = QtWidgets.QPushButton(self.frame)
-        self.btn_confirm_edit.setMaximumSize(QtCore.QSize(70, 33))
+        self.btn_confirm_edit.setMaximumSize(QtCore.QSize(70, 40))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.btn_confirm_edit.setFont(font)
         self.btn_confirm_edit.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"
@@ -438,7 +459,11 @@ class Ui_Form(object):
         self.btn_confirm_edit.setObjectName("btn_confirm_edit")
         self.verticalLayout_5.addWidget(self.btn_confirm_edit)
         self.btn_edit_cancel = QtWidgets.QPushButton(self.frame)
-        self.btn_edit_cancel.setMaximumSize(QtCore.QSize(70, 33))
+        self.btn_edit_cancel.setMaximumSize(QtCore.QSize(70, 40))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.btn_edit_cancel.setFont(font)
         self.btn_edit_cancel.setStyleSheet("QPushButton { color:rgb(254, 253, 247);\n"
 "    border-radius:15px;        \n"
 "    border: 1px solid rgb(255, 255, 255);\n"

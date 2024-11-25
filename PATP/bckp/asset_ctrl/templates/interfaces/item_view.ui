@@ -357,6 +357,8 @@ border-radius:10px
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../../../../../../Desktop/PATP/asset_ctrl/previa/recurses.qrc"/>
+ </resources>
  <connections/>
 </ui>

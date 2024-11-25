@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(1000, 592)
+        Form.resize(1000, 529)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -300,8 +300,8 @@ class Ui_Form(object):
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_btns)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.btnClear = QtWidgets.QPushButton(self.frame_btns)
-        self.btnClear.setMinimumSize(QtCore.QSize(120, 45))
-        self.btnClear.setMaximumSize(QtCore.QSize(120, 45))
+        self.btnClear.setMinimumSize(QtCore.QSize(90, 36))
+        self.btnClear.setMaximumSize(QtCore.QSize(90, 36))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
@@ -329,8 +329,8 @@ class Ui_Form(object):
         self.btnClear.setObjectName("btnClear")
         self.horizontalLayout_8.addWidget(self.btnClear)
         self.btnConfirm = QtWidgets.QPushButton(self.frame_btns)
-        self.btnConfirm.setMinimumSize(QtCore.QSize(120, 45))
-        self.btnConfirm.setMaximumSize(QtCore.QSize(120, 45))
+        self.btnConfirm.setMinimumSize(QtCore.QSize(90, 36))
+        self.btnConfirm.setMaximumSize(QtCore.QSize(90, 36))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(9)
@@ -369,6 +369,7 @@ class Ui_Form(object):
         self.textBrowser = QtWidgets.QTextBrowser(self.frame_bottom)
         self.textBrowser.setMinimumSize(QtCore.QSize(0, 100))
         self.textBrowser.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.textBrowser.setStyleSheet("background-color:transparent;")
         self.textBrowser.setObjectName("textBrowser")
         self.verticalLayout_3.addWidget(self.textBrowser)
         self.verticalLayout.addWidget(self.frame_bottom)
@@ -379,7 +380,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.fotolabel.setText(_translate("Form", "TEXT"))
+        self.fotolabel.setText(_translate("Form", "Registro de Usuários:"))
         self.userLabel.setText(_translate("Form", "Usuário:"))
         self.userEdit.setPlaceholderText(_translate("Form", "Usuário utilizado para login"))
         self.passLabel.setText(_translate("Form", "Senha:"))
@@ -389,14 +390,11 @@ class Ui_Form(object):
         self.emailLabel.setText(_translate("Form", "Email:"))
         self.emailEdit.setPlaceholderText(_translate("Form", "Email do usuário"))
         self.cargLabel.setText(_translate("Form", "Cargo:"))
-        self.btnClear.setText(_translate("Form", "Clear"))
+        self.btnClear.setText(_translate("Form", "Cancelar"))
         self.btnConfirm.setText(_translate("Form", "Confirmar"))
         self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:65536;\"><span style=\" font-size:8pt;\">Lorem ipsum odor amet, consectetuer adipiscing elit. Nullam nec fringilla aliquam urna porttitor? At gravida nunc felis felis eros gravida bibendum nam sodales. Quis tincidunt sem molestie phasellus; sed porttitor. Vulputate felis auctor hac purus velit. Eros ex tristique urna elementum nullam proin montes proin ultricies.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">Aliquet torquent tristique felis facilisi magna cras. Ullamcorper ornare tortor ipsum ligula tristique curabitur pulvinar. Vitae dictum tempus habitant eget eu curae. Lectus eu bibendum ullamcorper ultricies parturient malesuada molestie feugiat. Dui taciti facilisi aliquet gravida finibus eros vel sed. Venenatis penatibus ultrices magna per quam neque maximus blandit. Dapibus aenean vivamus; proin condimentum congue gravida eu. Eget elementum leo nunc fermentum laoreet taciti pretium. Penatibus ipsum inceptos a; potenti inceptos lectus consectetur porta. Facilisi id mollis vulputate, parturient potenti maximus mauris.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#004c00;\">Cada usuário cadastrado no sistema recebe um cargo que é atribuido ao responsável pelo registro, cada cargo possuí diferentes liberdades e níveis de acesso os mesmos podendo ser modificados pelo administrador, cargos diferentes também podem ser criados para atender diferentes tipos de demandas.</span></p></body></html>"))
 import resource_rc
